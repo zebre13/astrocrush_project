@@ -21,6 +21,31 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+
+    <%= f.input :username,
+            required: true %>
+
+    <%= f.input :description %>
+
+    <%= f.select :hobbies %>
+
+    <%= f.file_field :photos, multiple: true,
+                required: true %>
+
+    <%= f.input :birth_date,
+                required: true %>
+
+    <%= f.input :birth_hour,
+                required: true %>
+
+    <%= f.input :birth_location,
+                required: true %>
+
+    <%= f.select :gender,
+                required: true %>
+
+    <%= f.select :looking_for,
+                required: true %>
   </div>
 
   <div class="form-actions">

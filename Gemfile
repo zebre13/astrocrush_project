@@ -37,6 +37,8 @@ gem 'devise'
 # Also, you can get a list of cities in a state, and a list of all countries of the world.
 gem 'city-state'
 
+gem 'cloudinary', '~> 1.16.0'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -44,7 +46,6 @@ group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'dotenv-rails'
 end
 
 group :development do

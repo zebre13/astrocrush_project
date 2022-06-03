@@ -24,10 +24,12 @@
           <%= f.input :username,
                       required: true %>
 
-          <%= f.input :description %>
+          <%= f.input :description,
+                      required: false %>
 
           <%# Repasser hobbies en select %>
-          <%= f.input :hobbies %>
+          <%= f.input :hobbies
+                      required: false %>
 
           <%= f.file_field :photos, multiple: true,
                       required: true %>

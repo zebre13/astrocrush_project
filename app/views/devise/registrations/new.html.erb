@@ -21,32 +21,23 @@
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
 
-          <%= f.input :username,
-                      required: true %>
+          <%= f.input :username, required: true %>
 
-          <%= f.input :description %>
+          <%= f.input :description, required: false %>
 
-          <%# Repasser hobbies en select %>
-          <%= f.input :hobbies %>
+          <%= f.input :hobbies, required: false %> <%# BOB: change hobbies to "f.select" later on %>
 
-          <%= f.file_field :photos, multiple: true,
-                      required: true %>
+          <%= f.input :photos, as: :file, multiple: true, required: false %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
 
-          <%= f.input :birth_date,
-                      required: true %>
+          <%= f.input :birth_date, required: true %>
 
-          <%= f.input :birth_hour,
-                      required: true %>
+          <%= f.input :birth_hour, required: true %>
 
-          <%= f.input :birth_location,
-                      required: true %>
+          <%= f.input :birth_location, required: true %>
 
-          <%= f.select :gender,
-                      required: true %>
+          <%= f.select :gender, required: true %>
 
-          <%= f.select :looking_for,
-                      required: true %>
-
+          <%= f.select :looking_for, required: true %>
         </div>
 
         <div class="form-actions">

@@ -8,3 +8,5 @@
 
 User.create(email: 'test@test.com', password: '123456')
 User.create(email: '@test.com', password: '123456')
+
+

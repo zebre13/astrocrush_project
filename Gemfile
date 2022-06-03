@@ -33,6 +33,10 @@ gem 'font-awesome-sass', '~> 5.6.1'
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'devise'
 
+# city-state is a very simple ruby gem to get a list of states in a country.
+# Also, you can get a list of cities in a state, and a list of all countries of the world.
+gem 'city-state'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

@@ -29,7 +29,7 @@
 
           <%= f.input :photos, as: :file, multiple: true, required: false %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
 
-          <%= f.input :birth_date, required: true %>
+          <%= f.input :birth_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 90, required: true %>
 
           <%= f.input :birth_hour, required: true %>
 

@@ -10,16 +10,15 @@ class User < ApplicationRecord
   validates :username, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/
   # validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a- z]{2,})$/i
-  validates :description, presence: true, uniqueness: true
-  validates :birth_date, presence: true
+  # validates :birth_date, presence: true
   # validates_date :date_of_birth, :after => Proc.new { Date.today }
-  validates :birth_hour, presence: true
-  validates :birth_location, presence: true
+  # validates :birth_hour, presence: true
+  # validates :birth_location, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
-  validates :star_sign, presence: true
+  # validates :star_sign, presence: true
 
-  validate :user_is_adult
+  # validate :user_is_adult
 
   private
 

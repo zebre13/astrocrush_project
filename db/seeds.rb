@@ -67,7 +67,7 @@ end
 
 puts 'Team users created succesfully'
 
-puts 'Creating 100 fake users...'
+puts 'Creating 10 fake users...'
 
 10.times do
   user = User.new(
@@ -86,6 +86,32 @@ puts 'Creating 100 fake users...'
   user.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')
   user.save!
 end
+
+puts 'Finished!'
+
+puts 'Creating Chatroom...'
+
+Chatroom.new.save!
+
+puts 'Finished!'
+
+puts 'Creating Messages...'
+
+Message.new(
+  content: "coucou!",
+  chatroom_id: 1,
+  user_id: 1
+).save!
+Message.new(
+  content: "yo!",
+  chatroom_id: 1,
+  user_id: 2
+).save!
+Message.new(
+  content: "ça va ?",
+  chatroom_id: 1,
+  user_id: 2
+).save!
 
 puts 'Finished!'
 

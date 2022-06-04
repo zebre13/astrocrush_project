@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many_attached :photos
 
+
   validates :username, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/
   # validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a- z]{2,})$/i
@@ -27,4 +28,5 @@ class User < ApplicationRecord
       self.errors.add(:birth_date, "user must be aged above 18")
     end
   end
+
 end

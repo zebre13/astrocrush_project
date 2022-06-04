@@ -1,24 +1,28 @@
 <h1>index (swipe a gauche ou a droite)</h1>
 
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
+  <div class="carousel-inner" data-controller="swipe">
 
     <% @users.each do |user| %>
-      <div class="carousel-item active">
+      <div class="carousel-item" >
 
-        <!-- Card of user-->
-        <div class="user d-flex flex-column">
+        <div class="d-flex flex-column" data-swipe-target="user" >
 
-          <!-- Photo of user -->
           <%= cl_image_tag user.photos.first.key, height: 300, width: 300, crop: :fill %>
 
-          <!-- User infos-->
           <div>
             <h2><%= user.username %></h2>
           </div>
 
         </div>
       </div>
-      <% end %>
+    <% end %>
+
+    <div class="swipe-buttons d-flex ">
+      <div data-action="click->swipe#swipeLeft">Swipe Left</div>
+      <div data-action="click->swipe#swipeRight">Swipe Rightt</div>
+    </div>
+
+
   </div>
 </div>

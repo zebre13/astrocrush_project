@@ -1,4 +1,3 @@
-require_relative '../app/models/user'
 require 'open-uri'
 require 'faker'
 
@@ -15,41 +14,41 @@ boris = { username: 'Boris',
           # birth_date: '26/06/1977',
           # birth_hour: '05:30',
           # birth_location: 'Aix-en-Provence',
-          gender: 'male',
-          looking_for: 'female' }
+          gender: 1,
+          looking_for: 2 }
 
 etienne = { username: 'Etienne',
             email: 'etiennededi@hotmail.fr',
             password: 'azerty',
             description: "Si toi aussi tu aimes coder en peignoir, on est faits pour s'entendre",
             hobbies: 'Mettre en musique des séries cultes',
-            # birth_date: '../../....',
-            # birth_hour: '..:..',
-            # birth_location: '...',
-            gender: 'male',
-            looking_for: 'female' }
+            # birth_date: '23/06/1994',
+            # birth_hour: '06:30',
+            # birth_location: 'Paris',
+            gender: 1,
+            looking_for: 2 }
 
 ghita = { username: 'Ghita',
           email: 'aa.ghita@gmail.com',
           password: 'azerty',
           description: "Attention, je suis très cool mais si tu m'énerves c'est coup de boule direct",
           hobbies: 'Organiser des festivals techno',
-          # birth_date: '../../....',
-          # birth_hour: '..:..',
-          # birth_location: '...',
-          gender: 'female',
-          looking_for: 'male' }
+          # birth_date: '23/07/1988',
+          # birth_hour: '07:30',
+          # birth_location: 'Casablanca',
+          gender: 2,
+          looking_for: 1 }
 
 maria = { username: 'Maria',
           email: 'leonor.varela91330@gmail.com',
           password: 'azerty',
           description: "J'ai inspiré Carlos Santana pour son titre Maria Maria",
           hobbies: 'Fiesta',
-          # birth_date: '../../....',
-          # birth_hour: '..:..',
-          # birth_location: '...',
-          gender: female,
-          looking_for: male }
+          # birth_date: '15/08/1993',
+          # birth_hour: '15:15',
+          # birth_location: 'Cascais',
+          gender: 2,
+          looking_for: 1 }
 
 users = [boris, etienne, ghita, maria]
 
@@ -80,8 +79,8 @@ puts 'Creating 100 fake users...'
     birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
     birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
     birth_location: Faker::Address.city,
-    gender: Faker::Gender.binary_type,
-    looking_for: Faker::Gender.binary_type
+    gender: rand(1..2),
+    looking_for: rand(1..2)
   )
   file = URI.open('https://thispersondoesnotexist.com/image')
   user.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')

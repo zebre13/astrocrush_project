@@ -22,9 +22,9 @@ export default class extends Controller {
   }
 
   swipeRight(){
-
+    const createMatchUrl =
     swipeLeft()
-
+    fetch()
 
   }
 

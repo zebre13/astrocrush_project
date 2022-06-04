@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    current_user
     @mate = User.find(params[:id])
   end
 end

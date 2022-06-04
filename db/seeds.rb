@@ -67,9 +67,9 @@ end
 
 puts 'Team users created succesfully'
 
-puts 'Creating 100 fake users...'
+puts 'Creating 10 fake users...'
 
-100.times do
+10.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: Faker::Internet.safe_email,

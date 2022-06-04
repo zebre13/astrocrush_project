@@ -5,23 +5,29 @@ export default class extends Controller {
 
   connect() {
     console.log("Hello from our first Stimulus controller")
-    const topUser = document.querySelector(".carousel-item")
-    this.toggleActiveClass(topUser)
+    const firstUser = document.querySelector(".carousel-item")
+    console.log(firstUser)
+    firstUser.classList.add("active")
   }
 
-  toggleActiveClass(element) {
-    // Donner la classe active a l'element suivant
-    element.classList.toggle("active")
+
+  swipeLeft(){
+    // recupérer l'user active
+    const activeUser = document.querySelector(".carousel-item.active")
+    activeUser.classList.remove("active")
+
+    // récupérer l'user suivant
+    const nextUser = activeUser.nextElementSibling
+    nextUser.classList.add("active")
   }
 
-  swipeLeft(event){
+  swipeRight(){
 
-  }
+    swipeLeft()
 
-  swipeRight(event){
 
   }
 
 }
-// Aucune classe n'est active. Au chargement de la page, mettre la classe active à la premiere image.
-// Quand swipe, mettre la classe active sur l'image suivante.
+
+// Quand swipe, détoggle la classe active actuelle  mettre la classe active sur l'element suivant

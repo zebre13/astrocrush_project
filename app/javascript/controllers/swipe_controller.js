@@ -18,12 +18,12 @@ export default class extends Controller {
     activeUser.classList.remove("active")
 
     // récupérer l'user suivant
+
     const nextUser = activeUser.nextElementSibling
     nextUser.classList.add("active")
-  }
+    }
 
   swipeRight(){
-    this.swipeLeft()
     const url= "/matches"
     const mateId = parseInt(document.querySelector(".carousel-item.active > div").dataset.mateId, 10)
     fetch(url, {
@@ -32,9 +32,12 @@ export default class extends Controller {
       body: JSON.stringify({"id": mateId})
     })
 
+    this.swipeLeft()
   }
+}
 
-  }
+
+
 
 
 

@@ -8,6 +8,7 @@ class MatchesController < ApplicationController
 
     # Faut dabord que je retrouve si la personne m'a liké, pour confirmer le potentiel match.
     if Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
+      p "FOOOOOOUND A MAAAAAAAAAAAAAAAAAAAATCH"
       @match = Match.find_by(mate: @mate, user: current_user)
       @match.update(status: 1)
       flash.alert = "Its a MAAAATCH"

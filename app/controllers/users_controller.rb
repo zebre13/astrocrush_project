@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
+    @users = User.where(gender: current_user.looking_for)
   end
 
   def show

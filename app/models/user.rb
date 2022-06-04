@@ -16,16 +16,14 @@ class User < ApplicationRecord
   # validates :birth_location, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
-  # validates :star_sign, presence: true
-
   # validate :user_is_adult
 
-  private
+  # private
 
-  def user_is_adult
-    if Date.today.year - birth_date.year < 18
-      self.errors.add(:birth_date, "user must be aged above 18")
-    end
-  end
+  # def user_is_adult
+  #   if Date.today.year - birth_date.year < 18
+  #     self.errors.add(:birth_date, "user must be aged above 18")
+  #   end
+  # end
 
 end

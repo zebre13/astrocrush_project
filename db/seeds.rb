@@ -67,6 +67,27 @@ end
 
 puts 'Team users created succesfully'
 
+<<<<<<< HEAD
+puts 'Creating 10 fake users...'
+
+10.times do
+  user = User.new(
+    username: Faker::Name.first_name,
+    email: Faker::Internet.safe_email,
+    password: 'azerty',
+    description: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false),
+    hobbies: Faker::Hobby.activity, # BOB: to update when hobbies is changed from f.input to f.select
+    birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
+    birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
+    birth_location: Faker::Address.city,
+    gender: rand(1..2),
+    looking_for: rand(1..2)
+  )
+  file = URI.open('https://thispersondoesnotexist.com/image')
+  user.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')
+  user.save!
+end
+=======
 # puts 'Creating 10 fake users...'
 
 # 10.times do
@@ -123,6 +144,7 @@ Message.new(
   chatroom_id: 1,
   user_id: 2
 ).save!
+>>>>>>> master
 
 puts 'Finished!'
 

@@ -2,6 +2,16 @@
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
+  <div>
+    <% @chatroom.matches.each do |match| %>
+      <% if match.user_id != current_user.id %>
+        <%= cl_image_tag match.user.photos.first.key, height: 50, width: 50, crop: :fill %>
+      <% elsif match.mate_id != current_user.id%>
+        <%= cl_image_tag match.mate.photos.first.key, height: 50, width: 50, crop: :fill %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>

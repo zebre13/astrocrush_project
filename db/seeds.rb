@@ -95,17 +95,28 @@ Chatroom.new.save!
 
 puts 'Finished!'
 
+puts 'Creating Matches...'
+
+match = Match.new(
+  chatroom_id: 1,
+  user_id: 2,
+  mate_id: 3
+)
+match.save!
+
+puts 'Finished!'
+
 puts 'Creating Messages...'
 
 Message.new(
   content: "coucou!",
   chatroom_id: 1,
-  user_id: 1
+  user_id: 2
 ).save!
 Message.new(
   content: "yo!",
   chatroom_id: 1,
-  user_id: 2
+  user_id: 3
 ).save!
 Message.new(
   content: "ça va ?",

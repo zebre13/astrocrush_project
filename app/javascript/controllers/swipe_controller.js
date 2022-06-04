@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import "swipe-listener"
+import UseStrictPlugin from "webpack/lib/UseStrictPlugin"
 export default class extends Controller {
   static targets = ["list","user"]
 
@@ -22,12 +23,19 @@ export default class extends Controller {
   }
 
   swipeRight(){
-    const createMatchUrl =
-    swipeLeft()
-    fetch()
+    this.swipeLeft()
+    const url= "/matches"
+    const mateId = parseInt(document.querySelector(".carousel-item.active > div").dataset.mateId, 10)
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({"id": mateId})
+    })
 
   }
 
-}
+  }
+
+
 
 // Quand swipe, détoggle la classe active actuelle  mettre la classe active sur l'element suivant

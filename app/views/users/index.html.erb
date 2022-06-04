@@ -7,7 +7,7 @@
       <% @users.each do |user| %>
         <div class="carousel-item" >
 
-          <div class="d-flex flex-column" data-swipe-target="user" >
+          <div class="d-flex flex-column" data-swipe-target="user" data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
 
             <%= cl_image_tag user.photos.first.key, height: 300, width: 300, crop: :fill %>
 

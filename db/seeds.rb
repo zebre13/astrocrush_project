@@ -15,7 +15,10 @@ boris = { username: 'Boris',
           # birth_hour: '05:30',
           # birth_location: 'Aix-en-Provence',
           gender: 1,
-          looking_for: 2 }
+          looking_for: 2,
+          star_sign: 'cancer',
+          rising: 'gémeaux',
+          moon: 'balance' }
 
 etienne = { username: 'Etienne',
             email: 'etiennededi@hotmail.fr',
@@ -26,7 +29,10 @@ etienne = { username: 'Etienne',
             # birth_hour: '06:30',
             # birth_location: 'Paris',
             gender: 1,
-            looking_for: 2 }
+            looking_for: 2,
+            star_sign: 'cancer',
+            rising: 'cancer',
+            moon: 'sagittaire' }
 
 ghita = { username: 'Ghita',
           email: 'aa.ghita@gmail.com',
@@ -37,7 +43,10 @@ ghita = { username: 'Ghita',
           # birth_hour: '07:30',
           # birth_location: 'Casablanca',
           gender: 2,
-          looking_for: 1 }
+          looking_for: 1,
+          star_sign: 'lion',
+          rising: 'lion',
+          moon: 'scorpion' }
 
 maria = { username: 'Maria',
           email: 'leonor.varela91330@gmail.com',
@@ -48,7 +57,10 @@ maria = { username: 'Maria',
           # birth_hour: '15:15',
           # birth_location: 'Cascais',
           gender: 2,
-          looking_for: 1 }
+          looking_for: 1,
+          star_sign: 'lion',
+          rising: 'scorpion',
+          moon: 'cancer' }
 
 users = [boris, etienne, ghita, maria]
 

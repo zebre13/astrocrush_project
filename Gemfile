@@ -34,6 +34,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
+gem 'rest-client'
 
 # city-state is a very simple ruby gem to get a list of states in a country.
 # Also, you can get a list of cities in a state, and a list of all countries of the world.

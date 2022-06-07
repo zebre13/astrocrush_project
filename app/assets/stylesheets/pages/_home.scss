@@ -1,1 +1,47 @@
 // Specific CSS for your home-page
+.user-card {
+  min-width: 410px;
+  border: solid 1px black;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: rgb(44, 27, 27)
+}
+
+
+
+h2, h1{
+  color: white;
+  margin-top: 20px;
+}
+
+#backgroundcolor {
+  height: 80vh;
+  background: #b293c0;
+  background: radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
+  background: -webkit-radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
+  background: -moz-radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
+}
+
+div.fas.fa-ban::before{
+  font-size:20px;
+  padding: 10px;
+  color: red;
+  background-color: transparent;
+  border-radius: 55%;
+  border: solid white 1px;
+}
+
+div.fas.fa-heart::before{
+  font-size:20px;
+  padding: 10px;
+  color: rgb(59, 154, 81);
+  background-color: transparent;
+  border-radius: 55%;
+  border: solid white 1px;
+}
+
+.cloudimage-container {
+  overflow: hidden;
+  width:100%;
+  height: 66vh;
+}

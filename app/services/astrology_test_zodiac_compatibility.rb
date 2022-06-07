@@ -12,13 +12,13 @@ apiKey = ENV["API_KEY"]
 # }
 
 # api name which is to be called
-resource = "compatibility/aries/aries/cancer/cancer"
+resource = "zodiac_compatibility/Aries/Cancer"
 
 # instantiate VedicRishiClient class
 ritesh = VRClient.new(userID, apiKey)
 
 # call horoscope apis
-responseData = ritesh.compatibilityCall(
+responseData = ritesh.zodiac_compatibilityCall(
   resource,
   # data['sunSign'],
   # data['risingSign'],

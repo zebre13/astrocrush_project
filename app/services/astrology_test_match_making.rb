@@ -1,4 +1,5 @@
-require './astrology_api'
+require_relative 'astrology_api'
+require 'json'
 
 userID = ENV["API_UID"]
 apiKey = ENV["API_KEY"]

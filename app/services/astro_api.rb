@@ -44,7 +44,7 @@ class AstroApi
     response = RestClient.post 'https://api.bloom.be/api/auth', {
       email: ENV["API_LOGIN"],
       password: ENV["API_PWD"]
-      }, { 'Accept-Encoding': "application/json" }
+    }, { 'Accept-Encoding': "application/json" }
     JSON.parse(response)
   end
 end

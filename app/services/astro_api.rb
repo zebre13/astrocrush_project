@@ -1,6 +1,7 @@
+require 'rest-client'
+require 'json'
+
 class AstroApi
-  require 'rest-client'
-  require 'json'
 
   def initialize
     @auth_token = auth_token["accessToken"]
@@ -41,15 +42,17 @@ class AstroApi
 
   def auth_token
     response = RestClient.post 'https://api.bloom.be/api/auth', {
-      email: "",
-      password: ""
+      email: ENV["API_LOGIN"],
+      password: ENV["API_PWD"]
       }, { 'Accept-Encoding': "application/json" }
     JSON.parse(response)
   end
 end
 
-p test = AstroApi.new
+# p test = AstroApi.new
 # city_id = test.place_id("Aix-en-Provence", "FR")
 # p city_id
 # p test.natal_horoscope("Boris", "1977-06-26", "05:30", city_id)
-p test.compatibility(3, 7)
+# # p test.compatibility(3, 7)
+# p test.place_id("Paris", "FR")
+# p test.place_id("Casablanca", "MA")

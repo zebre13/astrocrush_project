@@ -1,4 +1,4 @@
-require './sdk'
+require_relative 'astrology_api'
 
 userID = "619845"
 apiKey = "0fe9a97cde1e13cefe57c49cf2643167"

@@ -1,7 +1,7 @@
-require './sdk'
+require './astrology_api'
 
-userID = "619845"
-apiKey = "0fe9a97cde1e13cefe57c49cf2643167"
+userID = ENV["API_UID"]
+apiKey = ENV["API_KEY"]
 
 # make some dummy data in order to call vedic rishi api
 data = {

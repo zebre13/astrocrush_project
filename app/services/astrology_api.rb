@@ -87,4 +87,8 @@ class VRClient
 		data = self.packageNumeroData(date, month, year, name)
 		getResponse(resource,data)
 	end
+
+  def compatibilityCall(resource)
+    getResponse(resource, {})
+  end
 end

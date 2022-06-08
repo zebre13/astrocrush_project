@@ -1,84 +1,151 @@
 require 'net/http'
-require 'uri'
 
-class VRClient
-  @@baseURL = "http://api.vedicrishiastro.com/v1/"
+user_id = ENV["API_UID"]
+api_key = ENV["API_KEY"]
+
+class Client
+  @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
 
   def initialize(uid = nil, key = nil)
-    @userID = uid
-    @apiKey = key
+    @user_id = uid
+    @api_key = key
   end
 
-  def display
-    return {
-      'userid' => @userID,
-      'key' => @apiKey
-    }
-  end
-
-  def getResponse(resource, data)
-    url = URI.parse(@@baseURL+resource)
+  def get_response(endpoint, data)
+    url = URI.parse(@@base_url+endpoint)
     req = Net::HTTP::Post.new(url)
-    req.basic_auth @userID, @apiKey
+    req.basic_auth @user_id, @api_key
     req.set_form_data(data)
     resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
     puts resp.body
   end
-
-  def packageHoroData(date, month, year, hour, minute, latitude, longitude, timezone)
-    return {
-      'day' => date,
-      'month' => month,
-      'year' => year,
-      'hour' => hour,
-      'min' => minute,
-      'lat' => latitude,
-      'lon' => longitude,
-      'tzone' => timezone
-    }
-  end
-
-	def packageMatchMakingData(maleBirthData, femaleBirthData)
-    mData = {
-      'm_day'=> maleBirthData['date'],
-      'm_month'=> maleBirthData['month'],
-      'm_year'=> maleBirthData['year'],
-      'm_hour'=> maleBirthData['hour'],
-      'm_min'=> maleBirthData['minute'],
-      'm_lat'=> maleBirthData['latitude'],
-      'm_lon'=> maleBirthData['longitude'],
-      'm_tzone'=> maleBirthData['timezone']
-		}
-
-    fData = {
-        'f_day'=> femaleBirthData['date'],
-        'f_month'=> femaleBirthData['month'],
-        'f_year'=> femaleBirthData['year'],
-        'f_hour'=> femaleBirthData['hour'],
-        'f_min'=> femaleBirthData['minute'],
-        'f_lat'=> femaleBirthData['latitude'],
-        'f_lon'=> femaleBirthData['longitude'],
-        'f_tzone'=> femaleBirthData['timezone']
-    }
-
-		return mData.merge(fData)
-	end
-
-  def call(resource, date, month, year, hour, minute, latitude, longitude, timezone)
-		data = self.packageHoroData(date, month, year, hour, minute, latitude, longitude, timezone)
-		getResponse(resource,data)
-	end
-
-	def matchMakingCall(resource, maleBirthData, femaleBirthData)
-		data = self.packageMatchMakingData(maleBirthData, femaleBirthData)
-		getResponse(resource,data)
-	end
-
-  def compatibilityCall(resource)
-    getResponse(resource, {})
-  end
-
-  def zodiac_compatibilityCall(resource)
-    getResponse(resource, {})
-  end
 end
+
+
+# <--- Test du endpoint "western_horoscope" --->
+
+endpoint = "western_horoscope"
+data = {
+  day: 26,
+  month: 6,
+  year: 1977,
+  hour: 5,
+  min: 30,
+  lat: 43.529742,
+  lon: 5.447427,
+  tzone: 2
+}
+client = Client.new(user_id, api_key)
+data = client.get_response(endpoint, data)
+p data
+
+
+# <--- Test du endpoint "personality_report/tropical" --->
+
+# endpoint = "personality_report/tropical"
+# data = {
+#   day: 26,
+#   month: 6,
+#   year: 1977,
+#   hour: 5,
+#   min: 30,
+#   lat: 43.529742,
+#   lon: 5.447427,
+#   tzone: 2
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "affinity_calculator" --->
+
+# endpoint = "affinity_calculator"
+# data = {
+#   p_day: 26,
+#   p_month: 6,
+#   p_year: 1977,
+#   p_hour: 5,
+#   p_min: 30,
+#   p_lat: 43.529742,
+#   p_lon: 5.447427,
+#   p_tzone: 2,
+#   s_day: 1,
+#   s_month: 11,
+#   s_year: 1976,
+#   s_hour: 18,
+#   s_min: 30,
+#   s_lat: 43.6961,
+#   s_lon: 7.27178,
+#   s_tzone: 2
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "natal_wheel_chart" --->
+
+# endpoint = "natal_wheel_chart"
+# data = {
+#   day: 26,
+#   month: 6,
+#   year: 1977,
+#   hour: 5,
+#   min: 30,
+#   lat: 43.529742,
+#   lon: 5.447427,
+#   tzone: 2
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "timezone_with_dst" --->
+
+# endpoint = "timezone_with_dst"
+# data = {
+#   latitude: 43.529742,
+#   longitude: 5.447427,
+#   date: "6-26-1977"
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
+
+# endpoint = "zodiac_compatibility/leo/sagittarius"
+# data = {}
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
+
+# endpoint = "zodiac_compatibility/leo/sagittarius"
+# data = {}
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "zodiac_compatibility/:zodiacName" --->
+
+# endpoint = "zodiac_compatibility/aquarius"
+# data = {}
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "compatibility/:sunSign/:risingSign/:partnerSunSign/:partnerRisingSign" --->
+
+# endpoint = "compatibility/aquarius/gemini/gemini/scorpio"
+# data = {}
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data

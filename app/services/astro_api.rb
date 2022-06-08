@@ -33,7 +33,7 @@ class AstroApi
     headers = { 'Accept-Encoding': "application/json", Authorization: "Bearer #{@auth_token}" }
     response = RestClient.post "https://api.bloom.be/api/signtosign", {
       sign1_id: sign1_id,
-      sign2_id: sign2_id,
+      sign2_id: sign2_id
     }, headers
     JSON.parse(response)
   end

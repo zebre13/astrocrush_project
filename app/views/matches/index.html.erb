@@ -1,0 +1,29 @@
+<%# faire la liste de mes match
+faire la messagerie de mes match %>
+
+<div class="content">
+  <% @matches.each do |match| %>
+    <%= link_to match_path(match), :action => 'go' do %>
+      <div class="card-index">
+        <div class="card-index-photo">
+          <% if match.photos.any? %>
+            <%= cl_image_tag match.photos.first&.key %>
+          <% end %>
+        </div>
+        <div class="card-index-info">
+          <div class="card-index-header">
+            <div class="item">
+              <%= pet.category.capitalize %>
+            </div>
+            <div class="item text-end">
+              <% if match.accepted %>
+                <%= "accepted" %>
+              <% else %>
+                <%= "Not match" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+</div>

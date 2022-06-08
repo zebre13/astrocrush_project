@@ -79,6 +79,23 @@ end
 
 puts 'Team users created succesfully'
 
+etienne = {
+  id: 1,
+  score: "accepted",
+}
+
+boris = {
+  id: 2,
+  score: "accepted",
+}
+
+matches = [etienne, boris]
+
+matches.each_with_index do |match, index|
+  first_score.find(match)
+  first_score.save
+end
+
 # puts 'Creating 10 fake users...'
 
 # 10.times do

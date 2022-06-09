@@ -1,6 +1,6 @@
 require 'net/http'
 
-user_id = ENV["API_UID"]
+user_id = ENV["USER_ID"]
 api_key = ENV["API_KEY"]
 
 class Client
@@ -10,6 +10,16 @@ class Client
     @user_id = uid
     @api_key = key
   end
+
+  # def city_geo_coord(endpoint, place)
+  #   data = {
+  #     place: place,
+  #     maxRows: 6
+  #   }
+  #   client = Client.new(user_id, api_key)
+  #   data = client.get_response(endpoint, data)
+  #   data
+  # end
 
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
@@ -22,22 +32,65 @@ class Client
 end
 
 
-# <--- Test du endpoint "western_horoscope" --->
+# <--- Test du endpoint "geo_details" --->
 
-endpoint = "western_horoscope"
+endpoint = "geo_details"
 data = {
-  day: 26,
-  month: 6,
-  year: 1977,
-  hour: 5,
-  min: 30,
-  lat: 43.529742,
-  lon: 5.447427,
-  tzone: 2
+  place: "Paris",
+  maxRows: 6
 }
 client = Client.new(user_id, api_key)
 data = client.get_response(endpoint, data)
 p data
+
+
+# <--- Test du endpoint "timezone" --->
+
+# endpoint = "timezone_with_dst"
+# data = {
+#   latitude: 43.529742,
+#   longitude: 5.447427,
+#   date: "6-26-1977"
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "western_horoscope" --->
+
+# endpoint = "western_horoscope"
+# data = {
+#   day: 26,
+#   month: 6,
+#   year: 1977,
+#   hour: 5,
+#   min: 30,
+#   lat: 43.529742,
+#   lon: 5.447427,
+#   tzone: 2
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "natal_wheel_chart" --->
+
+# endpoint = "natal_wheel_chart"
+# data = {
+#   day: 26,
+#   month: 6,
+#   year: 1977,
+#   hour: 5,
+#   min: 30,
+#   lat: 43.529742,
+#   lon: 5.447427,
+#   tzone: 2
+# }
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
 
 
 # <--- Test du endpoint "personality_report/tropical" --->
@@ -78,37 +131,6 @@ p data
 #   s_lat: 43.6961,
 #   s_lon: 7.27178,
 #   s_tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-
-# <--- Test du endpoint "natal_wheel_chart" --->
-
-# endpoint = "natal_wheel_chart"
-# data = {
-#   day: 26,
-#   month: 6,
-#   year: 1977,
-#   hour: 5,
-#   min: 30,
-#   lat: 43.529742,
-#   lon: 5.447427,
-#   tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-
-# <--- Test du endpoint "timezone_with_dst" --->
-
-# endpoint = "timezone_with_dst"
-# data = {
-#   latitude: 43.529742,
-#   longitude: 5.447427,
-#   date: "6-26-1977"
 # }
 # client = Client.new(user_id, api_key)
 # data = client.get_response(endpoint, data)

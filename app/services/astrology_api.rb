@@ -1,9 +1,11 @@
 require 'net/http'
+require 'json'
+require 'date'
 
 user_id = ENV["USER_ID"]
 api_key = ENV["API_KEY"]
 
-class Client
+class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
 
   def initialize(uid = nil, key = nil)
@@ -11,15 +13,28 @@ class Client
     @api_key = key
   end
 
-  # def city_geo_coord(endpoint, place)
-  #   data = {
-  #     place: place,
-  #     maxRows: 6
-  #   }
-  #   client = Client.new(user_id, api_key)
-  #   data = client.get_response(endpoint, data)
-  #   data
-  # end
+  # Renvoie les coordonnées (lat/lon) d'une ville à partir de son nom (ex: "Paris") et de son code pays (ex: "FR")
+  def city_coord(city, country_code)
+    endpoint = "geo_details"
+    data = { place: city.capitalize, maxRows: 6 }
+    cities = get_response(endpoint, data)
+    city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
+    return { lat: city.first['latitude'], lon: city.first['longitude'] }
+  end
+
+  # Renvoie le code de la timezone d'un lieu en fonction de ses coordonnées géographiques et de la date ("dd/mm/yyyy")
+  def time_zone(lat, lon, date)
+    endpoint = "timezone_with_dst"
+    data = {
+      latitude: lat.to_i,
+      longitude: lon.to_i,
+      date: Date.parse(date).strftime("%-m-%-d-%Y")
+    }
+    data = get_response(endpoint, data)
+    return data['timezone']
+  end
+
+  private
 
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
@@ -27,34 +42,22 @@ class Client
     req.basic_auth @user_id, @api_key
     req.set_form_data(data)
     resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
-    puts resp.body
+    JSON.parse(resp.body)
   end
 end
 
-
-# <--- Test du endpoint "geo_details" --->
-
-endpoint = "geo_details"
-data = {
-  place: "Paris",
-  maxRows: 6
-}
-client = Client.new(user_id, api_key)
-data = client.get_response(endpoint, data)
-p data
+# <--- Instanciation de call api --->
+# call = Call.new(user_id, api_key)
 
 
-# <--- Test du endpoint "timezone" --->
+# <--- Appel de la méthode "city_coord" --->
+# coord = call.city_coord("Aix-en-Provence", "FR")
+# p coord
 
-# endpoint = "timezone_with_dst"
-# data = {
-#   latitude: 43.529742,
-#   longitude: 5.447427,
-#   date: "6-26-1977"
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
+
+# <--- Appel de la méthode "timezone" --->
+# tzone = call.time_zone(coord[:lat], coord[:lon], "26/06/1977")
+# p tzone
 
 
 # <--- Test du endpoint "western_horoscope" --->

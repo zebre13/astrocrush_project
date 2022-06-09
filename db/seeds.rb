@@ -80,19 +80,21 @@ end
 puts 'Team users created succesfully'
 
 etienne = {
-  id: 1,
-  score: "accepted",
+  id: 2,
+  status: "accepted",
 }
 
 boris = {
-  id: 2,
-  score: "accepted",
+  id: 1,
+  status: "accepted",
 }
 
 matches = [etienne, boris]
 
-matches.each_with_index do |match, index|
-  first_score.find(match)
+first_score = 80
+
+matches.each do |match|
+  match.save
   first_score.save
 end
 

@@ -2,9 +2,10 @@ class MatchesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def index
-    # afficher mes match 
+    # afficher mes match
     # @match = Match.where(user_id: current_user, score: "accepted")
-    @Matches.all
+    # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
+    @matches = Match.all
   end
 
   def create

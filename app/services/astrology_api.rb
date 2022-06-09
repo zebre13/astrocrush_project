@@ -3,8 +3,8 @@ require 'json'
 require 'date'
 require 'time'
 
-user_id = "619845"
-api_key = "0fe9a97cde1e13cefe57c49cf2643167"
+user_id = ENV["USER_ID"]
+api_key = ENV["API_KEY"]
 
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
@@ -14,8 +14,71 @@ class Call
     @api_key = key
   end
 
-  # Renvoie les coordonnées (lat/lon) d'une ville à partir de son nom (ex: "Paris") et de son code pays (ex: "FR")
-  # ATTENTION : Remplacer city et country_code par birth_location une fois géré le format de birth_location (Ville (Etat/Region), Country_code)
+  # Renvoie les données brutes servant à bâtir un horoscope
+  # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
+  def horoscope(birth_date, birth_hour, city, country_code)
+    endpoint = "western_horoscope"
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
+    data = {
+      day: birth_date.split('/').first.to_i,
+      month: birth_date.split('/')[1].to_i,
+      year: birth_date.split('/')[2].to_i,
+      hour: no_zero_birth_hour.split(':').first.to_i,
+      min: no_zero_birth_hour.split(':').last.to_i,
+      lat: coord[:lat],
+      lon: coord[:lon],
+      tzone: tzone
+    }
+    return get_response(endpoint, data)
+  end
+
+  # Renvoie la position des 10 planètes en signes et maisons sous forme de hash (key = planète) d'arrays (value = [signe, maison])
+  def planets_location(birth_date, birth_hour, city, country_code)
+    horo_elements = horoscope(birth_date, birth_hour, city, country_code)['planets']
+    planets = { Sun: [], Moon: [], Mars: [], Mercury: [], Jupiter: [], Venus: [], Saturn: [], Uranus: [], Neptune: [], Pluto: [] }
+    planets.each_key do |key|
+      horo_elements.each do |element|
+        planets[key] = [element['sign'], element['house']] if element['name'] == key.to_s
+      end
+    end
+    return planets
+  end
+
+  # Renvoie l'url de la carte du ciel en format svg
+  # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
+  def natal_wheel_chart(birth_date, birth_hour, city, country_code)
+    endpoint = "natal_wheel_chart"
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
+    data = {
+      day: birth_date.split('/').first.to_i,
+      month: birth_date.split('/')[1].to_i,
+      year: birth_date.split('/')[2].to_i,
+      hour: no_zero_birth_hour.split(':').first.to_i,
+      min: no_zero_birth_hour.split(':').last.to_i,
+      lat: coord[:lat],
+      lon: coord[:lon],
+      tzone: tzone
+    }
+    return get_response(endpoint, data)['chart_url']
+  end
+
+  private
+
+  def get_response(endpoint, data)
+    url = URI.parse(@@base_url+endpoint)
+    req = Net::HTTP::Post.new(url)
+    req.basic_auth @user_id, @api_key
+    req.set_form_data(data)
+    resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
+    JSON.parse(resp.body)
+  end
+
+    # Renvoie les coordonnées (lat/lon) d'une ville à partir de son nom (ex: "Paris") et de son code pays (ex: "FR")
+  # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
   def city_coord(city, country_code)
     endpoint = "geo_details"
     data = {
@@ -37,106 +100,33 @@ class Call
     info = get_response(endpoint, data)
     return info['timezone']
   end
-
-  # Renvoie les données brutes servant à bâtir un horoscope
-  # ATTENTION : Remplacer city et country_code par birth_location une fois géré le format de birth_location (Ville (Etat/Region), Country_code)
-  def horoscope(birth_date, birth_hour, city, country_code)
-    endpoint = "western_horoscope"
-    coord = city_coord(city, country_code)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
-    data = {
-      day: birth_date.split('/').first.to_i,
-      month: birth_date.split('/')[1].to_i,
-      year: birth_date.split('/')[2].to_i,
-      hour: no_zero_birth_hour.split(':').first.to_i,
-      min: no_zero_birth_hour.split(':').last.to_i,
-      lat: coord[:lat],
-      lon: coord[:lon],
-      tzone: tzone
-    }
-    return get_response(endpoint, data)
-  end
-
-  def planets_location(birth_date, birth_hour, city, country_code)
-    planets = ['Ascendant', 'Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Neptune', 'Pluto']
-    horo = horoscope(birth_date, birth_hour, city, country_code)['planets']
-    planets.each do |planet|
-
-
-    end
-
-  end
-
-  private
-
-  def get_response(endpoint, data)
-    url = URI.parse(@@base_url+endpoint)
-    req = Net::HTTP::Post.new(url)
-    req.basic_auth @user_id, @api_key
-    req.set_form_data(data)
-    resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
-    JSON.parse(resp.body)
-  end
 end
 
-# <--- Instanciation de call api --->
-call = Call.new(user_id, api_key)
+# <--- Instanciation d'appel de l'api --->
+# call = Call.new(user_id, api_key)
 
-
-# <--- Appel de la méthode "city_coord" --->
+# <--- Test de la méthode "city_coord" --->
 # coord = call.city_coord("Aix-en-Provence", "FR")
 # p coord
 
-
-# <--- Appel de la méthode "timezone" --->
+# <--- Test de la méthode "timezone" --->
 # tzone = call.time_zone(coord[:lat], coord[:lon], "26/06/1977")
 # p tzone
 
-
-# <--- Appel de la méthode "horoscope" --->
+# <--- Test de la méthode "horoscope" --->
 # horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
 # p horo
 
-# <--- Appel de la méthode "planets_location" --->
-horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p horo
-horo_elements = horo['planets']
-planets = { Sun: [], Moon: [], Mars: [], Mercury: [], Jupiter: [], Venus: [], Saturn: [], Neptune: [], Pluto: [] }
-planets.each do |key, value|
-  horo_elements.each do |element|
-    if element['name'] == key.to_s
-      value = [element['sign'], element['house']]
-    end
-  end
-end
-return planets
+# <--- Test de la méthode "planets_location" --->
+# planets = call.planets_location("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p planets
 
-planet_array.each do |planet|
-  if planet['name'] == "Sun"
-    sun << planet['sign']
-    sun << planet['house']
-  end
-p sun
-end
+# <--- Test de la méthode "natal_wheel_chart" --->
+# natal_wheel_chart = call.natal_wheel_chart("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p natal_wheel_chart
 
-# <--- Test du endpoint "natal_wheel_chart" --->
 
-# endpoint = "natal_wheel_chart"
-# data = {
-#   day: 26,
-#   month: 6,
-#   year: 1977,
-#   hour: 5,
-#   min: 30,
-#   lat: 43.529742,
-#   lon: 5.447427,
-#   tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
+# <========== REPRENDRE ICI ==========>
 
 # <--- Test du endpoint "personality_report/tropical" --->
 

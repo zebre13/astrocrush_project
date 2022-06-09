@@ -20,8 +20,10 @@ export default class extends Controller {
   }
 
 
-  swipeLeft(){
+  swipeLeft(event){
     // recupérer l'user active
+    // const card = event.currentTarget.closest(".user-card")
+    // card.remove()
     if(document.querySelector(".carousel-item.active")){
       const activeUser = document.querySelector(".carousel-item.active")
       activeUser.classList.remove("active")
@@ -32,7 +34,7 @@ export default class extends Controller {
       const nextUser = activeUser.nextElementSibling
       nextUser.classList.add("active")
     } else {
-      const emptyUser = document.querySelector("empty-user")
+      const emptyUser = document.querySelector(".empty-user")
       emptyUser.classList.toggle('d-none')
     }
     // sinon générer un message

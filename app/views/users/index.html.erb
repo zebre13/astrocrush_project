@@ -9,8 +9,8 @@
       <div class="carousel-inner">
 
         <% @users.each do |user| %>
-          <div class="carousel-item user-card" >
-            <div class="d-flex flex-column" data-swipe-target="user" data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
+          <div class="carousel-item user-card" data-swipe-target="user">
+            <div class="d-flex flex-column"  data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
                 <div class="match-score">88</div>
                 <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-eye text-decoration-none text-dark" %></div>
                 <!-- CARROUSSEL-->

@@ -1,9 +1,10 @@
 require 'net/http'
 require 'json'
 require 'date'
+require 'time'
 
-user_id = ENV["USER_ID"]
-api_key = ENV["API_KEY"]
+user_id = "619845"
+api_key = "0fe9a97cde1e13cefe57c49cf2643167"
 
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
@@ -14,24 +15,57 @@ class Call
   end
 
   # Renvoie les coordonnées (lat/lon) d'une ville à partir de son nom (ex: "Paris") et de son code pays (ex: "FR")
+  # ATTENTION : Remplacer city et country_code par birth_location une fois géré le format de birth_location (Ville (Etat/Region), Country_code)
   def city_coord(city, country_code)
     endpoint = "geo_details"
-    data = { place: city.capitalize, maxRows: 6 }
+    data = {
+      place: city.capitalize,
+      maxRows: 6 }
     cities = get_response(endpoint, data)
     city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
     return { lat: city.first['latitude'], lon: city.first['longitude'] }
   end
 
   # Renvoie le code de la timezone d'un lieu en fonction de ses coordonnées géographiques et de la date ("dd/mm/yyyy")
-  def time_zone(lat, lon, date)
+  def time_zone(lat, lon, birth_date)
     endpoint = "timezone_with_dst"
     data = {
       latitude: lat.to_i,
       longitude: lon.to_i,
-      date: Date.parse(date).strftime("%-m-%-d-%Y")
+      date: Date.parse(birth_date).strftime("%-m-%-d-%Y")
     }
-    data = get_response(endpoint, data)
-    return data['timezone']
+    info = get_response(endpoint, data)
+    return info['timezone']
+  end
+
+  # Renvoie les données brutes servant à bâtir un horoscope
+  # ATTENTION : Remplacer city et country_code par birth_location une fois géré le format de birth_location (Ville (Etat/Region), Country_code)
+  def horoscope(birth_date, birth_hour, city, country_code)
+    endpoint = "western_horoscope"
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
+    data = {
+      day: birth_date.split('/').first.to_i,
+      month: birth_date.split('/')[1].to_i,
+      year: birth_date.split('/')[2].to_i,
+      hour: no_zero_birth_hour.split(':').first.to_i,
+      min: no_zero_birth_hour.split(':').last.to_i,
+      lat: coord[:lat],
+      lon: coord[:lon],
+      tzone: tzone
+    }
+    return get_response(endpoint, data)
+  end
+
+  def planets_location(birth_date, birth_hour, city, country_code)
+    planets = ['Ascendant', 'Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Neptune', 'Pluto']
+    horo = horoscope(birth_date, birth_hour, city, country_code)['planets']
+    planets.each do |planet|
+
+
+    end
+
   end
 
   private
@@ -47,7 +81,7 @@ class Call
 end
 
 # <--- Instanciation de call api --->
-# call = Call.new(user_id, api_key)
+call = Call.new(user_id, api_key)
 
 
 # <--- Appel de la méthode "city_coord" --->
@@ -60,23 +94,31 @@ end
 # p tzone
 
 
-# <--- Test du endpoint "western_horoscope" --->
+# <--- Appel de la méthode "horoscope" --->
+# horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p horo
 
-# endpoint = "western_horoscope"
-# data = {
-#   day: 26,
-#   month: 6,
-#   year: 1977,
-#   hour: 5,
-#   min: 30,
-#   lat: 43.529742,
-#   lon: 5.447427,
-#   tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
+# <--- Appel de la méthode "planets_location" --->
+horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p horo
+horo_elements = horo['planets']
+planets = { Sun: [], Moon: [], Mars: [], Mercury: [], Jupiter: [], Venus: [], Saturn: [], Neptune: [], Pluto: [] }
+planets.each do |key, value|
+  horo_elements.each do |element|
+    if element['name'] == key.to_s
+      value = [element['sign'], element['house']]
+    end
+  end
+end
+return planets
 
+planet_array.each do |planet|
+  if planet['name'] == "Sun"
+    sun << planet['sign']
+    sun << planet['house']
+  end
+p sun
+end
 
 # <--- Test du endpoint "natal_wheel_chart" --->
 
@@ -140,27 +182,18 @@ end
 # p data
 
 
-# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
-
-# endpoint = "zodiac_compatibility/leo/sagittarius"
-# data = {}
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-
-# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
-
-# endpoint = "zodiac_compatibility/leo/sagittarius"
-# data = {}
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-
 # <--- Test du endpoint "zodiac_compatibility/:zodiacName" --->
 
 # endpoint = "zodiac_compatibility/aquarius"
+# data = {}
+# client = Client.new(user_id, api_key)
+# data = client.get_response(endpoint, data)
+# p data
+
+
+# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
+
+# endpoint = "zodiac_compatibility/leo/sagittarius"
 # data = {}
 # client = Client.new(user_id, api_key)
 # data = client.get_response(endpoint, data)

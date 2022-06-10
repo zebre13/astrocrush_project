@@ -129,7 +129,7 @@ call = Call.new(user_id, api_key)
 # personality_report = call.personality_report("26/06/1977", "05:30", "Aix-en-Provence", "FR")
 # p personality_report
 
-  # <========== REPRENDRE ICI ==========>
+# <========== REPRENDRE ICI ==========>
 
 # <--- Test du endpoint "affinity_calculator" --->
 

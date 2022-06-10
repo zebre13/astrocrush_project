@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many_attached :photos
   has_many :matches, dependent: :destroy
-  has_many :messages, dependent: :destroy
+  has_many :messages, dependent: :destroy # Ajout BOB
 
   validates :username, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/
@@ -26,4 +26,5 @@ class User < ApplicationRecord
   #     self.errors.add(:birth_date, "user must be aged above 18")
   #   end
   # end
+
 end

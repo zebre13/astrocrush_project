@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many_attached :photos
-  has_many :matches
+  has_many :matches, dependent: :destroy
 
   validates :username, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/

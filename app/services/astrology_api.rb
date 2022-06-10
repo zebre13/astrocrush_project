@@ -18,19 +18,7 @@ class Call
   # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
   def horoscope(birth_date, birth_hour, city, country_code)
     endpoint = "western_horoscope"
-    coord = city_coord(city, country_code)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
-    data = {
-      day: birth_date.split('/').first.to_i,
-      month: birth_date.split('/')[1].to_i,
-      year: birth_date.split('/')[2].to_i,
-      hour: no_zero_birth_hour.split(':').first.to_i,
-      min: no_zero_birth_hour.split(':').last.to_i,
-      lat: coord[:lat],
-      lon: coord[:lon],
-      tzone: tzone
-    }
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)
   end
 
@@ -50,20 +38,15 @@ class Call
   # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
   def natal_wheel_chart(birth_date, birth_hour, city, country_code)
     endpoint = "natal_wheel_chart"
-    coord = city_coord(city, country_code)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
-    data = {
-      day: birth_date.split('/').first.to_i,
-      month: birth_date.split('/')[1].to_i,
-      year: birth_date.split('/')[2].to_i,
-      hour: no_zero_birth_hour.split(':').first.to_i,
-      min: no_zero_birth_hour.split(':').last.to_i,
-      lat: coord[:lat],
-      lon: coord[:lon],
-      tzone: tzone
-    }
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['chart_url']
+  end
+
+  # Renvoie un texte présentant la personalité d'une personne en fonction de ses éléments de naissance
+  def personality_report(birth_date, birth_hour, city, country_code)
+    endpoint = "personality_report/tropical"
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
+    return get_response(endpoint, data)
   end
 
   private
@@ -100,10 +83,27 @@ class Call
     info = get_response(endpoint, data)
     return info['timezone']
   end
+
+  # Renvoie un hash contenant les données de naissance formattées pour l'usage de l'api à partir des éléments de naissance
+  def birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
+    data = {
+      day: birth_date.split('/').first.to_i,
+      month: birth_date.split('/')[1].to_i,
+      year: birth_date.split('/')[2].to_i,
+      hour: no_zero_birth_hour.split(':').first.to_i,
+      min: no_zero_birth_hour.split(':').last.to_i,
+      lat: coord[:lat],
+      lon: coord[:lon],
+      tzone: tzone
+    }
+  end
 end
 
 # <--- Instanciation d'appel de l'api --->
-# call = Call.new(user_id, api_key)
+call = Call.new(user_id, api_key)
 
 # <--- Test de la méthode "city_coord" --->
 # coord = call.city_coord("Aix-en-Provence", "FR")
@@ -125,26 +125,11 @@ end
 # natal_wheel_chart = call.natal_wheel_chart("26/06/1977", "05:30", "Aix-en-Provence", "FR")
 # p natal_wheel_chart
 
+# <--- Test de la méthode "personality_report" --->
+# personality_report = call.personality_report("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p personality_report
 
-# <========== REPRENDRE ICI ==========>
-
-# <--- Test du endpoint "personality_report/tropical" --->
-
-# endpoint = "personality_report/tropical"
-# data = {
-#   day: 26,
-#   month: 6,
-#   year: 1977,
-#   hour: 5,
-#   min: 30,
-#   lat: 43.529742,
-#   lon: 5.447427,
-#   tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
+  # <========== REPRENDRE ICI ==========>
 
 # <--- Test du endpoint "affinity_calculator" --->
 

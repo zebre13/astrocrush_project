@@ -3,8 +3,8 @@ require 'json'
 require 'date'
 require 'time'
 
-user_id = ENV["USER_ID"]
-api_key = ENV["API_KEY"]
+user_id = "619845"
+api_key = "0fe9a97cde1e13cefe57c49cf2643167"
 
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
@@ -49,7 +49,15 @@ class Call
     return get_response(endpoint, data)
   end
 
-  private
+  def affinity_percentage(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
+    endpoint = "affinity_calculator"
+    p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
+    s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
+    data = p_data.merge(s_data)
+    return get_response(endpoint, data)['affinity_percentage']
+  end
+
+  # private
 
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
@@ -88,16 +96,47 @@ class Call
   def birth_data_set(birth_date, birth_hour, city, country_code)
     coord = city_coord(city, country_code)
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    no_zero_birth_hour = Time.parse(birth_hour).strftime("%-l:%-M")
     data = {
       day: birth_date.split('/').first.to_i,
       month: birth_date.split('/')[1].to_i,
       year: birth_date.split('/')[2].to_i,
-      hour: no_zero_birth_hour.split(':').first.to_i,
-      min: no_zero_birth_hour.split(':').last.to_i,
+      hour: birth_hour.split(':').first.to_i,
+      min: birth_hour.split(':').last.to_i,
       lat: coord[:lat],
       lon: coord[:lon],
       tzone: tzone
+    }
+  end
+
+  # Renvoie un hash contenant les données de naissance formattées pour la première personne dans un calcul d'affinité
+  def p_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    data = {
+      p_day: birth_date.split('/').first.to_i,
+      p_month: birth_date.split('/')[1].to_i,
+      p_year: birth_date.split('/')[2].to_i,
+      p_hour: birth_hour.split(':').first.to_i,
+      p_min: birth_hour.split(':').last.to_i,
+      p_lat: coord[:lat],
+      p_lon: coord[:lon],
+      p_tzone: tzone
+    }
+  end
+
+  # Renvoie un hash contenant les données de naissance formattées pour la deuxième personne dans un calcul d'affinité
+  def s_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    data = {
+      s_day: birth_date.split('/').first.to_i,
+      s_month: birth_date.split('/')[1].to_i,
+      s_year: birth_date.split('/')[2].to_i,
+      s_hour: birth_hour.split(':').first.to_i,
+      s_min: birth_hour.split(':').last.to_i,
+      s_lat: coord[:lat],
+      s_lon: coord[:lon],
+      s_tzone: tzone
     }
   end
 end
@@ -112,6 +151,10 @@ call = Call.new(user_id, api_key)
 # <--- Test de la méthode "timezone" --->
 # tzone = call.time_zone(coord[:lat], coord[:lon], "26/06/1977")
 # p tzone
+
+# <--- Test de la méthode "birth_data_set" --->
+# data = call.birth_data_set("26/06/1977", "05:30", "Aix-en-Provence", "FR")
+# p data
 
 # <--- Test de la méthode "horoscope" --->
 # horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
@@ -129,54 +172,27 @@ call = Call.new(user_id, api_key)
 # personality_report = call.personality_report("26/06/1977", "05:30", "Aix-en-Provence", "FR")
 # p personality_report
 
+# <--- Test de la méthode "affinity_percentage" ---> *** ATTENTION *** Cette méthode donne un résultat différent à chaque appel (???)
+# score = call.affinity_percentage("26/06/1977", "05:30", "Aix-en-Provence", "FR", "28/05/1982", "18:30", "Le Chesnay", "FR")
+# p score
+
 # <========== REPRENDRE ICI ==========>
 
-# <--- Test du endpoint "affinity_calculator" --->
-
-# endpoint = "affinity_calculator"
-# data = {
-#   p_day: 26,
-#   p_month: 6,
-#   p_year: 1977,
-#   p_hour: 5,
-#   p_min: 30,
-#   p_lat: 43.529742,
-#   p_lon: 5.447427,
-#   p_tzone: 2,
-#   s_day: 1,
-#   s_month: 11,
-#   s_year: 1976,
-#   s_hour: 18,
-#   s_min: 30,
-#   s_lat: 43.6961,
-#   s_lon: 7.27178,
-#   s_tzone: 2
-# }
-# client = Client.new(user_id, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-
 # <--- Test du endpoint "zodiac_compatibility/:zodiacName" --->
-
 # endpoint = "zodiac_compatibility/aquarius"
 # data = {}
 # client = Client.new(user_id, api_key)
 # data = client.get_response(endpoint, data)
 # p data
 
-
 # <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
-
 # endpoint = "zodiac_compatibility/leo/sagittarius"
 # data = {}
 # client = Client.new(user_id, api_key)
 # data = client.get_response(endpoint, data)
 # p data
 
-
 # <--- Test du endpoint "compatibility/:sunSign/:risingSign/:partnerSunSign/:partnerRisingSign" --->
-
 # endpoint = "compatibility/aquarius/gemini/gemini/scorpio"
 # data = {}
 # client = Client.new(user_id, api_key)

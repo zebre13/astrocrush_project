@@ -72,9 +72,7 @@ class Call
   # *** ATTENTION *** Remplacer city et country_code par birth_location une fois ajusté le format de birth_location (Ville (Etat/Region), Country_code)
   def city_coord(city, country_code)
     endpoint = "geo_details"
-    data = {
-      place: city.capitalize,
-      maxRows: 6 }
+    data = { place: city.capitalize, maxRows: 6 }
     cities = get_response(endpoint, data)
     city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
     return { lat: city.first['latitude'], lon: city.first['longitude'] }

@@ -1,14 +1,14 @@
   <div class="container-dashboard">
     <div class="row">
       <div class ="col-1 padding"></div>
-      <div class ="col-4 padding border"><%#= currentuser.rising.capitalize %></div>
+      <div class ="col-4 padding border"><%= current_user.rising.capitalize %></div>
       <div class ="col-4 padding pink-background"><em>↑</em> ASCENDANT</div>
       <div class ="col-2 padding border"><h3>1</h3></div>
       <div class ="col-1 padding"></div>
     </div>
     <div class="row">
       <div class ="col-1 padding"></div>
-      <div class ="col-4 padding border"><%#= @my_zodiac[1]%></div>
+      <div class ="col-4 padding border"><%= @my_zodiac%></div>
       <div class ="col-4 padding pink-background"><%#= @my_zodiac[1].planet%></div>
       <div class ="col-2 padding border"><h3><%#= @my_zodiac[1].house%></h3></div>
       <div class ="col-1 padding"></div>

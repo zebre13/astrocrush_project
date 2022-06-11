@@ -24,10 +24,10 @@ class Call
   # Renvoie la position des 10 planètes en signes et maisons sous forme de hash (key = planète) d'arrays (value = [signe, maison])
   def planets_location(birth_date, birth_hour, city, country_code)
     horo_elements = horoscope(birth_date, birth_hour, city, country_code)['planets']
-    planets = { Sun: [], Moon: [], Mars: [], Mercury: [], Jupiter: [], Venus: [], Saturn: [], Uranus: [], Neptune: [], Pluto: [] }
+    planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
     planets.each_key do |key|
       horo_elements.each do |element|
-        planets[key] = [element['sign'], element['house']] if element['name'] == key.to_s
+        planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
       end
     end
     return planets
@@ -47,7 +47,7 @@ class Call
     return get_response(endpoint, data)
   end
 
-  # Affinity percentage between primary user (p) 
+  # Affinity percentage between primary user (p) and secondary mate (s)
   def affinity_percentage(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
     endpoint = "affinity_calculator"
     p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
@@ -56,6 +56,7 @@ class Call
     return get_response(endpoint, data)['affinity_percentage']
   end
 
+  # Call de l'api
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
     req = Net::HTTP::Post.new(url)
@@ -70,7 +71,7 @@ class Call
     endpoint = "geo_details"
     data = { place: city.capitalize, maxRows: 6 }
     cities = get_response(endpoint, data)
-    p cities
+    cities
     city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
     return { lat: city.first['latitude'], lon: city.first['longitude'] }
   end

@@ -25,9 +25,9 @@ boris_data = {
   birth_country: 'FR',
   gender: 1,
   looking_for: 2,
-  sign: 'cancer',
-  rising: 'gémeaux',
-  moon: 'balance'
+  sign: 'Cancer',
+  rising: 'Gemini',
+  moon: 'Libra'
 }
 
 etienne_data = {
@@ -44,7 +44,7 @@ etienne_data = {
   looking_for: 2,
   sign: 'Cancer',
   rising: 'Cancer',
-  moon: 'Sagittaire'
+  moon: 'Sagittarius'
 }
 
 ghita_data = {
@@ -59,9 +59,9 @@ ghita_data = {
   birth_country: 'MA',
   gender: 2,
   looking_for: 1,
-  sign: 'Lion',
-  rising: 'Lion',
-  moon: 'Scorpion'
+  sign: 'Leo',
+  rising: 'Leo',
+  moon: 'Scorpio'
 }
 
 maria_data = {
@@ -76,8 +76,8 @@ maria_data = {
   birth_country: 'PT',
   gender: 2,
   looking_for: 1,
-  sign: 'Lion',
-  rising: 'Scorpion',
+  sign: 'Leo',
+  rising: 'Scorpio',
   moon: 'Cancer'
 }
 

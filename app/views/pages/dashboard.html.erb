@@ -18,14 +18,14 @@
       <%= link_to "#" do %>
       <i class="fas fa-wrench"></i>
       <% end %>
-      <p><em>updates</em></p>
+      <p><em>Mon profil</em></p>
     </div>
 
     <div class="col-3 d-flex p-2">
       <%= link_to "#" do %>
       <i class="fas fa-pen"></i>
       <% end %>
-      <p><em>chart</em></p>
+      <p><em>Mon thème</em></p>
     </div>
 
     <div class="col-3 d-flex p-2">
@@ -43,8 +43,16 @@
     </div>
   </div>
 
-  <div class="row container-dashboard">
-    <div class ="col-2">coucou</div>
-    <div class ="col-8">coucou</div>
-    <div class ="col-2">coucou</div>
+  <div>
+    <div class="d-flex justify-content-center">
+      <h4 class="p-3"><em>TABLE</em></h4>
+      <h4 class="p-3"><em>|</em></h4>
+      <h4 class="p-3"><em>CIRCLE</em></h4>
+    </div>
+
+    <div data-controller="dashboard" id="slider" width=65%>
+      <figure>
+        <div class="row"><%= render "dashboard/table"%></div>
+      </figure>
+    </div>
   </div>

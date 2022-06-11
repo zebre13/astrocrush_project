@@ -9,46 +9,58 @@ puts 'Creating team users'
 boris = { username: 'Boris',
           email: 'boris_bourdet@hotmail.com',
           password: 'azerty',
-          description: 'Si vous fréquentez le thai de la rue Oberkampf, on a dû se croiser',
+          description: 'Si ça vous dit, je connais un très bon thai de la rue Oberkampf',
           hobbies: 'Faire des concerts dans mon salon',
-          # birth_date: '26/06/1977',
-          # birth_hour: '05:30',
-          # birth_location: 'Aix-en-Provence',
+          birth_date: '26/06/1977',
+          birth_hour: '05:30',
+          birth_location: 'Aix-en-Provence',
           gender: 1,
-          looking_for: 2 }
+          looking_for: 2,
+          star_sign: 'cancer',
+          rising: 'gémeaux',
+          moon: 'balance' }
 
 etienne = { username: 'Etienne',
             email: 'etiennededi@hotmail.fr',
             password: 'azerty',
             description: "Si toi aussi tu aimes coder en peignoir, on est faits pour s'entendre",
             hobbies: 'Mettre en musique des séries cultes',
-            # birth_date: '23/06/1994',
-            # birth_hour: '06:30',
-            # birth_location: 'Paris',
+            birth_date: '23/06/1994',
+            birth_hour: '06:30',
+            birth_location: 'Paris',
             gender: 1,
-            looking_for: 2 }
+            looking_for: 2,
+            star_sign: 'cancer',
+            rising: 'cancer',
+            moon: 'sagittaire' }
 
 ghita = { username: 'Ghita',
           email: 'aa.ghita@gmail.com',
           password: 'azerty',
           description: "Attention, je suis très cool mais si tu m'énerves c'est coup de boule direct",
           hobbies: 'Organiser des festivals techno',
-          # birth_date: '23/07/1988',
-          # birth_hour: '07:30',
-          # birth_location: 'Casablanca',
+          birth_date: '23/07/1988',
+          birth_hour: '07:30',
+          birth_location: 'Casablanca',
           gender: 2,
-          looking_for: 1 }
+          looking_for: 1,
+          star_sign: 'lion',
+          rising: 'lion',
+          moon: 'scorpion' }
 
 maria = { username: 'Maria',
           email: 'leonor.varela91330@gmail.com',
           password: 'azerty',
-          description: "J'ai inspiré Carlos Santana pour son titre Maria Maria",
+          description: "J'ai inspiré le tube Maria Maria à Carlos Santana",
           hobbies: 'Fiesta',
-          # birth_date: '15/08/1993',
-          # birth_hour: '15:15',
-          # birth_location: 'Cascais',
+          birth_date: '15/08/1993',
+          birth_hour: '15:15',
+          birth_location: 'Cascais',
           gender: 2,
-          looking_for: 1 }
+          looking_for: 1,
+          star_sign: 'lion',
+          rising: 'scorpion',
+          moon: 'cancer' }
 
 users = [boris, etienne, ghita, maria]
 

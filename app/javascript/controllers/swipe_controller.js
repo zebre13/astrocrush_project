@@ -6,21 +6,38 @@ export default class extends Controller {
 
   connect() {
     console.log("Hello from our first Stimulus controller")
-    const firstUser = document.querySelector(".carousel-item")
-    console.log(firstUser)
-    firstUser.classList.add("active")
+    let firstUser
+    if (document.querySelector(".carousel-item")){
+      firstUser = document.querySelector(".carousel-item")
+      firstUser.classList.add("active")
+    }
+    else {
+      const emptyUser = document.querySelector(".empty-user")
+      emptyUser.classList.toggle('d-none')
+      const buttons = document.querySelector(".match-buttons")
+      buttons.classList.add("d-none")
+    }
   }
 
 
-  swipeLeft(){
+  swipeLeft(event){
     // recupérer l'user active
-    const activeUser = document.querySelector(".carousel-item.active")
-    activeUser.classList.remove("active")
+    // const card = event.currentTarget.closest(".user-card")
+    // card.remove()
+    if(document.querySelector(".carousel-item.active")){
+      const activeUser = document.querySelector(".carousel-item.active")
+      activeUser.classList.remove("active")
+    }
 
-    // récupérer l'user suivant
-
-    const nextUser = activeUser.nextElementSibling
-    nextUser.classList.add("active")
+    // s'il existe, récupérer l'user suivant
+    if(document.querySelector(".carousel-item.active") && document.querySelector(".carousel-item.active").nextElementSibling){
+      const nextUser = activeUser.nextElementSibling
+      nextUser.classList.add("active")
+    } else {
+      const emptyUser = document.querySelector(".empty-user")
+      emptyUser.classList.toggle('d-none')
+    }
+    // sinon générer un message
     }
 
   swipeRight(){

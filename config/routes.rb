@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :matches
-  resources :users, only: :show
+
   get 'dashboard', to:'pages#dashboard'
+
+  # get '/users/:id', to: 'users#show'
+  resources :users, only: [:show, :edit]
 end

@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @users = @users_by_gender.reject do |user|
       current_user.matches.pluck(:mate_id).include?(user.id)
     end
-
   end
 
   def show

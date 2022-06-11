@@ -20,11 +20,34 @@ class User < ApplicationRecord
   validates :looking_for, presence: true
   # validate :user_is_adult
 
-  # private
+  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
 
-  # def user_is_adult
-  #   if Date.today.year - birth_date.year < 18
-  #     self.errors.add(:birth_date, "User must be over 18 years old")
-  #   end
-  # end
+  def create_my_zodiac
+    first = 0
+
+    ZODIAC.each_with_index do |sign, index|
+      if sign == current_user.rising.capitalize
+        first = index
+      end
+    end
+    first_half = ZODIAC.slice(first..-1)
+    second_half = ZODIAC.slice(0..(first-1))
+
+    @my_zodiac = first_half + second_half
+  end
+
+  def find_planets
+    @my_zodiac.each do |sign|
+      planet = current_user.planets.select { |_, v| v.select { |_, value| value.include? sign } }
+      sign = { planet: planet.key, house: planet.house }
+    end
+  end
+
+    # private
+
+    # def user_is_adult
+    #   if Date.today.year - birth_date.year < 18
+    #     self.errors.add(:birth_date, "User must be over 18 years old")
+    #   end
+    # end
 end

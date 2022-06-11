@@ -43,16 +43,18 @@
     </div>
   </div>
 
-  <div>
+  <div data-controller="dashboard" >
     <div class="d-flex justify-content-center">
-      <h4 class="p-3"><em>TABLE</em></h4>
-      <h4 class="p-3"><em>|</em></h4>
-      <h4 class="p-3"><em>CIRCLE</em></h4>
+      <h3 data-action="click->dashboard#table" class="p-3"><em>Table</em></h3>
+      <h3 class="p-3">|</h3>
+      <h3 data-action="click->dashboard#circle" class="p-3"><em>Circle</em></h3>
     </div>
-
-    <div data-controller="dashboard" id="slider" width=65%>
-      <figure>
-        <div class="row"><%= render "dashboard/table"%></div>
-      </figure>
+    <div>
+      <div data-dashboard-target="table">
+        <%= render "dashboard/table"%>
+      </div>
+      <div data-dashboard-target="circle" class="d-none">
+        <%= render "dashboard/circle"%>
+      </div>
     </div>
   </div>

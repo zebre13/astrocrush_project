@@ -1,17 +1,19 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["content"]
+  static targets = ["table", "circle"]
 
   connect() {
     console.log("Hello from our first Stimulus controller")
   }
 
-  go_right() {
-    this.contentTarget.outerHTML = data ;
+  circle() {
+    this.circleTarget.classList.remove("d-none");
+    this.tableTarget.classList.add("d-none");
   }
 
-  // go_left() {
-  //   console.log(event)
-  // }
+  table() {
+    this.tableTarget.classList.remove("d-none");
+    this.circleTarget.classList.add("d-none");
+  }
 }

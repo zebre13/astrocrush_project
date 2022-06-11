@@ -3,9 +3,12 @@ class MatchesController < ApplicationController
 
   def index
     # afficher mes match
-    # @match = Match.where(user_id: current_user, score: "accepted")
     # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
-    @matches = Match.all
+
+
+    @matches = current_user.matches.where(status: 'accepted').order("chatroom_id DESC")
+
+
   end
 
   def create
@@ -37,4 +40,12 @@ class MatchesController < ApplicationController
       @match.save!
     end
   end
+
+  # def destroy
+  #   @matches = Match.where(user_id: current_user.id).where.not(status: 0)
+  # @mattches.each do |match|
+  # match.destroy
+  # end
+  # @match.mate.destroy
+  # end
 end

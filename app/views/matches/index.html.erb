@@ -3,48 +3,52 @@ faire la messagerie de mes match %>
 
 <div class="container">
   <h3>Matches</h3>
-    <div class="d-flex">
-      <% @matches.each do |match| %>
-         <div class="card-index">
-           <div class="card-index-photo">
-             <%= link_to match_path(match), :action => 'go' do %>
-                <% if match.mate.photos.any? %>
-                <%= cl_image_tag match.mate.photos.first&.key %>
-                <% end %>
-            </div>
+  <div class="d-flex">
+    <% @matches.each do |match| %>
+      <div class="card-index">
+        <div class="card-index-photo">
+          <%= link_to match_path(match), :action => 'go' do %>
+            <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
+          <% end %>
+        </div>
+        <%# faire la route pour la show  %>
+      </div>
+
+      <div class="card-index-info">
+        <div class="card-index-header">
+          <div class="item">
+            <%= match.status&.capitalize %>
           </div>
-          <div class="card-index-info">
-            <div class="card-index-header">
-              <div class="item">
-                  <%= match.status&.capitalize %>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h1> <%= match.mate.username %> </h1>
-          </div>
-           <% end %>
-        <% end %>
-    </div>
+        </div>
+      </div>
+
+      <div>
+        <h1><%= match.mate.username %></h1>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="container">
   <div class="messager">
     <h3>Messages</h3>
-    mettre de fulsx de messages
+    <%# mettre de fulx de messages %>
 
     <div class="flux">
       <div class="discussions">
         <div class="list-item-open">
-            <%= @match.messages %>
-            <%= @messages.each do |message| %>
-            
+          <div class="row link">
+          <% @matches.each do |match| %>
+            <%= link_to match.mate.username, chatroom_path(match.chatroom)  %>
+          <% end %>
+           <%# <% @match.chatroom[:id].messages %>
+            <%# <%= @messages.each do |message| %>
+            <%# <%=  @message.last %>
+          </div>
         </div>
-
+        <%# mettre le link dans la card/photo %>
       <%#= link_to chatroom_path(chatrooms), :action => 'go' do  dans la photo 50% %>
-      <% end %>
       </div>
-
     </div>
   </div>
 </div>

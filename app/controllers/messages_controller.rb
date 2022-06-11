@@ -1,4 +1,9 @@
 class MessagesController < ApplicationController
+
+  def index
+    @messages = Message.current.includes(:user).reverse
+  end
+
   def create
     @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)

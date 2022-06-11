@@ -1,19 +1,22 @@
 <div id="backgroundcolor">
 
   <div class="d-flex flex-column align-items-center" data-controller="swipe">
-    <div class="empty-user d-none" >
+    <div data-swipe-target="emptyUser" class="d-none" >
       <%= image_tag("simba.webp", height: 300, width: 300) %>
       <h2>Plus d'autres utilisateurs. Il n'y a plus qu'à voir si les planètes s'alignent...</h2>
     </div>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
+    <div>
 
-        <% @users.each do |user| %>
-          <div class="carousel-item user-card" data-swipe-target="user">
-            <div class="d-flex flex-column"  data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
+    <% if @users.any? %>
+        <% @users.each_with_index do |user, index| %>
+
+          <!-- USER CARD-->
+          <div class="user-card" >
+
+            <div class="d-flex flex-column" data-swipe-target="user" data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
                 <div class="match-score">88</div>
                 <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-eye text-decoration-none text-dark" %></div>
-                <!-- CARROUSSEL-->
+                <!-- PICTURE CARROUSSEL-->
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -41,16 +44,17 @@
                 <h1><%= user.username %>, 37</h1>
               </div>
 
-              <div class="swipe-buttons d-flex justify-content-around p-3">
-                <div class="fas fa-ban" data-action="click->swipe#swipeLeft"></div>
+              <div class="swipe-buttons d-flex justify-content-around p-3" data-swipe-target="buttons">
+                <div class="fas fa-ban" data-action="click->swipe#swipeLeft" ></div>
                 <div class="fas fa-heart" data-action="click->swipe#swipeRight"></div>
               </div>
 
             </div>
           </div>
         <% end %>
-
-      </div>
+    <% else %>
+    <h1>Il n'y a plus personne a swiper...Daleux va</h1>
+    <% end %>
     </div>
 
   </div>

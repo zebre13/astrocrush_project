@@ -9,6 +9,11 @@ faire la messagerie de mes match %>
         <div class="card-index-photo">
           <%= link_to match_path(match), :action => 'go' do %>
             <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
+            <div class="card-index-info">
+                <h1><%= match.mate.username %></h1>
+                <%= match.status&.capitalize %>
+            </div>
+
           <% end %>
         </div>
         <%# faire la route pour la show  %>
@@ -16,14 +21,8 @@ faire la messagerie de mes match %>
 
       <div class="card-index-info">
         <div class="card-index-header">
-          <div class="item">
-            <%= match.status&.capitalize %>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <h1><%= match.mate.username %></h1>
+        </div>
       </div>
     <% end %>
   </div>

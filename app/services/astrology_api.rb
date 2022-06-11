@@ -47,7 +47,7 @@ class Call
     return get_response(endpoint, data)
   end
 
-  # Affinity percentage between primary user (p)
+  # Affinity percentage between primary user (p) and secondary mate (s)
   def affinity_percentage(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
     endpoint = "affinity_calculator"
     p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)

@@ -3,6 +3,8 @@ require 'faker'
 
 puts 'Cleaning database...'
 User.destroy_all
+Match.destroy_all
+Chatroom.destroy_all
 
 puts 'Creating team users'
 
@@ -79,6 +81,45 @@ end
 
 puts 'Team users created succesfully'
 
+maria = User.find_by_email('leonor.varela91330@gmail.com')
+boris = User.find_by_email('boris_bourdet@hotmail.com')
+etienne = User.find_by_email('etiennededi@hotmail.fr')
+
+puts "user created
+"
+puts 'Creating Matches...'
+Chatroom.new.save!
+
+puts "first chatroom ok "
+
+first_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: boris.id,
+  chatroom_id: Chatroom.first.id
+}
+
+Chatroom.new.save!
+puts "second chatroom ok
+"
+second_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: etienne.id,
+  chatroom_id: Chatroom.last.id
+}
+
+matches = [first_match, second_match]
+
+# first_score = 80
+
+matches.each do |match|
+  match_instance = Match.new(match)
+  match_instance.save
+  
+  # first_score.save
+end
+
 # puts 'Creating 10 fake users...'
 
 # 10.times do
@@ -103,18 +144,12 @@ puts 'Finished!'
 
 puts 'Creating Chatroom...'
 
-Chatroom.new.save!
+
 
 puts 'Finished!'
 
 puts 'Creating Matches...'
 
-# match = Match.new(
-#   chatroom_id: 1,
-#   user_id: 2,
-#   mate_id: 3
-# )
-# match.save!
 
 puts 'Finished!'
 
@@ -122,18 +157,18 @@ puts 'Creating Messages...'
 
 Message.new(
   content: "coucou!",
-  chatroom_id: 1,
-  user_id: 2
+  chatroom_id: Chatroom.first.id,
+  user_id: maria.id
 ).save!
 Message.new(
   content: "yo!",
-  chatroom_id: 1,
-  user_id: 3
+  chatroom_id: Chatroom.first.id,
+  user_id: boris.id
 ).save!
 Message.new(
   content: "ça va ?",
-  chatroom_id: 1,
-  user_id: 2
+  chatroom_id: Chatroom.first.id,
+  user_id: maria.id
 ).save!
 
 puts 'Finished!'

@@ -1,5 +1,14 @@
 class MatchesController < ApplicationController
+
   skip_before_action :verify_authenticity_token, only: [:create, :create_denied_match]
+  
+
+  def index
+    # afficher mes match
+    # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
+    @matches = current_user.matches.where(status: 'accepted').order("chatroom_id DESC")
+  end
+
   def create_denied_match
     @mate = User.find(params[:id])
     @chatroom = Chatroom.create!
@@ -35,5 +44,11 @@ class MatchesController < ApplicationController
     end
   end
 
-
+  # def destroy
+  #   @matches = Match.where(user_id: current_user.id).where.not(status: 0)
+  # @mattches.each do |match|
+  # match.destroy
+  # end
+  # @match.mate.destroy
+  # end
 end

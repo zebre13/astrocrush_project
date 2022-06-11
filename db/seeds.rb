@@ -109,13 +109,14 @@ second_match = {
   chatroom_id: Chatroom.last.id
 }
 
-match_instance = [first_match, second_match]
+matches = [first_match, second_match]
 
 # first_score = 80
 
 matches.each do |match|
   match_instance = Match.new(match)
-  match.save
+  match_instance.save
+  
   # first_score.save
 end
 

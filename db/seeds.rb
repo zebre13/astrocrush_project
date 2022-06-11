@@ -24,10 +24,7 @@ boris_data = {
   birth_location: 'Aix-en-Provence',
   birth_country: 'FR',
   gender: 1,
-  looking_for: 2,
-  sign: 'Cancer',
-  rising: 'Gemini',
-  moon: 'Libra'
+  looking_for: 2
 }
 
 etienne_data = {
@@ -41,10 +38,7 @@ etienne_data = {
   birth_location: 'Paris',
   birth_country: 'FR',
   gender: 1,
-  looking_for: 2,
-  sign: 'Cancer',
-  rising: 'Cancer',
-  moon: 'Sagittarius'
+  looking_for: 2
 }
 
 ghita_data = {
@@ -58,10 +52,7 @@ ghita_data = {
   birth_location: 'Casablanca',
   birth_country: 'MA',
   gender: 2,
-  looking_for: 1,
-  sign: 'Leo',
-  rising: 'Leo',
-  moon: 'Scorpio'
+  looking_for: 1
 }
 
 maria_data = {
@@ -75,10 +66,7 @@ maria_data = {
   birth_location: 'Cascais',
   birth_country: 'PT',
   gender: 2,
-  looking_for: 1,
-  sign: 'Leo',
-  rising: 'Scorpio',
-  moon: 'Cancer'
+  looking_for: 1
 }
 
 users_data = [boris_data, etienne_data, ghita_data, maria_data]
@@ -92,6 +80,9 @@ photos = [photo_boris, photo_etienne, photo_ghita, photo_maria]
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
+  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['houses'].first['sign']
+  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
+  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
   user.planets = Call.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!

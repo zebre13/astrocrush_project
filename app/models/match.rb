@@ -6,5 +6,5 @@ class Match < ApplicationRecord
   # validates :status, presence: true
   # validates :score, presence: true, uniqueness: true
 
-  enum status: [ :pending, :accepted ]
+  enum status: [ :pending, :accepted, :denied ]
 end

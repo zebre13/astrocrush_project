@@ -44,7 +44,7 @@ class Call
   def personality_report(birth_date, birth_hour, city, country_code)
     endpoint = "personality_report/tropical"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
-    return get_response(endpoint, data)
+    return get_response(endpoint, data)['report']
   end
 
   # Affinity percentage between primary user (p) and secondary mate (s)

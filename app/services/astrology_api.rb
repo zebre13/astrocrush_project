@@ -71,7 +71,6 @@ class Call
     endpoint = "geo_details"
     data = { place: city.capitalize, maxRows: 6 }
     cities = get_response(endpoint, data)
-    cities
     city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
     return { lat: city.first['latitude'], lon: city.first['longitude'] }
   end

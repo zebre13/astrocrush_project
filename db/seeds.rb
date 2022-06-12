@@ -5,13 +5,17 @@ require_relative '../app/services/astrology_api'
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
 
-puts 'Cleaning database...'
+# <--- Database cleanout --->
 
+puts 'Cleaning database...'
 User.destroy_all
 Match.destroy_all
 Chatroom.destroy_all
+puts 'Database cleaned successfully!'
 
-puts 'Creating team users'
+puts 'Creating users...'
+
+# <-- Creating Team users_data --->
 
 boris_data = {
   username: 'Boris',
@@ -69,32 +73,58 @@ maria_data = {
   looking_for: 1
 }
 
-users_data = [boris_data, etienne_data, ghita_data, maria_data]
+# <--- Creating fake users_data --->
+
+fake_users_data = []
+
+10.times do
+  fake_users_data << {
+    username: Faker::Name.first_name,
+    email: Faker::Internet.safe_email,
+    password: 'azerty',
+    description: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false),
+    hobbies: Faker::Hobby.activity, # BOB: to update when hobbies is changed from f.input to f.select
+    birth_date: Faker::Date.birthday(min_age: 18, max_age: 45),
+    birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
+    birth_location: ['Paris', 'Marseille', 'Lyon', 'Bordeaux', 'Lille', 'Nice'].sample,
+    birth_country: 'FR',
+    gender: rand(1..2),
+    looking_for: rand(1..2)
+  }
+end
+
+# <--- Preparing photos --->
 
 photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
 photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
 photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 
-photos = [photo_boris, photo_etienne, photo_ghita, photo_maria]
+fake_users_photos = []
+10.times do
+  fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
+end
 
+photos = [photo_boris, photo_etienne, photo_ghita, photo_maria] + fake_users_photos
+
+# <--- Creating users --->
+
+users_data = [boris_data, etienne_data, ghita_data, maria_data] + fake_users_data
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
+  user.sign = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
   user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['houses'].first['sign']
-  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
-  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
+  user.moon = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
   user.planets = Call.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
 end
 
-puts 'Team users created succesfully'
+puts "Users created successfully!"
 
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')
 etienne = User.find_by_email('etiennededi@hotmail.fr')
-
-puts "user created"
 
 puts 'Creating Matches...'
 Chatroom.new.save!
@@ -129,27 +159,7 @@ matches.each do |match|
   # first_score.save
 end
 
-# puts 'Creating 10 fake users...'
 
-# 10.times do
-#   user = User.new(
-#     username: Faker::Name.first_name,
-#     email: Faker::Internet.safe_email,
-#     password: 'azerty',
-#     description: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false),
-#     hobbies: Faker::Hobby.activity, # BOB: to update when hobbies is changed from f.input to f.select
-#     birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
-#     birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
-#     birth_location: Faker::Address.city,
-#     gender: rand(1..2),
-#     looking_for: rand(1..2)
-#   )
-#   file = URI.open('https://thispersondoesnotexist.com/image')
-#   user.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')
-#   user.save!
-# end
-
-puts 'Finished!'
 
 puts 'Creating Chatroom...'
 

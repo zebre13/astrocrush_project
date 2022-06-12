@@ -34,7 +34,7 @@ class Call
   end
 
   # Renvoie l'url de la carte du ciel en format svg
-  def natal_wheel_chart(birth_date, birth_hour, city, country_code)
+  def wheel_chart(birth_date, birth_hour, city, country_code)
     endpoint = "natal_wheel_chart"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['chart_url']
@@ -142,41 +142,6 @@ class Call
     }
   end
 end
-
-# <--- Instanciation d'appel de l'api --->
-# call = Call.new(api_uid, api_key)
-
-# <--- Test de la méthode "city_coord" --->
-# coord = call.city_coord("Aix-en-Provence", "FR")
-# p coord
-
-# <--- Test de la méthode "timezone" --->
-# tzone = call.time_zone(coord[:lat], coord[:lon], "26/06/1977")
-# p tzone
-
-# <--- Test de la méthode "birth_data_set" --->
-# data = call.birth_data_set("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p data
-
-# <--- Test de la méthode "horoscope" --->
-# horo = call.horoscope("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p horo
-
-# <--- Test de la méthode "planets_location" --->
-# planets = call.planets_location("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p planets
-
-# <--- Test de la méthode "natal_wheel_chart" --->
-# natal_wheel_chart = call.natal_wheel_chart("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p natal_wheel_chart
-
-# <--- Test de la méthode "personality_report" --->
-# personality_report = call.personality_report("26/06/1977", "05:30", "Aix-en-Provence", "FR")
-# p personality_report
-
-# <--- Test de la méthode "affinity_percentage" ---> *** ATTENTION *** Cette méthode donne un résultat différent à chaque appel (???)
-# score = call.affinity_percentage("26/06/1977", "05:30", "Aix-en-Provence", "FR", "28/05/1982", "18:30", "Le Chesnay", "FR")
-# p score
 
 # <========== REPRENDRE ICI ==========>
 

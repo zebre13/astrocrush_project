@@ -86,7 +86,7 @@ fake_users_data = []
     hobbies: Faker::Hobby.activity, # BOB: to update when hobbies is changed from f.input to f.select
     birth_date: Faker::Date.birthday(min_age: 18, max_age: 45),
     birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
-    birth_location: ['Paris', 'Marseille', 'Lyon', 'Bordeaux', 'Lille', 'Nice'].sample,
+    birth_location: 'Paris',
     birth_country: 'FR',
     gender: rand(1..2),
     looking_for: rand(1..2)

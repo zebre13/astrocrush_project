@@ -77,7 +77,7 @@ maria_data = {
 
 fake_users_data = []
 
-1.times do
+10.times do
   fake_users_data << {
     username: Faker::Name.first_name,
     email: Faker::Internet.safe_email,
@@ -101,7 +101,7 @@ photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 
 fake_users_photos = []
-1.times do
+10.times do
   fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
 end
 
@@ -142,7 +142,7 @@ users.each do |user|
       mate.birth_country
     )
     score_collection.store(mate.id, mate_score)
-    ordered_score_collection = score_collection.sort_by { |k, v| v }
+    ordered_score_collection = score_collection.sort_by { |id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h
     user.save!
   end

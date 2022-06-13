@@ -2,10 +2,15 @@
 </div>
 
 <div class="p-2">
-  <h1>
-    <strong><%= @mate.username %></strong>
-    <span><%= ((Date.today - @mate.birth_date)/365).floor %></span>
-  </h1>
+  <div class="d-flex justify-content-between">
+    <h1>
+      <strong><%= @mate.username %></strong>
+      <span><%= ((Date.today - @mate.birth_date)/365).floor %></span>
+    </h1>
+    <h1>
+      <%= current_user.affinity_scores %>
+    </h1>
+  </div>
 
   <div class="d-flex">
     <span class="me-1"><i class="far fa-dot-circle"></i></span>

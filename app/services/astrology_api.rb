@@ -3,8 +3,8 @@ require 'json'
 require 'date'
 require 'time'
 
-api_uid = ENV["API_UID"]
-api_key = ENV["API_KEY"]
+api_uid = "619845"
+api_key = "0fe9a97cde1e13cefe57c49cf2643167"
 
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
@@ -14,7 +14,7 @@ class Call
     @api_key = key
   end
 
-  # Renvoie les données brutes servant à bâtir un horoscope
+  # Renvoie les données brutes d'un horoscope
   def horoscope(birth_date, birth_hour, city, country_code)
     endpoint = "western_horoscope"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
@@ -54,6 +54,15 @@ class Call
     s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
     data = p_data.merge(s_data)
     return get_response(endpoint, data)['affinity_percentage']
+  end
+
+  # Get love compatibility report for relationship between primary user (p) and secondary mate (s)
+  def love_compatibility_report(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
+    endpoint = "love_compatibility_report/tropical"
+    p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
+    s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
+    data = p_data.merge(s_data)
+    return get_response(endpoint, data)['love_report']
   end
 
   # Call de l'api
@@ -142,8 +151,6 @@ class Call
     }
   end
 end
-
-# <========== REPRENDRE ICI ==========>
 
 # <--- Test du endpoint "zodiac_compatibility/:zodiacName" --->
 # endpoint = "zodiac_compatibility/aquarius"

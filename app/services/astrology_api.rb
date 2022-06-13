@@ -3,8 +3,8 @@ require 'json'
 require 'date'
 require 'time'
 
-api_uid = "619845"
-api_key = "0fe9a97cde1e13cefe57c49cf2643167"
+api_uid = ENV["API_UID"]
+api_key = ENV["API_KEY"]
 
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http

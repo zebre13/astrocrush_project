@@ -11,7 +11,7 @@ puts 'Cleaning database...'
 User.destroy_all
 Match.destroy_all
 Chatroom.destroy_all
-puts 'Database cleaned successfully!'
+puts 'Database clean'
 
 puts 'Creating users...'
 
@@ -77,7 +77,7 @@ maria_data = {
 
 fake_users_data = []
 
-10.times do
+1.times do
   fake_users_data << {
     username: Faker::Name.first_name,
     email: Faker::Internet.safe_email,
@@ -101,7 +101,7 @@ photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 
 fake_users_photos = []
-4.times do
+1.times do
   fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
 end
 
@@ -110,6 +110,7 @@ photos = [photo_boris, photo_etienne, photo_ghita, photo_maria] + fake_users_pho
 # <--- Creating Users --->
 
 users_data = [boris_data, etienne_data, ghita_data, maria_data] + fake_users_data
+
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
   user.sign = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
@@ -120,30 +121,42 @@ users_data.each_with_index do |user_data, index|
   user.personality_report = Call.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
+  p "*** #{user.username} ***"
 end
 
 # <--- Calculating and attaching affinity Scores for all users --->
 
-User.all do |user|
-  mates = User.where(gender: user.looking_for).where.not(id: user.id)
-  mates_collection = {}
-  mates.each do |mate|
-    mates_collection[mate.id.to_sym] = Call.new(api_uid, api_key).affinity_percentage(
-      user.birth_date,
-      user.birth_hour,
-      user.city,
-      user.country_code,
-      mate.birth_date,
-      mate.birth_hour,
-      mate.city,
-      mate.country_code
-    )
-    user.affinity_scores = mates_collection
-    user.save!
-  end
+users = User.all
+users.each do |user|
+  potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
+  
 end
 
-puts "Users created successfully!"
+
+# users = User.all
+# users.each do |user|
+#   potential_mates << {user.id.to_sym: } if
+
+# mates_collection = {}
+
+# potential_mates.each do |mate|
+#   score = Call.new(api_uid, api_key).affinity_percentage(
+#     user.birth_date,
+#     user.birth_hour,
+#     user.city,
+#     user.country_code,
+#     mate.birth_date,
+#     mate.birth_hour,
+#     mate.city,
+#     mate.country_code
+#   )
+#       mates_collection.merge(mate.id.to_sym score)
+#     user.affinity_scores = mates_collection.sort.reverse
+#     user.save!
+#   end
+# end
+
+puts "#{User.all.length} users created successfully!"
 
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')

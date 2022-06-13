@@ -21,7 +21,7 @@ boris_data = {
   username: 'Boris',
   email: 'boris_bourdet@hotmail.com',
   password: 'azerty',
-  description: 'Si ça vous dit, je connais un très bon thai de la rue Oberkampf',
+  description: 'Si ça vous dit, je connais un très bon thai rue Oberkampf',
   hobbies: 'Faire des concerts dans mon salon',
   birth_date: '26/06/1977',
   birth_hour: '05:30',

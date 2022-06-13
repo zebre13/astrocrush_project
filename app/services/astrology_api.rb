@@ -40,20 +40,29 @@ class Call
     return get_response(endpoint, data)['chart_url']
   end
 
-  # Renvoie un texte présentant la personalité d'une personne en fonction de ses éléments de naissance
+  # Renvoie un texte présentant la personalité d'une personne en fonction de ses données de naissance
   def personality_report(birth_date, birth_hour, city, country_code)
     endpoint = "personality_report/tropical"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['report']
   end
 
-  # Affinity percentage between primary user (p) and secondary mate (s)
+  # Affinity percentage between primary user (p) and secondary mate (s) !!! RESULTATS INSTABLES !!!
   def affinity_percentage(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
     endpoint = "affinity_calculator"
     p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
     s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
     data = p_data.merge(s_data)
     return get_response(endpoint, data)['affinity_percentage']
+  end
+
+  # Affinity percentage between male (m) and female (f)
+  def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
+    endpoint = "match_percentage"
+    m_data = m_birth_data_set(m_birth_date, m_birth_hour, m_city, m_country_code)
+    f_data = f_birth_data_set(f_birth_date, f_birth_hour, f_city, f_country_code)
+    data = m_data.merge(f_data)
+    return get_response(endpoint, data)['match_percentage']
   end
 
   # Get love compatibility report for relationship between primary user (p) and secondary mate (s)
@@ -148,6 +157,42 @@ class Call
       s_lat: coord[:lat],
       s_lon: coord[:lon],
       s_tzone: tzone
+    }
+  end
+
+  # Renvoie un hash contenant les données de naissance formattées pour la première personne dans un calcul de matching
+  def m_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    data = {
+      m_day: birth_date.day,
+      m_month: birth_date.month,
+      m_year: birth_date.year,
+      m_hour: birth_hour.hour,
+      m_min: birth_hour.min,
+      m_lat: coord[:lat],
+      m_lon: coord[:lon],
+      m_tzone: tzone
+    }
+  end
+
+  # Renvoie un hash contenant les données de naissance formattées pour la deuxième personne dans un calcul de matching
+  def f_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    data = {
+      f_day: birth_date.day,
+      f_month: birth_date.month,
+      f_year: birth_date.year,
+      f_hour: birth_hour.hour,
+      f_min: birth_hour.min,
+      f_lat: coord[:lat],
+      f_lon: coord[:lon],
+      f_tzone: tzone
     }
   end
 end

@@ -124,37 +124,29 @@ users_data.each_with_index do |user_data, index|
   p "*** #{user.username} ***"
 end
 
-# <--- Calculating and attaching affinity Scores for all users --->
+# <--- Calculating and attaching affinity Scores with all potential mates --->
 
 users = User.all
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-  
+  score_collection = {}
+  potential_mates.each do |mate|
+    mate_score = Call.new(api_uid, api_key).affinity_percentage(
+      user.birth_date,
+      user.birth_hour,
+      user.birth_location,
+      user.birth_country,
+      mate.birth_date,
+      mate.birth_hour,
+      mate.birth_location,
+      mate.birth_country
+    )
+    score_collection.store(mate.id, mate_score)
+    ordered_score_collection = score_collection.sort_by { |k, v| v }
+    user.affinity_scores = ordered_score_collection.reverse.to_h
+    user.save!
+  end
 end
-
-
-# users = User.all
-# users.each do |user|
-#   potential_mates << {user.id.to_sym: } if
-
-# mates_collection = {}
-
-# potential_mates.each do |mate|
-#   score = Call.new(api_uid, api_key).affinity_percentage(
-#     user.birth_date,
-#     user.birth_hour,
-#     user.city,
-#     user.country_code,
-#     mate.birth_date,
-#     mate.birth_hour,
-#     mate.city,
-#     mate.country_code
-#   )
-#       mates_collection.merge(mate.id.to_sym score)
-#     user.affinity_scores = mates_collection.sort.reverse
-#     user.save!
-#   end
-# end
 
 puts "#{User.all.length} users created successfully!"
 

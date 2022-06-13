@@ -131,7 +131,7 @@ users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
   potential_mates.each do |mate|
-    mate_score = Call.new(api_uid, api_key).affinity_percentage(
+    mate_score = Call.new(api_uid, api_key).match_percentage(
       user.birth_date,
       user.birth_hour,
       user.birth_location,

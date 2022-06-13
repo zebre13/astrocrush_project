@@ -15,7 +15,7 @@ puts 'Database cleaned successfully!'
 
 puts 'Creating users...'
 
-# <-- Creating Team users_data --->
+# <-- Setting Team users_data --->
 
 boris_data = {
   username: 'Boris',
@@ -73,7 +73,7 @@ maria_data = {
   looking_for: 1
 }
 
-# <--- Creating fake users_data --->
+# <--- Setting Fake users_data --->
 
 fake_users_data = []
 
@@ -93,7 +93,7 @@ fake_users_data = []
   }
 end
 
-# <--- Preparing photos --->
+# <--- Setting Photos --->
 
 photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
 photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
@@ -101,13 +101,13 @@ photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 
 fake_users_photos = []
-10.times do
+4.times do
   fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
 end
 
 photos = [photo_boris, photo_etienne, photo_ghita, photo_maria] + fake_users_photos
 
-# <--- Creating users --->
+# <--- Creating Users --->
 
 users_data = [boris_data, etienne_data, ghita_data, maria_data] + fake_users_data
 users_data.each_with_index do |user_data, index|
@@ -120,6 +120,27 @@ users_data.each_with_index do |user_data, index|
   user.personality_report = Call.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
+end
+
+# <--- Calculating and attaching affinity Scores for all users --->
+
+User.all do |user|
+  mates = User.where(gender: user.looking_for).where.not(id: user.id)
+  mates_collection = {}
+  mates.each do |mate|
+    mates_collection[mate.id.to_sym] = Call.new(api_uid, api_key).affinity_percentage(
+      user.birth_date,
+      user.birth_hour,
+      user.city,
+      user.country_code,
+      mate.birth_date,
+      mate.birth_hour,
+      mate.city,
+      mate.country_code
+    )
+    user.affinity_scores = mates_collection
+    user.save!
+  end
 end
 
 puts "Users created successfully!"

@@ -307,12 +307,14 @@ users_data.each_with_index do |user_data, index|
   p "*** #{user.username} ***"
 end
 
-# <--- Calculating and attaching affinity Scores with all potential mates --->
+# <--- Calculating and attaching affinity Scores and love compatibility reports --->
 
 users = User.all
+
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
+  love_compatibility_report_collection = {}
   potential_mates.each do |mate|
     mate_score = Call.new(api_uid, api_key).match_percentage(
       user.birth_date,
@@ -327,6 +329,22 @@ users.each do |user|
     score_collection.store(mate.id, mate_score)
     ordered_score_collection = score_collection.sort_by { |id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h
+    puts "#{user.username} affinity scores ok"
+
+    mate_love_compatibility_report = Call.new(api_uid, api_key).love_compatibility_report(
+      user.birth_date,
+      user.birth_hour,
+      user.birth_location,
+      user.birth_country,
+      mate.birth_date,
+      mate.birth_hour,
+      mate.birth_location,
+      mate.birth_country
+    )
+    love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
+    user.love_compatibility_reports = love_compatibility_report_collection
+    puts "#{user.username} love compatibility reports ok"
+
     user.save!
   end
 end

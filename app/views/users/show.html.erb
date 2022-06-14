@@ -43,9 +43,9 @@
 
    <div class="mt-3">
     <p class="mb-1">
-      <strong>Ce que les planètes disent sur moi...</strong>
+      <strong>Ce que les planètes disent sur notre potentielle relation...</strong>
     </p>
-    <% eval(@mate.personality_report).each do |element| %>
+    <% eval(current_user.love_compatibility_reports)[params[:id].to_i].each do |element| %>
       <p>
         <%= element %>
       </p>

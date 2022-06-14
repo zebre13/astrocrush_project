@@ -1,6 +1,20 @@
 class UsersController < ApplicationController
   require 'json'
 
+  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+  LOGOS = {
+    Sun: "☉ ",
+    Moon: "☽ ",
+    Mercury: "☿ ",
+    Venus: "♀︎ ",
+    Mars: "♂︎ ",
+    Jupiter: "♃ ",
+    Saturn: "♄ ",
+    Uranus: "⛢ ",
+    Neptune: "♆ ",
+    Pluto: "♇ "
+  }
+
   def index
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
     @matches = current_user.matches
@@ -18,4 +32,53 @@ class UsersController < ApplicationController
   def show
     @mate = User.find(params[:id])
   end
+
+  def dashboard
+    @my_zodiac = create_zodiac
+    @signs = [find_planets(1),
+              find_planets(2),
+              find_planets(3),
+              find_planets(4),
+              find_planets(5),
+              find_planets(6),
+              find_planets(7),
+              find_planets(8),
+              find_planets(9),
+              find_planets(10),
+              find_planets(11)]
+  end
+
+  private
+
+  def create_zodiac
+    cut = 0
+
+    ZODIAC.each_with_index do |sign, index|
+      if sign == current_user.rising.capitalize
+        cut = index
+      end
+    end
+
+    ZODIAC.slice(cut..-1) + ZODIAC.slice(0..(cut - 1))
+  end
+
+  def find_planets(zodiac_index)
+    hash_planets = eval(current_user.planets)
+    planets = []
+    data_to_display = {}
+    hash_planets.each do |planet, hash|
+      if @my_zodiac[zodiac_index] == hash[:sign]
+        data_to_display["sign"] = hash[:sign]
+        data_to_display["planet"] = planet.to_s.upcase
+        data_to_display["house"] = hash[:house]
+        data_to_display["logo"] = LOGOS[planet]
+        planets << data_to_display
+        data_to_display = {}
+      end
+    end
+    return planets
+  end
 end
+
+# # sign =  {planet: planet, house: house}
+# hash[:sign] = planet: hash.key

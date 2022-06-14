@@ -1,25 +1,17 @@
 <div id="backgroundcolor">
 
-  <div class="d-flex flex-column align-items-center" data-controller="swipe" >
+  <div class="profiles" data-controller="swipe" >
 
     <% if @users.any? %>
         <% @users.each do |user| %>
 
-          <!-- USER CARD-->
-          <div class="user-card" data-swipe-target="user">
-
-
-              <div class="card-category"
-                   style="background-image: linear-gradient(rgba(0,0,0,0.3),
-                                             rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 650, width: 400, radius: 12,crop: :fill %>')">
-
-              <div class="user-infos">
-                <h2><%= user.username %></h2>
+          <div class="profile" data-swipe-target="user">
+              <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 650, width: 390, radius: 12,crop: :fill %>')">
+              <div class="profile-infos">
+                <div class="profile-name"><%= user.username %> <span class="profile-age">42</span> </div>
+                <div class="profile-description"><%= user.description %></div>
               </div>
-              <div class="swipe-buttons d-flex justify-content-around p-3" data-swipe-target="buttons">
-                <div class="fas fa-ban" id="swipeLeft" data-swipe-target="swipeLeftBtn" ></div>
-                <div class="fas fa-heart" id="swipeRight" data-swipe-target="swipeRightBtn"></div>
-              </div>
+
             </div>
           </div>
         <% end %>

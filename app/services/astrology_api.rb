@@ -148,6 +148,3 @@ class Call
     }
   end
 end
-
-call = Call.new('619845', '0fe9a97cde1e13cefe57c49cf2643167')
-p call.city_coord('London', 'GB')

@@ -13,7 +13,7 @@ faire la messagerie de mes match %>
                 <h1><%= match.mate.username %></h1>
                 <%= match.score %>
                 <%= match.status&.capitalize %>
-                  <%= link_to "delete", match_path(match), method: :delete  %>
+                  <%= link_to "next", match_path(match), method: :delete  %>
             </div>
 
           <% end %>

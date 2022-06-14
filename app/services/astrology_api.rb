@@ -155,5 +155,3 @@ class Call
     }
   end
 end
-
-

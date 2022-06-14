@@ -13,4 +13,6 @@ class UsersController < ApplicationController
   def show
     @mate = User.find(params[:id])
   end
+
+  def tranche_age; end
 end

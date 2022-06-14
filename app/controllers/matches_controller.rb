@@ -4,11 +4,7 @@ class MatchesController < ApplicationController
   def index
     # afficher mes match
     # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
-
-
     @matches = current_user.matches.where(status: 'accepted').order("chatroom_id DESC")
-
-
   end
 
   def create
@@ -30,7 +26,7 @@ class MatchesController < ApplicationController
       end
 
     else
-    # sinon si personne de nous deux ne s'est encore liké:
+      # sinon si personne de nous deux ne s'est encore liké:
       @match = Match.new
       @match.mate = @mate
       @chatroom = Chatroom.create!
@@ -41,11 +37,21 @@ class MatchesController < ApplicationController
     end
   end
 
-  # def destroy
+  def destroy
+  #   @matches = current_user.matches.where(status: 'accepted')
   #   @matches = Match.where(user_id: current_user.id).where.not(status: 0)
-  # @mattches.each do |match|
-  # match.destroy
-  # end
-  # @match.mate.destroy
-  # end
+  # @matches.each do |match|
+    @match = Match.find(params[:id])
+    @match.destroy
+    # authorize @match
+      # if reponse == :delete
+      #   flash[:success] = "are you sure you want to destroy."
+            #  if click == "yes"
+      #         flash[:success] = "you have successfully destroyed."
+              redirect_to '/matches_path', :notice => "Your match has been deleted"
+      #       else
+      #         redirect_to '/matches_path' notice: ""
+      #       end
+      # end
+  end
 end

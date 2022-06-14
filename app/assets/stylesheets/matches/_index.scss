@@ -1,0 +1,45 @@
+
+.flux {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+border: 1px solid black;
+ border: 1px solid rgb(235,235,235);
+}
+
+// .flux .profile{
+//   flex-grow: 1;
+//   padding: 0 24px;
+// }
+
+// .flux {
+//   margin: 0;
+//   line-height: 1.4;
+//   display: table-column;
+// }
+
+// .flux small {
+//   color: #999999;
+//   font-weight: bold;
+// }
+// .flux .flux-actions {
+//   opacity: 0;
+//   display: flex;
+//   transition: ease .3s;
+// }
+
+.flux:hover .flux-actions {
+  opacity: 1;
+}
+
+// .flux .flux-actions a:hover {
+//   color: #555555;
+// }
+
+.card-index-info {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}

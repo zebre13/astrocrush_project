@@ -11,7 +11,9 @@ faire la messagerie de mes match %>
             <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
             <div class="card-index-info">
                 <h1><%= match.mate.username %></h1>
+                <%= match.score %>
                 <%= match.status&.capitalize %>
+                  <%= link_to "delete", match_path(match), method: :delete  %>
             </div>
 
           <% end %>
@@ -33,21 +35,13 @@ faire la messagerie de mes match %>
     <h3>Messages</h3>
     <%# mettre de fulx de messages %>
 
-    <div class="flux">
-      <div class="discussions">
-        <div class="list-item-open">
-          <div class="row link">
-          <% @matches.each do |match| %>
-            <%= link_to match.mate.username, chatroom_path(match.chatroom)  %>
-          <% end %>
-           <%# <% @match.chatroom[:id].messages %>
-            <%# <%= @messages.each do |message| %>
-            <%# <%=  @message.last %>
-          </div>
+    <div class="flux ">
+      <% @matches.each do |match| %>
+        <div class="profile">
+          <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
+          <%= link_to match.mate.username, chatroom_path(match.chatroom)  %>
         </div>
-        <%# mettre le link dans la card/photo %>
-      <%#= link_to chatroom_path(chatrooms), :action => 'go' do  dans la photo 50% %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

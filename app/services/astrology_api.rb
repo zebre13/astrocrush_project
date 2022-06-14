@@ -130,7 +130,7 @@ class Call
     }
   end
 
-# Hash with formatted birth data given birth data for the mate in match making method
+  # Hash with formatted birth data given birth data for the mate in match making method
   def f_birth_data_set(birth_date, birth_hour, city, country_code)
     coord = city_coord(city, country_code)
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
@@ -148,3 +148,6 @@ class Call
     }
   end
 end
+
+call = Call.new('619845', '0fe9a97cde1e13cefe57c49cf2643167')
+p call.city_coord('London', 'GB')

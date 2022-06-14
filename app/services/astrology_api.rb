@@ -44,6 +44,13 @@ class Call
     return get_response(endpoint, data)['report']
   end
 
+  # Romantic personality report based on a user's birth data
+  def romantic_personality_report(birth_date, birth_hour, city, country_code)
+    endpoint = "romantic_personality_report/tropical"
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
+    return get_response(endpoint, data)['report']
+  end
+
   # Affinity percentage between a user (m) and and mate (f)
   def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
     endpoint = "match_percentage"
@@ -148,3 +155,5 @@ class Call
     }
   end
 end
+
+

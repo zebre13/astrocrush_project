@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   LOGOS = {
     Sun: "☉ ",
@@ -12,6 +13,9 @@ class UsersController < ApplicationController
     Neptune: "♆ ",
     Pluto: "♇ "
   }
+=======
+  require 'json'
+>>>>>>> master
 
   def index
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche

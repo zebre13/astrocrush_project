@@ -1,13 +1,20 @@
 // Specific CSS for your home-page
-.user-card {
-  min-width: 410px;
-  border: solid 1px black;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  background: rgb(135, 13, 107);
-  background: linear-gradient(90deg, rgb(196, 126, 180) 0%, rgb(244, 167, 155) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+// .user-card {
+//   min-width: 410px;
+//   border: solid 1px black;
+//   border-radius: 8px;
+//   margin-bottom: 20px;
+//   background: rgb(135, 13, 107);
+//   position: relative;
+//   height: 650px;
 
-  position: relative;
+// }
+
+.card-category{
+  height: 650px;
+  width: 400px;
+  border-radius: 12px;
+  border: solid 1px black;
 }
 
 
@@ -99,7 +106,7 @@ background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0
 
 .profile-details {
   background: rgb(232,170,218);
-background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
   position: absolute;
   width: 50px;
   height: 50px;

@@ -8,7 +8,7 @@
       <span><%= ((Date.today - @mate.birth_date)/365).floor %></span>
     </h1>
     <h1>
-      <%= current_user.affinity_scores %>
+      Score: <%= eval(current_user.affinity_scores)[params[:id].to_i] %>%
     </h1>
   </div>
 
@@ -43,10 +43,12 @@
 
    <div class="mt-3">
     <p class="mb-1">
-      <strong>A quoi pourrait ressembler notre relation...</strong>
+      <strong>Ce que les planètes disent sur moi en amour...</strong>
     </p>
-    <p>
-      TO DO
-    </p>
+    <% eval(@mate.personality_report).each do |element| %>
+      <p>
+        <%= element %>
+      </p>
+    <% end %>
   </div>
 </div>

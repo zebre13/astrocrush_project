@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'json'
 
   def index
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche

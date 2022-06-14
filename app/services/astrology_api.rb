@@ -3,9 +3,6 @@ require 'json'
 require 'date'
 require 'time'
 
-api_uid = ENV["API_UID"]
-api_key = ENV["API_KEY"]
-
 class Call
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
 
@@ -14,14 +11,14 @@ class Call
     @api_key = key
   end
 
-  # Renvoie les données brutes d'un horoscope
+  # Hash containing all data from an horoscope
   def horoscope(birth_date, birth_hour, city, country_code)
     endpoint = "western_horoscope"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)
   end
 
-  # Renvoie la position des 10 planètes en signes et maisons sous forme de hash (key = planète) d'arrays (value = [signe, maison])
+  # Hash providing sign and house for each one of the 10 planets
   def planets_location(birth_date, birth_hour, city, country_code)
     horo_elements = horoscope(birth_date, birth_hour, city, country_code)['planets']
     planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
@@ -33,30 +30,21 @@ class Call
     return planets
   end
 
-  # Renvoie l'url de la carte du ciel en format svg
+  # URL for natal wheel chart in svg format
   def wheel_chart(birth_date, birth_hour, city, country_code)
     endpoint = "natal_wheel_chart"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['chart_url']
   end
 
-  # Renvoie un texte présentant la personalité d'une personne en fonction de ses données de naissance
+  # Personality report based on a user's birth data
   def personality_report(birth_date, birth_hour, city, country_code)
     endpoint = "personality_report/tropical"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['report']
   end
 
-  # Affinity percentage between primary user (p) and secondary mate (s) !!! RESULTATS INSTABLES !!!
-  def affinity_percentage(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
-    endpoint = "affinity_calculator"
-    p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
-    s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
-    data = p_data.merge(s_data)
-    return get_response(endpoint, data)['affinity_percentage']
-  end
-
-  # Affinity percentage between male (m) and female (f)
+  # Affinity percentage between a user (m) and and mate (f)
   def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
     endpoint = "match_percentage"
     m_data = m_birth_data_set(m_birth_date, m_birth_hour, m_city, m_country_code)
@@ -65,7 +53,7 @@ class Call
     return get_response(endpoint, data)['match_percentage']
   end
 
-  # Get love compatibility report for relationship between primary user (p) and secondary mate (s)
+  # Love compatibility report for relationship between primary user (p) and secondary mate (s)
   def love_compatibility_report(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
     endpoint = "love_compatibility_report/tropical"
     p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
@@ -74,7 +62,7 @@ class Call
     return get_response(endpoint, data)['love_report']
   end
 
-  # Call de l'api
+  # Get response from API
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
     req = Net::HTTP::Post.new(url)
@@ -84,7 +72,7 @@ class Call
     JSON.parse(resp.body)
   end
 
-  # Renvoie les coordonnées (lat/lon) d'une ville à partir de son nom (ex: "Paris") et de son code pays (ex: "FR")
+  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
   def city_coord(city, country_code)
     endpoint = "geo_details"
     data = { place: city.capitalize, maxRows: 6 }
@@ -93,7 +81,7 @@ class Call
     return { lat: city.first['latitude'], lon: city.first['longitude'] }
   end
 
-  # Renvoie le code de la timezone d'un lieu en fonction de ses coordonnées géographiques et de la date ("dd/mm/yyyy")
+  # Get timezone code given coordinates (lat/lon) and date ("dd/mm/yyyy")
   def time_zone(lat, lon, birth_date)
     endpoint = "timezone_with_dst"
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
@@ -106,13 +94,13 @@ class Call
     return info['timezone']
   end
 
-  # Renvoie un hash contenant les données de naissance formattées pour l'usage de l'api à partir des éléments de naissance
+  # Hash with formatted birth data given birth data
   def birth_data_set(birth_date, birth_hour, city, country_code)
     coord = city_coord(city, country_code)
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    data = {
+    {
       day: birth_date.day,
       month: birth_date.month,
       year: birth_date.year,
@@ -124,49 +112,13 @@ class Call
     }
   end
 
-  # Renvoie un hash contenant les données de naissance formattées pour la première personne dans un calcul d'affinité
-  def p_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
-    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    data = {
-      p_day: birth_date.day,
-      p_month: birth_date.month,
-      p_year: birth_date.year,
-      p_hour: birth_hour.hour,
-      p_min: birth_hour.min,
-      p_lat: coord[:lat],
-      p_lon: coord[:lon],
-      p_tzone: tzone
-    }
-  end
-
-  # Renvoie un hash contenant les données de naissance formattées pour la deuxième personne dans un calcul d'affinité
-  def s_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
-    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    data = {
-      s_day: birth_date.day,
-      s_month: birth_date.month,
-      s_year: birth_date.year,
-      s_hour: birth_hour.hour,
-      s_min: birth_hour.min,
-      s_lat: coord[:lat],
-      s_lon: coord[:lon],
-      s_tzone: tzone
-    }
-  end
-
-  # Renvoie un hash contenant les données de naissance formattées pour la première personne dans un calcul de matching
+  # Hash with formatted birth data given birth data for the user in match making method
   def m_birth_data_set(birth_date, birth_hour, city, country_code)
     coord = city_coord(city, country_code)
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    data = {
+    {
       m_day: birth_date.day,
       m_month: birth_date.month,
       m_year: birth_date.year,
@@ -178,13 +130,13 @@ class Call
     }
   end
 
-  # Renvoie un hash contenant les données de naissance formattées pour la deuxième personne dans un calcul de matching
+  # Hash with formatted birth data given birth data for the mate in match making method
   def f_birth_data_set(birth_date, birth_hour, city, country_code)
     coord = city_coord(city, country_code)
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    data = {
+    {
       f_day: birth_date.day,
       f_month: birth_date.month,
       f_year: birth_date.year,
@@ -197,23 +149,5 @@ class Call
   end
 end
 
-# <--- Test du endpoint "zodiac_compatibility/:zodiacName" --->
-# endpoint = "zodiac_compatibility/aquarius"
-# data = {}
-# client = Client.new(api_uid, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-# <--- Test du endpoint "zodiac_compatibility/:zodiacName/:partnerZodiacName" --->
-# endpoint = "zodiac_compatibility/leo/sagittarius"
-# data = {}
-# client = Client.new(api_uid, api_key)
-# data = client.get_response(endpoint, data)
-# p data
-
-# <--- Test du endpoint "compatibility/:sunSign/:risingSign/:partnerSunSign/:partnerRisingSign" --->
-# endpoint = "compatibility/aquarius/gemini/gemini/scorpio"
-# data = {}
-# client = Client.new(api_uid, api_key)
-# data = client.get_response(endpoint, data)
-# p data
+call = Call.new('619845', '0fe9a97cde1e13cefe57c49cf2643167')
+p call.city_coord('London', 'GB')

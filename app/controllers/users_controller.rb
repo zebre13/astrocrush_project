@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
+  require 'json'
+
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   LOGOS = {
     Sun: "☉ ",
@@ -13,9 +14,6 @@ class UsersController < ApplicationController
     Neptune: "♆ ",
     Pluto: "♇ "
   }
-=======
-  require 'json'
->>>>>>> master
 
   def index
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
@@ -38,30 +36,19 @@ class UsersController < ApplicationController
   def dashboard
     @my_zodiac = create_zodiac
     @signs = [find_planets(1),
-             find_planets(2),
-             find_planets(3),
-             find_planets(4),
-             find_planets(5),
-             find_planets(6),
-             find_planets(7),
-             find_planets(8),
-             find_planets(9),
-             find_planets(10),
-             find_planets(11)]
-    # @first_sign = find_planets(1)
-    # @second_sign = find_planets(2)
-    # @third_sign = find_planets(3)
-    # @fourth_sign = find_planets(4)
-    # @fifth_sign = find_planets(5)
-    # @sixth_sign = find_planets(6)
-    # @seventh_sign = find_planets(7)
-    # @eighth_sign = find_planets(8)
-    # @ninth_sign = find_planets(9)
-    # @tenth_sign = find_planets(10)
-    # @eleventh_sign = find_planets(11)
+              find_planets(2),
+              find_planets(3),
+              find_planets(4),
+              find_planets(5),
+              find_planets(6),
+              find_planets(7),
+              find_planets(8),
+              find_planets(9),
+              find_planets(10),
+              find_planets(11)]
   end
 
-  # private
+  private
 
   def create_zodiac
     cut = 0

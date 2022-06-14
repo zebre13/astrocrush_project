@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_reader :my_zodiac
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,29 +21,6 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :looking_for, presence: true
   # validate :user_is_adult
-
-  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
-
-  def create_my_zodiac
-    first = 0
-
-    ZODIAC.each_with_index do |sign, index|
-      if sign == current_user.rising.capitalize
-        first = index
-      end
-    end
-    first_half = ZODIAC.slice(first..-1)
-    second_half = ZODIAC.slice(0..(first-1))
-
-    @my_zodiac = first_half + second_half
-  end
-
-  def find_planets
-    @my_zodiac.each do |sign|
-      planet = current_user.planets.select { |_, v| v.select { |_, value| value.include? sign } }
-      sign = { planet: planet.key, house: planet.house }
-    end
-  end
 
     # private
 

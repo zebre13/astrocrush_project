@@ -7,11 +7,12 @@
 }
 
 .border {
-  border: 0.1rem solid;
+  border: 0.1rem solid gainsboro;
+  color: gainsboro;
 }
 
-.pink-background {
-  background: $pink;
+.grey-background {
+  background: gainsboro;
   color: white;
 }
 

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :matches
-  get 'dashboard', to:'pages#dashboard'
+  get 'dashboard', to: 'users#dashboard'
   post '/create_denied_match', to: 'matches#create_denied_match', as: 'create_denied_match'
   # get '/users/:id', to: 'users#show'
   resources :users, only: [:show, :edit]

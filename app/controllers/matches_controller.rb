@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create, :create_denied_match]
-  
+
 
   def index
     # afficher mes match
@@ -31,7 +31,7 @@ class MatchesController < ApplicationController
       @match.update(status: 1)
       p @match.status
       p @match.id
-      flash.alert = "Its a MAAAATCH"
+
 
 
     else
@@ -41,6 +41,7 @@ class MatchesController < ApplicationController
       @chatroom = Chatroom.create!
       @match.chatroom = @chatroom
       @match.save!
+      p "Match create with status pending successfully"
     end
   end
 

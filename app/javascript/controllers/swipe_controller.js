@@ -50,44 +50,31 @@ export default class extends Controller {
   }
 
   swipeLeft(event){
-    console.log(event.target.parentElement)
-    // const mate = this.userTargets
-    // event.preventDefault()
-    // const card = event.currentTarget.closest(".user-card")
-
-    // const url = "/create_denied_match"
-    // const mateId = parseInt(this.userTargets[0].dataset.mateId, 10)
-
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({"id": mateId})
-    // })
-    // console.log("fetched ok, now removing")
-    // card.remove()
-    // console.log(mates.length)
-    // if(mates.length === 1){
-    //   window.location.reload(false);
-    // }
+    console.log(event.target.parentElement.dataset.id)
+    const mateId = parseInt(event.target.parentElement.dataset.id, 10)
+    const url = "/create_denied_match"
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({"id": mateId})
+    })
   }
 
   swipeRight(event){
     console.log(event.target.parentElement)
-    // const mates = this.userTargets
-    // console.log("swipped right in process")
-    // const card = event.currentTarget.closest(".user-card")
-    // const url= "/matches"
-    // const mateId = parseInt(this.userTargets[0].dataset.mateId, 10)
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({"id": mateId})
-    // })
-    //   .then(() => {
-    //     if(mates.length === 1){
-    //     window.location.reload(false);
-    //   }})
-    //   console.log("fetched ok, now removing : ici je dois rafraichir encore pour que la page disparaisse")
-    //   card.remove()
+
+    const url= "/matches"
+    const mateId = parseInt(event.target.parentElement.dataset.id, 10)
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({"id": mateId})
+    })
+      // .then(() => {
+      //   if(mates.length === 1){
+      //   window.location.reload(false);
+      // }})
+      // console.log("fetched ok, now removing : ici je dois rafraichir encore pour que la page disparaisse")
+      // card.remove()
     }
 }

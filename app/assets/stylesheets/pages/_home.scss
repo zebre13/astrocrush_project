@@ -36,7 +36,19 @@
   bottom:0px;
   background:linear-gradient(0deg, black, transparent);
   width: 100%;
+  border-radius: inherit;
 }
+.profile-match-score {
+  border: solid black 1px;
+  border-radius: 50%;
+  padding: 13px;
+  width: 50px;
+  position: relative;
+  bottom: 460px;
+  left: 290px;
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+}
+
 
 .profile-name {
   color:white;

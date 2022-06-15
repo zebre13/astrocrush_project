@@ -327,9 +327,6 @@ users.each do |user|
       mate.birth_country
     )
     score_collection.store(mate.id, mate_score)
-    ordered_score_collection = score_collection.sort_by { |id, score| score }
-    user.affinity_scores = ordered_score_collection.reverse.to_h
-    puts "#{user.username} affinity scores ok"
 
     mate_love_compatibility_report = Call.new(api_uid, api_key).love_compatibility_report(
       user.birth_date,
@@ -342,11 +339,13 @@ users.each do |user|
       mate.birth_country
     )
     love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
-    user.love_compatibility_reports = love_compatibility_report_collection
-    puts "#{user.username} love compatibility reports ok"
-
-    user.save!
   end
+  ordered_score_collection = score_collection.sort_by { |id, score| score }
+  user.affinity_scores = ordered_score_collection.reverse.to_h
+  puts "#{user.username} affinity scores ok"
+  user.love_compatibility_reports = love_compatibility_report_collection
+  puts "#{user.username} love compatibility reports ok"
+  user.save!
 end
 
 puts "#{User.all.length} users created successfully!"

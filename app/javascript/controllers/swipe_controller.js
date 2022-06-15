@@ -82,11 +82,11 @@ export default class extends Controller {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
-      // .then(() => {
-      //   if(mates.length === 1){
-      //   window.location.reload(false);
-      // }})
-      // console.log("fetched ok, now removing : ici je dois rafraichir encore pour que la page disparaisse")
-      // card.remove()
+      .then((response) => {
+        console.log(response)
+      })
     }
+  itsAMatch(){
+    console.log("Its A Match. Function has been call from rails controller. how awesome")
+  }
 }

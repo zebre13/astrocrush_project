@@ -22,22 +22,16 @@ class MatchesController < ApplicationController
 
   def create
     @mate = User.find(params[:id])
-    # Faut dabord que je retrouve si la personne m'a liké, pour confirmer le potentiel match.
     if Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
-      p "FOOOOOOUND A MAAAAAAAAAAAAAAAAAAAATCH"
       @match = Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
-      p @match.id, @match.status
-      p "this was match id"
       @match.update(status: 1)
-      p @match.status
-      p @match.id
-
-
+      p "You got a new match!"
+      respond_to do |format|
+        format.js { render js: "itsAMatch();" }
+      end
 
     else
-    # sinon si personne de nous deux ne s'est encore liké:
       @match = Match.new(mate: @mate, user: current_user, status: 0)
-      # @match.mate = @mate
       @chatroom = Chatroom.create!
       @match.chatroom = @chatroom
       @match.save!

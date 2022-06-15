@@ -21,7 +21,7 @@ export default class extends Controller {
       const hammertime = new Hammer(profile);
 
       hammertime.on('pan', (e) => {
-        // e.target.classList.remove('profile-back');
+        e.target.classList.remove('profile-back');
         let posX = e.deltaX;
         let posY = Math.max(0, Math.abs(posX * smooth) - 42);
         let angle = Math.min(Math.abs(e.deltaX * smooth / 100), 1) * maxAngle;
@@ -31,17 +31,29 @@ export default class extends Controller {
         }
 
         e.target.style.transform = `translate(${posX}px, ${posY}px) rotate(${angle}deg)`;
+        profile.classList.remove('profile-matching');
+        profile.classList.remove('profile-nexting');
+
+        if(posX > thresholdMatch){
+          e.target.classList.add('profile-matching')
+        } else if (posX < -thresholdMatch){
+          e.target.classList.add('profile-nexting')
+        }
 
         if (e.isFinal) {
           e.target.style.transform = ``;
           if(posX > thresholdMatch){
+            e.target.classList.add('profile-match')
             profile.remove()
             this.swipeRight(e)
           } else if (posX < -thresholdMatch){
+            e.target.classList.add('profile-next')
             profile.remove()
             this.swipeLeft(e)
           } else {
-            // e.target.classList.add('profile-back');
+            e.target.classList.add('profile-back');
+            e.target.classList.remove('profile-nexting');
+            e.target.classList.remove('profile-matching')
           }
         }
       })
@@ -50,8 +62,9 @@ export default class extends Controller {
   }
 
   swipeLeft(event){
-    console.log(event.target.parentElement.dataset.id)
-    const mateId = parseInt(event.target.parentElement.dataset.id, 10)
+    const dataId = event.target.parentElement.dataset.id
+    console.log(dataId)
+    const mateId = parseInt(dataId, 10)
     const url = "/create_denied_match"
     fetch(url, {
       method: "POST",
@@ -61,10 +74,9 @@ export default class extends Controller {
   }
 
   swipeRight(event){
-    console.log(event.target.parentElement)
-
+    const dataId = event.target.parentElement.dataset.id
+    const mateId = parseInt(dataId, 10)
     const url= "/matches"
-    const mateId = parseInt(event.target.parentElement.dataset.id, 10)
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

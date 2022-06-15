@@ -51,6 +51,12 @@ class Call
     return get_response(endpoint, data)['report']
   end
 
+  # Romantic personality report based on a user's birth data
+  def daily_horoscope(user_sign)
+    endpoint = "horoscope_prediction/daily/#{user_sign}"
+    return get_response(endpoint, {})
+  end
+
   # Affinity percentage between a user (m) and and mate (f)
   def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
     endpoint = "match_percentage"
@@ -191,4 +197,5 @@ class Call
     }
   end
 end
+
 

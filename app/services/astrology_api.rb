@@ -51,7 +51,7 @@ class Call
     return get_response(endpoint, data)['report']
   end
 
-  # Romantic personality report based on a user's birth data
+  # Daily horoscope for a given sign
   def daily_horoscope(user_sign)
     endpoint = "horoscope_prediction/daily/#{user_sign}"
     return get_response(endpoint, {})
@@ -197,5 +197,3 @@ class Call
     }
   end
 end
-
-

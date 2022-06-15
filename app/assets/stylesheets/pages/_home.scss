@@ -44,11 +44,19 @@
   padding: 13px;
   width: 50px;
   position: relative;
-  bottom: 460px;
+  bottom: 420px;
+  left: 283px;
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+}
+.profile-details {
+  border: solid black 1px;
+  border-radius: 50%;
+  padding: 8px;
+  width: 40px;
+  position: relative;
   left: 290px;
   background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
 }
-
 
 .profile-name {
   color:white;
@@ -150,33 +158,4 @@ h1 {
   // -webkit-text-fill-color: transparent;
   color: black;
   font-family: "Roboto";
-}
-
-.match-score {
-  // background-color: white;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius:50%;
-  border: solid 1px black;
-  padding: 15px;
-  top: 150px;
-  left: 312px;
-  z-index: 1;
-  background: rgb(232,170,218);
-background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
-}
-
-.profile-details {
-  background: rgb(232,170,218);
-  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius:50%;
-  border: solid 1px black;
-  padding: 15px;
-  top: 556px;
-  left: 312px;
-  z-index: 1;
 }

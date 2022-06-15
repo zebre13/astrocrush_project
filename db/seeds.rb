@@ -5,7 +5,7 @@ require_relative '../app/services/astrology_api'
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
 
-# <--- Database cleanout --->
+# <--- DATABASE CLEANOUT --->
 
 puts 'Cleaning database...'
 User.destroy_all
@@ -13,9 +13,11 @@ Match.destroy_all
 Chatroom.destroy_all
 puts 'Database clean'
 
+# <--- USERS SEEDING --->
+
 puts 'Creating users...'
 
-# <-- Setting Team users data --->
+# <-- Set Team users data --->
 
 boris_data = {
   username: 'Boris',
@@ -75,7 +77,7 @@ maria_data = {
 
 team_users_data = [boris_data, etienne_data, ghita_data, maria_data]
 
-# <--- Setting famous users data --->
+# <--- Set famous users data --->
 
 juliette_armanet_data = {
   username: 'Juliette',
@@ -230,7 +232,7 @@ famous_users_data = [
   rege_jean_page_data
 ]
 
-# <--- Setting Fake users data --->
+# <--- Set Fake users data --->
 
 # fake_users_data = []
 
@@ -250,7 +252,7 @@ famous_users_data = [
 #   }
 # end
 
-# <--- Setting Photos --->
+# <--- Set Photos --->
 
 photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
 photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
@@ -290,7 +292,7 @@ famous_users_photos = [
 
 photos = team_users_photos + famous_users_photos #+ fake_users_photos
 
-# <--- Creating Users --->
+# <--- Create Users --->
 
 users_data = team_users_data + famous_users_data #+ fake_users_data
 
@@ -307,7 +309,7 @@ users_data.each_with_index do |user_data, index|
   p "*** #{user.username} ***"
 end
 
-# <--- Calculating and attaching affinity Scores and love compatibility reports --->
+# <--- Calculate and attach affinity Scores and love compatibility reports --->
 
 users = User.all
 
@@ -327,9 +329,6 @@ users.each do |user|
       mate.birth_country
     )
     score_collection.store(mate.id, mate_score)
-    ordered_score_collection = score_collection.sort_by { |id, score| score }
-    user.affinity_scores = ordered_score_collection.reverse.to_h
-    puts "#{user.username} affinity scores ok"
 
     mate_love_compatibility_report = Call.new(api_uid, api_key).love_compatibility_report(
       user.birth_date,
@@ -342,23 +341,35 @@ users.each do |user|
       mate.birth_country
     )
     love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
-    user.love_compatibility_reports = love_compatibility_report_collection
-    puts "#{user.username} love compatibility reports ok"
-
-    user.save!
   end
+  ordered_score_collection = score_collection.sort_by { |id, score| score }
+  user.affinity_scores = ordered_score_collection.reverse.to_h
+  user.love_compatibility_reports = love_compatibility_report_collection
+  puts "*** #{user.username} complementary attachments ok ***"
+  user.save!
 end
 
 puts "#{User.all.length} users created successfully!"
+
+# <--- MATCHES SEEDING --->
+
+# <--- Select users --->
 
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')
 etienne = User.find_by_email('etiennededi@hotmail.fr')
 
-puts 'Creating Matches...'
-Chatroom.new.save!
+# <--- Create Chatrooms --->
 
-puts "first chatroom ok "
+puts "Creating Chatrooms..."
+
+2.times { Chatroom.new.save! }
+
+puts "Finished!"
+
+# <--- Create Matches --->
+
+puts "Creating Matches..."
 
 first_match = {
   status: "accepted",
@@ -367,9 +378,6 @@ first_match = {
   chatroom_id: Chatroom.first.id
 }
 
-Chatroom.new.save!
-puts "second chatroom ok
-"
 second_match = {
   status: "accepted",
   user_id: maria.id,
@@ -384,34 +392,27 @@ matches = [first_match, second_match]
 matches.each do |match|
   match_instance = Match.new(match)
   match_instance.save
-
   # first_score.save
 end
 
+puts "Finished!"
 
+# <--- Create Messages --->
 
-puts 'Creating Chatroom...'
-
-
-puts 'Finished!'
-
-puts 'Creating Matches...'
-
-
-puts 'Finished!'
-
-puts 'Creating Messages...'
+puts "Creating Messages..."
 
 Message.new(
   content: "coucou!",
   chatroom_id: Chatroom.first.id,
   user_id: maria.id
 ).save!
+
 Message.new(
   content: "yo!",
   chatroom_id: Chatroom.first.id,
   user_id: boris.id
 ).save!
+
 Message.new(
   content: "ça va ?",
   chatroom_id: Chatroom.first.id,

@@ -1,7 +1,21 @@
 class UsersController < ApplicationController
   require 'json'
 
-  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+  ZODIAC = [
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn",
+    "Aquarius",
+    "Pisces"
+  ]
+
   LOGOS = {
     Sun: "☉ ",
     Moon: "☽ ",
@@ -10,7 +24,7 @@ class UsersController < ApplicationController
     Mars: "♂︎ ",
     Jupiter: "♃ ",
     Saturn: "♄ ",
-    Uranus: "⛢ ",
+    Uranus: "♅ ",
     Neptune: "♆ ",
     Pluto: "♇ "
   }

@@ -1,59 +1,25 @@
 <div id="backgroundcolor">
 
-  <div class="d-flex flex-column align-items-center" data-controller="swipe">
-    <div data-swipe-target="emptyUser" class="d-none" >
-      <%= image_tag("simba.webp", height: 300, width: 300) %>
-      <h2>Plus d'autres utilisateurs. Il n'y a plus qu'à voir si les planètes s'alignent...</h2>
-    </div>
-    <div>
-
+  <div class="profiles" data-controller="swipe" >
     <% if @users.any? %>
-        <% @users.each_with_index do |user, index| %>
+        <% @users.each do |user| %>
 
-          <!-- USER CARD-->
-          <div class="user-card" >
+          <div class="profile" data-swipe-target="user" data-id="<%= user.id %>">
 
-            <div class="d-flex flex-column" data-swipe-target="user" data-current-user-id="<%= current_user.id %>" data-mate-id="<%= user.id %>">
-                <div class="match-score">88</div>
+              <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 700, width: 390, radius: 12,crop: :fill %>')">
+              <div class="profile-infos">
+                <div class="profile-match-score">88</div>
                 <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-eye text-decoration-none text-dark" %></div>
-                <!-- PICTURE CARROUSSEL-->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <% user.photos.each do |photo| %>
-                      <div class="carousel-item active">
-                        <%= cl_image_tag photo.key, height: 650, width: 400, crop: :fill, class: "d-block w-100" %>
-                      </div>
-                    <% end %>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-                <!-- END-CARROUSSEL-->
-              <div class="user-infos">
-                <h1><%= user.username %>, 37</h1>
-              </div>
-
-              <div class="swipe-buttons d-flex justify-content-around p-3" data-swipe-target="buttons">
-                <div class="fas fa-ban" data-action="click->swipe#swipeLeft" ></div>
-                <div class="fas fa-heart" data-action="click->swipe#swipeRight"></div>
+                <div class="profile-name"><%= user.username %> <span class="profile-age">42</span> </div>
+                <div class="profile-description"><%= user.description %></div>
               </div>
 
             </div>
           </div>
         <% end %>
     <% else %>
-    <h1>Il n'y a plus personne a swiper...Daleux va</h1>
+      <div class="profile">
+      </div>
     <% end %>
     </div>
 

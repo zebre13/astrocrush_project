@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_reader :my_zodiac
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,11 +22,11 @@ class User < ApplicationRecord
   validates :looking_for, presence: true
   # validate :user_is_adult
 
-  # private
+    # private
 
-  # def user_is_adult
-  #   if Date.today.year - birth_date.year < 18
-  #     self.errors.add(:birth_date, "User must be over 18 years old")
-  #   end
-  # end
+    # def user_is_adult
+    #   if Date.today.year - birth_date.year < 18
+    #     self.errors.add(:birth_date, "User must be over 18 years old")
+    #   end
+    # end
 end

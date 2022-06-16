@@ -1,0 +1,6 @@
+
+<p id="matchAlert">It's a match!</p>
+<p id="matchUserInfos"><%= User.find(@match.mate.id).username %></p>
+<p id="emojiheart">❤️‍🔥</p>
+<%= link_to("Start conversation", chatroom_path(@match), class:"btn", "data-swipe-target":"startConversationBtn") %>
+<%= link_to("Back to Swipe", root_path, class:"btn", "data-swipe-target":"closeMOdalBtn") %>

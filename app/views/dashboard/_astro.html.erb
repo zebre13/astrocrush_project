@@ -1,0 +1,15 @@
+  <div data-controller="dashboard" >
+    <div class="d-flex justify-content-center">
+      <h3 data-action="click->dashboard#table" class="p-3"><em>Table</em></h3>
+      <h3 class="p-3">|</h3>
+      <h3 data-action="click->dashboard#circle" class="p-3"><em>Circle</em></h3>
+    </div>
+    <div>
+      <div data-dashboard-target="table">
+        <%= render "dashboard/table"%>
+      </div>
+      <div data-dashboard-target="circle" class="d-none">
+        <%= render "dashboard/circle"%>
+      </div>
+    </div>
+  </div>

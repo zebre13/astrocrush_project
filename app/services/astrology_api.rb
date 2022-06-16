@@ -3,7 +3,7 @@ require 'json'
 require 'date'
 require 'time'
 
-class Call
+class AstrologyApi
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
 
   def initialize(uid = nil, key = nil)
@@ -42,6 +42,25 @@ class Call
     endpoint = "personality_report/tropical"
     data = birth_data_set(birth_date, birth_hour, city, country_code)
     return get_response(endpoint, data)['report']
+  end
+
+  # Romantic personality report based on a user's birth data
+  def romantic_personality_report(birth_date, birth_hour, city, country_code)
+    endpoint = "romantic_personality_report/tropical"
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
+    return get_response(endpoint, data)['report']
+  end
+
+  # Daily horoscope for a given sign
+  def daily_horoscope(user_sign)
+    endpoint = "horoscope_prediction/daily/#{user_sign}"
+    return get_response(endpoint, {})['prediction']
+  end
+
+  # Sign compatibility
+  def zodiac_compatibility(user_sign)
+    endpoint = "zodiac_compatibility/#{user_sign}"
+    return get_response(endpoint, {})
   end
 
   # Affinity percentage between a user (m) and and mate (f)
@@ -147,7 +166,40 @@ class Call
       f_tzone: tzone
     }
   end
-end
 
-call = Call.new('619845', '0fe9a97cde1e13cefe57c49cf2643167')
-p call.city_coord('London', 'GB')
+  # Hash with formatted birth data given birth data for the user in match making method
+  def p_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    {
+      p_day: birth_date.day,
+      p_month: birth_date.month,
+      p_year: birth_date.year,
+      p_hour: birth_hour.hour,
+      p_min: birth_hour.min,
+      p_lat: coord[:lat],
+      p_lon: coord[:lon],
+      p_tzone: tzone
+    }
+  end
+
+  # Hash with formatted birth data given birth data for the mate in match making method
+  def s_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    {
+      s_day: birth_date.day,
+      s_month: birth_date.month,
+      s_year: birth_date.year,
+      s_hour: birth_hour.hour,
+      s_min: birth_hour.min,
+      s_lat: coord[:lat],
+      s_lon: coord[:lon],
+      s_tzone: tzone
+    }
+  end
+end

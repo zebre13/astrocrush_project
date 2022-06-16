@@ -11,12 +11,9 @@
   width: 40px;
 }
 
-.navbar-profil {
-  background: $blue;
-  padding: 0,1rem;
-}
 
-.navbar-dashboard {
+.navbar-screen {
   background: $blue;
-  padding: 0,1rem;
+  border-radius: 2rem 2rem 0 0;
+  height: 10vh;
 }

@@ -62,16 +62,8 @@ class UsersController < ApplicationController
   end
 
   def astroboard
-<<<<<<< HEAD
-    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
-    @zodiac_compatibility = Call.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
-=======
     @daily_horoscope = AstrologyApi.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
     @zodiac_compatibility = AstrologyApi.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
-  end
-
-  def dashboard
->>>>>>> 8926b90a418093f2d620a1d019876cf7b333099b
     @my_zodiac = create_zodiac
     @signs = [find_planets(1),
               find_planets(2),
@@ -83,7 +75,7 @@ class UsersController < ApplicationController
               find_planets(8),
               find_planets(9),
               find_planets(10),
-              find_planets(11)]
+              find_planets(11)] 
   end
 
   def dashboard

@@ -62,7 +62,8 @@ class UsersController < ApplicationController
   end
 
   def astroboard
-    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope("Taurus")
+    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
+    @zodiac_compatibility = Call.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
   end
 
   def dashboard

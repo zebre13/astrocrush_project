@@ -57,6 +57,12 @@ class Call
     return get_response(endpoint, {})['prediction']
   end
 
+  # Sign compatibility
+  def zodiac_compatibility(user_sign)
+    endpoint = "zodiac_compatibility/#{user_sign}"
+    return get_response(endpoint, {})
+  end
+
   # Affinity percentage between a user (m) and and mate (f)
   def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
     endpoint = "match_percentage"
@@ -197,4 +203,3 @@ class Call
     }
   end
 end
-

@@ -1,21 +1,67 @@
-<%# Code Ghita à transférer du dashboard (astro content uniquement) %>
+<div class="container">
+  <%# Code Ghita à transférer du dashboard (astro content uniquement) %>
 
 
-
-<%# BOB: Horoscope quotidien %>
-<div>
-  <h1>Menu de la journée</h1>
-  <p>
-    <%= @daily_horoscope %>
-  </p>
-</div>
-
-<%# BOB: Portrait astrologique %>
-<div>
-  <h1>Portrait astral</h1>
-    <% eval(current_user.personality_report).each do |element| %>
+  <%# BOB: Horoscope quotidien %>
+  <div class="mb-5">
+    <div class="mb-3">
+      <h1>Horoscope du jour</h1>
+    </div>
+    <div class="mb-3 text-justify">
       <p>
-        <%= element %>
+        <%= @daily_horoscope %>
       </p>
-    <% end %>
+    </div>
+  </div>
+
+  <%# BOB: Portrait astrologique %>
+  <div class="mb-5">
+    <div class="mb-3">
+      <h1>Portrait astral</h1>
+    </div>
+    <div class="mb-3 text-justify">
+      <% eval(current_user.personality_report).each do |element| %>
+        <p>
+          <%= element %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <%# BOB: Compatibilité de mon signe avec les autres signes %>
+  <div class="mb-5">
+    <div class="mb-3">
+      <h1>
+        Compatibilité du <%= current_user.sign %> avec les autres signes
+      </h1>
+    </div>
+    <div class="container">
+      <% compatibility_degree = ['highly_compatible', 'mid_compatible', 'low_compatible', 'neutral', 'incompatible', 'mid_incompatible', 'highly_incompatible'] %>
+      <% compatibility_degree.each do |degree| %>
+        <div class="row justify-content-center">
+          <div class="col-5 border text-center">
+            <% case degree %>
+            <% when 'highly_compatible' %>
+              <%= '+++' %>
+            <% when 'mid_compatible' %>
+              <%= '++' %>
+            <% when 'low_compatible' %>
+              <%= '+' %>
+            <% when 'neutral' %>
+              <%= '=' %>
+            <% when 'incompatible' %>
+              <%= '-' %>
+            <% when 'mid_incompatible' %>
+              <%= '--' %>
+            <% else 'highly_incompatible' %>
+              <%= '---' %>
+            <% end %>
+          </div>
+          <div class="col-5 border border-left-0 text-center">
+            <%= @zodiac_compatibility[degree].join(', ') %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

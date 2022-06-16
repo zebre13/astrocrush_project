@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post '/create_denied_match', to: 'matches#create_denied_match', as: 'create_denied_match'
   # get '/users/:id', to: 'users#show'
   resources :users, only: [:show, :edit]
+  get 'test', to: "users#test"
 end

@@ -1,91 +1,92 @@
 import { Controller } from "@hotwired/stimulus"
+import Hammer from 'hammerjs';
 import UseStrictPlugin from "webpack/lib/UseStrictPlugin"
 export default class extends Controller {
-  static targets = ["list","user", "users", "emptyUser", "buttons"]
+  static targets = ["user"]
 
   connect() {
-    // console.log("Hello from our first Stimulus controller")
-    // console.log('This user target', this.userTarget)
-    // console.log(' userTargets[0] ', this.userTargets[0])
-
-    const mates = this.userTargets
-    console.log( this.userTargets.length)
-    // A la connexion à la page, verifier qu'il y ai bien un utilisateur
+    console.log("coucou")
+    console.log(this.userTargets.length)
+    this._setupDragAndDrop();
   }
 
 
+  _setupDragAndDrop() {
+    const maxAngle = 42;
+    const smooth = 0.3;
+    const threshold = 42;
+    const thresholdMatch = 150;
+
+    this.userTargets.forEach((profile) => {
+      const hammertime = new Hammer(profile);
+
+      hammertime.on('pan', (e) => {
+        e.target.classList.remove('profile-back');
+        let posX = e.deltaX;
+        let posY = Math.max(0, Math.abs(posX * smooth) - 42);
+        let angle = Math.min(Math.abs(e.deltaX * smooth / 100), 1) * maxAngle;
+
+        if(e.deltaX < 0) {
+          angle *= -1;
+        }
+
+        e.target.style.transform = `translate(${posX}px, ${posY}px) rotate(${angle}deg)`;
+        profile.classList.remove('profile-matching');
+        profile.classList.remove('profile-nexting');
+
+        if(posX > thresholdMatch){
+          e.target.classList.add('profile-matching')
+        } else if (posX < -thresholdMatch){
+          e.target.classList.add('profile-nexting')
+        }
+
+        if (e.isFinal) {
+          e.target.style.transform = ``;
+          if(posX > thresholdMatch){
+            e.target.classList.add('profile-match')
+            profile.remove()
+            this.swipeRight(e)
+          } else if (posX < -thresholdMatch){
+            e.target.classList.add('profile-next')
+            profile.remove()
+            this.swipeLeft(e)
+          } else {
+            e.target.classList.add('profile-back');
+            e.target.classList.remove('profile-nexting');
+            e.target.classList.remove('profile-matching')
+          }
+        }
+      })
+
+    });
+  }
+
   swipeLeft(event){
-    const mates = this.userTargets
-    event.preventDefault()
-  //   // recupérer l'user active
-    const card = event.currentTarget.closest(".user-card")
-
-    // Il faut que j'enregistre en DB un match avec le status denied
+    const dataId = event.target.parentElement.dataset.id
+    console.log(dataId)
+    const mateId = parseInt(dataId, 10)
     const url = "/create_denied_match"
-    // console.log(url)
-    const mateId = parseInt(this.userTargets[0].dataset.mateId, 10)
-    // console.log(mateId)
-
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
-    console.log("fetched ok, now removing")
-    card.remove()
-    console.log(mates.length)
-    if(mates.length === 1){
-      window.location.reload(false);
-    }
   }
 
   swipeRight(event){
-    const mates = this.userTargets
-    console.log("swipped right in process")
-    event.preventDefault()
-    const card = event.currentTarget.closest(".user-card")
+    const dataId = event.target.parentElement.dataset.id
+    const mateId = parseInt(dataId, 10)
     const url= "/matches"
-    const mateId = parseInt(this.userTargets[0].dataset.mateId, 10)
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
-      .then(() => {
-        if(mates.length === 1){
-        window.location.reload(false);
-      }})
-      console.log("fetched ok, now removing : ici je dois rafraichir encore pour que la page disparaisse")
-      card.remove()
+      .then((response) => {
+        console.log(response)
+      })
     }
-
-
+  itsAMatch(){
+    console.log("Its A Match. Function has been call from rails controller. how awesome")
   }
-
-  // swipe(event){
-  //   const card = event.currentTarget.closest(".user-card")
-  //   // Il faut que j'enregistre en DB un match avec le status denied
-  //   const mateId = parseInt(this.userTargets[0].dataset.mateId, 10)
-  //   let url
-  //   if(event.direction = right) {
-  //     url = "/matches"
-  //     fetch(url, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({"id": mateId})
-  //     })
-  //     card.remove()
-  //   }
-  //   else if(event.direction = left){
-  //     url = "/create_denied_matches"
-  //     fetch(url, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({"id": mateId})
-  //     })
-  //     card.remove()
-  //   }
-  //   else {
-  //     // ne rien faire si c'est en bas ou en haut
-  //   }
-  // }
+}

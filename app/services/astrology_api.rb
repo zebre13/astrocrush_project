@@ -54,6 +54,12 @@ class Call
   # Daily horoscope for a given sign
   def daily_horoscope(user_sign)
     endpoint = "horoscope_prediction/daily/#{user_sign}"
+    return get_response(endpoint, {})['prediction']
+  end
+
+  # Sign compatibility
+  def zodiac_compatibility(user_sign)
+    endpoint = "zodiac_compatibility/#{user_sign}"
     return get_response(endpoint, {})
   end
 

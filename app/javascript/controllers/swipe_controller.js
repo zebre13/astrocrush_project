@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
+import { Modal } from "bootstrap";
 import Hammer from 'hammerjs';
 import UseStrictPlugin from "webpack/lib/UseStrictPlugin"
 export default class extends Controller {
-  static targets = ["user"]
+  static targets = ["user","modal", "modalbody", "closeModalBtn", "startConversationBtn"]
 
   connect() {
     // console.log("coucou")
@@ -93,7 +94,18 @@ export default class extends Controller {
     .then(response => response.json())
     .then(data => {
       console.log('hello ->', data)
-      // window.location.replace(`/user/${data.inserted_item}/wishlist/show`);
+      if(data.match.status === 'accepted'){
+        console.log("accepted MATCH")
+        const modal = new Modal(this.modalTarget)
+        this.modalbodyTarget.innerHTML = data.content
+        modal.show()
+        this.closeModalBtnTarget.addEventListener('click', (e) => {
+          modal.hide()
+        });
+        this.startConversationBtnTarget.addEventListener('click', (e) => {
+              modal.hide()
+            });
+      }
     })
   }
 

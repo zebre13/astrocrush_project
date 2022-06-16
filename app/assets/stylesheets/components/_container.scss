@@ -6,13 +6,14 @@
   // border: 0.5px solid;
 }
 
-.border {
-  border: 0.1rem solid gainsboro;
-  color: gainsboro;
+.border-blue {
+  border: solid;
+  border-color: $blue;
+  border-width: 0.1em;
 }
 
 .grey-background {
-  background: gainsboro;
+  background: $blue;
   color: white;
 }
 

@@ -298,12 +298,12 @@ users_data = team_users_data + famous_users_data #+ fake_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
-  user.sign = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
-  user.rising = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['houses'].first['sign']
-  user.moon = Call.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
-  user.planets = Call.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
-  user.wheel_chart = Call.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
-  user.personality_report = Call.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.sign = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'].first['sign']
+  user.rising = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['houses'].first['sign']
+  user.moon = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
+  user.planets = AstrologyApi.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.wheel_chart = AstrologyApi.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
   p "*** #{user.username} ***"
@@ -318,7 +318,7 @@ users.each do |user|
   score_collection = {}
   love_compatibility_report_collection = {}
   potential_mates.each do |mate|
-    mate_score = Call.new(api_uid, api_key).match_percentage(
+    mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
       user.birth_date,
       user.birth_hour,
       user.birth_location,
@@ -330,7 +330,7 @@ users.each do |user|
     )
     score_collection.store(mate.id, mate_score)
 
-    mate_love_compatibility_report = Call.new(api_uid, api_key).love_compatibility_report(
+    mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
       user.birth_date,
       user.birth_hour,
       user.birth_location,

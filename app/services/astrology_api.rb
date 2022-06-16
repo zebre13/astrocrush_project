@@ -3,7 +3,7 @@ require 'json'
 require 'date'
 require 'time'
 
-class Call
+class AstrologyApi
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
 
   def initialize(uid = nil, key = nil)

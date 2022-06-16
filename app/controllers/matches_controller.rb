@@ -27,8 +27,10 @@ class MatchesController < ApplicationController
       @match.update(status: 1)
       p "You got a new match!"
       respond_to do |format|
-        format.js { render js: "itsAMatch();" }
-      end
+        html_content = render_to_string partial: "matches/success"
+        format.json { render json: { match: @match, content: html_content } }
+        format.html { render "matches/success" }
+        end
 
     else
       @match = Match.new(mate: @mate, user: current_user, status: 0)
@@ -46,4 +48,9 @@ class MatchesController < ApplicationController
   # end
   # @match.mate.destroy
   # end
+  def match_data
+    {
+      inserted_item: render_to_string(partial: 'matches/success.html')
+    }
+  end
 end

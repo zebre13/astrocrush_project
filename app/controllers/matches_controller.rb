@@ -22,13 +22,10 @@ class MatchesController < ApplicationController
         end
 
     else
-<<<<<<< HEAD
       # sinon si personne de nous deux ne s'est encore liké:
       @match = Match.new
       @match.mate = @mate
-=======
       @match = Match.new(mate: @mate, user: current_user, status: 0)
->>>>>>> master
       @chatroom = Chatroom.create!
       @match.chatroom = @chatroom
       @match.save!
@@ -36,13 +33,11 @@ class MatchesController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
     flash[:success] = "you have successfully destroyed."
     redirect_to '/matches_path', :notice => "Your match has been deleted"
-=======
   # def destroy
   #   @matches = Match.where(user_id: current_user.id).where.not(status: 0)
   # @mattches.each do |match|
@@ -54,6 +49,5 @@ class MatchesController < ApplicationController
     {
       inserted_item: render_to_string(partial: 'matches/success.html')
     }
->>>>>>> master
   end
 end

@@ -1,18 +1,23 @@
-
+*, *::after, *::before{
+  box-sizing: border-box;
+}
 .flux {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
   background: white;
   padding: 8px 16px;
-border: 1px solid black;
- border: 1px solid rgb(235,235,235);
+  // border: 1px solid black;
+  border: 1px solid rgb(235,235,235);
+  margin: 0;
+  line-height: 1.4;
+
 }
 
-// .flux .profile{
-//   flex-grow: 1;
-//   padding: 0 24px;
-// }
+.flux .profile{
+  flex-grow: 1;
+  padding: 0 24px;
+}
 
 // .flux {
 //   margin: 0;
@@ -42,4 +47,68 @@ border: 1px solid black;
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
+  margin: 50px
 }
+
+// .avatar-large {
+//   width: 50px;
+//   height: 100px;
+// }
+
+// .photo-match {
+//   width: 40px;
+// }
+
+// .contener{
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .slider {
+//   display: flex;
+//   flex-grow: 1;
+//   transform: translateX(-00%);
+// }
+
+// .slider > img {
+//   flex: 0 0 25%;
+//   max-width: 25%;
+//   aspect-ratio: 16 / 9;
+//   padding: .25rem;
+//   border-radius: .5rem;
+//   overflow: hidden ;
+// }
+
+// .handle {
+//   border: none;
+//   border-radius: .5em;
+//   flex-grow: 0;
+//   width: 5em;
+//   background-color: rgba(0, 0, 0, .25);
+//   z-index: 10;
+//   margin: 25rem 0;
+//   cursor: pointer;
+// }
+// .left-handle {
+//   border-top-left-radius: 0;
+//   border-bottom-left-radius: 0;
+// }
+
+// .right-handle {
+//   border-top-right-radius: 0;
+//   border-bottom-right-radius: 0;
+// }
+
+// .handle:hover {
+//   background-color: rgba(0, 0, 0, .5);;
+// }
+
+// .contener:hover .left-handle:hover::after {
+//   content: \2039;
+// }
+
+// .contener:hover .right-handle:hover::after {
+//   content: \203A;
+//   color: white;
+// }

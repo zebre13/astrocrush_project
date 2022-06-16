@@ -1,39 +1,5 @@
 
 
-  <div data-controller="dashboard" >
-    <div class="d-flex justify-content-center">
-      <h3 data-action="click->dashboard#table" class="p-3"><em>Table</em></h3>
-      <h3 class="p-3">|</h3>
-      <h3 data-action="click->dashboard#circle" class="p-3"><em>Circle</em></h3>
-    </div>
-    <div>
-      <div data-dashboard-target="table">
-        <%= render "dashboard/table"%>
-      </div>
-      <div data-dashboard-target="circle" class="d-none">
-        <%= render "dashboard/circle"%>
-      </div>
-    </div>
-  </div>
-
-  <div class="navbar-dashboard fixed-bottom justify-content-between ">
-    <div class="row justify-content-between">
-      <div class="col-4 d-flex p-2">
-        <%= link_to "#" do %>
-        <i class="fas fa-wrench"></i>
-        <% end %>
-      </div>
-
-      <div class="col-4 d-flex p-2">
-        <%= link_to "#" do %>
-        <i class="fas fa-pen"></i>
-        <% end %>
-      </div>
-
-      <div class="col-4 d-flex p-2">
-        <%= link_to "#" do %>
-        <i class="fas fa-shield-alt"></i>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<div>
+  <%= render "navbar/navbar"%>
+</div>

@@ -1,5 +1,5 @@
 require 'json'
-require_relative '../services/astrology_api'
+# require_relative '../services/astrology_api'
 
 API_UID = ENV["API_UID"]
 API_KEY = ENV["API_KEY"]
@@ -62,8 +62,8 @@ class UsersController < ApplicationController
   end
 
   def astroboard
-    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
-    @zodiac_compatibility = Call.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
+    @daily_horoscope = AstrologyApi.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
+    @zodiac_compatibility = AstrologyApi.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
   end
 
   def dashboard

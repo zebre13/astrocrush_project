@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @users = @users_by_gender.reject do |user|
       Match.where("(user_id = ? AND status = 0) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end
+  end
 
   def dashboard
     @my_zodiac = create_zodiac

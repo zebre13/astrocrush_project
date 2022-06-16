@@ -1,5 +1,10 @@
+require 'json'
+require_relative '../services/astrology_api'
+
+API_UID = ENV["API_UID"]
+API_KEY = ENV["API_KEY"]
+
 class UsersController < ApplicationController
-  require 'json'
 
   ZODIAC = [
     "Aries",
@@ -54,6 +59,10 @@ class UsersController < ApplicationController
     @users = @users_by_gender.reject do |user|
       Match.where("(user_id = ? AND status = 0) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end
+  end
+
+  def astroboard
+    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope("Taurus")
   end
 
   def dashboard

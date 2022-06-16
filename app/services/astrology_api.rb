@@ -54,7 +54,7 @@ class Call
   # Daily horoscope for a given sign
   def daily_horoscope(user_sign)
     endpoint = "horoscope_prediction/daily/#{user_sign}"
-    return get_response(endpoint, {})
+    return get_response(endpoint, {})['prediction']
   end
 
   # Affinity percentage between a user (m) and and mate (f)
@@ -197,3 +197,4 @@ class Call
     }
   end
 end
+

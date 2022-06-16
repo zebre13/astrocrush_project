@@ -5,10 +5,10 @@
         <% @users.each do |user| %>
 
           <div class="profile" data-swipe-target="user" data-id="<%= user.id %>">
-              <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 700, width: 390, radius: 12,crop: :fill %>')">
+              <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 700, width: 380, radius: 12,crop: :fill %>')">
               <div class="profile-infos">
-                <div class="profile-match-score"><%#<%= eval(current_user.affinity_scores)[user.id] %></div>
-                <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-eye text-decoration-none text-dark" %></div>
+                <div class="profile-match-score"><%= eval(current_user.affinity_scores)[user.id]%></div>
+                <div class="profile-details"><%= link_to '', user_path(user), class:"fas fa-heart", style: "text-decoration: none" %></div>
                 <div class="profile-name"><%= user.username %> <span class="profile-age"><%= ((Date.today - user.birth_date)/365).floor %></span> </div>
                 <div class="profile-description"><%= user.description %></div>
               </div>

@@ -1,7 +1,26 @@
-class UsersController < ApplicationController
-  require 'json'
+require 'json'
+require_relative '../services/astrology_api'
 
-  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+API_UID = ENV["API_UID"]
+API_KEY = ENV["API_KEY"]
+
+class UsersController < ApplicationController
+
+  ZODIAC = [
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn",
+    "Aquarius",
+    "Pisces"
+  ]
+
   LOGOS = {
     Sun: "☉ ",
     Moon: "☽ ",
@@ -10,7 +29,7 @@ class UsersController < ApplicationController
     Mars: "♂︎ ",
     Jupiter: "♃ ",
     Saturn: "♄ ",
-    Uranus: "⛢ ",
+    Uranus: "♅ ",
     Neptune: "♆ ",
     Pluto: "♇ "
   }
@@ -33,7 +52,18 @@ class UsersController < ApplicationController
     @mate = User.find(params[:id])
   end
 
-  def dashboard
+
+  def test
+    @users_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    # On rejette tous les users qui sont dans les matchs du current user.
+    @users = @users_by_gender.reject do |user|
+      Match.where("(user_id = ? AND status = 0) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+    end
+  end
+
+  def astroboard
+    @daily_horoscope = Call.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
+    @zodiac_compatibility = Call.new(API_UID, API_KEY).zodiac_compatibility(current_user.sign)
     @my_zodiac = create_zodiac
     @signs = [find_planets(1),
               find_planets(2),
@@ -46,6 +76,10 @@ class UsersController < ApplicationController
               find_planets(9),
               find_planets(10),
               find_planets(11)]
+  end
+
+  def dashboard
+
   end
 
   private
@@ -77,6 +111,7 @@ class UsersController < ApplicationController
       end
     end
     return planets
+
   end
 end
 

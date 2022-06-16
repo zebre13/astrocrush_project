@@ -51,6 +51,18 @@ class Call
     return get_response(endpoint, data)['report']
   end
 
+  # Daily horoscope for a given sign
+  def daily_horoscope(user_sign)
+    endpoint = "horoscope_prediction/daily/#{user_sign}"
+    return get_response(endpoint, {})['prediction']
+  end
+
+  # Sign compatibility
+  def zodiac_compatibility(user_sign)
+    endpoint = "zodiac_compatibility/#{user_sign}"
+    return get_response(endpoint, {})
+  end
+
   # Affinity percentage between a user (m) and and mate (f)
   def match_percentage(m_birth_date, m_birth_hour, m_city, m_country_code, f_birth_date, f_birth_hour, f_city, f_country_code)
     endpoint = "match_percentage"
@@ -152,6 +164,42 @@ class Call
       f_lat: coord[:lat],
       f_lon: coord[:lon],
       f_tzone: tzone
+    }
+  end
+
+  # Hash with formatted birth data given birth data for the user in match making method
+  def p_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    {
+      p_day: birth_date.day,
+      p_month: birth_date.month,
+      p_year: birth_date.year,
+      p_hour: birth_hour.hour,
+      p_min: birth_hour.min,
+      p_lat: coord[:lat],
+      p_lon: coord[:lon],
+      p_tzone: tzone
+    }
+  end
+
+  # Hash with formatted birth data given birth data for the mate in match making method
+  def s_birth_data_set(birth_date, birth_hour, city, country_code)
+    coord = city_coord(city, country_code)
+    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
+    {
+      s_day: birth_date.day,
+      s_month: birth_date.month,
+      s_year: birth_date.year,
+      s_hour: birth_hour.hour,
+      s_min: birth_hour.min,
+      s_lat: coord[:lat],
+      s_lon: coord[:lon],
+      s_tzone: tzone
     }
   end
 end

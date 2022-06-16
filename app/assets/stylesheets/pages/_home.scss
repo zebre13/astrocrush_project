@@ -1,30 +1,120 @@
-// Specific CSS for your home-page
-.user-card {
-  min-width: 410px;
-  border: solid 1px black;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  background: rgb(135, 13, 107);
-  background: linear-gradient(90deg, rgb(196, 126, 180) 0%, rgb(244, 167, 155) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
-
+.profiles {
   position: relative;
+  width: 390px;
+  height: 700px;
+}
+
+.profiles::before {
+  content:'Plus rien à matcher...';
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+}
+
+.profile {
+  position: absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  border-radius: 12px;
+  // overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor:pointer;
+}
+
+.profile-image{
+  height: 700px;
+  width: 390px;
+  border-radius: 12px;
+  border: solid 1px black;
+}
+
+.profile-infos {
+  padding:12px;
+  position:absolute;
+  bottom:0px;
+  background:linear-gradient(0deg, black, transparent);
+  width: 100%;
+  border-radius: inherit;
+}
+.profile-match-score {
+  border: solid black 1px;
+  border-radius: 50%;
+  padding: 13px;
+  width: 50px;
+  position: relative;
+  bottom: 420px;
+  left: 283px;
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+}
+.profile-details {
+  border: solid black 1px;
+  border-radius: 50%;
+  padding: 8px;
+  width: 40px;
+  position: relative;
+  left: 290px;
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
+}
+
+.profile-name {
+  color:white;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size:22px;
+}
+.profile-description {
+  color:white;
+  font-size:13px;
+  overflow:hidden;
+}
+
+.profile-match {
+  transition: .4s;
+  transform: translateX(1500px) translateY(600px) rotate(90deg);
+}
+
+.profile-next {
+  transition: .4s;
+  transform: translateX(-1500px) translateY(600px) rotate(-90deg);
+}
+
+.profile-back{
+  transition: .4s;
+}
+
+.profile-matching::after, .profile-nexting::after {
+  content:'MATCH';
+  font-weight: bold;
+  font-size:28px;
+  padding:8px 12px;
+  border:solid 2px green;
+  color:rgb(29, 141, 29);
+  background: rgba(0, 0, 0, 0.371);
+  position: absolute;
+  top:24px;
+  right:12px;
+  border-radius: 4px;
+  transform:rotate(24deg);
+}
+
+.profile-nexting::after {
+  content:'NEXT';
+  border:solid 2px red;
+  color: red;
 }
 
 
 
-h2, h1{
-  color: rgb(6, 6, 6);
-  margin-top: 20px;
-}
 
 #backgroundcolor {
+  display: flex;
+  justify-content: center;
   height: 100vh;
   background: #b293c0;
-  // background: radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
-  // background: -webkit-radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
-  // background: -moz-radial-gradient(circle farthest-corner at center center, #b293c0 30%, #6c2c74 80%);
-  background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: rgb(223, 226, 241);
+  background: radial-gradient(circle, rgb(204, 211, 243) 0%, rgb(242, 210, 216) 100%);
 }
 
 div.fas.fa-ban::before{
@@ -52,26 +142,14 @@ div.fas.fa-heart::before{
   -moz-box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
 }
 
-.cloudimage-container {
-  overflow: hidden;
-  width:100%;
-  height: 66vh;
-}
+
 
 .swipe-buttons {
   position: relative;
   bottom: 30px;
 }
 
-.user-infos {
-  position: relative;
-  bottom: 71px;
-  // background-color: rgba(251, 251, 251, 0.67);
-  padding-left: 30px;
-  // box-shadow: 0 0 10px rgba(189, 188, 188, 0.689);
-  color: rgb(0, 0, 0);
-  text-shadow: -1px 5px 26px rgba(255,255,255,1);
-}
+
 
 h1 {
   // background: #959595;
@@ -80,33 +158,4 @@ h1 {
   // -webkit-text-fill-color: transparent;
   color: black;
   font-family: "Roboto";
-}
-
-.match-score {
-  // background-color: white;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius:50%;
-  border: solid 1px black;
-  padding: 15px;
-  top: 150px;
-  left: 312px;
-  z-index: 1;
-  background: rgb(232,170,218);
-background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
-}
-
-.profile-details {
-  background: rgb(232,170,218);
-background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius:50%;
-  border: solid 1px black;
-  padding: 15px;
-  top: 556px;
-  left: 312px;
-  z-index: 1;
 }

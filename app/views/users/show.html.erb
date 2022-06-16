@@ -1,54 +1,61 @@
-<div class="card-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, crop: :fill %>')">
+<div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, crop: :fill %>')">
 </div>
 
-<div class="p-2">
-  <div class="d-flex justify-content-between">
-    <h1>
-      <strong><%= @mate.username %></strong>
-      <span><%= ((Date.today - @mate.birth_date)/365).floor %></span>
-    </h1>
-    <h1>
-      Score: <%= eval(current_user.affinity_scores)[params[:id].to_i] %>%
-    </h1>
-  </div>
+<div class="container detailed-profile-content">
+  <div class="py-3">
+    <div class="d-flex justify-content-between">
+      <h1>
+        <strong><%= @mate.username %></strong>,
+        <span><%= ((Date.today - @mate.birth_date)/365).floor %> ans</span>
+      </h1>
 
-  <div class="d-flex">
-    <span class="me-1"><i class="far fa-dot-circle"></i></span>
-    <span class="me-2"><%= @mate.sign.capitalize %></span>
+      <h1>
+        <%= eval(current_user.affinity_scores)[params[:id].to_i] %>%
+      </h1>
+    </div>
 
-    <span class="me-1"><i class="fas fa-arrow-up"></i></i></span>
-    <span class="me-2"><%= @mate.rising.capitalize %></span>
+    <div class="d-flex border-bottom pb-3">
+      <span class="me-1">☉</i></span>
+      <span class="me-2"><%= @mate.sign.capitalize %></span>
 
-    <span class="me-1"><i class="far fa-moon"></i></i></span>
-    <span class="me-2"><%= @mate.moon.capitalize %></span>
-  </div>
+      <span class="me-1">↑</span>
+      <span class="me-2"><%= @mate.rising.capitalize %></span>
 
-  <div class="mt-3">
-    <p class="mb-1">
-      <strong>A propos de moi</strong>
-    </p>
-    <p>
-      <%= @mate.description %>
-    </p>
-  </div>
+      <span class="me-1">☽</span>
+      <span class="me-2"><%= @mate.moon.capitalize %></span>
+    </div>
 
-   <div class="mt-3">
-    <p class="mb-1">
-      <strong>Mes passions</strong>
-    </p>
-    <p>
-      <%= @mate.hobbies %>
-    </p>
-  </div>
-
-   <div class="mt-3">
-    <p class="mb-1">
-      <strong>Ce que les planètes disent sur moi...</strong>
-    </p>
-    <% eval(@mate.personality_report).each do |element| %>
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        A propos de moi
+      </h5>
       <p>
-        <%= element %>
+        <%= @mate.description %>
       </p>
-    <% end %>
+    </div>
+
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        Mes passions
+      </h5>
+      <p>
+        <%= @mate.hobbies %>
+      </p>
+    </div>
+
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        Ma relation avec <%= @mate.username %> vue par les planètes...
+      </h5>
+      <% eval(current_user.love_compatibility_reports)[params[:id].to_i].each do |element| %>
+        <p>
+          <%= element %>
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
+
+
+<%# <div class="card-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, crop: :fill %>
+<%# </div> %>

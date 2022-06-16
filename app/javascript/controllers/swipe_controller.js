@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["user"]
 
   connect() {
-    console.log("coucou")
+    // console.log("coucou")
     console.log(this.userTargets.length)
     this._setupDragAndDrop();
   }
@@ -35,8 +35,10 @@ export default class extends Controller {
         profile.classList.remove('profile-nexting');
 
         if(posX > thresholdMatch){
+          e.target.classList.remove('profile-nexting');
           e.target.classList.add('profile-matching')
         } else if (posX < -thresholdMatch){
+          e.target.classList.remove('profile-matching')
           e.target.classList.add('profile-nexting')
         }
 
@@ -62,6 +64,7 @@ export default class extends Controller {
   }
 
   swipeLeft(event){
+
     const dataId = event.target.parentElement.dataset.id
     console.log(dataId)
     const mateId = parseInt(dataId, 10)
@@ -71,6 +74,11 @@ export default class extends Controller {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
+    .then(response => response.json())
+    .then((data) => {
+          console.log(data)
+          // window.location.replace(`/user/${data.inserted_item}/wishlist/show`);
+        })
   }
 
   swipeRight(event){
@@ -82,11 +90,11 @@ export default class extends Controller {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
-      .then((response) => {
-        console.log(response)
-      })
-    }
-  itsAMatch(){
-    console.log("Its A Match. Function has been call from rails controller. how awesome")
+    .then(response => response.json())
+    .then(data => {
+      console.log('hello ->', data)
+      // window.location.replace(`/user/${data.inserted_item}/wishlist/show`);
+    })
   }
+
 }

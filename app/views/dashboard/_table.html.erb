@@ -1,0 +1,42 @@
+  <div class="container-dashboard">
+  <div class="row">
+    <div class="col-1">
+    </div>
+
+    <div class="col-10">
+      <div class="border">
+        <div class="row">
+          <div class ="col-4 padding"><%=current_user.rising.capitalize%></div>
+          <div class ="col-6 border-0 padding grey-background"><em>↑</em> ASCENDANT</div>
+          <div class ="col-2 padding"><h3>1</h3></div>
+        </div>
+      </div>
+      <% @signs.each do |sign| %>
+        <% if sign.count == 1 %>
+          <div class="border">
+            <div class="row">
+              <div class ="col-4 padding"><%=sign[0]["sign"]%></div>
+              <div class ="col-6 border-0 padding grey-background"><%=sign[0]["logo"]%><%=sign[0]["planet"]%></div>
+              <div class ="col-2 padding"><h3><%=sign[0]["house"]%></h3></div>
+            </div>
+          </div>
+        <% elsif sign.count == 2 %>
+          <div class="border">
+            <div class="row">
+              <div class ="col-4 padding"><%=sign[0]["sign"]%></div>
+              <div class ="col-6 border-0 padding grey-background"><%=sign[0]["logo"]%><%=sign[0]["planet"]%></div>
+              <div class ="col-2 padding"><h3><%=sign[0]["house"]%></h3></div>
+            </div>
+            <div class="row">
+              <div class ="col-4 padding"></div>
+              <div class ="col-6 padding grey-background"><%=sign[1]["logo"]%><%=sign[1]["planet"]%></div>
+              <div class ="col-2 padding"><h3></h3></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-1">
+    </div>
+  </div>

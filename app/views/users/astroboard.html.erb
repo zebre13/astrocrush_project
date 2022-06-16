@@ -1,0 +1,21 @@
+<%# Code Ghita à transférer du dashboard (astro content uniquement) %>
+
+
+
+<%# BOB: Horoscope quotidien %>
+<div>
+  <h1>Menu de la journée</h1>
+  <p>
+    <%# TO DO %>
+  </p>
+</div>
+
+<%# BOB: Portrait astrologique %>
+<div>
+  <h1>Portrait astral</h1>
+    <% eval(current_user.personality_report).each do |element| %>
+      <p>
+        <%= element %>
+      </p>
+    <% end %>
+</div>

@@ -4,7 +4,31 @@
 }
 
 .detailed-profile-content p {
-  opacity: 0.7;
+  opacity: 0.6;
+}
+
+.detailed-profile-content h1 {
+  font-family: "Manrope", "sans-serif";
+}
+
+.score-patch {
+  align-items: center;
+  background-color: #9670D6;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.score {
+  font-family: "Manrope";
+  font-size: large;
+  color: white;
+  font-weight: 500;
 }
 
 body {

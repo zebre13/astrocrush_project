@@ -6,3 +6,20 @@
 .detailed-profile-content p {
   opacity: 0.7;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#carouselExemple {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}

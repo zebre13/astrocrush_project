@@ -11,3 +11,21 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+//Font
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@200&display=swap');
+
+h {
+  font-family: 'Italiana', serif;
+}
+
+p {
+  font-family: 'Manrope', sans-serif;
+}
+
+.z-1 {
+  z-index: 1;
+  * {
+    z-index: 1;
+  }
+}

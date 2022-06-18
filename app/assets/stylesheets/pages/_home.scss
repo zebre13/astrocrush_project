@@ -2,7 +2,7 @@
   position: absolute;
   top: 0px;
   font-size: 40px;
-  font-family: itali;
+  font-family: $headers-font;
 
 }
 .profiles {
@@ -130,9 +130,9 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  background: #b293c0;
-  background: rgb(223, 226, 241);
-  background: radial-gradient(circle, rgb(204, 211, 243) 0%, rgb(242, 210, 216) 100%);
+  // background: #f5eafa;
+  // background: rgb(223, 226, 241);
+  // background: radial-gradient(circle, rgb(204, 211, 243) 0%, rgb(235, 223, 225) 100%);
 }
 
 div.fas.fa-info-circle::before{

@@ -1,20 +1,19 @@
 <div class="background-violet">
   <div class="container z-1">
-
-    <div class="" data-controller="dashboard">
+    <div data-controller="dashboard">
       <div class="d-flex justify-content-between navbar-menu">
-        <h6 data-action="click->dashboard#horoscope"><em>Horoscope</em></h6>
+        <h6 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead"><em>Horoscope</em></h6>
         <h6>|</h6>
-        <h6 data-action="click->dashboard#profile"><em>Profile</em></h6>
+        <h6 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h6>
         <h6>|</h6>
-        <h6 data-action="click->dashboard#compatibilities"><em>Score</em></h6>
+        <h6 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Score</em></h6>
         <h6>|</h6>
-        <h6 data-action="click->dashboard#table"><em>Table</em></h6>
+        <h6 data-action="click->dashboard#table" data-dashboard-target="table_menu"><em>Table</em></h6>
         <h6>|</h6>
-        <h6 data-action="click->dashboard#circle"><em>Circle</em></h6>
+        <h6 data-action="click->dashboard#circle" data-dashboard-target="circle_menu"><em>Circle</em></h6>
       </div>
 
-      <div data-dashboard-target="horoscope" class="font-weight-bold">
+      <div data-dashboard-target="horoscope">
         <%= render "dashboard/horoscope"%>
       </div>
 
@@ -22,20 +21,20 @@
         <%= render "dashboard/profile"%>
       </div>
 
-      <div data-dashboard-target="table" class="d-none">
-        <%= render "dashboard/table"%>
+      <div data-dashboard-target="score" class="d-none">
+        <%= render "dashboard/score"%>
       </div>
 
-      <div data-dashboard-target="compatibilities" class="d-none">
-        <%= render "dashboard/compatibilities"%>
+      <div data-dashboard-target="table" class="d-none">
+        <%= render "dashboard/table"%>
       </div>
 
       <div data-dashboard-target="circle" class="d-none">
         <%= render "dashboard/circle"%>
       </div>
     </div>
-
   </div>
+
   <div class="circle-container">
     <div class="circle-white">
     </div>

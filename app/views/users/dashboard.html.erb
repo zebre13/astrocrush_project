@@ -1,28 +1,61 @@
-<div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, crop: :fill %>')">
+<%# Carousel photos %>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+    <div class="carousel-item">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+    <div class="carousel-item">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <div class="container detailed-profile-content">
   <div class="py-3">
-    <div class="d-flex justify-content-between">
-      <h1>
-        <strong><%= current_user.username %></strong>,
-        <span><%= ((Date.today - current_user.birth_date)/365).floor %> ans</span>
-      </h1>
+    <div class="d-flex justify-content-between border-bottom">
+      <div>
+        <div class="name">
+          <%= current_user.username %>,
+          <span class="age"><%= ((Date.today - current_user.birth_date)/365).floor %></span>
+        </div>
+        <div class="d-flex">
+          <p>
+            <span class="me-1">☉</i></span>
+            <span class="me-2"><%= current_user.sign.capitalize %></span>
+          </p>
 
-    <div class="d-flex border-bottom pb-3">
-      <span class="me-1">☉</i></span>
-      <span class="me-2"><%= current_user.sign.capitalize %></span>
+          <p>
+            <span class="me-1">↑</span>
+            <span class="me-2"><%= current_user.rising.capitalize %></span>
+          </p>
 
-      <span class="me-1">↑</span>
-      <span class="me-2"><%= current_user.rising.capitalize %></span>
-
-      <span class="me-1">☽</span>
-      <span class="me-2"><%= current_user.moon.capitalize %></span>
+          <p>
+            <span class="me-1">☽</span>
+            <span class="me-2"><%= current_user.moon.capitalize %></span>
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
-        A propos de moi
+        About me
       </h5>
       <p>
         <%= current_user.description %>
@@ -31,20 +64,14 @@
 
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
-        Mes passions
+        My passions
       </h5>
       <p>
         <%= current_user.hobbies %>
       </p>
     </div>
 
+
   </div>
-</div>
 
-
-<%# <div class="card-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, crop: :fill %>
-<%# </div> %>
-
-<div>
-  <%= render "navbar/navbar_two"%>
 </div>

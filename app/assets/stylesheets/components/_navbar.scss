@@ -5,7 +5,7 @@
 }
 
 .navbar-screen {
-  background: $violet;
+  background: $blue;
   position: fixed;
   bottom: 0;
   height: 10vh;
@@ -16,7 +16,7 @@
   display:flex;
   justify-content: center;
   align-items:center;
-  background: $violet
+  background: $blue
 }
 
 .navigation {
@@ -60,7 +60,7 @@
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
-  color: $violet
+  color: $blue
 }
 
 .navigation ul li.active a .icon {
@@ -70,7 +70,7 @@
 
 .navigation ul li a .text {
   position: absolute;
-  color: $violet;
+  color: $blue;
   font-weight: 400;
   font-size:0.75em;
   letter-spacing: 0.05em;
@@ -89,9 +89,9 @@
   top: -50%;
   width: 70px;
   height: 70px;
-  background: $violet;
+  background: $blue;
   border-radius: 50%;
-  border: 6px solid $violet;
+  border: 6px solid $blue;
   transition: 0.5s
 }
 
@@ -104,7 +104,7 @@
   height: 20px;
   background: transparent;
   border-top-right-radius: 20px;
-  box-shadow: 1px -10px 0 0 $violet;
+  box-shadow: 1px -10px 0 0 $blue;
 }
 
 .indicator::after{
@@ -116,7 +116,7 @@
   height: 20px;
   background: transparent;
   border-top-left-radius: 20px;
-  box-shadow: -1px -10px 0 0 $violet;
+  box-shadow: -1px -10px 0 0 $blue;
 }
 
 .navigation ul li:nth-child(1).active ~ .indicator {

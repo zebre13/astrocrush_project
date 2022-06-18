@@ -7,10 +7,22 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import Swal from 'sweetalert2';
+import { Modal } from "bootstrap";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+
+document.addEventListener('turbolinks:load', () => {
+  const list = document.querySelectorAll('.list');
+  function activeLink(){
+    list.forEach((item)=>
+    item.classList.remove('active'));
+    this.classList.add('active');
+  }
+  list.forEach((item) =>
+  item.addEventListener('click',activeLink));
+})

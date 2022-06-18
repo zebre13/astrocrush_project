@@ -1,0 +1,62 @@
+.background-violet {
+  background-color: #4B00AB;
+  color: white;
+  height: 100vh;
+  background-image: image-url("astro.svg");
+  // background-size:  ;
+  // background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 60vh; /* Resize the background image to cover the entire container */
+}
+
+.background-white {
+  background-color: white;
+  color: black;
+  background-image: image-url("astro.svg");
+  fill: #4B00AB;
+  // background-size:  ;
+  // background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 60vh; /* Resize the background image to cover the entire container */
+}
+
+.background-transparant {
+  font-weight: bolder;
+}
+
+.circle-container{
+  overflow: hidden;
+  z-index: -1;
+  inset: 0;
+  position: absolute;
+}
+
+.circle-violet{
+  position: absolute;
+  overflow: hidden;
+  left: 160vw;
+  top: -50vh;
+  border:2px solid #E3DFFF;
+  border-radius:50%;
+  background-color: #E3DFFF;
+  opacity: 0.5;
+  height: 200vh;
+  width: 200vh;
+  line-height:100px;
+  box-shadow: 0 0 320px 320px #E3DFFF;
+}
+
+.circle-white{
+  position: absolute;
+  overflow: hidden;
+  left: 160vw;
+  top: -50vh;
+  border:2px solid #E3DFFF;
+  border-radius:50%;
+  background-color: #E3DFFF;
+  opacity: 0.5;
+  height: 200vh;
+  width: 200vh;
+  line-height:100px;
+  box-shadow: 0 0 320px 320px #E3DFFF;
+}

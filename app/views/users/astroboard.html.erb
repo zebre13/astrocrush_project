@@ -1,74 +1,46 @@
-<div class="container">
-  <%# Code Ghita à transférer du dashboard (astro content uniquement) %>
-  <div>
-    <%= render "dashboard/astro"%>
-    <br>
+<div class="background-violet">
+  <div class="container z-1">
+    <div data-controller="dashboard">
+      <div class="d-flex justify-content-between navbar-menu">
+        <h6 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead"><em>Horoscope</em></h6>
+        <h6>|</h6>
+        <h6 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h6>
+        <h6>|</h6>
+        <h6 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Score</em></h6>
+        <h6>|</h6>
+        <h6 data-action="click->dashboard#table" data-dashboard-target="table_menu"><em>Table</em></h6>
+        <h6>|</h6>
+        <h6 data-action="click->dashboard#circle" data-dashboard-target="circle_menu"><em>Circle</em></h6>
+      </div>
+
+      <div data-dashboard-target="horoscope">
+        <%= render "dashboard/horoscope"%>
+      </div>
+
+      <div data-dashboard-target="profile" class="d-none">
+        <%= render "dashboard/profile"%>
+      </div>
+
+      <div data-dashboard-target="score" class="d-none">
+        <%= render "dashboard/score"%>
+      </div>
+
+      <div data-dashboard-target="table" class="d-none">
+        <%= render "dashboard/table"%>
+      </div>
+
+      <div data-dashboard-target="circle" class="d-none">
+        <%= render "dashboard/circle"%>
+      </div>
+    </div>
   </div>
 
-  <%# BOB: Horoscope quotidien %>
-  <div class="mb-5">
-    <div class="mb-3">
-      <h1>Horoscope du jour</h1>
-    </div>
-    <div class="mb-3 text-justify">
-      <p>
-        <%= @daily_horoscope %>
-      </p>
-    </div>
-  </div>
-
-  <%# BOB: Portrait astrologique %>
-  <div class="mb-5">
-    <div class="mb-3">
-      <h1>Portrait astral</h1>
-    </div>
-    <div class="mb-3 text-justify">
-      <% eval(current_user.personality_report).each do |element| %>
-        <p>
-          <%= element %>
-        </p>
-      <% end %>
-    </div>
-  </div>
-
-  <%# BOB: Compatibilité de mon signe avec les autres signes %>
-  <div class="mb-5">
-    <div class="mb-3">
-      <h1>
-        Compatibilité du <%= current_user.sign %> avec les autres signes
-      </h1>
-    </div>
-    <div class="container">
-      <% compatibility_degree = ['highly_compatible', 'mid_compatible', 'low_compatible', 'neutral', 'incompatible', 'mid_incompatible', 'highly_incompatible'] %>
-      <% compatibility_degree.each do |degree| %>
-        <div class="row justify-content-center">
-          <div class="col-5 border text-center">
-            <% case degree %>
-            <% when 'highly_compatible' %>
-              <%= '+++' %>
-            <% when 'mid_compatible' %>
-              <%= '++' %>
-            <% when 'low_compatible' %>
-              <%= '+' %>
-            <% when 'neutral' %>
-              <%= '=' %>
-            <% when 'incompatible' %>
-              <%= '-' %>
-            <% when 'mid_incompatible' %>
-              <%= '--' %>
-            <% else 'highly_incompatible' %>
-              <%= '---' %>
-            <% end %>
-          </div>
-          <div class="col-5 border border-left-0 text-center">
-            <%= @zodiac_compatibility[degree].join(', ') %>
-          </div>
-        </div>
-      <% end %>
+  <div class="circle-container">
+    <div class="circle-white">
     </div>
   </div>
 </div>
 
-<div>
-  <%= render "navbar/navbar"%>
+<div height="10vh">
+  <%= render "navbar/navbar_two"%>
 </div>

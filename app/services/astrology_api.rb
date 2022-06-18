@@ -37,6 +37,19 @@ class AstrologyApi
     return get_response(endpoint, data)['chart_url']
   end
 
+  # URL for natal wheel chart in svg format
+  def wheel_chart_with_design_params(birth_date, birth_hour, city, country_code, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
+    endpoint = "natal_wheel_chart"
+    design_params = {
+      planet_icon_color: planet_icon_color,
+      inner_circle_background: inner_circle_background,
+      sign_icon_color: sign_icon_color,
+      sign_background: sign_background
+    }
+    data = birth_data_set(birth_date, birth_hour, city, country_code).merge(design_params)
+    return get_response(endpoint, data)['chart_url']
+  end
+
   # Personality report based on a user's birth data
   def personality_report(birth_date, birth_hour, city, country_code)
     endpoint = "personality_report/tropical"
@@ -55,6 +68,13 @@ class AstrologyApi
   def daily_horoscope(user_sign)
     endpoint = "horoscope_prediction/daily/#{user_sign}"
     return get_response(endpoint, {})['prediction']
+  end
+
+  # General sign report
+  def sign_report(birth_date, birth_hour, city, country_code, planet)
+    endpoint = "general_sign_report/tropical/#{planet.upcase}"
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
+    return get_response(endpoint, data)
   end
 
   # Sign compatibility
@@ -79,6 +99,15 @@ class AstrologyApi
     s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
     data = p_data.merge(s_data)
     return get_response(endpoint, data)['love_report']
+  end
+
+  # Partner report for relationship between you and match
+  def partner_report(you_birth_date, you_gender, match_birth_date, match_gender, match_name)
+    endpoint = "partner_report"
+    you_data = you_data_set(you_birth_date, you_gender)
+    match_data = match_data_set(match_birth_date, match_gender, match_name)
+    data = you_data.merge(match_data)
+    return get_response(endpoint, data)
   end
 
   # Get response from API
@@ -202,4 +231,37 @@ class AstrologyApi
       s_tzone: tzone
     }
   end
+
+  # Hash with formatted data for partner report method (you)
+  def you_data_set(birth_date, gender)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    gender == 1 ? string_gender = 'male' : string_gender = 'female'
+    {
+      you_date: birth_date.day,
+      you_month: birth_date.month,
+      you_year: birth_date.year,
+      you_gender: string_gender
+    }
+  end
+
+  # Hash with formatted data for partner report method (match)
+  def match_data_set(birth_date, gender, username)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    gender == 1 ? string_gender = 'male' : string_gender = 'female'
+    {
+      match_date: birth_date.day,
+      match_month: birth_date.month,
+      match_year: birth_date.year,
+      match_gender: string_gender,
+      match_name: username
+    }
+  end
 end
+
+# planet_icon_color = "#2E3A59"
+# inner_circle_background = "#ffffff"
+# sign_icon_color = "#ffffff"
+# sign_background = "#2E3A59"
+
+# test = AstrologyApi.new("API_UID", "API_KEY")
+# p test.wheel_chart_with_design_params("21/01/1994", "16:00", "Ermont", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)

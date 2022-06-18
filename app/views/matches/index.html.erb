@@ -1,105 +1,73 @@
 <%# faire la liste de mes match
 faire la messagerie de mes match %>
 
+<%# plus de navbar ? %>
+  <%# <%= render "components/navbar" %>
 
 <div class="container-match">
  <h3>Nouveaux Matches</h3>
 
 
-<div data-controller="glide">
 
-  <div class="glide">
+
+  <div class="glide" data-controller="glide">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
-       <%= @matches.each do |match| %>
-       <li class="glide__slide">
-       <div class="photo-match">
-          <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
-       </div>
-           <h1><%= match.mate.username %></h1>
-              <%= match.score %>
-              <%= match.status&.capitalize %>
-              <%= link_to " 🗑 ", match_path(match), method: :delete  %>
-        </li>
-       <% end %>
+      <%# changer la width 100% a 50px voir moins  %>
+        <% @matches.each do |match| %>
+          <li class="glide__slide">
+            <div class="photo-match">
+                <% if match.mate.photos.any?  %>
+                  <%= cl_image_tag(match.mate.photos.first&.key, :class => "photo-match") %>
 
+                <% end %>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </div>
 
-    <div class="glide__arrows" data-glide-el="controls">
-      <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
-      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
-    </div>
+      <%# <div class="glide__arrows" data-glide-el="controls">
+
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">  </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+
+      </div> %>
+
   </div>
 </div>
-
-
-
-
-
-<%#
-<div class="container-match">
-
-  <h3>Nouveaux Matches</h3>
-  <div class="d-flex">
-    @matches.each do |match|
-      <div class="card-index">
-        <div class="card-index-photo">
-          <%= link_to match_path(match), :action => 'go' do %>
-          <%# <div class="photo-match"> %>
-            <%#= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
-            <%# </div> %>
-            <%# <div class="card-index-info"> %>
-                <%# <h1><%= match.mate.username %></h1>
-                <%#= match.score %>
-                <%#= match.status&.capitalize %>
-                  <%# <%= link_to " 🗑 ", match_path(match), method: :delete  %>
-            <%# </div> %>
-
-          <%# <% end %>
-        <%# </div> %>
-        <%# faire la route pour la show  %>
-      <%# </div> %>
-<%#
-      <div class="card-index-info">
-        <div class="card-index-header">
-
-        </div>
-      </div>
-    <% end %>
-  <%# </div> %>
-<%# </div> %>
- <br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div class="container-messages">
-  <div class="messager">
-    <h3>Messages</h3>
-    <%# mettre de flux de messages %>
-
-  <%# <div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2>Product name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
-  </div>
-</div> %>
-
-
-    <div class="flux ">
-      <div class="profile">
-        <% @matches.each do |match| %>
-          <div class= "avatar-large">
-            <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
-            <div>
-              <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
-            </div>
+  <div class="flux ">
+    <div class="messager">
+      <h3>Messages</h3>
+        <div class="profile">
+          <% @matches.each do |match| %>
+          <div class="card">
+          <div class="avatar-bordered">
+          <% if match.mate.photos.any?  %>
+            <%= cl_image_tag(match.mate.photos.first&.key, :class => "avatar-bordered") %>
+          <% end %>
+          <%# rendre interactive  %>
           </div>
-        <% end %>
-      </div>
-    </div>
+              <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+          </div>
+          <% end %>
+       </div>
+     </div>
   </div>
-</div>
 
-<div>
-  <%= render "navbar/navbar"%>
-</div>
+
+
+
+
+ <%# <h1><%= match.mate.username %></h1>
+              <%# <%= match.score %> 
+              <%# <%= match.status&.capitalize %>
+              <%# <%= link_to " 🗑 ", match_path(match), method: :delete  %>
+
+
+
+
+
+<div> <%= render "navbar/navbar" %> </div>

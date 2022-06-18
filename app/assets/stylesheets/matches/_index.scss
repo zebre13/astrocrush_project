@@ -1,17 +1,20 @@
 *, *::after, *::before{
   box-sizing: border-box;
 }
+
+
+
 .flux {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
   background: white;
-  padding: 8px 16px;
+  padding: 0;
   // border: 1px solid black;
   border: 1px solid rgb(235,235,235);
   margin: 0;
-  line-height: 1.4;
-
+  height: 572px;
+  width: calc(100% - 20px);
 }
 
 .flux .profile{
@@ -19,29 +22,29 @@
   padding: 0 24px;
 }
 
-// .flux {
-//   margin: 0;
-//   line-height: 1.4;
-//   display: table-column;
-// }
+.flux {
+  margin: 0;
+  line-height: 1.4;
 
-// .flux small {
-//   color: #999999;
-//   font-weight: bold;
-// }
-// .flux .flux-actions {
-//   opacity: 0;
-//   display: flex;
-//   transition: ease .3s;
-// }
-
-.flux:hover .flux-actions {
-  opacity: 1;
 }
 
-// .flux .flux-actions a:hover {
-//   color: #555555;
+.flux small {
+  color: #999999;
+  font-weight: bold;
+}
+.flux .flux-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+// .flux:hover .flux-actions {
+//   opacity: 1;
 // }
+
+.flux .flux-actions a:hover {
+  color: #555555;
+}
 
 .card-index-info {
   border: 1px solid black;
@@ -50,65 +53,30 @@
   margin: 50px
 }
 
-// .avatar-large {
-//   width: 50px;
-//   height: 100px;
+.avatar-large {
+  width: 50px;
+
+}
+
+.photo-match {
+  object-fit: cover;
+  height: 135px;
+  width: 114px;
+}
+
+.photo-match:hover {
+  opacity: 1;
+}
+
+.glide__arrow {
+  border: 1px solid black;
+}
+
+// .messager {
+//   // margin-top: 50px;
 // }
 
-// .photo-match {
-//   width: 40px;
-// }
-
-// .contener{
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .slider {
-//   display: flex;
-//   flex-grow: 1;
-//   transform: translateX(-00%);
-// }
-
-// .slider > img {
-//   flex: 0 0 25%;
-//   max-width: 25%;
-//   aspect-ratio: 16 / 9;
-//   padding: .25rem;
-//   border-radius: .5rem;
-//   overflow: hidden ;
-// }
-
-// .handle {
-//   border: none;
-//   border-radius: .5em;
-//   flex-grow: 0;
-//   width: 5em;
-//   background-color: rgba(0, 0, 0, .25);
-//   z-index: 10;
-//   margin: 25rem 0;
-//   cursor: pointer;
-// }
-// .left-handle {
-//   border-top-left-radius: 0;
-//   border-bottom-left-radius: 0;
-// }
-
-// .right-handle {
-//   border-top-right-radius: 0;
-//   border-bottom-right-radius: 0;
-// }
-
-// .handle:hover {
-//   background-color: rgba(0, 0, 0, .5);;
-// }
-
-// .contener:hover .left-handle:hover::after {
-//   content: \2039;
-// }
-
-// .contener:hover .right-handle:hover::after {
-//   content: \203A;
-//   color: white;
-// }
+.glide__track {
+  background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
+  margin: 8px 16px;
+}

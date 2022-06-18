@@ -44,7 +44,8 @@ class MatchesController < ApplicationController
   # match.destroy
   # end
   # @match.mate.destroy
-  # end
+  end
+
   def match_data
     {
       inserted_item: render_to_string(partial: 'matches/success.html')

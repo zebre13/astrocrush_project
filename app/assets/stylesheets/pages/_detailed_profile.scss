@@ -18,9 +18,66 @@
   font-size: 24px;
 }
 
-.score-patch {
+
+.score-patch-very-high {
+  align-items: center;
+  background: linear-gradient(138.63deg, #FF1700 19.63%, #B958A5 118.46%), #FFFFFF;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.score-patch-high {
+  align-items: center;
+  background: linear-gradient(138.63deg, #B958A5 19.63%, #9670D6 118.46%), #FFFFFF;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.score-patch-neutral {
   align-items: center;
   background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.score-patch-low {
+  align-items: center;
+  background: linear-gradient(138.63deg, #510FAE 19.63%, #2E3A59 118.46%), #FFFFFF;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.score-patch-very-low {
+  align-items: center;
+  background: linear-gradient(138.63deg, #2E3A59 19.63%, #0E0000 118.46%), #FFFFFF;
   height: 60px;
   width: 60px;
   border-radius: 50%;

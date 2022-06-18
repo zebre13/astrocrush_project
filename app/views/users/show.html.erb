@@ -52,11 +52,38 @@
         </div>
       </div>
 
-      <div class="score-patch">
-        <div class="score">
-          <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+
+      <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
+        <div class="score-patch-very-high">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
         </div>
-      </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(60..79) %>
+        <div class="score-patch-high">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(40..59) %>
+        <div class="score-patch-neutral">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(20..39) %>
+        <div class="score-patch-low">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% else %>
+        <div class="score-patch-very-low">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
 

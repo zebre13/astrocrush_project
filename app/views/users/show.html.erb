@@ -105,7 +105,13 @@
     </div>
   </div>
 
-  <%= link_to "↑ Back", root_path, class: "back-button" %>
+  <div class="buttons-box">
+    <%= link_to "", root_path, class: "reject-button" %>
+    <%= link_to "↑ Back", root_path, class: "back-button" %>
+    <%= link_to root_path, class: "like-button" do %>
+      <%= embedded_svg("heart_fill.svg") %>
+    <% end %>
+  </div>
 </div>
 
 

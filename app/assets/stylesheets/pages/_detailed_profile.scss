@@ -41,16 +41,38 @@
   margin: 0;
 }
 
+.buttons-box {
+  position: relative;
+  margin: 0 auto;
+  position: sticky;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.reject-button {
+  background-image: image-url('close_big.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  left: 37px;
+  bottom: 55px;
+}
+
 .back-button {
   width: 73px;
   height: 22px;
-
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-
   color: #2E3A59;
   flex: none;
   order: 1;
@@ -62,19 +84,43 @@
   gap: 12px;
   text-align: center;
   text-decoration: none;
-
   position: absolute;
   width: 124px;
   height: 44px;
   left: 133px;
   top: 649px;
-
   background: #FFFFFF;
   border-radius: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
   position: sticky;
   bottom: 55px;
+  left: 89px;
+}
+
+.like-button {
+  background-position: center;
+  // background-repeat: no-repeat;
+  background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
+
+  box-sizing: border-box;
+  position: relative;
+  border: 2px solid #9670D6;
+  left: 8.33%;
+  right: 8.33%;
+  top: 12.5%;
+  bottom: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #9670D6;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  bottom: 45px;
+  left: 273px;
 }
 
 .hobby {
@@ -87,5 +133,5 @@
 }
 
 .empty-row {
-  height: 80px;
+  height: 60px;
 }

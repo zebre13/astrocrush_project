@@ -50,6 +50,13 @@ class UsersController < ApplicationController
 
   def show
     @mate = User.find(params[:id])
+    @partner_report = AstrologyApi.new(API_UID, API_KEY).partner_report(
+      current_user.birth_date,
+      current_user.gender,
+      @mate.birth_date,
+      @mate.gender,
+      @mate.username
+    )
   end
 
 

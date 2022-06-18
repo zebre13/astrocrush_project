@@ -20,11 +20,13 @@
 }
 
 .profile {
-  position: absolute;
-  left: 0;
-  top: 59px;
-  width:100%;
-  // border-radius: 12px;
+
+  position: relative;
+  left:0px;
+  top:0px;
+  width: 95vw;
+  border-radius: 12px;
+
   // overflow: hidden;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   cursor:pointer;

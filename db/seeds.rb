@@ -358,12 +358,18 @@ puts "#{User.all.length} users created successfully!"
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')
 etienne = User.find_by_email('etiennededi@hotmail.fr')
+rege_jean = User.find_by_email('rj.page@astrocrush.io')
+robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
+pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
+pierre_niney = User.find_by_email('p.niney@astrocrush.io')
+tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
+
 
 # <--- Create Chatrooms --->
 
 puts "Creating Chatrooms..."
 
-2.times { Chatroom.new.save! }
+7.times { Chatroom.new.save! }
 
 puts "Finished!"
 
@@ -371,29 +377,64 @@ puts "Finished!"
 
 puts "Creating Matches..."
 
-# first_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: boris.id,
-#   chatroom_id: Chatroom.first.id
-# }
 
-# second_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: etienne.id,
-#   chatroom_id: Chatroom.last.id
-# }
+first_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: boris.id,
+  chatroom_id: Chatroom.all[0].id
+}
 
-# matches = [first_match, second_match]
+second_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: etienne.id,
+  chatroom_id: Chatroom.all[1].id
+}
 
-# # first_score = 80
+third_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: rege_jean.id,
+  chatroom_id: Chatroom.all[2].id
+}
 
-# matches.each do |match|
-#   match_instance = Match.new(match)
-#   match_instance.save
-#   # first_score.save
-# end
+fourth_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: robert_pattinson.id,
+  chatroom_id: Chatroom.all[3].id
+}
+
+fifth_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: pio_marmai .id,
+  chatroom_id: Chatroom.all[4].id
+}
+
+sixth_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: pierre_niney.id,
+  chatroom_id: Chatroom.all[5].id
+}
+
+seveth_match = {
+  status: "accepted",
+  user_id: maria.id,
+  mate_id: tom_leeb.id,
+  chatroom_id: Chatroom.all[6].id
+}
+
+matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seveth_match]
+
+
+matches.each do |match|
+  match_instance = Match.new(match)
+  match_instance.save
+end
+
 
 # puts "Finished!"
 

@@ -7,10 +7,16 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "@glidejs/glide/src/assets/sass/glide.core";
+@import "@glidejs/glide/src/assets/sass/glide.theme";
+
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+@import "matches/index";
+=======
 
 //Font
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@200&display=swap');
@@ -29,3 +35,4 @@ p {
     z-index: 1;
   }
 }
+

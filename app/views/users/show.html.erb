@@ -1,33 +1,95 @@
-<div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, crop: :fill %>')">
+<%# Carousel photos %>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+    <div class="carousel-item">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+    <div class="carousel-item">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <div class="container detailed-profile-content">
   <div class="py-3">
-    <div class="d-flex justify-content-between">
-      <h1>
-        <strong><%= @mate.username %></strong>,
-        <span><%= ((Date.today - @mate.birth_date)/365).floor %> ans</span>
-      </h1>
+    <div class="d-flex justify-content-between border-bottom">
+      <div>
+        <div class="name">
+          <%= @mate.username %>,
+          <span class="age"><%= ((Date.today - @mate.birth_date)/365).floor %></span>
+        </div>
+        <div class="d-flex">
+          <p>
+            <span class="me-1">☉</i></span>
+            <span class="me-2"><%= @mate.sign.capitalize %></span>
+          </p>
 
-      <h1>
-        <%= eval(current_user.affinity_scores)[params[:id].to_i] %>%
-      </h1>
+          <p>
+            <span class="me-1">↑</span>
+            <span class="me-2"><%= @mate.rising.capitalize %></span>
+          </p>
+
+          <p>
+            <span class="me-1">☽</span>
+            <span class="me-2"><%= @mate.moon.capitalize %></span>
+          </p>
+        </div>
+      </div>
+
+
+      <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
+        <div class="score-patch-very-high">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(60..79) %>
+        <div class="score-patch-high">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(40..59) %>
+        <div class="score-patch-neutral">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(20..39) %>
+        <div class="score-patch-low">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% else %>
+        <div class="score-patch-very-low">
+          <div class="score">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
-    <div class="d-flex border-bottom pb-3">
-      <span class="me-1">☉</i></span>
-      <span class="me-2"><%= @mate.sign.capitalize %></span>
-
-      <span class="me-1">↑</span>
-      <span class="me-2"><%= @mate.rising.capitalize %></span>
-
-      <span class="me-1">☽</span>
-      <span class="me-2"><%= @mate.moon.capitalize %></span>
-    </div>
 
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
-        A propos de moi
+        About me
       </h5>
       <p>
         <%= @mate.description %>
@@ -36,7 +98,7 @@
 
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
-        Mes passions
+        My passions
       </h5>
       <p>
         <%= @mate.hobbies %>
@@ -45,21 +107,59 @@
 
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
-        Ma relation avec <%= @mate.username %> vue par les planètes...
+        <%= @partner_report['title'] %>
       </h5>
-      <% eval(current_user.love_compatibility_reports)[params[:id].to_i].each do |element| %>
-        <p>
-          <%= element %>
-        </p>
-      <% end %>
+      <p>
+        <%= @partner_report['msg'] %>
+      </p>
+      <p>
+        <em>
+          <%= @partner_report['tags'] %>
+        </em>
+      </p>
     </div>
+
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        <%= @mate.username %> is <%= @mate.sign %>. Let's find out more about this sign...
+      </h5>
+      <p>
+          TO DO avec lien depuis le signe
+      </p>
+    </div>
+
+    <div class="empty-row">
+    </div>
+  </div>
+
+  <div class="buttons-box">
+    <%= link_to "", root_path, class: "reject-button" %>
+    <%= link_to "↑ Back", root_path, class: "back-button" %>
+    <%= link_to root_path, class: "like-button" do %>
+      <%= embedded_svg("heart_fill.svg") %>
+    <% end %>
   </div>
 </div>
 
 
-<%# <div class="card-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, crop: :fill %>
-<%# </div> %>
+<!-- Boostrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
 <div>
   <%#= render "navbar/navbar"%>
 </div>
+=======
+
+
+    <%# <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        You and me according to the planets...
+      </h5>
+      <% couple_report = eval(current_user.love_compatibility_reports)[params[:id].to_i].each do |element| %>
+        <%# <p> %>
+          <%#= element %>
+        <%# </p> %>
+      <%# end %>
+    <%# </div> %>
+>>>>>>> master

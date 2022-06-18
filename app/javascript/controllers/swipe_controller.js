@@ -2,8 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 import { Modal } from "bootstrap";
 import Hammer from 'hammerjs';
 import UseStrictPlugin from "webpack/lib/UseStrictPlugin"
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+const Swal = require('sweetalert2')
 export default class extends Controller {
-  static targets = ["user","modal", "modalbody", "closeModalBtn", "startConversationBtn"]
+  static targets = ["user", "modal", "modalbody", "closeModalBtn", "startConversationBtn"]
 
   connect() {
     // console.log("coucou")
@@ -75,11 +77,6 @@ export default class extends Controller {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"id": mateId})
     })
-    .then(response => response.json())
-    .then((data) => {
-          console.log(data)
-          // window.location.replace(`/user/${data.inserted_item}/wishlist/show`);
-        })
   }
 
   swipeRight(event){
@@ -95,8 +92,8 @@ export default class extends Controller {
     .then(data => {
       console.log('hello ->', data)
       if(data.match.status === 'accepted'){
-        console.log("accepted MATCH")
-        const modal = new Modal(this.modalTarget)
+        console.log(this.modalTarget)
+        var modal = new Modal(this.modalTarget)
         this.modalbodyTarget.innerHTML = data.content
         modal.show()
         this.closeModalBtnTarget.addEventListener('click', (e) => {

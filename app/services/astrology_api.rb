@@ -81,6 +81,15 @@ class AstrologyApi
     return get_response(endpoint, data)['love_report']
   end
 
+  # Partner report for relationship between you and match
+  def partner_report(you_birth_date, you_gender, match_birth_date, match_gender, match_name)
+    endpoint = "partner_report"
+    you_data = you_data_set(you_birth_date, you_gender)
+    match_data = match_data_set(match_birth_date, match_gender, match_name)
+    data = you_data.merge(match_data)
+    return get_response(endpoint, data)
+  end
+
   # Get response from API
   def get_response(endpoint, data)
     url = URI.parse(@@base_url+endpoint)
@@ -202,4 +211,30 @@ class AstrologyApi
       s_tzone: tzone
     }
   end
+
+  # Hash with formatted data for partner report method (you)
+  def you_data_set(birth_date, gender)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    gender == 1 ? string_gender = 'male' : string_gender = 'female'
+    {
+      you_date: birth_date.day,
+      you_month: birth_date.month,
+      you_year: birth_date.year,
+      you_gender: string_gender
+    }
+  end
+
+  # Hash with formatted data for partner report method (match)
+  def match_data_set(birth_date, gender, username)
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    gender == 1 ? string_gender = 'male' : string_gender = 'female'
+    {
+      match_date: birth_date.day,
+      match_month: birth_date.month,
+      match_year: birth_date.year,
+      match_gender: string_gender,
+      match_name: username
+    }
+  end
 end
+

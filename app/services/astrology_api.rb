@@ -57,6 +57,13 @@ class AstrologyApi
     return get_response(endpoint, {})['prediction']
   end
 
+  # General sign report
+  def sign_report(birth_date, birth_hour, city, country_code, planet)
+    endpoint = "general_sign_report/tropical/#{planet.upcase}"
+    data = birth_data_set(birth_date, birth_hour, city, country_code)
+    return get_response(endpoint, data)
+  end
+
   # Sign compatibility
   def zodiac_compatibility(user_sign)
     endpoint = "zodiac_compatibility/#{user_sign}"
@@ -237,4 +244,7 @@ class AstrologyApi
     }
   end
 end
+
+test = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
+p test.sign_report("26/06/1977", "05:30", "Paris", "FR", "Sun")
 

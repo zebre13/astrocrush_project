@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <%= render "shared/flashes" %>
+    <%# <%= render "shared/flashes" %>
     <%= yield %>
     <%= render "navbar/navbar_two" unless params[:controller] == "users" && params[:action] == "show" %>
   </body>

@@ -57,7 +57,15 @@ class UsersController < ApplicationController
       @mate.gender,
       @mate.username
     )
+    @sun_report = AstrologyApi.new(API_UID, API_KEY).sign_report(
+      @mate.birth_date,
+      @mate.birth_hour,
+      @mate.birth_location,
+      @mate.birth_country,
+      'sun'
+    )
   end
+
 
 
   def test

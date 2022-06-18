@@ -92,12 +92,6 @@ export default class extends Controller {
     .then(data => {
       console.log('hello ->', data)
       if(data.match.status === 'accepted'){
-        // Swal.fire({
-        //   title: "It's an AstroMatch!",
-        //   text: 'Start conversation',
-
-        //   confirmButtonText: 'keep swiping'
-        // })
         console.log(this.modalTarget)
         var modal = new Modal(this.modalTarget)
         this.modalbodyTarget.innerHTML = data.content

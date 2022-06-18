@@ -26,18 +26,18 @@ class MatchesController < ApplicationController
       @match = Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
       @match.update(status: 1)
       p "You got a new match!"
-      respond_to do |format|
-        html_content = render_to_string partial: "matches/success"
-        format.json { render json: { match: @match, content: html_content } }
-        format.html { render "matches/success" }
-        end
-
+      p render_to_string partial: "matches/success"
     else
       @match = Match.new(mate: @mate, user: current_user, status: 0)
       @chatroom = Chatroom.create!
       @match.chatroom = @chatroom
       @match.save!
       p "Match create with status pending successfully"
+    end
+    respond_to do |format|
+      html_content = render_to_string partial: "matches/success"
+      format.json { render json: { match: @match, content: html_content } }
+      format.html { render "matches/success" }
     end
   end
 

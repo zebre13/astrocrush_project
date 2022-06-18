@@ -2,10 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 import { Modal } from "bootstrap";
 import Hammer from 'hammerjs';
 import UseStrictPlugin from "webpack/lib/UseStrictPlugin"
-// import Swal from 'sweetalert2';
-// window.Swal = Swal;
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+const Swal = require('sweetalert2')
 export default class extends Controller {
-  static targets = ["user","modal", "modalbody", "closeModalBtn", "startConversationBtn"]
+  static targets = ["user", "modal", "modalbody", "closeModalBtn", "startConversationBtn"]
 
   connect() {
     // console.log("coucou")
@@ -92,22 +92,22 @@ export default class extends Controller {
     .then(data => {
       console.log('hello ->', data)
       if(data.match.status === 'accepted'){
-        alert("its a match!")
         // Swal.fire({
-        //   title: 'Match!',
-        //   text: 'Do you want to continue',
-        //   icon: 'heart',
+        //   title: "It's an AstroMatch!",
+        //   text: 'Start conversation',
+
         //   confirmButtonText: 'keep swiping'
         // })
-        // const modal = new Modal(this.modalTarget)
-        // this.modalbodyTarget.innerHTML = data.content
-        // modal.show()
-        // this.closeModalBtnTarget.addEventListener('click', (e) => {
-        //   modal.hide()
-        // });
-        // this.startConversationBtnTarget.addEventListener('click', (e) => {
-        //       modal.hide()
-        //     });
+        console.log(this.modalTarget)
+        var modal = new Modal(this.modalTarget)
+        this.modalbodyTarget.innerHTML = data.content
+        modal.show()
+        this.closeModalBtnTarget.addEventListener('click', (e) => {
+          modal.hide()
+        });
+        this.startConversationBtnTarget.addEventListener('click', (e) => {
+              modal.hide()
+            });
       }
     })
   }

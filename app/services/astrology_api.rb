@@ -37,6 +37,19 @@ class AstrologyApi
     return get_response(endpoint, data)['chart_url']
   end
 
+  # URL for natal wheel chart in svg format
+  def wheel_chart_with_design_params(birth_date, birth_hour, city, country_code, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
+    endpoint = "natal_wheel_chart"
+    design_params = {
+      planet_icon_color: planet_icon_color,
+      inner_circle_background: inner_circle_background,
+      sign_icon_color: sign_icon_color,
+      sign_background: sign_background
+    }
+    data = birth_data_set(birth_date, birth_hour, city, country_code).merge(design_params)
+    return get_response(endpoint, data)['chart_url']
+  end
+
   # Personality report based on a user's birth data
   def personality_report(birth_date, birth_hour, city, country_code)
     endpoint = "personality_report/tropical"
@@ -245,6 +258,10 @@ class AstrologyApi
   end
 end
 
-test = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
-p test.sign_report("26/06/1977", "05:30", "Paris", "FR", "Sun")
+# planet_icon_color = "#2E3A59"
+# inner_circle_background = "#ffffff"
+# sign_icon_color = "#ffffff"
+# sign_background = "#2E3A59"
 
+# test = AstrologyApi.new("API_UID", "API_KEY")
+# p test.wheel_chart_with_design_params("21/01/1994", "16:00", "Ermont", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)

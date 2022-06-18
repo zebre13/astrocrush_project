@@ -75,7 +75,7 @@ class UsersController < ApplicationController
               find_planets(8),
               find_planets(9),
               find_planets(10),
-              find_planets(11)] 
+              find_planets(11)]
   end
 
   def dashboard

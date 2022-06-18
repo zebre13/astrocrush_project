@@ -17,6 +17,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@types/hammerjs": "^2.0.41",
     "webpack-dev-server": "^3"
   }
 }

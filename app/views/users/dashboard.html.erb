@@ -1,5 +1,50 @@
+<div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, crop: :fill %>')">
+</div>
 
+<div class="container detailed-profile-content">
+  <div class="py-3">
+    <div class="d-flex justify-content-between">
+      <h1>
+        <strong><%= current_user.username %></strong>,
+        <span><%= ((Date.today - current_user.birth_date)/365).floor %> ans</span>
+      </h1>
+
+    <div class="d-flex border-bottom pb-3">
+      <span class="me-1">☉</i></span>
+      <span class="me-2"><%= current_user.sign.capitalize %></span>
+
+      <span class="me-1">↑</span>
+      <span class="me-2"><%= current_user.rising.capitalize %></span>
+
+      <span class="me-1">☽</span>
+      <span class="me-2"><%= current_user.moon.capitalize %></span>
+    </div>
+
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        A propos de moi
+      </h5>
+      <p>
+        <%= current_user.description %>
+      </p>
+    </div>
+
+    <div class="pt-2 border-bottom">
+      <h5 class="mb-1">
+        Mes passions
+      </h5>
+      <p>
+        <%= current_user.hobbies %>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<%# <div class="card-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, crop: :fill %>
+<%# </div> %>
 
 <div>
-  <%= render "navbar/navbar"%>
+  <%= render "navbar/navbar_two"%>
 </div>

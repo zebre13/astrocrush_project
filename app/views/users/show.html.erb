@@ -1,9 +1,9 @@
 <%# Carousel photos %>
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+<div id="carouselPhotos" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -16,11 +16,11 @@
       <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselPhotos" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -51,7 +51,6 @@
           </p>
         </div>
       </div>
-
 
       <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
         <div class="score-patch-very-high">
@@ -86,7 +85,6 @@
       <% end %>
     </div>
 
-
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
         About me
@@ -119,13 +117,41 @@
       </p>
     </div>
 
+    <div class="sign-photo">
+      <%= image_tag "sagittarius.jpg", alt: "" %>
+    </div>
+
     <div class="pt-2 border-bottom">
       <h5 class="mb-1">
         <%= @mate.username %> is <%= @mate.sign %>. Let's find out more about this sign...
       </h5>
-      <p>
-        <%= @sun_report['report'] %>
-      </p>
+      <% sun_report = @sun_report['report'].split(".") %>
+      <%# Carousel text %>
+      <div id="carouselText" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <% sun_report.each_with_index do |element, i| %>
+            <button type="button" data-bs-target="#carouselText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>
+          <% end %>
+        </div>
+        <div class="carousel-inner">
+          <% sun_report.each_with_index do |element, i| %>
+            <div class="carousel-item <%= 'active' if i.zero? %>">
+              <div class="sign-text">
+                <p>
+                  <%= element %>.
+                </p>
+              </div>
+            </div>
+          <% end %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselText" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselText" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
 
     <div class="empty-row">

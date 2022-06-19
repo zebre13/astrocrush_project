@@ -5,7 +5,7 @@ require_relative '../app/services/astrology_api'
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
 
-# <--- DATABASE CLEANOUT --->
+# <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'
 User.destroy_all
@@ -13,7 +13,7 @@ Match.destroy_all
 Chatroom.destroy_all
 puts 'Database clean'
 
-# <--- USERS SEEDING --->
+# <=== USERS SEEDING ===>
 
 puts 'Creating users...'
 
@@ -75,7 +75,21 @@ maria_data = {
   looking_for: 1
 }
 
-team_users_data = [boris_data, etienne_data, ghita_data, maria_data]
+mathieu_trancoso_data = {
+  username: 'Mathieu',
+  email: 'm.trancoso@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code",
+  hobbies: 'Wagonner',
+  birth_date: '21/01/1994',
+  birth_hour: '16:00',
+  birth_location: 'Ermont',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+
+team_users_data = [boris_data, etienne_data, ghita_data, maria_data, mathieu_trancoso_data]
 
 # <--- Set famous users data --->
 
@@ -258,8 +272,9 @@ photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
 photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
 photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
+photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
 
-team_users_photos = [photo_boris, photo_etienne, photo_ghita, photo_maria]
+team_users_photos = [photo_boris, photo_etienne, photo_ghita, photo_maria, photo_mathieu_trancoso]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
 photo_melanie_thierry = File.open(Rails.root.join("public/seed_images/melanie_thierry.jpg"))
@@ -309,7 +324,7 @@ users_data.each_with_index do |user_data, index|
   p "*** #{user.username} ***"
 end
 
-# <--- Calculate and attach affinity Scores and love compatibility reports --->
+# <--- Calculate and attach affinity Scores and reports --->
 
 users = User.all
 
@@ -342,7 +357,7 @@ users.each do |user|
     )
     love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
   end
-  ordered_score_collection = score_collection.sort_by { |id, score| score }
+  ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
   user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
@@ -351,7 +366,7 @@ end
 
 puts "#{User.all.length} users created successfully!"
 
-# <--- MATCHES SEEDING --->
+# <=== MATCHES SEEDING ===>
 
 # <--- Select users --->
 
@@ -433,7 +448,6 @@ matches.each do |match|
 end
 
 puts "Finished!"
-
 
 # # <--- Create Messages --->
 

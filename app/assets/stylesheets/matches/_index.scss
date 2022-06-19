@@ -1,0 +1,82 @@
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+
+
+.flux {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 0;
+  // border: 1px solid black;
+  border: 1px solid rgb(235,235,235);
+  margin: 0;
+  height: 572px;
+  width: calc(100% - 20px);
+}
+
+.flux .profile{
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.flux {
+  margin: 0;
+  line-height: 1.4;
+
+}
+
+.flux small {
+  color: #999999;
+  font-weight: bold;
+}
+.flux .flux-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+// .flux:hover .flux-actions {
+//   opacity: 1;
+// }
+
+.flux .flux-actions a:hover {
+  color: #555555;
+}
+
+.card-index-info {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  margin: 50px
+}
+
+.avatar-large {
+  width: 50px;
+
+}
+
+.photo-match {
+  object-fit: cover;
+  height: 135px;
+  width: 114px;
+}
+
+.photo-match:hover {
+  opacity: 1;
+}
+
+.glide__arrow {
+  border: 1px solid black;
+}
+
+// .messager {
+//   // margin-top: 50px;
+// }
+
+.glide__track {
+  background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
+  margin: 8px 16px;
+}

@@ -1,58 +1,75 @@
 <%# faire la liste de mes match
 faire la messagerie de mes match %>
 
-<div class="container">
-  <h3>Matches</h3>
-  <div class="d-flex">
-    <% @matches.each do |match| %>
-      <div class="card-index">
-        <div class="card-index-photo">
-          <%= link_to match_path(match), :action => 'go' do %>
-            <%= cl_image_tag match.mate.photos.first&.key if match.mate.photos.any? %>
-          <% end %>
-        </div>
-        <%# faire la route pour la show  %>
-      </div>
+<%# plus de navbar ? %>
+  <%# <%= render "components/navbar" %>
 
-      <div class="card-index-info">
-        <div class="card-index-header">
-          <div class="item">
-            <%= match.status&.capitalize %>
-          </div>
-        </div>
-      </div>
+<div class="container-match">
+ <h3>Nouveaux Matches</h3>
 
-      <div>
-        <h1><%= match.mate.username %></h1>
-      </div>
-    <% end %>
-  </div>
-</div>
 
-<div class="container">
-  <div class="messager">
-    <h3>Messages</h3>
-    <%# mettre de fulx de messages %>
 
-    <div class="flux">
-      <div class="discussions">
-        <div class="list-item-open">
-          <div class="row link">
-          <% @matches.each do |match| %>
-            <%= link_to match.mate.username, chatroom_path(match.chatroom)  %>
-          <% end %>
-           <%# <% @match.chatroom[:id].messages %>
-            <%# <%= @messages.each do |message| %>
-            <%# <%=  @message.last %>
-          </div>
-        </div>
-        <%# mettre le link dans la card/photo %>
-      <%#= link_to chatroom_path(chatrooms), :action => 'go' do  dans la photo 50% %>
-      </div>
+
+  <div class="glide" data-controller="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+      <%# changer la width 100% a 50px voir moins  %>
+        <% @matches.each do |match| %>
+          <li class="glide__slide">
+            <div class="photo-match">
+                <% if match.mate.photos.any?  %>
+                  <%= cl_image_tag(match.mate.photos.first&.key, :class => "photo-match") %>
+
+                <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
+
+      <%# <div class="glide__arrows" data-glide-el="controls">
+
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">  </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+
+      </div> %>
+
   </div>
 </div>
+
+<div class="container-messages">
+  <div class="flux ">
+    <div class="messager">
+      <h3>Messages</h3>
+        <div class="profile">
+          <% @matches.each do |match| %>
+          <div class="card">
+          <div class="avatar-bordered">
+          <% if match.mate.photos.any?  %>
+            <%= cl_image_tag(match.mate.photos.first&.key, :class => "avatar-bordered") %>
+          <% end %>
+          <%# rendre interactive  %>
+          </div>
+              <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+          </div>
+          <% end %>
+       </div>
+     </div>
+  </div>
+
+
+ <%# <h1><%= match.mate.username %></h1>
+              <%# <%= match.score %> 
+              <%# <%= match.status&.capitalize %>
+              <%# <%= link_to " 🗑 ", match_path(match), method: :delete  %>
+
+
+
+
+
+
 
 <div>
-  <%= render "navbar/navbar"%>
+  <%#= render "navbar/navbar"%>
 </div>
+

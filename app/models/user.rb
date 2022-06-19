@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :looking_for, presence: true
   # validate :user_is_adult
-
+  validates_length_of :description, maximum: 500
     # private
 
     # def user_is_adult

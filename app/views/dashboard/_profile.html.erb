@@ -1,0 +1,10 @@
+  <div class="container text-align-center mt-5">
+    <br>
+    <div class="mb-3 text-justify">
+      <% eval(current_user.personality_report).each do |element| %>
+        <p>
+          <%= element %>
+        </p>
+      <% end %>
+    </div>
+  </div>

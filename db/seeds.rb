@@ -377,7 +377,6 @@ puts "Finished!"
 
 puts "Creating Matches..."
 
-
 first_match = {
   status: "accepted",
   user_id: maria.id,
@@ -395,7 +394,7 @@ second_match = {
 third_match = {
   status: "accepted",
   user_id: maria.id,
-  mate_id: rege_jean.id,
+  mate_id: rege_jean_page.id,
   chatroom_id: Chatroom.all[2].id
 }
 
@@ -409,7 +408,7 @@ fourth_match = {
 fifth_match = {
   status: "accepted",
   user_id: maria.id,
-  mate_id: pio_marmai .id,
+  mate_id: pio_marmai.id,
   chatroom_id: Chatroom.all[4].id
 }
 
@@ -420,23 +419,21 @@ sixth_match = {
   chatroom_id: Chatroom.all[5].id
 }
 
-seveth_match = {
+seventh_match = {
   status: "accepted",
   user_id: maria.id,
   mate_id: tom_leeb.id,
   chatroom_id: Chatroom.all[6].id
 }
 
-matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seveth_match]
-
+matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
 
 matches.each do |match|
   match_instance = Match.new(match)
-  match_instance.save
+  match_instance.save!
 end
 
-
-# puts "Finished!"
+puts "Finished!"
 
 # # <--- Create Messages --->
 
@@ -460,7 +457,7 @@ end
 #   user_id: maria.id
 # ).save!
 
-puts 'Finished!'
+# puts 'Finished!'
 
 # BOB :
 # A garder sous le coude pour éventuellement remplacer les villes proposées par Faker (permet de coupler les villes avec leurs Etats et Pays)

@@ -358,12 +358,11 @@ puts "#{User.all.length} users created successfully!"
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')
 etienne = User.find_by_email('etiennededi@hotmail.fr')
-rege_jean = User.find_by_email('rj.page@astrocrush.io')
+rege_jean_page = User.find_by_email('rj.page@astrocrush.io')
 robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
 pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
 pierre_niney = User.find_by_email('p.niney@astrocrush.io')
 tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
-
 
 # <--- Create Chatrooms --->
 

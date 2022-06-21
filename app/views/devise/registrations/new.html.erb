@@ -15,7 +15,7 @@
           <%= f.input :username, required: true %>
           <%= f.input :description, required: false %>
           <%= f.select :hobbies, required: false %>
-          <%= f.input :photos, as: :file, multiple: true, required: false %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
+          <%= f.file_field :photos, as: :file, multiple: true, required: false %> 
           <%= f.input :birth_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 90, required: true %>
           <%= f.input :birth_hour, required: true %>
           <%= f.input :birth_location, required: true %>

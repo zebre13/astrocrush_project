@@ -16,14 +16,14 @@
       <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
+  <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselPhotos" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
-  </button>
+  </button> %>
 </div>
 
 <div class="container detailed-profile-content">
@@ -82,9 +82,11 @@
       <h5 class="mb-1">
         My passions
       </h5>
+      <% eval(@mate.hobbies).each do |hobby| %>
       <div class="tag">
-        <%= @mate.hobbies %>
+        <%= hobby %>
       </div>
+      <% end %>
     </div>
 
     <div class="pt-2 pb-5 border-bottom">
@@ -104,7 +106,7 @@
 
     <div class="sign-picture-container">
       <div class="sign-picture">
-        <%= image_tag "sagittarius.svg", alt: "" %>
+        <%= image_tag "#{@mate.sign.downcase}.svg", alt: "" %>
       </div>
     </div>
 

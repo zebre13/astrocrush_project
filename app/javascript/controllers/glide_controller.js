@@ -7,15 +7,15 @@ import Glide, { Controls, Breakpoints, Swipe } from '@glidejs/glide/dist/glide.m
 export default class extends Controller {
 
   connect() {
-    // new Glide('.glide', {
-    //   type: 'carousel',
-    //   startAt: 0,
-    //   draggable: true,
-    //   perView: 3,
-    //   gap: 50,
-    //   dragThreshold: 120,
-    //   swipeThreshold: 90
-    // } ).mount({ Controls, Breakpoints })
+    new Glide('.glide', {
+      type: 'carousel',
+      startAt: 0,
+      draggable: true,
+      perView: 3,
+      gap: 50,
+      dragThreshold: 120,
+      swipeThreshold: 90
+    } ).mount({ Controls, Breakpoints })
 
     var glide = new Glide('.glide', {
       type: 'carousel',

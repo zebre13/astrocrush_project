@@ -18,16 +18,23 @@
   font-size: 24px;
 }
 
-.carousel .carousel-indicators li {
+// .carousel .carousel-indicators li {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 100%;
+// }
+
+#carouselText .carousel-indicators button {
   width: 10px;
   height: 10px;
   border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .tag {
   background: transparent;
   border-radius: 50px;
-  opacity: 0.4;
+  opacity: 0.5;
   border: 1px solid rgba(0, 0, 0, 0.4);
   padding-left: 10px;
   padding-right: 10px;

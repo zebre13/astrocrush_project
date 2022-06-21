@@ -5,7 +5,7 @@ require_relative '../app/services/astrology_api'
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
 
-# <--- DATABASE CLEANOUT --->
+# <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'
 User.destroy_all
@@ -13,7 +13,7 @@ Match.destroy_all
 Chatroom.destroy_all
 puts 'Database clean'
 
-# <--- USERS SEEDING --->
+# <=== USERS SEEDING ===>
 
 puts 'Creating users...'
 
@@ -75,162 +75,176 @@ maria_data = {
   looking_for: 1
 }
 
-team_users_data = [boris_data, etienne_data, ghita_data, maria_data]
+mathieu_trancoso_data = {
+  username: 'Mathieu',
+  email: 'm.trancoso@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code",
+  hobbies: 'Wagonner',
+  birth_date: '21/01/1994',
+  birth_hour: '16:00',
+  birth_location: 'Ermont',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+
+team_users_data = [boris_data, etienne_data, ghita_data, maria_data, mathieu_trancoso_data]
 
 # <--- Set famous users data --->
 
-# juliette_armanet_data = {
-#   username: 'Juliette',
-#   email: 'j.armanet@astrocrush.io',
-#   password: 'azerty',
-#   description: "D’abord comédienne, puis documentariste, à 30 ans passés, je me suis lancée dans la chanson, avec Michel Berger et Véronique Sanson pour modèles.",
-#   hobbies: 'Chanson',
-#   birth_date: '04/03/1984',
-#   birth_hour: '21:20',
-#   birth_location: 'Lille',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
+juliette_armanet_data = {
+  username: 'Juliette',
+  email: 'j.armanet@astrocrush.io',
+  password: 'azerty',
+  description: "D’abord comédienne, puis documentariste, à 30 ans passés, je me suis lancée dans la chanson, avec Michel Berger et Véronique Sanson pour modèles.",
+  hobbies: 'Chanson',
+  birth_date: '04/03/1984',
+  birth_hour: '21:20',
+  birth_location: 'Lille',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
-# melanie_thierry_data = {
-#   username: 'Melanie',
-#   email: 'm.thierry@astrocrush.io',
-#   password: 'azerty',
-#   description: "J'adore qu'on me dise que je suis drôle.",
-#   hobbies: 'Cinema',
-#   birth_date: '17/07/1981',
-#   birth_hour: '03:30',
-#   birth_location: 'Saint-Germain-en-Laye',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
+melanie_thierry_data = {
+  username: 'Melanie',
+  email: 'm.thierry@astrocrush.io',
+  password: 'azerty',
+  description: "J'adore qu'on me dise que je suis drôle.",
+  hobbies: 'Cinema',
+  birth_date: '17/07/1981',
+  birth_hour: '03:30',
+  birth_location: 'Saint-Germain-en-Laye',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
-# emma_mackey_data = {
-#   username: 'Emma',
-#   email: 'e.mackey@astrocrush.io',
-#   password: 'azerty',
-#   description: "Fuck of snowflake.",
-#   hobbies: 'Cinema',
-#   birth_date: '04/01/1996',
-#   birth_hour: '14:42',
-#   birth_location: 'Le Mans',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
+emma_mackey_data = {
+  username: 'Emma',
+  email: 'e.mackey@astrocrush.io',
+  password: 'azerty',
+  description: "Fuck of snowflake.",
+  hobbies: 'Cinema',
+  birth_date: '04/01/1996',
+  birth_hour: '14:42',
+  birth_location: 'Le Mans',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
-# zoe_kravitz_data = {
-#   username: 'Zoe',
-#   email: 'z.kravitz@astrocrush.io',
-#   password: 'azerty',
-#   description: "Miaou!",
-#   hobbies: 'Cinema',
-#   birth_date: '01/12/1988',
-#   birth_hour: '02:00',
-#   birth_location: 'Los Angeles',
-#   birth_country: 'US',
-#   gender: 2,
-#   looking_for: 1
-# }
+zoe_kravitz_data = {
+  username: 'Zoe',
+  email: 'z.kravitz@astrocrush.io',
+  password: 'azerty',
+  description: "Miaou!",
+  hobbies: 'Cinema',
+  birth_date: '01/12/1988',
+  birth_hour: '02:00',
+  birth_location: 'Los Angeles',
+  birth_country: 'US',
+  gender: 2,
+  looking_for: 1
+}
 
-# natalie_portman_data = {
-#   username: 'Natalie',
-#   email: 'n.portman@astrocrush.io',
-#   password: 'azerty',
-#   description: "Que la force soit avec vous...",
-#   hobbies: 'Cinema',
-#   birth_date: '09/06/1981',
-#   birth_hour: '15:42',
-#   birth_location: 'Jerusalem',
-#   birth_country: 'IL',
-#   gender: 2,
-#   looking_for: 1
-# }
+natalie_portman_data = {
+  username: 'Natalie',
+  email: 'n.portman@astrocrush.io',
+  password: 'azerty',
+  description: "Que la force soit avec vous...",
+  hobbies: 'Cinema',
+  birth_date: '09/06/1981',
+  birth_hour: '15:42',
+  birth_location: 'Jerusalem',
+  birth_country: 'IL',
+  gender: 2,
+  looking_for: 1
+}
 
-# tom_leeb_data = {
-#   username: 'Tom',
-#   email: 't.leeb@astrocrush.io',
-#   password: 'azerty',
-#   description: "La TV me réussit mieux que la chanson.",
-#   hobbies: 'TV',
-#   birth_date: '21/03/1990',
-#   birth_hour: '17:07',
-#   birth_location: 'Paris',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
+tom_leeb_data = {
+  username: 'Tom',
+  email: 't.leeb@astrocrush.io',
+  password: 'azerty',
+  description: "La TV me réussit mieux que la chanson.",
+  hobbies: 'TV',
+  birth_date: '21/03/1990',
+  birth_hour: '17:07',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
-# pierre_niney_data = {
-#   username: 'Pierre',
-#   email: 'p.niney@astrocrush.io',
-#   password: 'azerty',
-#   description: "Le Docteur Juiphe est un cousin éloigné.",
-#   hobbies: 'Cinema',
-#   birth_date: '13/03/1989',
-#   birth_hour: '03:20',
-#   birth_location: 'Boulogne-Billancourt',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
+pierre_niney_data = {
+  username: 'Pierre',
+  email: 'p.niney@astrocrush.io',
+  password: 'azerty',
+  description: "Le Docteur Juiphe est un cousin éloigné.",
+  hobbies: 'Cinema',
+  birth_date: '13/03/1989',
+  birth_hour: '03:20',
+  birth_location: 'Boulogne-Billancourt',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
-# pio_marmai_data = {
-#   username: 'Pio',
-#   email: 'p.marmai@astrocrush.io',
-#   password: 'azerty',
-#   description: "J'ai longtemps alterné abdos et bide qui pend.",
-#   hobbies: 'Cinema',
-#   birth_date: '13/07/1984',
-#   birth_hour: '10:25',
-#   birth_location: 'Strasbourg',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
+pio_marmai_data = {
+  username: 'Pio',
+  email: 'p.marmai@astrocrush.io',
+  password: 'azerty',
+  description: "J'ai longtemps alterné abdos et bide qui pend.",
+  hobbies: 'Cinema',
+  birth_date: '13/07/1984',
+  birth_hour: '10:25',
+  birth_location: 'Strasbourg',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
-# robert_pattinson_data = {
-#   username: 'Robert',
-#   email: 'r.pattinson@astrocrush.io',
-#   password: 'azerty',
-#   description: "Un bloody mary?",
-#   hobbies: 'Cinema',
-#   birth_date: '13/05/1986',
-#   birth_hour: '05:00',
-#   birth_location: 'London',
-#   birth_country: 'GB',
-#   gender: 1,
-#   looking_for: 2
-# }
+robert_pattinson_data = {
+  username: 'Robert',
+  email: 'r.pattinson@astrocrush.io',
+  password: 'azerty',
+  description: "Un bloody mary?",
+  hobbies: 'Cinema',
+  birth_date: '13/05/1986',
+  birth_hour: '05:00',
+  birth_location: 'London',
+  birth_country: 'GB',
+  gender: 1,
+  looking_for: 2
+}
 
-# rege_jean_page_data = {
-#   username: 'Rege-Jean',
-#   email: 'rj.page@astrocrush.io',
-#   password: 'azerty',
-#   description: "Mon nom est Bond?",
-#   hobbies: 'Cinema',
-#   birth_date: '27/04/1988',
-#   birth_hour: '12:00',
-#   birth_location: 'London',
-#   birth_country: 'GB',
-#   gender: 1,
-#   looking_for: 2
-# }
+rege_jean_page_data = {
+  username: 'Rege-Jean',
+  email: 'rj.page@astrocrush.io',
+  password: 'azerty',
+  description: "Mon nom est Bond?",
+  hobbies: 'Cinema',
+  birth_date: '27/04/1988',
+  birth_hour: '12:00',
+  birth_location: 'London',
+  birth_country: 'GB',
+  gender: 1,
+  looking_for: 2
+}
 
-# famous_users_data = [
-#   juliette_armanet_data,
-#   melanie_thierry_data,
-#   emma_mackey_data,
-#   zoe_kravitz_data,
-#   natalie_portman_data,
-#   tom_leeb_data,
-#   pierre_niney_data,
-#   pio_marmai_data,
-#   robert_pattinson_data,
-#   rege_jean_page_data
-# ]
+famous_users_data = [
+  juliette_armanet_data,
+  melanie_thierry_data,
+  emma_mackey_data,
+  zoe_kravitz_data,
+  natalie_portman_data,
+  tom_leeb_data,
+  pierre_niney_data,
+  pio_marmai_data,
+  robert_pattinson_data,
+  rege_jean_page_data
+]
 
 # <--- Set Fake users data --->
 
@@ -258,31 +272,32 @@ photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
 photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
 photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
+photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
 
-team_users_photos = [photo_boris, photo_etienne, photo_ghita, photo_maria]
+team_users_photos = [photo_boris, photo_etienne, photo_ghita, photo_maria, photo_mathieu_trancoso]
 
-# photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
-# photo_melanie_thierry = File.open(Rails.root.join("public/seed_images/melanie_thierry.jpg"))
-# photo_emma_mackey = File.open(Rails.root.join("public/seed_images/emma_mackey.jpg"))
-# photo_zoe_kravitz = File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
-# photo_natalie_portman = File.open(Rails.root.join("public/seed_images/natalie_portman.jpg"))
-# photo_tom_leeb = File.open(Rails.root.join("public/seed_images/tom_leeb.jpg"))
-# photo_pierre_niney = File.open(Rails.root.join("public/seed_images/pierre_niney.jpg"))
-# photo_pio_marmai = File.open(Rails.root.join("public/seed_images/pio_marmai.jpg"))
-# photo_robert_pattinson = File.open(Rails.root.join("public/seed_images/robert_pattinson.jpg"))
-# photo_rege_jean_page = File.open(Rails.root.join("public/seed_images/rege_jean_page.jpg"))
+photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
+photo_melanie_thierry = File.open(Rails.root.join("public/seed_images/melanie_thierry.jpg"))
+photo_emma_mackey = File.open(Rails.root.join("public/seed_images/emma_mackey.jpg"))
+photo_zoe_kravitz = File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
+photo_natalie_portman = File.open(Rails.root.join("public/seed_images/natalie_portman.jpg"))
+photo_tom_leeb = File.open(Rails.root.join("public/seed_images/tom_leeb.jpg"))
+photo_pierre_niney = File.open(Rails.root.join("public/seed_images/pierre_niney.jpg"))
+photo_pio_marmai = File.open(Rails.root.join("public/seed_images/pio_marmai.jpg"))
+photo_robert_pattinson = File.open(Rails.root.join("public/seed_images/robert_pattinson.jpg"))
+photo_rege_jean_page = File.open(Rails.root.join("public/seed_images/rege_jean_page.jpg"))
 
 famous_users_photos = [
-  # photo_juliette_armanet,
-  # photo_melanie_thierry,
-  # photo_emma_mackey,
-  # photo_zoe_kravitz,
-  # photo_natalie_portman,
-  # photo_tom_leeb,
-  # photo_pierre_niney,
-  # photo_pio_marmai,
-  # photo_robert_pattinson,
-  # photo_rege_jean_page
+  photo_juliette_armanet,
+  photo_melanie_thierry,
+  photo_emma_mackey,
+  photo_zoe_kravitz,
+  photo_natalie_portman,
+  photo_tom_leeb,
+  photo_pierre_niney,
+  photo_pio_marmai,
+  photo_robert_pattinson,
+  photo_rege_jean_page
 ]
 
 # fake_users_photos = []
@@ -290,11 +305,11 @@ famous_users_photos = [
 #   fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
 # end
 
-photos = team_users_photos #+ famous_users_photos #+ fake_users_photos
+photos = team_users_photos + famous_users_photos #+ fake_users_photos
 
 # <--- Create Users --->
 
-users_data = team_users_data #+ famous_users_data #+ fake_users_data
+users_data = team_users_data + famous_users_data #+ fake_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
@@ -302,14 +317,14 @@ users_data.each_with_index do |user_data, index|
   user.rising = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['houses'].first['sign']
   user.moon = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
   user.planets = AstrologyApi.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
-  user.wheel_chart = AstrologyApi.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.wheel_chart = AstrologyApi.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
   user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
   p "*** #{user.username} ***"
 end
 
-# <--- Calculate and attach affinity Scores and love compatibility reports --->
+# <--- Calculate and attach affinity Scores and reports --->
 
 users = User.all
 
@@ -342,7 +357,7 @@ users.each do |user|
     )
     love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
   end
-  ordered_score_collection = score_collection.sort_by { |id, score| score }
+  ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
   user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
@@ -351,19 +366,18 @@ end
 
 puts "#{User.all.length} users created successfully!"
 
-# <--- MATCHES SEEDING --->
+# <=== MATCHES SEEDING ===>
 
 # <--- Select users --->
 
 maria = User.find_by_email('leonor.varela91330@gmail.com')
 boris = User.find_by_email('boris_bourdet@hotmail.com')
 etienne = User.find_by_email('etiennededi@hotmail.fr')
-rege_jean = User.find_by_email('rj.page@astrocrush.io')
+rege_jean_page = User.find_by_email('rj.page@astrocrush.io')
 robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
 pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
 pierre_niney = User.find_by_email('p.niney@astrocrush.io')
 tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
-
 
 # <--- Create Chatrooms --->
 
@@ -376,7 +390,6 @@ puts "Finished!"
 # <--- Create Matches --->
 
 puts "Creating Matches..."
-
 
 first_match = {
   status: "accepted",
@@ -395,7 +408,7 @@ second_match = {
 third_match = {
   status: "accepted",
   user_id: maria.id,
-  mate_id: rege_jean.id,
+  mate_id: rege_jean_page.id,
   chatroom_id: Chatroom.all[2].id
 }
 
@@ -409,7 +422,7 @@ fourth_match = {
 fifth_match = {
   status: "accepted",
   user_id: maria.id,
-  mate_id: pio_marmai .id,
+  mate_id: pio_marmai.id,
   chatroom_id: Chatroom.all[4].id
 }
 
@@ -420,23 +433,21 @@ sixth_match = {
   chatroom_id: Chatroom.all[5].id
 }
 
-seveth_match = {
+seventh_match = {
   status: "accepted",
   user_id: maria.id,
   mate_id: tom_leeb.id,
   chatroom_id: Chatroom.all[6].id
 }
 
-matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seveth_match]
-
+matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
 
 matches.each do |match|
   match_instance = Match.new(match)
-  match_instance.save
+  match_instance.save!
 end
 
-
-# puts "Finished!"
+puts "Finished!"
 
 # # <--- Create Messages --->
 
@@ -460,11 +471,4 @@ end
 #   user_id: maria.id
 # ).save!
 
-puts 'Finished!'
-
-# BOB :
-# A garder sous le coude pour éventuellement remplacer les villes proposées par Faker (permet de coupler les villes avec leurs Etats et Pays)
-# require 'city-state'
-# random_country_key = CS.countries.to_a.sample.first
-# random_state_key = CS.states(random_country_key).to_a.sample.first
-# birth_location: "#{CS.cities(random_state_key, random_country_key).sample} (#{CS.states(random_country_key)[random_state_key]}, #{CS.countries[random_country_key]})",
+# puts 'Finished!'

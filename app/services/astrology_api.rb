@@ -31,14 +31,7 @@ class AstrologyApi
   end
 
   # URL for natal wheel chart in svg format
-  def wheel_chart(birth_date, birth_hour, city, country_code)
-    endpoint = "natal_wheel_chart"
-    data = birth_data_set(birth_date, birth_hour, city, country_code)
-    return get_response(endpoint, data)['chart_url']
-  end
-
-  # URL for natal wheel chart in svg format
-  def wheel_chart_with_design_params(birth_date, birth_hour, city, country_code, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
+  def wheel_chart(birth_date, birth_hour, city, country_code, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
     endpoint = "natal_wheel_chart"
     design_params = {
       planet_icon_color: planet_icon_color,
@@ -264,4 +257,4 @@ end
 # sign_background = "#2E3A59"
 
 # test = AstrologyApi.new("API_UID", "API_KEY")
-# p test.wheel_chart_with_design_params("21/01/1994", "16:00", "Ermont", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
+# p test.wheel_chart("21/01/1994", "16:00", "Ermont", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)

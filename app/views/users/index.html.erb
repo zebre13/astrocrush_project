@@ -13,15 +13,24 @@
             <div class="profile-infos">
 
                <div class="boutons">
-                <% if eval(current_user.affinity_scores)[user.id] > 80 %>
-                  <div class="profile-match-score" style="background-color: green"><%= eval(current_user.affinity_scores)[user.id]%></div>
-                <% elsif eval(current_user.affinity_scores)[user.id].in?(50..80) %>
-                  <div class="profile-match-score" style="background-color: yellow"><%= eval(current_user.affinity_scores)[user.id]%></div>
-                <% elsif eval(current_user.affinity_scores)[user.id].in?(20..50) %>
-                  <div class="profile-match-score" style="background-color: orange"><%= eval(current_user.affinity_scores)[user.id]%></div>
+                <% if eval(current_user.affinity_scores)[user.id] >= 80 %>
+                  <% level = "high" %>
+                <% elsif eval(current_user.affinity_scores)[user.id].in?(60..79) %>
+                  <% level = "mid-high" %>
+                <% elsif eval(current_user.affinity_scores)[user.id].in?(40..59) %>
+                  <% level = "neutral" %>
+                <% elsif eval(current_user.affinity_scores)[user.id].in?(20..39) %>
+                  <% level = "mid-low" %>
                 <% else %>
-                  <div class="profile-match-score" style="background-color: red"><%= eval(current_user.affinity_scores)[user.id]%></div>
+                  <% level = "low" %>
                 <% end %>
+                <div class="profile-match-score">
+                  <div class="score-planet-<%= level %>">
+                      <%= eval(current_user.affinity_scores)[user.id] %>
+                    <div class="score-ring-<%= level %>"></div>
+                  </div>
+                </div>
+
               </div>
 
 

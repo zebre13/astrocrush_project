@@ -28,9 +28,9 @@
 
     <%= f.input :description, required: false %>
 
-    <%= f.select :hobbies, required: false %> <%# BOB: change hobbies to "f.select" later on %>
+    <%= f.select :hobbies, required: false %>
 
-    <%= f.input :photos, as: :file, multiple: true, required: true %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
+    <%= f.file_field :photos, as: :file, multiple: true, required: true %>
 
     <%= f.input :birth_date, required: true %>
 

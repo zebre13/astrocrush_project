@@ -82,9 +82,11 @@
       <h5 class="mb-1">
         My passions
       </h5>
+      <% eval(@mate.hobbies).each do |hobby| %>
       <div class="tag">
-        <%= @mate.hobbies %>
+        <%= hobby %>
       </div>
+      <% end %>
     </div>
 
     <div class="pt-2 pb-5 border-bottom">

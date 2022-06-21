@@ -24,7 +24,7 @@ boris_data = {
   email: 'boris_bourdet@hotmail.com',
   password: 'azerty',
   description: 'Si ça vous dit, je connais un très bon thai rue Oberkampf',
-  hobbies: 'Faire des concerts dans mon salon',
+  hobbies: ['Faire des concerts dans mon salon'],
   birth_date: '26/06/1977',
   birth_hour: '05:30',
   birth_location: 'Aix-en-Provence',
@@ -38,7 +38,7 @@ etienne_data = {
   email: 'etiennededi@hotmail.fr',
   password: 'azerty',
   description: "Si toi aussi tu aimes coder en peignoir, on est faits pour s'entendre",
-  hobbies: 'Mettre en musique des séries cultes',
+  hobbies: ['Diabolo', 'Bolas', 'Cracher du feu', 'Permaculture'],
   birth_date: '23/06/1994',
   birth_hour: '06:30',
   birth_location: 'Paris',
@@ -52,7 +52,7 @@ ghita_data = {
   email: 'aa.ghita@gmail.com',
   password: 'azerty',
   description: "Attention, je suis très cool mais si tu m'énerves c'est coup de boule direct",
-  hobbies: 'Organiser des festivals techno',
+  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylette'],
   birth_date: '23/07/1988',
   birth_hour: '07:30',
   birth_location: 'Casablanca',
@@ -66,7 +66,7 @@ maria_data = {
   email: 'leonor.varela91330@gmail.com',
   password: 'azerty',
   description: "J'ai inspiré le tube Maria Maria à Carlos Santana",
-  hobbies: 'Fiesta',
+  hobbies: ['Travel', 'Theater', 'Knitting', 'Paintball'],
   birth_date: '15/08/1993',
   birth_hour: '15:15',
   birth_location: 'Cascais',
@@ -80,7 +80,7 @@ mathieu_trancoso_data = {
   email: 'm.trancoso@astrocrush.io',
   password: 'azerty',
   description: "All you need is code",
-  hobbies: 'Wagonner',
+  hobbies: ['Wagonner'],
   birth_date: '21/01/1994',
   birth_hour: '16:00',
   birth_location: 'Ermont',
@@ -98,7 +98,7 @@ juliette_armanet_data = {
   email: 'j.armanet@astrocrush.io',
   password: 'azerty',
   description: "D’abord comédienne, puis documentariste, à 30 ans passés, je me suis lancée dans la chanson, avec Michel Berger et Véronique Sanson pour modèles.",
-  hobbies: 'Chanson',
+  hobbies: ['Music', 'Singing'],
   birth_date: '04/03/1984',
   birth_hour: '21:20',
   birth_location: 'Lille',
@@ -112,7 +112,7 @@ melanie_thierry_data = {
   email: 'm.thierry@astrocrush.io',
   password: 'azerty',
   description: "J'adore qu'on me dise que je suis drôle.",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema', 'Music', 'Series'],
   birth_date: '17/07/1981',
   birth_hour: '03:30',
   birth_location: 'Saint-Germain-en-Laye',
@@ -126,7 +126,7 @@ emma_mackey_data = {
   email: 'e.mackey@astrocrush.io',
   password: 'azerty',
   description: "Fuck of snowflake.",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema', 'Netflix'],
   birth_date: '04/01/1996',
   birth_hour: '14:42',
   birth_location: 'Le Mans',
@@ -140,7 +140,7 @@ zoe_kravitz_data = {
   email: 'z.kravitz@astrocrush.io',
   password: 'azerty',
   description: "Miaou!",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema', 'Perfume', 'Cats'],
   birth_date: '01/12/1988',
   birth_hour: '02:00',
   birth_location: 'Los Angeles',
@@ -154,7 +154,7 @@ natalie_portman_data = {
   email: 'n.portman@astrocrush.io',
   password: 'azerty',
   description: "Que la force soit avec vous...",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema', 'Politics', 'Danse'],
   birth_date: '09/06/1981',
   birth_hour: '15:42',
   birth_location: 'Jerusalem',
@@ -168,7 +168,7 @@ tom_leeb_data = {
   email: 't.leeb@astrocrush.io',
   password: 'azerty',
   description: "La TV me réussit mieux que la chanson.",
-  hobbies: 'TV',
+  hobbies: ['TV', 'Singing'],
   birth_date: '21/03/1990',
   birth_hour: '17:07',
   birth_location: 'Paris',
@@ -182,7 +182,7 @@ pierre_niney_data = {
   email: 'p.niney@astrocrush.io',
   password: 'azerty',
   description: "Le Docteur Juiphe est un cousin éloigné.",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema'],
   birth_date: '13/03/1989',
   birth_hour: '03:20',
   birth_location: 'Boulogne-Billancourt',
@@ -196,7 +196,7 @@ pio_marmai_data = {
   email: 'p.marmai@astrocrush.io',
   password: 'azerty',
   description: "J'ai longtemps alterné abdos et bide qui pend.",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema'],
   birth_date: '13/07/1984',
   birth_hour: '10:25',
   birth_location: 'Strasbourg',
@@ -210,7 +210,7 @@ robert_pattinson_data = {
   email: 'r.pattinson@astrocrush.io',
   password: 'azerty',
   description: "Un bloody mary?",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema'],
   birth_date: '13/05/1986',
   birth_hour: '05:00',
   birth_location: 'London',
@@ -224,7 +224,7 @@ rege_jean_page_data = {
   email: 'rj.page@astrocrush.io',
   password: 'azerty',
   description: "Mon nom est Bond?",
-  hobbies: 'Cinema',
+  hobbies: ['Cinema', 'Netflix'],
   birth_date: '27/04/1988',
   birth_hour: '12:00',
   birth_location: 'London',
@@ -331,7 +331,7 @@ users = User.all
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
-  love_compatibility_report_collection = {}
+  # love_compatibility_report_collection = {}
   potential_mates.each do |mate|
     mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
       user.birth_date,
@@ -345,21 +345,21 @@ users.each do |user|
     )
     score_collection.store(mate.id, mate_score)
 
-    mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
-      user.birth_date,
-      user.birth_hour,
-      user.birth_location,
-      user.birth_country,
-      mate.birth_date,
-      mate.birth_hour,
-      mate.birth_location,
-      mate.birth_country
-    )
-    love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
+    # mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
+    #   user.birth_date,
+    #   user.birth_hour,
+    #   user.birth_location,
+    #   user.birth_country,
+    #   mate.birth_date,
+    #   mate.birth_hour,
+    #   mate.birth_location,
+    #   mate.birth_country
+    # )
+    # love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
-  user.love_compatibility_reports = love_compatibility_report_collection
+  # user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!
 end

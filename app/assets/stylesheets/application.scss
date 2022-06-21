@@ -7,8 +7,8 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "@glidejs/glide/src/assets/sass/glide.core";
-@import "@glidejs/glide/src/assets/sass/glide.theme";
+// @import "@glidejs/glide/src/assets/sass/glide.core";
+// @import "@glidejs/glide/src/assets/sass/glide.theme";
 
 
 // Your CSS partials
@@ -34,3 +34,10 @@ p {
     z-index: 1;
   }
 }
+
+.z-0 {
+  z-index: 0;
+  inset: 0
+}
+
+

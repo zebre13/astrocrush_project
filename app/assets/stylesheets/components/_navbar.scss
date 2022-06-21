@@ -5,34 +5,41 @@
 }
 
 .navbar-screen {
-  background: $blue;
+  // background: white;
   position: fixed;
   bottom: 0;
-  height: 10vh;
+  left: 0;
+  width: 100vh;
+  // height: 10vh;
 }
 
-.navbar-container {
-  width: 100%;
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  background: $blue
-}
+// .navbar-container {
+//   width: 100%;
+//   display:flex;
+//   justify-content: center;
+//   align-items:center;
+//   // background: $violet-dark;
+// }
 
 .navigation {
   width: 400px;
   height: 70px;
-  background: #fff;
+  background: $blue;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px
+  border-radius: 20px 20px 0 0
 }
 
 .navigation ul {
+  width: 100vw;
   display: flex;
-  width: 100%
+  // justify-content: space-around;
+  margin-bottom: 0;
+  padding-left: 55px;
+  width: 100%;
+
 }
 
 .navigation ul li {
@@ -60,12 +67,12 @@
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
-  color: $blue
+  color: white
 }
 
 .navigation ul li.active a .icon {
   transform: translateY(-32px);
-  color: white
+  color: $blue
 }
 
 .navigation ul li a .text {
@@ -89,9 +96,9 @@
   top: -50%;
   width: 70px;
   height: 70px;
-  background: $blue;
+  background: white;
   border-radius: 50%;
-  border: 6px solid $blue;
+  border: 1px solid $blue;
   transition: 0.5s
 }
 
@@ -101,10 +108,10 @@
   top: 50%;
   left: -22px;
   width: 20px;
-  height: 20px;
+  height: 1px;
   background: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 1px -10px 0 0 $blue;
+  border-top-right-radius: 1px;
+  // box-shadow: 1px -10px 0 0 $blue;
 }
 
 .indicator::after{
@@ -113,10 +120,10 @@
   top: 50%;
   right: -22px;
   width: 20px;
-  height: 20px;
+  height: 1px;
   background: transparent;
-  border-top-left-radius: 20px;
-  box-shadow: -1px -10px 0 0 $blue;
+  border-top-left-radius: 1px;
+  // box-shadow: -1px -10px 0 0 $blue;
 }
 
 .navigation ul li:nth-child(1).active ~ .indicator {

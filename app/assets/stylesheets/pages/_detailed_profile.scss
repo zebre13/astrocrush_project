@@ -18,198 +18,50 @@
   font-size: 24px;
 }
 
-
-.score-patch-very-high {
-  align-items: center;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, red 118.46%), #FFFFFF;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60px;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.carousel .carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
 }
 
-.score-patch-high {
-  align-items: center;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, orange 118.46%), #FFFFFF;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60px;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.score-patch-neutral {
-  align-items: center;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60px;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.score-patch-low {
-  align-items: center;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, yellow 118.46%), #FFFFFF;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60px;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.score-patch-very-low {
-  align-items: center;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, #0E0000 118.46%), #FFFFFF;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 60px;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.score {
-  font-family: "Manrope";
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  font-weight: 500;
-  margin: 0;
-}
-
-.buttons-box {
-  position: relative;
-  margin: 0 auto;
-  position: sticky;
-  bottom: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.reject-button {
-  background-image: image-url('close_big.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  background-color: #FFFFFF;
-  width: 44px;
-  height: 44px;
-  display: inline-block;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: sticky;
-  left: 37px;
-  bottom: 55px;
-}
-
-.back-button {
-  width: 73px;
-  height: 22px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #2E3A59;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 11px 20px;
-  gap: 12px;
-  text-align: center;
-  text-decoration: none;
-  position: absolute;
-  width: 124px;
-  height: 44px;
-  left: 133px;
-  top: 649px;
-  background: #FFFFFF;
-  border-radius: 50px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: sticky;
-  bottom: 55px;
-  left: 89px;
-}
-
-.like-button {
-  background-position: center;
-  // background-repeat: no-repeat;
-  background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
-
-  box-sizing: border-box;
-  position: relative;
-  border: 2px solid #9670D6;
-  left: 8.33%;
-  right: 8.33%;
-  top: 12.5%;
-  bottom: 12.5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #9670D6;
-  border: 1px solid #FFFFFF;
-  border-radius: 50%;
-  width: 64px;
-  height: 64px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: sticky;
-  bottom: 45px;
-  left: 273px;
-}
-
-.hobby {
+.tag {
   background: transparent;
   border-radius: 50px;
-  opacity: 0.7;
-  border-style: solid;
-  flex-grow: 0;
+  opacity: 0.4;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding-left: 10px;
   padding-right: 10px;
-}
-
-.empty-row {
-  height: 60px;
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'Manrope';
 }
 
 .sign-text {
   height: 130px;
 }
 
-.sign-photo {
-  object-fit: cover;
-  height: 100px;
-  width: 100px;
+.sign-picture-container {
+  text-align: center;
+  height: 240px;
+}
+
+.sign-picture {
+  height: 240px;
+  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.empty-row {
+  height: 60px;
 }
 
 // - - - SCORE - - -
 
 .score-container {
-  width: 120px;
+  width: 100px;
   display: flex;
   justify-content: center;
-  // align-items: center;
 }
 
 $planet-size: 60px;
@@ -383,4 +235,90 @@ $ring-angle: 75;
     border-radius: 50%;
     transform: rotate3d($ring-x-axis, $ring-y-axis, $ring-z-axis, #{$ring-angle}deg);
   }
+}
+
+.score {
+  font-family: "Manrope";
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  font-weight: 500;
+  margin: 0;
+}
+
+// - - - BUTTONS - - -
+
+.buttons-box {
+  position: relative;
+  margin: 0 auto;
+  position: sticky;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.reject-button {
+  background-image: image-url('close_big.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #2E3A59;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  left: 37px;
+  bottom: 55px;
+}
+
+.back-button {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 16px;
+  color: #2E3A59;
+  display: inline-block;
+  justify-content: center;
+  order: 1;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  text-decoration: none;
+  position: absolute;
+  width: 124px;
+  height: 44px;
+  left: 133px;
+  top: 649px;
+  background: #FFFFFF;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  bottom: 55px;
+  left: 89px;
+}
+
+.like-button {
+  background-position: center;
+  background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
+  box-sizing: border-box;
+  position: relative;
+  border: 2px solid #9670D6;
+  left: 8.33%;
+  right: 8.33%;
+  top: 12.5%;
+  bottom: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #9670D6;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  bottom: 45px;
+  left: 273px;
 }

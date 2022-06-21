@@ -28,7 +28,7 @@
 
 <div class="container detailed-profile-content">
   <div class="py-3">
-    <div class="d-flex justify-content-between border-bottom">
+    <div class="d-flex justify-content-between border-bottom pb-2">
       <div>
         <div class="name">
           <%= @mate.username %>,
@@ -39,12 +39,10 @@
             <span class="me-1">☉</i></span>
             <span class="me-2"><%= @mate.sign.capitalize %></span>
           </p>
-
           <p>
             <span class="me-1">↑</span>
             <span class="me-2"><%= @mate.rising.capitalize %></span>
           </p>
-
           <p>
             <span class="me-1">☽</span>
             <span class="me-2"><%= @mate.moon.capitalize %></span>
@@ -64,7 +62,6 @@
         <% else %>
           <% level = "low" %>
         <% end %>
-
         <div class="score-planet-<%= level %>">
             <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
           <div class="score-ring-<%= level %>"></div>
@@ -72,7 +69,7 @@
       </div>
     </div>
 
-    <div class="pt-2 border-bottom">
+    <div class="pt-2 pb-4 border-bottom">
       <h5 class="mb-1">
         About me
       </h5>
@@ -81,40 +78,43 @@
       </p>
     </div>
 
-    <div class="pt-2 border-bottom">
+    <div class="pt-2 pb-5 border-bottom">
       <h5 class="mb-1">
         My passions
       </h5>
-      <p>
+      <div class="tag">
         <%= @mate.hobbies %>
-      </p>
+      </div>
     </div>
 
-    <div class="pt-2 border-bottom">
+    <div class="pt-2 pb-5 border-bottom">
       <h5 class="mb-1">
         <%= @partner_report['title'] %>
       </h5>
       <p>
         <%= @partner_report['msg'] %>
       </p>
-      <p>
-        <em>
-          <%= @partner_report['tags'] %>
-        </em>
-      </p>
+      <p>Keywords:</p>
+      <% @partner_report['tags'].split(",").each do |tag| %>
+        <div class="tag">
+          <%= tag %>
+        </div>
+      <% end %>
     </div>
 
-    <div class="sign-photo">
-      <%= image_tag "sagittarius.jpg", alt: "" %>
+    <div class="sign-picture-container">
+      <div class="sign-picture">
+        <%= image_tag "sagittarius.svg", alt: "" %>
+      </div>
     </div>
 
-    <div class="pt-2 border-bottom">
+    <div class="pt-2 pb-4 border-bottom">
       <h5 class="mb-1">
-        <%= @mate.username %> is <%= @mate.sign %>. Let's find out more about this sign...
+        <%= @mate.username %> is <%= @mate.sign %>. Let's find out what this says about <%= @mate.gender == 1 ? "him" : "her" %>...
       </h5>
       <% sun_report = @sun_report['report'].split(".") %>
       <%# Carousel text %>
-      <div id="carouselText" class="carousel slide" data-bs-ride="true">
+      <div id="carouselText" class="carousel carousel-dark slide" data-bs-ride="true">
         <div class="carousel-indicators">
           <% sun_report.each_with_index do |element, i| %>
             <button type="button" data-bs-target="#carouselText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>
@@ -130,20 +130,20 @@
               </div>
             </div>
           <% end %>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselText" data-bs-slide="prev">
+        <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselText" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselText" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
-        </button>
+        </button> %>
       </div>
     </div>
+  </div>
 
     <div class="empty-row">
     </div>
-  </div>
 
   <div class="buttons-box">
     <%= link_to "", root_path, class: "reject-button" %>

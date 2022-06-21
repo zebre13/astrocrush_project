@@ -1,4 +1,6 @@
 <%# if params[:id] == current_tag.id %>
+<div class="container">
+</div>
     <div class="text-center">
       <%= cl_image_tag current_user.photos.first.key, :class => "avatar-extra-large", crop: :fill %>
       <h2><%= current_user.username %>, <%#= current_user.age %></h2>

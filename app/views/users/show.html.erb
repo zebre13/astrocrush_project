@@ -63,7 +63,7 @@
           <% level = "low" %>
         <% end %>
         <div class="score-planet-<%= level %>">
-            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+          <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
           <div class="score-ring-<%= level %>"></div>
         </div>
       </div>

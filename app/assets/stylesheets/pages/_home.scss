@@ -1,15 +1,17 @@
 .astrocrush {
   position: absolute;
-  top: 0px;
-  font-size: 40px;
+  top: 8px;
+  font-size: 32px;
   font-family: $headers-font;
-  height: 16px;
+  height: 40px;
+  color: $blue;
 }
 
 .profiles {
   position: relative;
-  width: 390px;
+  width: 370px;
   height: 700px;
+  margin: 0 auto;
   top: 64px;
 }
 
@@ -30,30 +32,52 @@
   cursor:pointer;
 }
 
-.profile-image{
+.profile-image {
   height: 700px;
-  width: 390px;
+  width: 370px;
   border-radius: 12px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.profile-score-container {
+  text-align: center;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
 .profile-infos {
-  padding:12px;
+  padding:16px;
+  padding-bottom: 32px;
   position:absolute;
   bottom: 0px;
   background:linear-gradient(0deg, black, transparent);
   width: 100%;
   border-radius: inherit;
 }
+
+.profile-name {
+  color: white;
+  font-family: "Manrope", "sans-serif";
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.profile-age {
+  color: white;
+  font-family: "Manrope", "sans-serif";
+  font-size: 24px;
+}
+
 .profile-details {
   position: relative;
-  right: 34px;
+  right: 0px;
 }
-.profile-match-score {
-  text-align: center;
-  position: relative;
-  bottom: 520px;
-  left: 264px;
+
+.profile-astro {
+  display: flex;
+  color: white;
+  opacity: 0.9;
 }
 
 .fas.fa-info-circle{
@@ -61,26 +85,6 @@
   background-color:rgba(255, 255, 255, 0);
   font-size: 33px;
   border-radius:50%;
-  border: solid white 1px;
-}
-.fas.fa-info-circle:hover{
-  color: rgb(188, 184, 211);
-}
-
-.profile-name {
-  color: white;
-  font-family: "Roboto";
-  font-weight: bold;
-  font-size: 30px;
-  position: relative;
-  bottom: 6px;
-}
-.profile-description {
-  color: white;
-  font-size: 17px;
-  overflow: hidden;
-  position: relative;
-  bottom: 6px;
 }
 
 .profile-match {
@@ -98,7 +102,7 @@
 }
 
 .profile-matching::after, .profile-nexting::after {
-  content:'MATCH';
+  content:'LIKE';
   font-weight: bold;
   font-size:28px;
   padding:8px 12px;
@@ -118,16 +122,12 @@
   color: red;
 }
 
-
-
-
 #backgroundcolor {
   display: flex;
   justify-content: center;
   height: 100vh;
+  background-color: white;
 }
-
-
 
 div.fas.fa-ban::before{
   font-size:40px;
@@ -141,22 +141,15 @@ div.fas.fa-ban::before{
 -moz-box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
 }
 
-
-
-
 .swipe-buttons {
   position: relative;
   bottom: 30px;
 }
 
-
-
 h1 {
-
   color: black;
   font-family: "Roboto";
 }
-
 
 // <=== SAVE CODE ETIENNE ===>
 

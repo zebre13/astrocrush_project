@@ -36,4 +36,3 @@ document.addEventListener('turbolinks:load', () => {
   list.forEach((item) =>
   item.addEventListener('click',activeLink));
 })
-

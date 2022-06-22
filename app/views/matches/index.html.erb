@@ -3,10 +3,10 @@ faire la messagerie de mes match %>
 
 <%# plus de navbar ? %>
   <%# <%= render "components/navbar" %>
+<div class="astrocrush">Astrocrush</div>
 
 <div class="container-match">
- <h3>Nouveaux Matches</h3>
-
+ <h3>New Matchs</h3>
 
 
 
@@ -19,6 +19,7 @@ faire la messagerie de mes match %>
             <div class="photo-match">
                 <% if match.mate.photos.any?  %>
                   <%= cl_image_tag(match.mate.photos.first&.key, :class => "photo-match") %>
+                  <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
                 <% end %>
             </div>
           </li>
@@ -40,16 +41,16 @@ faire la messagerie de mes match %>
   <div class="flux ">
     <div class="messager">
       <h3>Messages</h3>
-        <div class="profile">
+        <div class="msg-profile">
           <% @matches.each do |match| %>
-          <div class="card">
+          <div class=".card">
           <div class="avatar-bordered">
           <% if match.mate.photos.any?  %>
             <%= cl_image_tag(match.mate.photos.first&.key, :class => "avatar-bordered") %>
           <% end %>
           <%# rendre interactive  %>
           </div>
-              <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+            <div class="msg-nom"> <%= link_to match.mate.username, chatroom_path(match.chatroom) %> </div>
           </div>
           <% end %>
        </div>

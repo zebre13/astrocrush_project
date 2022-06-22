@@ -12,18 +12,17 @@
   padding: 0;
   // border: 1px solid black;
   border: 1px solid rgb(235,235,235);
-  margin: 0;
   height: 572px;
   width: calc(100% - 20px);
 }
 
-.flux .profile{
+.flux .msg-profile{
   flex-grow: 1;
   padding: 0 24px;
 }
 
 .flux {
-  margin: 0;
+  margin: 12px;
   line-height: 1.4;
 
 }
@@ -72,10 +71,19 @@
   border: 1px solid black;
 }
 
-// .messager {
-//   // margin-top: 50px;
-// }
+.msg-profile{
+  position: relative;
+  width: 94vw;
+}
 
+.msg-nom {
+  display: -webkit-box;
+}
+
+.msg-card{
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: var(--bs-border-color-translucent)
+}
 .glide__track {
   background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
   margin: 8px 16px;

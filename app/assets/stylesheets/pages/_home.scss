@@ -3,12 +3,13 @@
   top: 0px;
   font-size: 40px;
   font-family: $headers-font;
-
+  height: 20px;
 }
 .profiles {
   position: relative;
   width: 390px;
   height: 700px;
+  top: 64px;
 }
 
 .profiles::before {
@@ -21,10 +22,10 @@
 
 .profile {
 
-  position: relative;
+  position: absolute;
   left:0px;
   top:0px;
-  width: 95vw;
+  width: 100%;
   border-radius: 12px;
 
   // overflow: hidden;

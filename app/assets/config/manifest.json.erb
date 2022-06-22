@@ -1,5 +1,6 @@
-{
- "name": "App",
+ "shot_name": "Astrocrush",
+ "name": "Astrocrush: Your Sign, Your Soulmate",
+
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -38,19 +39,17 @@
    "density": "4.0"
   }
  ],
-  "background_color": "white",
+  "background_color": "8c63d1",
   "description": "Your sign, your soulmate",
   "display": "fullscreen",
   "name": "Astrocrush",
   "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
-    <% files.each_with_index do |file, index| %>
-      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
-      {
-        "src": "<%= image_path "icons/#{file}" %>",
-        "sizes": "<%= match && match[:size] %>",
-        "type": "image/png"
+    <%# <% files.each_with_index do |file, index| %>
+      <%# <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      <%# {
+        "src": "<%= image_path "icons/#{file}" %>
+        <%# "sizes": "<%= match && match[:size] %>
+        <%# "type": "image/png"
       }<%= "," unless (files.size - 1) == index %>
-    <% end %>
-  ]
-}
+    <%# <% end %>

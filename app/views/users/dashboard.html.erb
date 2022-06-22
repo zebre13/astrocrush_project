@@ -71,6 +71,10 @@
       </p>
     </div>
 
+  <div class="d-flex justify-content-center">
+    <%= link_to "logout", destroy_user_session_path, method: :delete, style:"none", class: "p-2" %>
+    <%= link_to "modify",  edit_user_registration_path, class:"p-2" %>
+  </div>
 
   </div>
 

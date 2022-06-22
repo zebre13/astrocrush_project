@@ -28,5 +28,4 @@ export default class extends Controller {
     glide.mount({ Controls, Breakpoints, Swipe })
 
   }
-
 }

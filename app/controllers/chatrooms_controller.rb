@@ -4,6 +4,6 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     @match = Match.new
-    @chatroom = 
+    @chatroom.message.seen
   end
 end

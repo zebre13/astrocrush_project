@@ -4,6 +4,8 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     @match = Match.new
-    @chatroom.message.seen
+    @chatroom.messages.each do |message|
+      message.seen = true
+    end
   end
 end

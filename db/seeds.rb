@@ -1,7 +1,12 @@
 require 'open-uri'
 require 'faker'
 require_relative '../app/services/astrology_api'
+<<<<<<< HEAD
 require 'resolv-replace'
+=======
+# require 'resolv-replace'
+
+>>>>>>> 7a19812cc167576ae5c1d62a620c2b5bc670a065
 
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
@@ -346,17 +351,17 @@ users.each do |user|
     )
     score_collection.store(mate.id, mate_score)
 
-    # mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
-    #   user.birth_date,
-    #   user.birth_hour,
-    #   user.birth_location,
-    #   user.birth_country,
-    #   mate.birth_date,
-    #   mate.birth_hour,
-    #   mate.birth_location,
-    #   mate.birth_country
-    # )
-    # love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
+    mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
+      user.birth_date,
+      user.birth_hour,
+      user.birth_location,
+      user.birth_country,
+      mate.birth_date,
+      mate.birth_hour,
+      mate.birth_location,
+      mate.birth_country
+    )
+    love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h

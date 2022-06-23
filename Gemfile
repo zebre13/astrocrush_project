@@ -36,8 +36,11 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
 
+<<<<<<< HEAD
 #Timeout
 # gem 'em-resolv-replace'
+=======
+>>>>>>> 7a19812cc167576ae5c1d62a620c2b5bc670a065
 
 # city-state is a very simple ruby gem to get a list of states in a country.
 # Also, you can get a list of cities in a state, and a list of all countries of the world.

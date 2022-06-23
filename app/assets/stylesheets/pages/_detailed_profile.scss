@@ -3,9 +3,9 @@
   width: 100%;
 }
 
-.background {
-  background-image: image-url("astro-white.svg");
-}
+// .background {
+//   // background-image: image-url("astro-white.svg");
+// }
 
 .detailed-profile-content p {
   opacity: 0.6;
@@ -338,7 +338,7 @@ $ring-angle: 70;
   display: flex;
 }
 .relation-icon {
-  font-size: 96px;
+  font-size: 80px;
   color: $pink;
   margin: 0 auto;
   display: inline-block;

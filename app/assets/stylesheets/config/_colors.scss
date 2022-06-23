@@ -1,19 +1,25 @@
-// Define variables for your color scheme
-
-// For example:
 $blue: #2E3A59;
+$blue_ch: #4C3F91;
 $blue_light: #b7c7ee;
-$violet_dark: #510FAE;
 
-$violet: #9670D6;
+$violet_dark: #510FAE;
+$violet_light: rgba(150, 112, 214, 0.3);
+
+$violet_ch: #9145B6;
 $purple: #B958A5;
+
 $pink: #FF5677;
-$yellow: #FF5677;
-$green: #FF5677;
+
 $red: #FF1700;
-$orange: #FF5677;
+$orange: orange;
+$yellow: yellow;
+$green: green;
+
 $gray: #0E0000;
 $light-gray: #F4F4F4;
 
-
-$violet_old: #9145B6;
+// Palette Color Hunt:
+$blue_ch: #4C3F91;
+$violet_ch: #9145B6;
+$purple_ch: #B958A5;
+$pink_ch: #FF5677;

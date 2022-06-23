@@ -1,0 +1,18 @@
+.verticaltext{
+  width:1px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  text-align: "." center;
+  align-self: flex-end;
+}
+
+.text {
+  font: $body-font;
+}
+
+.highlight {
+  font-style: italic;
+  background-color: antiquewhite;
+  opacity: 0,3;
+  transform: rotate(15);
+}

@@ -1,13 +1,15 @@
+  <br>
   <div class="container-dashboard mt-5">
   <div class="row">
-    <div class="col-1">
+    <div class="col-1 d-flex">
+      <h4 class="verticaltext">SIGNS</h4>
     </div>
 
     <div class="col-10">
       <div class="border">
         <div class="row">
-          <div class ="col-4 padding"><%=current_user.rising.capitalize%></div>
-          <div class ="col-6  padding grey-background">↑ ASCENDANT</div>
+          <div class ="col-4 padding text"> <%=current_user.rising.capitalize%></div>
+          <div class ="col-6  padding grey-background h5"><em>↑ ASCENDANT</em></div>
           <div class ="col-2 padding"><h3>1</h3></div>
         </div>
       </div>
@@ -15,21 +17,21 @@
         <% if sign.count == 1 %>
           <div class="border">
             <div class="row">
-              <div class ="col-4 padding"><%=sign[0]["sign"]%></div>
-              <div class ="col-6  padding grey-background"><%=sign[0]["logo"]%><%=sign[0]["planet"]%></div>
+              <div class ="col-4 padding text"><%=sign[0]["sign"]%></div>
+              <div class ="col-6  padding grey-background h5"><%=sign[0]["logo"]%><%=sign[0]["planet"]%></div>
               <div class ="col-2 padding"><h3><%=sign[0]["house"]%></h3></div>
             </div>
           </div>
         <% elsif sign.count == 2 %>
           <div class="border">
             <div class="row">
-              <div class ="col-4 padding"><%=sign[0]["sign"]%></div>
-              <div class ="col-6  padding grey-background"><%=sign[0]["logo"]%><%=sign[0]["planet"]%></div>
+              <div class ="col-4 padding text"><%=sign[0]["sign"]%></div>
+              <div class ="col-6  padding grey-background h5"><%=sign[0]["logo"]%><em><%=sign[0]["planet"]%></em></div>
               <div class ="col-2 padding"><h3><%=sign[0]["house"]%></h3></div>
             </div>
             <div class="row">
-              <div class ="col-4 padding"></div>
-              <div class ="col-6  padding grey-background"><%=sign[1]["logo"]%><%=sign[1]["planet"]%></div>
+              <div class ="col-4 padding text"></div>
+              <div class ="col-6  padding grey-background h5"><%=sign[1]["logo"]%><em><%=sign[1]["planet"]%></em></div>
               <div class ="col-2 padding"><h3></h3></div>
             </div>
           </div>
@@ -38,5 +40,6 @@
     </div>
 
     <div class="col-1">
+      <h4 class="verticaltext">HOUSES</h4>
     </div>
   </div>

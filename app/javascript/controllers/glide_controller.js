@@ -11,19 +11,20 @@ export default class extends Controller {
       type: 'carousel',
       startAt: 0,
       draggable: true,
+      focusAt: 1,
       perView: 3,
       gap: 50,
       dragThreshold: 120,
-      swipeThreshold: 90
-    } ).mount({ Controls, Breakpoints })
+      swipeThreshold: 140,
+    } ).mount({ Controls, Breakpoints, Swipe})
 
-    var glide = new Glide('.glide', {
-      type: 'carousel',
-      perView: 3,
-      gap: 5,
-      touchRatio: 1,
-      swipeThreshold: 30
-    })
+    // var glide = new Glide('.glide', {
+    //   type: 'carousel',
+    //   perView: 3,
+    //   gap: 5,
+    //   touchRatio: 1,
+    //   swipeThreshold: 30
+    // })
 
     glide.mount({ Controls, Breakpoints, Swipe })
 

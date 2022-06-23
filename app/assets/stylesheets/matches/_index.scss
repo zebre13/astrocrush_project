@@ -2,7 +2,18 @@
   box-sizing: border-box;
 }
 
+// carousel
 
+.glide__track {
+  background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
+  margin: 8px 16px;
+}
+
+.glide__arrow {
+  border: 1px solid black;
+}
+
+// messages
 
 .flux {
   display: flex;
@@ -45,16 +56,15 @@
   color: #555555;
 }
 
-.card-index-info {
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  margin: 50px
-}
+// .card-index-info {
+//   border: 1px solid black;
+//   display: flex;
+//   justify-content: space-between;
+//   margin: 50px
+// }
 
 .avatar-large {
   width: 50px;
-
 }
 
 .photo-match {
@@ -65,10 +75,6 @@
 
 .photo-match:hover {
   opacity: 1;
-}
-
-.glide__arrow {
-  border: 1px solid black;
 }
 
 .msg-profile{
@@ -83,8 +89,16 @@
 .msg-card{
   --bs-card-border-width: 1px;
   --bs-card-border-color: var(--bs-border-color-translucent)
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
 }
-.glide__track {
-  background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
-  margin: 8px 16px;
+.msg-card .msg-nom{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
 }
+

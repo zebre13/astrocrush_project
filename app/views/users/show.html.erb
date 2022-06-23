@@ -26,149 +26,149 @@
   </button> %>
 </div>
 
-<div class="background">
-  <div class="container detailed-profile-content">
-      <div class="py-3">
-        <div class="d-flex justify-content-between border-bottom pb-2">
-          <div>
-            <div class="name">
-              <%= @mate.username %>,
-              <span class="age"><%= ((Date.today - @mate.birth_date)/365).floor %></span>
-            </div>
-            <div class="d-flex">
-              <p>
-                <span class="me-1">☉</i></span>
-                <span class="me-2"><%= @mate.sign.capitalize %></span>
-              </p>
-              <p>
-                <span class="me-1">↑</span>
-                <span class="me-2"><%= @mate.rising.capitalize %></span>
-              </p>
-              <p>
-                <span class="me-1">☽</span>
-                <span class="me-2"><%= @mate.moon.capitalize %></span>
-              </p>
-            </div>
+<%# <div class="background"> %>
+<div class="container detailed-profile-content">
+    <div class="py-3">
+      <div class="d-flex justify-content-between border-bottom pb-2">
+        <div>
+          <div class="name">
+            <%= @mate.username %>,
+            <span class="age"><%= ((Date.today - @mate.birth_date)/365).floor %></span>
           </div>
-
-          <div class="score-container">
-            <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
-              <% level = "high" %>
-            <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(60..79) %>
-              <% level = "mid-high" %>
-            <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(40..59) %>
-              <% level = "neutral" %>
-            <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(20..39) %>
-              <% level = "mid-low" %>
-            <% else %>
-              <% level = "low" %>
-            <% end %>
-            <div class="score-planet-<%= level %>">
-              <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
-              <div class="score-ring-<%= level %>"></div>
-            </div>
+          <div class="d-flex">
+            <p>
+              <span class="me-1">☉</i></span>
+              <span class="me-2"><%= @mate.sign.capitalize %></span>
+            </p>
+            <p>
+              <span class="me-1">↑</span>
+              <span class="me-2"><%= @mate.rising.capitalize %></span>
+            </p>
+            <p>
+              <span class="me-1">☽</span>
+              <span class="me-2"><%= @mate.moon.capitalize %></span>
+            </p>
           </div>
         </div>
 
-        <div class="pt-2 pb-4 border-bottom">
-          <h5 class="mb-1">
-            About me
-          </h5>
-          <p>
-            <%= @mate.description %>
-          </p>
+        <div class="score-container">
+          <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
+            <% level = "high" %>
+          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(60..79) %>
+            <% level = "mid-high" %>
+          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(40..59) %>
+            <% level = "neutral" %>
+          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(20..39) %>
+            <% level = "mid-low" %>
+          <% else %>
+            <% level = "low" %>
+          <% end %>
+          <div class="score-planet-<%= level %>">
+            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+            <div class="score-ring-<%= level %>"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2 pb-4 border-bottom">
+        <h5 class="mb-1">
+          About me
+        </h5>
+        <p>
+          <%= @mate.description %>
+        </p>
+      </div>
+
+      <div class="pt-2 pb-5 border-bottom">
+        <h5 class="mb-1">
+          My passions
+        </h5>
+        <% eval(@mate.hobbies).each do |hobby| %>
+        <div class="tag">
+          <%= hobby %>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="pt-2 pb-5 border-bottom">
+        <h5 class="mb-1">
+          <%= @partner_report['title'] %>
+        </h5>
+
+        <div class="relation-container">
+          <div class="relation-icon">
+            <i class="fas fa-venus-mars"></i>
+          </div>
+          <div class="relation-text">
+            <p>
+              <%= @partner_report['msg'] %>
+            </p>
+          </div>
         </div>
 
-        <div class="pt-2 pb-5 border-bottom">
-          <h5 class="mb-1">
-            My passions
-          </h5>
-          <% eval(@mate.hobbies).each do |hobby| %>
+        <p>Keywords:</p>
+
+        <% @partner_report['tags'].split(",").each do |tag| %>
           <div class="tag">
-            <%= hobby %>
+            <%= tag %>
           </div>
-          <% end %>
+        <% end %>
+      </div>
+
+
+      <div class="pt-2 pb-4 border-bottom">
+        <h5 class="mb-1">
+          <%= @mate.username %> is <%= @mate.sign %>. Let's find out what this says about <%= @mate.gender == 1 ? "him" : "her" %>...
+        </h5>
+
+        <div class="sign-picture-container">
+          <div class="sign-picture">
+            <%= image_tag "#{@mate.sign.downcase}.svg", alt: "" %>
+          </div>
         </div>
 
-        <div class="pt-2 pb-5 border-bottom">
-          <h5 class="mb-1">
-            <%= @partner_report['title'] %>
-          </h5>
-
-          <div class="relation-container">
-            <div class="relation-text">
-              <p>
-                <%= @partner_report['msg'] %>
-              </p>
-            </div>
-            <div class="relation-icon">
-              <i class="fas fa-venus-mars"></i>
-            </div>
+        <% sun_report = @sun_report['report'].split(".") %>
+        <%# Carousel text %>
+        <div id="carouselText" class="carousel carousel-dark slide" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <% sun_report.each_with_index do |element, i| %>
+              <button type="button" data-bs-target="#carouselText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>
+            <% end %>
           </div>
-
-          <p>Keywords:</p>
-
-          <% @partner_report['tags'].split(",").each do |tag| %>
-            <div class="tag">
-              <%= tag %>
-            </div>
-          <% end %>
-        </div>
-
-
-        <div class="pt-2 pb-4 border-bottom">
-          <h5 class="mb-1">
-            <%= @mate.username %> is <%= @mate.sign %>. Let's find out what this says about <%= @mate.gender == 1 ? "him" : "her" %>...
-          </h5>
-
-          <div class="sign-picture-container">
-            <div class="sign-picture">
-              <%= image_tag "#{@mate.sign.downcase}.svg", alt: "" %>
-            </div>
-          </div>
-
-          <% sun_report = @sun_report['report'].split(".") %>
-          <%# Carousel text %>
-          <div id="carouselText" class="carousel carousel-dark slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-              <% sun_report.each_with_index do |element, i| %>
-                <button type="button" data-bs-target="#carouselText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>
-              <% end %>
-            </div>
-            <div class="carousel-inner">
-              <% sun_report.each_with_index do |element, i| %>
-                <div class="carousel-item <%= 'active' if i.zero? %>">
-                  <div class="sign-text">
-                    <p>
-                      <%= element %>.
-                    </p>
-                  </div>
+          <div class="carousel-inner">
+            <% sun_report.each_with_index do |element, i| %>
+              <div class="carousel-item <%= 'active' if i.zero? %>">
+                <div class="sign-text">
+                  <p>
+                    <%= element %>.
+                  </p>
                 </div>
-              <% end %>
-            <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselText" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselText" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button> %>
-          </div>
+              </div>
+            <% end %>
+          <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselText" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselText" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button> %>
         </div>
       </div>
     </div>
-
-      <div class="empty-row">
-      </div>
-
-    <div class="buttons-box">
-      <%= link_to "", root_path, class: "reject-button" %>
-      <%= link_to "↑ Back", root_path, class: "back-button" %>
-      <%= link_to root_path, class: "like-button" do %>
-        <%= embedded_svg("heart_fill.svg") %>
-      <% end %>
   </div>
+
+    <div class="empty-row">
+    </div>
+
+  <div class="buttons-box">
+    <%= link_to "", root_path, class: "reject-button" %>
+    <%= link_to "↑ Back", root_path, class: "back-button" %>
+    <%= link_to root_path, class: "like-button" do %>
+      <%= embedded_svg("heart_fill.svg") %>
+    <% end %>
 </div>
+<%# </div> %>
 
 
 <!-- Boostrap JS-->

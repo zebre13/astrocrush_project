@@ -4,7 +4,7 @@
       <li class="list <%= 'active' if params[:controller] == 'users' && params[:action] == 'index' %>">
         <a href="<%= root_path %>">
         <span class="icon">
-          <ion-icon name="home-outline"></ion-icon>
+          <ion-icon name="home"></ion-icon>
         </span>
         <%# <span class="text-align">Home</span> %>
         </a>
@@ -12,7 +12,7 @@
       <li class="list <%= 'active' if params[:controller] == 'users' && params[:action] == 'astroboard' %>">
         <a href="<%= astroboard_path %>">
         <span class="icon">
-          <ion-icon name="planet-outline"></ion-icon>
+          <ion-icon name="planet"></ion-icon>
         </span>
         <%# <span class="text-align">Astroboard</span> %>
         </a>
@@ -20,7 +20,8 @@
       <li class="list <%= 'active' if params[:controller] == 'matches' && params[:action] == 'index' %>">
         <a href="<%=matches_path%>">
         <span class="icon">
-          <ion-icon name="heart-outline"></ion-icon>
+          <ion-icon name="chatbubble-ellipses"></ion-icon>
+
         </span>
         <%# <span class="text-align">Crushs</span> %>
         </a>
@@ -28,7 +29,7 @@
       <li class="list <%= 'active' if params[:controller] == 'users' && params[:action] == 'dashboard' %>">
         <a href="<%=dashboard_path%>">
         <span class="icon">
-          <ion-icon name="person-outline"></ion-icon>
+          <ion-icon name="person"></ion-icon>
         </span>
         <%# <span class="text-align">Dashboard</span> %>
         </a>

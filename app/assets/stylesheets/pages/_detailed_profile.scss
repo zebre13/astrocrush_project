@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.background {
+  background-image: image-url("astro-white.svg");
+}
+
 .detailed-profile-content p {
   opacity: 0.6;
 }
@@ -22,7 +26,7 @@
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .tag {
@@ -329,4 +333,16 @@ $ring-angle: 70;
   position: sticky;
   bottom: 45px;
   left: 273px;
+}
+.relation-container {
+  display: flex;
+}
+.relation-icon {
+  font-size: 96px;
+  color: $pink;
+  margin: 0 auto;
+  display: inline-block;
+  padding-right: 24px;
+  border-radius: 50%;
+  text-align: end;
 }

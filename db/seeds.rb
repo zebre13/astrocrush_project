@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'faker'
 require_relative '../app/services/astrology_api'
+require 'resolv-replace'
 
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
@@ -331,7 +332,7 @@ users = User.all
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
-  # love_compatibility_report_collection = {}
+  love_compatibility_report_collection = {}
   potential_mates.each do |mate|
     mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
       user.birth_date,
@@ -359,7 +360,7 @@ users.each do |user|
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
-  # user.love_compatibility_reports = love_compatibility_report_collection
+  user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!
 end

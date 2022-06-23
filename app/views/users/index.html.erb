@@ -10,6 +10,23 @@
 
         <div class="profile" data-swipe-target="user" data-id="<%= user.id %>">
             <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 700, width: 390, radius: 0,crop: :fill %>')">
+            <div class="profile-score-container">
+              <% if eval(current_user.affinity_scores)[user.id] >= 80 %>
+                <% level = "high" %>
+              <% elsif eval(current_user.affinity_scores)[user.id].in?(60..79) %>
+                <% level = "mid-high" %>
+              <% elsif eval(current_user.affinity_scores)[user.id].in?(40..59) %>
+                <% level = "neutral" %>
+              <% elsif eval(current_user.affinity_scores)[user.id].in?(20..39) %>
+                <% level = "mid-low" %>
+              <% else %>
+                <% level = "low" %>
+              <% end %>
+              <div class="score-planet-<%= level %>">
+                <%= eval(current_user.affinity_scores)[user.id] %>
+                <div class="score-ring-<%= level %>"></div>
+              </div>
+            </div>
 
             <div class="profile-infos">
               <div class="d-flex justify-content-between align-items-center">
@@ -17,25 +34,7 @@
                   <%= user.username %>,
                   <span class="profile-age"><%= ((Date.today - user.birth_date)/365).floor %></span>
                 </div>
-                <div class="profile-score-container">
-                  <% if eval(current_user.affinity_scores)[user.id] >= 80 %>
-                    <% level = "high" %>
-                  <% elsif eval(current_user.affinity_scores)[user.id].in?(60..79) %>
-                    <% level = "mid-high" %>
-                  <% elsif eval(current_user.affinity_scores)[user.id].in?(40..59) %>
-                    <% level = "neutral" %>
-                  <% elsif eval(current_user.affinity_scores)[user.id].in?(20..39) %>
-                    <% level = "mid-low" %>
-                  <% else %>
-                    <% level = "low" %>
-                  <% end %>
-                  <div class="score-planet-<%= level %>">
-                    <%= link_to "#{eval(current_user.affinity_scores)[user.id]}", user_path(user), class: "score", style: "text-decoration: none" %>
-                    <%#= eval(current_user.affinity_scores)[user.id] %>
-                    <div class="score-ring-<%= level %>"></div>
-                  </div>
-                </div>
-                <%# <div class="profile-details">= link_to '', user_path(user), class: "fas fa-info-circle", style: "text-decoration: none"</div> %>
+                <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-info-circle", style: "text-decoration: none" %></div>
               </div>
 
               <div class="profile-astro">

@@ -7,12 +7,16 @@
 }
 
 .text {
-  font: $body-font;
+  font-weight: lighter;
+}
+
+.astrotab{
+  flex-wrap: nowrap !important;
 }
 
 .highlight {
   font-style: italic;
   background-color: antiquewhite;
-  opacity: 0,3;
+  opacity: 0,1;
   transform: rotate(15);
 }

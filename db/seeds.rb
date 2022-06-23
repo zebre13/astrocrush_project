@@ -1,12 +1,7 @@
 require 'open-uri'
 require 'faker'
 require_relative '../app/services/astrology_api'
-<<<<<<< HEAD
 require 'resolv-replace'
-=======
-# require 'resolv-replace'
-
->>>>>>> 7a19812cc167576ae5c1d62a620c2b5bc670a065
 
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]

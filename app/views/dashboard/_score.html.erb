@@ -1,7 +1,33 @@
 <div class="container text-align-center mt-5">
   <br>
   <div>
-    <h4 class="mb-1">My compatibilites</h4>
+    <br>
+    <h5 class="mb-1">Test my score with</h5>
+  </div>
+
+  <div class="pt-4 bottom-border">
+    <form>
+      <div class="form-group">
+        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+
+      <div class="form-group">
+        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <br>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+<br>
+<br>
+  <div>
+    <h5 class="mb-1">My compatibilites</h5>
   </div>
 
   <div class="container">
@@ -10,7 +36,7 @@
       <% compatibility_degree = ['highly_compatible', 'mid_compatible', 'low_compatible', 'neutral', 'incompatible', 'mid_incompatible', 'highly_incompatible'] %>
       <% compatibility_degree.each do |degree| %>
         <div class="row justify-content-center">
-          <div class="col-6 border text-center">
+          <div class="col-6 border-bottom text text-center font-weight-light">
             <% case degree %>
             <% when 'highly_compatible' %>
               <%= '+++'%>
@@ -28,35 +54,11 @@
               <%= '---' %>
             <% end %>
           </div>
-          <div class="col-6 border border-left-0 text-center">
+          <div class="col-6 border-bottom text-center">
             <%= @zodiac_compatibility[degree].join(', ') %>
           </div>
         </div>
       <% end %>
     </div>
-  </div>
-
-  <div>
-    <br>
-    <h4 class="mb-1">Test my score with</h4>
-  </div>
-
-  <div class="pt-4">
-    <form>
-      <div class="form-group">
-        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-
-      <div class="form-group">
-        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-
-      <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <br>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
   </div>
 </div>

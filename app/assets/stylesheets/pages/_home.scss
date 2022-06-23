@@ -101,7 +101,7 @@
   transition: .4s;
 }
 
-.profile-matching::after, .profile-nexting::after {
+.profile-matching::after {
   content:'LIKE';
   font-weight: bold;
   font-size:28px;
@@ -111,15 +111,24 @@
   background: rgba(0, 0, 0, 0.371);
   position: absolute;
   top:24px;
-  right:12px;
+  left:12px;
   border-radius: 4px;
-  transform:rotate(24deg);
+  transform:rotate(-24deg);
 }
 
 .profile-nexting::after {
   content:'NEXT';
+  font-weight: bold;
+  font-size:28px;
+  padding:8px 12px;
   border:solid 2px red;
   color: red;
+  background: rgba(0, 0, 0, 0.371);
+  position: absolute;
+  top:24px;
+  right:12px;
+  border-radius: 4px;
+  transform:rotate(24deg);
 }
 
 #backgroundcolor {

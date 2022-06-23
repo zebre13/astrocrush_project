@@ -43,7 +43,9 @@
 
 .profile-score-container {
   text-align: center;
-  padding-right: 24px;
+  position: absolute;
+  top: 32px;
+  right: 32px;
 }
 
 .profile-infos {
@@ -71,7 +73,7 @@
 
 .profile-details {
   position: relative;
-  right: 0px;
+  right: 16px;
 }
 
 .profile-astro {
@@ -83,7 +85,7 @@
 .fas.fa-info-circle{
   color: rgb(255, 255, 255);
   background-color:rgba(255, 255, 255, 0);
-  font-size: 33px;
+  font-size: 32px;
   border-radius:50%;
 }
 

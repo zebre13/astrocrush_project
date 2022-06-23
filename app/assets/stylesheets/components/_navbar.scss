@@ -6,11 +6,12 @@
 
 .navbar-screen {
   // background: white;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
-  width: 100vh;
-  // height: 10vh;
+  width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 // .navbar-container {
@@ -24,7 +25,7 @@
 .navigation {
   width: 400px;
   height: 70px;
-  background: $blue;
+  background: rgb(255,255,255);
   position: relative;
   display: flex;
   justify-content: center;
@@ -35,9 +36,9 @@
 .navigation ul {
   width: 100vw;
   display: flex;
-  // justify-content: space-around;
+  justify-content: space-around;
   margin-bottom: 0;
-  padding-left: 55px;
+  padding: 0px 10px;
   width: 100%;
 
 }
@@ -67,64 +68,16 @@
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
-  color: white
+  color: rgb(156, 156, 156)
 }
 
 .navigation ul li.active a .icon {
-  transform: translateY(-32px);
-  color: $blue
+  color: rgb(133, 30, 217);
 }
 
-.navigation ul li a .text {
-  position: absolute;
-  color: $blue;
-  font-weight: 400;
-  font-size:0.75em;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-  opacity: 0;
-  transform: translateY(20px)
-}
 
-.navigation ul li.active a .text {
-  opacity: 1;
-  transform: translateY(10px);
-}
 
-.indicator{
-  position: absolute;
-  top: -50%;
-  width: 70px;
-  height: 70px;
-  background: white;
-  border-radius: 50%;
-  border: 1px solid $blue;
-  transition: 0.5s
-}
 
-.indicator::before{
-  content:'';
-  position: absolute;
-  top: 50%;
-  left: -22px;
-  width: 20px;
-  height: 1px;
-  background: transparent;
-  border-top-right-radius: 1px;
-  // box-shadow: 1px -10px 0 0 $blue;
-}
-
-.indicator::after{
-  content:'';
-  position: absolute;
-  top: 50%;
-  right: -22px;
-  width: 20px;
-  height: 1px;
-  background: transparent;
-  border-top-left-radius: 1px;
-  // box-shadow: -1px -10px 0 0 $blue;
-}
 
 .navigation ul li:nth-child(1).active ~ .indicator {
   transform: translateX(calc(70px * 0));

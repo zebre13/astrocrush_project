@@ -54,6 +54,6 @@
   <body class= "<%= params[:controller] == 'users' && params[:action] == 'astroboard' ? "background-violet" : "background-white" %>">
     <%# <%= render "shared/flashes" %>
     <%= yield %>
-    <%= render "navbar/navbar_two" unless params[:controller] == "users" && params[:action] == "show" %>
+    <%# <%= render "navbar/navbar_two" unless params[:controller] == "users" && params[:action] == "show" %>
   </body>
 </html>

@@ -38,6 +38,7 @@
    “density”: “4.0”
   }
  ],
+<<<<<<< HEAD
   “background_color”: “8c63d1”,
   “description”: “Your sign, your soulmate”,
   “display”: “fullscreen”,
@@ -52,3 +53,20 @@
         <%# “type”: “image/png”
       }<%= “,” unless (files.size - 1) == index %>
     <%# <% end %>
+=======
+  "background_color": "8c63d1",
+  "description": "Your sign, your soulmate",
+  "display": "fullscreen",
+  "name": "Astrocrush",
+  "icons": [
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
+>>>>>>> f1283bde5fac95b1b93dc9ac0d930754b247ca0c

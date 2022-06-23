@@ -11,13 +11,13 @@
 
 .background-white {
   background-color: white;
-  color: black;
-  background-image: image-url("astro.svg");
-  fill: #4B00AB;
+  // color: black;
+  background-image: image-url("astro-white.svg");
+  // fill: #4B00AB;
   // background-size:  ;
   // background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: 60vh; /* Resize the background image to cover the entire container */
+  // background-repeat: no-repeat; /* Do not repeat the image */
+  // background-size: 60vh; /* Resize the background image to cover the entire container */
 }
 
 .background-transparant {

@@ -1,19 +1,24 @@
 .astrocrush {
   position: absolute;
-  top: 0px;
-  font-size: 40px;
+  top:9px;
+  font-size: 32px;
   font-family: $headers-font;
-  height: 20px;
+  height: 40px;
+  color: $violet_dark;
+  width: 390px;
+  text-align: center;
 }
+
 .profiles {
   position: relative;
-  width: 390px;
+  width: 370px;
   height: 700px;
+  margin: 0 auto;
   top: 64px;
 }
 
 .profiles::before {
-  content:'Plus rien à matcher...';
+  content:'No one left to match...';
   display:flex;
   align-items: center;
   justify-content: center;
@@ -21,81 +26,65 @@
 }
 
 .profile {
-
   position: absolute;
   left:0px;
   top:0px;
   width: 100%;
   border-radius: 12px;
-
-  // overflow: hidden;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   cursor:pointer;
 }
 
-.profile-image{
+.profile-image {
   height: 700px;
-  width: 390px;
-  // border-radius: 12px;
-  border: solid 1px black;
+  width: 370px;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.profile-score-container {
+  text-align: center;
+  padding-right: 24px;
 }
 
 .profile-infos {
-  padding:12px;
+  padding:16px;
+  padding-bottom: 32px;
   position:absolute;
   bottom: 0px;
   background:linear-gradient(0deg, black, transparent);
   width: 100%;
   border-radius: inherit;
 }
-.profile-details {
-  position: relative;
-  right: 34px;
-}
-.profile-match-score {
-  height: 60px;
-  border: solid rgb(255, 255, 255) 1px;
-  border-radius: 50%;
-  width: 61px;
+
+.profile-name {
   color: white;
-  font-size: 40px;
-  text-align: center;
-  position: relative;
-  bottom: 500px;
-  left: 277px;
-  background-color: rgb(146, 130, 238);
+  font-family: "Manrope", "sans-serif";
+  font-weight: bold;
+  font-size: 32px;
 }
 
+.profile-age {
+  color: white;
+  font-family: "Manrope", "sans-serif";
+  font-size: 24px;
+}
+
+.profile-details {
+  position: relative;
+  right: 0px;
+}
+
+.profile-astro {
+  display: flex;
+  color: white;
+  opacity: 0.9;
+}
 
 .fas.fa-info-circle{
   color: rgb(255, 255, 255);
   background-color:rgba(255, 255, 255, 0);
   font-size: 33px;
   border-radius:50%;
-  border: solid white 1px;
-}
-.fas.fa-info-circle:hover{
-  color: rgb(188, 184, 211);
-}
-
-
-
-
-
-.profile-name {
-  color: white;
-  font-family: "Roboto";
-  font-weight: bold;
-  font-size: 30px;
-  position: relative;
-  bottom: 6px;
-}
-.profile-description {
-  color: white;
-  font-size: 17px;
-  overflow: hidden;
-  position: relative;
-  bottom: 6px;
 }
 
 .profile-match {
@@ -112,8 +101,8 @@
   transition: .4s;
 }
 
-.profile-matching::after, .profile-nexting::after {
-  content:'MATCH';
+.profile-matching::after {
+  content:'LIKE';
   font-weight: bold;
   font-size:28px;
   padding:8px 12px;
@@ -122,27 +111,32 @@
   background: rgba(0, 0, 0, 0.371);
   position: absolute;
   top:24px;
+  left:12px;
+  border-radius: 4px;
+  transform:rotate(-24deg);
+}
+
+.profile-nexting::after {
+  content:'NEXT';
+  font-weight: bold;
+  font-size:28px;
+  padding:8px 12px;
+  border:solid 2px red;
+  color: red;
+  background: rgba(0, 0, 0, 0.371);
+  position: absolute;
+  top:24px;
   right:12px;
   border-radius: 4px;
   transform:rotate(24deg);
 }
 
-.profile-nexting::after {
-  content:'NEXT';
-  border:solid 2px red;
-  color: red;
-}
-
-
-
-
 #backgroundcolor {
   display: flex;
   justify-content: center;
   height: 100vh;
+  background-color: white;
 }
-
-
 
 div.fas.fa-ban::before{
   font-size:40px;
@@ -156,18 +150,183 @@ div.fas.fa-ban::before{
 -moz-box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
 }
 
-
-
-
 .swipe-buttons {
   position: relative;
   bottom: 30px;
 }
 
-
-
 h1 {
-
   color: black;
   font-family: "Roboto";
 }
+
+// <=== SAVE CODE ETIENNE ===>
+
+// .astrocrush {
+//   position: absolute;
+//   top: 0px;
+//   font-size: 40px;
+//   font-family: $headers-font;
+//   height: 20px;
+// }
+// .profiles {
+//   position: relative;
+//   width: 390px;
+//   height: 700px;
+//   top: 64px;
+// }
+
+// .profiles::before {
+//   content:'Plus rien à matcher...';
+//   display:flex;
+//   align-items: center;
+//   justify-content: center;
+//   height:100%;
+// }
+
+// .profile {
+//   position: absolute;
+//   left:0px;
+//   top:0px;
+//   width: 100%;
+//   border-radius: 12px;
+
+//   // overflow: hidden;
+//   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+//   cursor:pointer;
+// }
+
+// .profile-image{
+//   height: 700px;
+//   width: 390px;
+//   border-radius: 12px;
+//   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+//   // border: solid 1px black;
+// }
+
+// .profile-infos {
+//   padding:12px;
+//   position:absolute;
+//   bottom: 0px;
+//   background:linear-gradient(0deg, black, transparent);
+//   width: 100%;
+//   border-radius: inherit;
+// }
+// .profile-details {
+//   position: relative;
+//   right: 34px;
+// }
+// .profile-match-score {
+//   height: 60px;
+//   border: solid rgb(255, 255, 255) 1px;
+//   border-radius: 50%;
+//   width: 61px;
+//   color: white;
+//   font-size: 40px;
+//   text-align: center;
+//   position: relative;
+//   bottom: 500px;
+//   left: 277px;
+//   background-color: rgb(146, 130, 238);
+// }
+
+// .fas.fa-info-circle{
+//   color: rgb(255, 255, 255);
+//   background-color:rgba(255, 255, 255, 0);
+//   font-size: 33px;
+//   border-radius:50%;
+//   border: solid white 1px;
+// }
+// .fas.fa-info-circle:hover{
+//   color: rgb(188, 184, 211);
+// }
+
+// .profile-name {
+//   color: white;
+//   font-family: "Roboto";
+//   font-weight: bold;
+//   font-size: 30px;
+//   position: relative;
+//   bottom: 6px;
+// }
+// .profile-description {
+//   color: white;
+//   font-size: 17px;
+//   overflow: hidden;
+//   position: relative;
+//   bottom: 6px;
+// }
+
+// .profile-match {
+//   transition: .4s;
+//   transform: translateX(1500px) translateY(600px) rotate(90deg);
+// }
+
+// .profile-next {
+//   transition: .4s;
+//   transform: translateX(-1500px) translateY(600px) rotate(-90deg);
+// }
+
+// .profile-back{
+//   transition: .4s;
+// }
+
+// .profile-matching::after, .profile-nexting::after {
+//   content:'MATCH';
+//   font-weight: bold;
+//   font-size:28px;
+//   padding:8px 12px;
+//   border:solid 2px green;
+//   color:rgb(29, 141, 29);
+//   background: rgba(0, 0, 0, 0.371);
+//   position: absolute;
+//   top:24px;
+//   right:12px;
+//   border-radius: 4px;
+//   transform:rotate(24deg);
+// }
+
+// .profile-nexting::after {
+//   content:'NEXT';
+//   border:solid 2px red;
+//   color: red;
+// }
+
+
+
+
+// #backgroundcolor {
+//   display: flex;
+//   justify-content: center;
+//   height: 100vh;
+// }
+
+
+
+// div.fas.fa-ban::before{
+//   font-size:40px;
+//   padding: 10px;
+//   color: red;
+//   background-color: white;
+//   border-radius: 55%;
+//   border: solid rgb(5, 5, 5) 2px;
+//   box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
+// -webkit-box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
+// -moz-box-shadow: 5px 3px 0px 0px rgba(0,0,0,0.58);
+// }
+
+
+
+
+// .swipe-buttons {
+//   position: relative;
+//   bottom: 30px;
+// }
+
+
+
+// h1 {
+
+//   color: black;
+//   font-family: "Roboto";

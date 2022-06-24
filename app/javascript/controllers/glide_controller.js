@@ -13,7 +13,7 @@ export default class extends Controller {
       draggable: true,
       focusAt: 1,
       perView: 3,
-      gap: 50,
+      gap: 10,
       dragThreshold: 120,
       swipeThreshold: 140,
     } ).mount({ Controls, Breakpoints, Swipe})

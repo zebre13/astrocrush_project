@@ -90,20 +90,6 @@ mathieu_trancoso_data = {
   looking_for: 2
 }
 
-mathieu_trancoso_data = {
-  username: 'Mathieu',
-  email: 'm.trancoso@astrocrush.io',
-  password: 'azerty',
-  description: "All you need is code",
-  hobbies: ['Wagonner'],
-  birth_date: '21/01/1994',
-  birth_hour: '16:00',
-  birth_location: 'Ermont',
-  birth_country: 'FR',
-  gender: 1,
-  looking_for: 2
-}
-
 laura_person_data = {
   username: 'Laura',
   email: 'l.person@astrocrush.io',

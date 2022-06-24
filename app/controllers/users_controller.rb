@@ -66,8 +66,6 @@ class UsersController < ApplicationController
     )
   end
 
-
-
   def test
     @users_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
     # On rejette tous les users qui sont dans les matchs du current user.

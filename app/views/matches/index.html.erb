@@ -1,80 +1,69 @@
-<%# faire la liste de mes match
-faire la messagerie de mes match %>
-
-<%# plus de navbar ? %>
-  <%# <%= render "components/navbar" %>
-
-
-<div class="container-match">
-
-<div class="astrocrush">Astrocrush</div>
- <h3>New Matchs</h3>
-
-
-
-  <div class="glide" data-controller="glide">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-      <%# changer la width 100% a 50px voir moins  %>
-        <% @matches.each do |match| %>
-          <li class="glide__slide">
-            <div class="photo-match">
-                <% if match.mate.photos.any?  %>
-                  <%= cl_image_tag(match.mate.photos.first&.key, :class => "photo-match") %>
-                   <h1> <%= match.mate.username %> </h1>
-                   <div class="score-planet-mid-low">
-                     <%= match.score %>
-                   </div>
-                  <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
-                <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-      <%# <div class="glide__arrows" data-glide-el="controls">
-
-        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">  </button>
-        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
-
-      </div> %>
-
-  </div>
+<div class="astrocrush-header">
+  <i class="fas fa-meteor"></i>Astrocrush
 </div>
 
-<div class="container-messages">
-  <div class="flux ">
-    <div class="messager">
-      <h3>Messages</h3>
-        <div class="msg-profile">
+<div class="matches-and-messages-container">
+
+  <div class="new-matches-container">
+    <h3>New Matches</h3>
+
+    <div class="glide" data-controller="glide">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
           <% @matches.each do |match| %>
-          <div class=".msg-card">
-          <div class="avatar-bordered">
-          <% if match.mate.photos.any?  %>
-            <%= cl_image_tag(match.mate.photos.first&.key, :class => "avatar-bordered") %>
+            <li class="glide__slide">
+              <div class="match-photo">
+                  <% if match.mate.photos.any?  %>
+                    <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
+                    <h1> <%= match.mate.username %> </h1>
+                    <div class="score-planet-mid-low">
+                      <%= match.score %>
+                    </div>
+                    <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
+                  <% end %>
+              </div>
+            </li>
           <% end %>
-          <%# rendre interactive  %>
-          </div>
-            <div class="msg-nom"> <%= link_to match.mate.username, chatroom_path(match.chatroom) %> </div>
-          </div>
-          <% end %>
-       </div>
-     </div>
+        </ul>
+      </div>
+    </div>
   </div>
 
+  <div class="messages-container">
+    <h3>
+      Messages
+    </h3>
 
- <%# <h1><%= match.mate.username %></h1>
+    <% @matches.each do |match| %>
+      <div class="message-card">
+        <% if match.mate.photos.any?  %>
+          <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>
+        <% end %>
 
-              <%# <%= match.score %>
-              <%# <%= match.status&.capitalize %>
-              <%# <%= link_to "  ", match_path(match), method: :delete   %>
+        <div class="message-text">
 
+          <h5 class="message-username">
+            <%#= match.mate.username %>
+            <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+          </h5>
 
+          <p class="message-content">
+            <%# TO DO %>
+          </p>
 
+        </div>
+      </div>
+    <% end %>
 
+  <div>
 
-
-<div>
-  <%= render "navbar/navbar_two"%>
+  <%= render "navbar/navbar_two" %>
 </div>
+
+
+
+  <%# <h1><%= match.mate.username</h1> %>
+
+                <%# <%= match.score %>
+                <%# <%= match.status&.capitalize %>
+                <%# <%= link_to "  ", match_path(match), method: :delete   %>

@@ -1,7 +1,5 @@
 class MatchesController < ApplicationController
-
   skip_before_action :verify_authenticity_token, only: [:create, :create_denied_match]
-
 
   def index
     # afficher mes match

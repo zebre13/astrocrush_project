@@ -2,30 +2,99 @@
   box-sizing: border-box;
 }
 
+.astrocrush-header {
+  font-size: 32px;
+  font-family: $headers-font;
+  height: 80px;
+  line-height: 80px;
+  vertical-align: middle;
+  text-align: center;
+  color: $violet_dark;
+  width: 390px;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+}
+
+// NEW MATCHES
+
+.matches-and-messages-container {
+  display: block;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0px 12px;
+  position: relative;
+  h3 {
+    color: $pink;
+  }
+}
+
+.new-matches-container {
+  display: block;
+  margin-bottom: 48px;
+  margin-top: 48px;
+}
+
 // carousel
 
-.glide__track {
-  background: radial-gradient(circle, #ccd3f3 0%, #f2d2d8 100%);
-  margin: 8px 16px;
+.match-photo {
+  object-fit: cover;
+  height: 135px;
+  width: 114px;
+  border-radius: 6px;
 }
 
-.glide__arrow {
-  border: 1px solid black;
+.match-photo:hover {
+  opacity: 1;
 }
 
-// messages
+// MESSAGES
 
-.flux {
-  display: flex;
+.messages-container {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.message-card {
+  // margin-bottom: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9e7e7;
   align-items: center;
-  margin-bottom: 8px;
-  background: white;
-  padding: 0;
-  // border: 1px solid black;
-  border: 1px solid rgb(235,235,235);
-  height: 572px;
-  width: calc(100% - 20px);
+  display: flex;
 }
+
+.message-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.message-text {
+  padding-left: 16px;
+}
+
+.message-username {
+  font-weight:bold;
+  a {
+    text-decoration: none;
+    color: $gray;
+  }
+}
+
+// .flux {
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 8px;
+//   background: white;
+//   padding: 0;
+//   // border: 1px solid black;
+//   border: 1px solid rgb(235,235,235);
+//   height: 572px;
+//   width: calc(100% - 20px);
+// }
 
 .flux .msg-profile{
   flex-grow: 1;
@@ -35,7 +104,6 @@
 .flux {
   margin: 12px;
   line-height: 1.4;
-
 }
 
 .flux small {
@@ -67,20 +135,10 @@
   width: 50px;
 }
 
-.photo-match {
-  object-fit: cover;
-  height: 135px;
-  width: 114px;
-}
-
-.photo-match:hover {
-  opacity: 1;
-}
-
-.msg-profile{
-  position: relative;
-  width: 94vw;
-}
+// .msg-profile{
+//   position: relative;
+//   width: 94vw;
+// }
 
 .msg-nom {
   display: -webkit-box;
@@ -91,7 +149,7 @@
   --bs-card-border-color: var(--bs-border-color-translucent)
   overflow: hidden;
   height: 120px;
-  background: white;
+  // background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
@@ -102,3 +160,22 @@
   margin: 0;
 }
 
+// .msg-nom {
+//   display: -webkit-box;
+// }
+
+// .msg-card{
+//   --bs-card-border-width: 1px;
+//   --bs-card-border-color: var(--bs-border-color-translucent)
+//   overflow: hidden;
+//   height: 120px;
+//   // background: white;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items: center;
+// }
+// .msg-card .msg-nom{
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }

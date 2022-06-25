@@ -5,6 +5,12 @@ class MatchesController < ApplicationController
     # afficher mes match
     # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
     @matches = current_user.matches.where(status: 'accepted').order("chatroom_id DESC")
+
+    @newmatches = @matches.left_outer_joins(chatroom: :messages).where(messages: {id: nil}).distinct
+
+    # Liste des match dans laquelle il y a des messages dans la conversation
+    @oldmatches = @matches.left_outer_joins(chatroom: :messages).where.not(messages: {id: nil}).distinct
+
   end
 
   def create

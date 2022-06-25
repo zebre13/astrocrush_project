@@ -143,6 +143,19 @@ juliette_armanet_data = {
   gender: 2,
   looking_for: 1
 }
+kenza_tighrine_data = {
+  username: 'Kenza',
+  email: 'k.tighrine@astrocrush.io',
+  password: 'azerty',
+  description: "On m'appelle aussi Karima mais c'est pas grave",
+  hobbies: ['Chichah', 'Djellabah'],
+  birth_date: '04/08/1995',
+  birth_hour: '10:45',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
 melanie_thierry_data = {
   username: 'Melanie',
@@ -280,7 +293,8 @@ famous_users_data = [
   pierre_niney_data,
   pio_marmai_data,
   robert_pattinson_data,
-  rege_jean_page_data
+  rege_jean_page_data,
+  kenza_tighrine_data
 ]
 
 # <--- Set Fake users data --->
@@ -312,6 +326,8 @@ photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
+
+
 
 team_users_photos = [
   photo_boris,
@@ -436,65 +452,65 @@ puts "Finished!"
 
 # <--- Create Matches --->
 
-puts "Creating Matches..."
+# puts "Creating Matches..."
 
-first_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: boris.id,
-  chatroom_id: Chatroom.all[0].id
-}
+# first_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: boris.id,
+#   chatroom_id: Chatroom.all[0].id
+# }
 
-second_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: etienne.id,
-  chatroom_id: Chatroom.all[1].id
-}
+# second_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: etienne.id,
+#   chatroom_id: Chatroom.all[1].id
+# }
 
-third_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: rege_jean_page.id,
-  chatroom_id: Chatroom.all[2].id
-}
+# third_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: rege_jean_page.id,
+#   chatroom_id: Chatroom.all[2].id
+# }
 
-fourth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: robert_pattinson.id,
-  chatroom_id: Chatroom.all[3].id
-}
+# fourth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: robert_pattinson.id,
+#   chatroom_id: Chatroom.all[3].id
+# }
 
-fifth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: pio_marmai.id,
-  chatroom_id: Chatroom.all[4].id
-}
+# fifth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: pio_marmai.id,
+#   chatroom_id: Chatroom.all[4].id
+# }
 
-sixth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: pierre_niney.id,
-  chatroom_id: Chatroom.all[5].id
-}
+# sixth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: pierre_niney.id,
+#   chatroom_id: Chatroom.all[5].id
+# }
 
-seventh_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: tom_leeb.id,
-  chatroom_id: Chatroom.all[6].id
-}
+# seventh_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: tom_leeb.id,
+#   chatroom_id: Chatroom.all[6].id
+# }
 
-matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
+# matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
 
-matches.each do |match|
-  match_instance = Match.new(match)
-  match_instance.save!
-end
+# matches.each do |match|
+#   match_instance = Match.new(match)
+#   match_instance.save!
+# end
 
-puts "Finished!"
+# puts "Finished!"
 
 # # <--- Create Messages --->
 

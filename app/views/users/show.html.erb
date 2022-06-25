@@ -7,13 +7,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 410, crop: :fill %>')"></div>
     </div>
     <div class="carousel-item">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 410, crop: :fill %>')"></div>
     </div>
     <div class="carousel-item">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @mate.photos.first.key, height: 450, width: 410, crop: :fill %>')"></div>
     </div>
   </div>
   <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
@@ -158,8 +158,8 @@
     </div>
   </div>
 
-    <div class="empty-row">
-    </div>
+  <div class="empty-row">
+  </div>
 
   <div class="buttons-box">
     <%= link_to "", root_path, class: "reject-button" %>
@@ -167,7 +167,7 @@
     <%= link_to root_path, class: "like-button" do %>
       <%= embedded_svg("heart_fill.svg") %>
     <% end %>
-</div>
+  </div>
 <%# </div> %>
 
 

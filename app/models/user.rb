@@ -29,4 +29,8 @@ class User < ApplicationRecord
     #     self.errors.add(:birth_date, "User must be over 18 years old")
     #   end
     # end
+
+  def matches
+    Match.where(user: self).or(Match.where(mate: self))
+  end
 end

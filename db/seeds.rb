@@ -118,6 +118,20 @@ alexandre_platteeuw_data = {
   looking_for: 2
 }
 
+kenza_tighrine_data = {
+  username: 'Kenza',
+  email: 'k.tighrine@astrocrush.io',
+  password: 'azerty',
+  description: "On m'appelle aussi Karima mais c'est pas grave",
+  hobbies: ['Chichah', 'Djellabah'],
+  birth_date: '04/08/1995',
+  birth_hour: '10:45',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+
 team_users_data = [
   boris_data,
   etienne_data,
@@ -125,7 +139,8 @@ team_users_data = [
   maria_data,
   mathieu_trancoso_data,
   laura_person_data,
-  alexandre_platteeuw_data
+  alexandre_platteeuw_data,
+  kenza_tighrine_data
 ]
 
 # <--- Set famous users data --->
@@ -139,19 +154,6 @@ juliette_armanet_data = {
   birth_date: '04/03/1984',
   birth_hour: '21:20',
   birth_location: 'Lille',
-  birth_country: 'FR',
-  gender: 2,
-  looking_for: 1
-}
-kenza_tighrine_data = {
-  username: 'Kenza',
-  email: 'k.tighrine@astrocrush.io',
-  password: 'azerty',
-  description: "On m'appelle aussi Karima mais c'est pas grave",
-  hobbies: ['Chichah', 'Djellabah'],
-  birth_date: '04/08/1995',
-  birth_hour: '10:45',
-  birth_location: 'Paris',
   birth_country: 'FR',
   gender: 2,
   looking_for: 1
@@ -293,8 +295,7 @@ famous_users_data = [
   pierre_niney_data,
   pio_marmai_data,
   robert_pattinson_data,
-  rege_jean_page_data,
-  kenza_tighrine_data
+  rege_jean_page_data
 ]
 
 # <--- Set Fake users data --->
@@ -326,8 +327,7 @@ photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
-
-
+photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
 
 team_users_photos = [
   photo_boris,
@@ -336,7 +336,8 @@ team_users_photos = [
   photo_maria,
   photo_mathieu_trancoso,
   photo_laura_person,
-  photo_alexandre_platteeuw
+  photo_alexandre_platteeuw,
+  photo_kenza_tighrine
 ]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))

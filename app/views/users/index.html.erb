@@ -7,7 +7,7 @@
       <% @users.each do |user| %>
 
         <div class="profile" data-swipe-target="user" data-id="<%= user.id %>">
-            <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 560, width: 390, radius: 0,crop: :fill %>')">
+            <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key, height: 696, width: 390, radius: 0,crop: :fill %>')">
             <div class="profile-score-container">
               <% if eval(current_user.affinity_scores)[user.id] >= 80 %>
                 <% level = "high" %>

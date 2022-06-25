@@ -23,9 +23,6 @@ import "controllers"
 import "bootstrap"
 
 
-
-
-
 document.addEventListener('turbolinks:load', () => {
   const list = document.querySelectorAll('.list');
   function activeLink(){

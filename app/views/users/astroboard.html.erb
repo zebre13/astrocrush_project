@@ -5,11 +5,9 @@
       <h6>|</h6>
       <h6 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h6>
       <h6>|</h6>
-      <h6 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Score</em></h6>
+      <h6 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Affinities</em></h6>
       <h6>|</h6>
-      <h6 data-action="click->dashboard#table" data-dashboard-target="table_menu"><em>Table</em></h6>
-      <h6>|</h6>
-      <h6 data-action="click->dashboard#circle" data-dashboard-target="circle_menu"><em>Circle</em></h6>
+      <h6 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><em>Chart</em></h6>
     </div>
 
     <div data-dashboard-target="horoscope">
@@ -24,12 +22,8 @@
       <%= render "dashboard/score"%>
     </div>
 
-    <div data-dashboard-target="table" class="d-none">
-      <%= render "dashboard/table"%>
-    </div>
-
-    <div data-dashboard-target="circle" class="d-none">
-      <%= render "dashboard/circle"%>
+    <div data-dashboard-target="chart" class="d-none">
+      <%= render "dashboard/chart"%>
     </div>
   </div>
 </div>

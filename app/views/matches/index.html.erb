@@ -39,7 +39,7 @@
                       <div class="small-score-planet-<%= level %>">
                         <%= eval(current_user.affinity_scores)[match.mate_id.to_i] %>
                       </div>
-     </div>
+                    </div>
                   </li>
               <% end %>
             </ul>
@@ -88,15 +88,15 @@
 
     <% @matches.each do |match| %>
       <div class="message-card">
-        <% if match.mate_for(current_user).photos.any?  %>
-          <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, class: "message-avatar") %>
+        <% if match.mate.photos.any?  %>
+          <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>
         <% end %>
 
         <div class="message-text">
 
           <h5 class="message-username">
             <%#= match.mate.username %>
-            <%= link_to match.mate_for(current_user).username, chatroom_path(match.chatroom) %>
+            <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
           </h5>
 
           <p class="message-content">
@@ -106,17 +106,5 @@
         </div>
       </div>
     <% end %>
-
-
-
+  </div>
   <%= render "navbar/navbar_two" %>
-
-
-
-
-  <%# <h1><%= match.mate.username %></h1> %>
-
-
-                <%# <%= match.score%> %>
-                <%# <%= match.status&.capitalize %>
-                <%# <%= link_to "  ", match_path(match), method: :delete%> %>

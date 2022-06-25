@@ -10,10 +10,10 @@
 }
 
 .profiles {
-  position: relative;
-  width: 370px;
-  height: 700px;
-  margin: 0 auto;
+  position: absolute;
+  width: 390px;
+  height: 560px;
+  margin: 10px;
   top: 64px;
 }
 
@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   height:100%;
+  color: rgb(92, 59, 144);
 }
 
 .profile {
@@ -35,8 +36,8 @@
 }
 
 .profile-image {
-  height: 700px;
-  width: 370px;
+  height: 560px;
+  width: 390px;
   border-radius: 12px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -136,7 +137,7 @@
   // display: flex;
   justify-content: center;
   height: 100vh;
-  background-color: white;
+  background-image: url(/assets/astro-white-9d5a6a5….svg);
 }
 
 div.fas.fa-ban::before{

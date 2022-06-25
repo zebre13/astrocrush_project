@@ -13,9 +13,9 @@
           <% @matches.each do |match| %>
             <li class="glide__slide">
               <div class="match-photo">
-                  <% if match.mate.photos.any?  %>
-                    <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
-                    <h1> <%= match.mate.username %> </h1>
+                  <% if match.mate_for(current_user).photos.any?  %>
+                    <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, :class => "match-photo") %>
+                    <h1> <%= match.mate_for(current_user).username %> </h1>
                     <div class="score-planet-mid-low">
                       <%= match.score %>
                     </div>
@@ -36,15 +36,15 @@
 
     <% @matches.each do |match| %>
       <div class="message-card">
-        <% if match.mate.photos.any?  %>
-          <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>
+        <% if match.mate_for(current_user).photos.any?  %>
+          <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, class: "message-avatar") %>
         <% end %>
 
         <div class="message-text">
 
           <h5 class="message-username">
             <%#= match.mate.username %>
-            <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+            <%= link_to match.mate_for(current_user).username, chatroom_path(match.chatroom) %>
           </h5>
 
           <p class="message-content">

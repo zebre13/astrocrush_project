@@ -10,7 +10,7 @@
 }
 
 .profiles {
-  position: relative;
+  position: absolute;
   width: 370px;
   height: 700px;
   margin: 0 auto;
@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   height:100%;
+  color: rgb(92, 59, 144);
 }
 
 .profile {
@@ -137,7 +138,7 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  background-color: white;
+  background-image: url(/assets/astro-white-9d5a6a5….svg);
 }
 
 div.fas.fa-ban::before{

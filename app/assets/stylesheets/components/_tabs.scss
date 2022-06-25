@@ -1,0 +1,22 @@
+.verticaltext{
+  width:1px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  text-align: "." center;
+  align-self: flex-end;
+}
+
+.text {
+  font-weight: lighter;
+}
+
+.astrotab{
+  flex-wrap: nowrap !important;
+}
+
+.highlight {
+  font-style: italic;
+  background-color: antiquewhite;
+  opacity: 0,1;
+  transform: rotate(15);
+}

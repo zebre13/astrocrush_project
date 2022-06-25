@@ -21,11 +21,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@200&display=swap');
 
 h {
-  font-family: 'Italiana', serif;
+  font-family: $headers-font
 }
 
 p {
-  font-family: 'Manrope', sans-serif;
+  font-family: $body-font;
 }
 
 .z-1 {
@@ -38,4 +38,8 @@ p {
 .z-0 {
   z-index: 0;
   inset: 0
+}
+
+.row {
+  
 }

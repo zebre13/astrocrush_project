@@ -1,7 +1,5 @@
 class MatchesController < ApplicationController
-
   skip_before_action :verify_authenticity_token, only: [:create, :create_denied_match]
-
 
   def index
     # afficher mes match
@@ -24,7 +22,7 @@ class MatchesController < ApplicationController
       @chatroom = Chatroom.create!
       @match.chatroom = @chatroom
       @match.save!
-      p "Match create with status pending successfully"
+      p "Match created with status pending successfully"
     end
     respond_to do |format|
       html_content = render_to_string partial: "matches/success"

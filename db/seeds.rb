@@ -1,8 +1,7 @@
 require 'open-uri'
 require 'faker'
 require_relative '../app/services/astrology_api'
-# require 'resolv-replace'
-
+require 'resolv-replace'
 
 api_uid = ENV["API_UID"]
 api_key = ENV["API_KEY"]
@@ -91,7 +90,43 @@ mathieu_trancoso_data = {
   looking_for: 2
 }
 
-team_users_data = [boris_data, etienne_data, ghita_data, maria_data, mathieu_trancoso_data]
+laura_person_data = {
+  username: 'Laura',
+  email: 'l.person@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code",
+  hobbies: ['Wagonner'],
+  birth_date: '13/12/1992',
+  birth_hour: '11:00',
+  birth_location: 'Landerneau',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+
+alexandre_platteeuw_data = {
+  username: 'Alex',
+  email: 'a.platteeuw@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code",
+  hobbies: ['Wagonner'],
+  birth_date: '11/10/1993',
+  birth_hour: '10:30',
+  birth_location: 'Roubaix',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+
+team_users_data = [
+  boris_data,
+  etienne_data,
+  ghita_data,
+  maria_data,
+  mathieu_trancoso_data,
+  laura_person_data,
+  alexandre_platteeuw_data
+]
 
 # <--- Set famous users data --->
 
@@ -275,8 +310,18 @@ photo_etienne = File.open(Rails.root.join("public/seed_images/etienne.jpg"))
 photo_ghita = File.open(Rails.root.join("public/seed_images/ghita.jpg"))
 photo_maria = File.open(Rails.root.join("public/seed_images/maria.jpg"))
 photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
+photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
+photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 
-team_users_photos = [photo_boris, photo_etienne, photo_ghita, photo_maria, photo_mathieu_trancoso]
+team_users_photos = [
+  photo_boris,
+  photo_etienne,
+  photo_ghita,
+  photo_maria,
+  photo_mathieu_trancoso,
+  photo_laura_person,
+  photo_alexandre_platteeuw
+]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
 photo_melanie_thierry = File.open(Rails.root.join("public/seed_images/melanie_thierry.jpg"))
@@ -333,7 +378,7 @@ users = User.all
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
-  love_compatibility_report_collection = {}
+  # love_compatibility_report_collection = {}
   potential_mates.each do |mate|
     mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
       user.birth_date,
@@ -347,21 +392,21 @@ users.each do |user|
     )
     score_collection.store(mate.id, mate_score)
 
-    mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
-      user.birth_date,
-      user.birth_hour,
-      user.birth_location,
-      user.birth_country,
-      mate.birth_date,
-      mate.birth_hour,
-      mate.birth_location,
-      mate.birth_country
-    )
-    love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
+    # mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
+    #   user.birth_date,
+    #   user.birth_hour,
+    #   user.birth_location,
+    #   user.birth_country,
+    #   mate.birth_date,
+    #   mate.birth_hour,
+    #   mate.birth_location,
+    #   mate.birth_country
+    # )
+    # love_compatibility_report_collection.store(mate.id, mate_love_compatibility_report)
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
-  user.love_compatibility_reports = love_compatibility_report_collection
+  # user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!
 end

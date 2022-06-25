@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 .astrocrush-header {
   font-size: 32px;
   font-family: $headers-font;
@@ -35,6 +36,9 @@
   display: block;
   margin-bottom: 48px;
   margin-top: 48px;
+  li {
+    position: relative;
+  }
 }
 
 // Carousel
@@ -44,10 +48,24 @@
   height: 135px;
   width: 114px;
   border-radius: 6px;
+  position: relative;
 }
 
 .match-photo:hover {
   opacity: 1;
+}
+
+li {
+  list-style: none;
+}
+
+li .glide__slide {
+  position: relative;
+
+}
+
+.small-score-container {
+  position: absolute;
 }
 
 // MESSAGES
@@ -179,3 +197,124 @@
 //   font-weight: bold;
 //   margin: 0;
 // }
+
+// - - - SCORE - - -
+
+.small-score-container {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  top: 5px;
+  left: 47px;
+}
+
+$planet-size: 24px;
+
+.small-score-planet-high {
+  width: $planet-size;
+  height: $planet-size;
+  border-radius: 50%;
+  // border: 1px solid #FFFFFF;
+  // background: linear-gradient(138.63deg, red 19.63%, #510FAE 118.46%), #FFFFFF;
+  background: radial-gradient(circle at calc(#{$planet-size} / 3) calc(#{$planet-size} / 3), red, #510FAE);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: $planet-size;
+  position: relative;
+  perspective: calc($planet-size * 5);
+  transform-style: preserve-3d;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.small-score-planet-mid-high {
+  width: $planet-size;
+  height: $planet-size;
+  border-radius: 50%;
+  // border: 1px solid #FFFFFF;
+  // background: linear-gradient(138.63deg, rgb(255, 86, 119) 19.63%, #510FAE 118.46%), #FFFFFF;
+  background: radial-gradient(circle at calc(#{$planet-size} / 3) calc(#{$planet-size} / 3), rgb(255, 86, 119), #510FAE);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: $planet-size;
+  position: relative;
+  perspective: calc($planet-size * 5);
+  transform-style: preserve-3d;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.small-score-planet-neutral {
+  width: $planet-size;
+  height: $planet-size;
+  border-radius: 50%;
+  // border: 1px solid #FFFFFF;
+  // background: linear-gradient(138.63deg, #9670D6 19.63%, #510FAE 118.46%), #FFFFFF;
+  background: radial-gradient(circle at calc(#{$planet-size} / 3) calc(#{$planet-size} / 3), #9670D6, #510FAE);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: $planet-size;
+  position: relative;
+  perspective: calc($planet-size * 5);
+  transform-style: preserve-3d;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.small-score-planet-mid-low {
+  width: $planet-size;
+  height: $planet-size;
+  border-radius: 50%;
+  // border: 1px solid #FFFFFF;
+  // background: linear-gradient(138.63deg, rgb(183, 199, 238) 19.63%, #510FAE 118.46%), #FFFFFF;
+  background: radial-gradient(circle at calc(#{$planet-size} / 3) calc(#{$planet-size} / 3), rgb(183, 199, 238), #510FAE);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: $planet-size;
+  position: relative;
+  perspective: calc($planet-size * 5);
+  transform-style: preserve-3d;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.small-score-planet-low {
+  width: $planet-size;
+  height: $planet-size;
+  border-radius: 50%;
+  // border: 1px solid #FFFFFF;
+  // background: linear-gradient(138.63deg, rgb(210, 210, 210) 19.63%, #510FAE 118.46%), #FFFFFF;
+  background: radial-gradient(circle at calc(#{$planet-size} / 3) calc(#{$planet-size} / 3), rgb(210, 210, 210), #510FAE);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: $planet-size;
+  position: relative;
+  perspective: calc($planet-size * 5);
+  transform-style: preserve-3d;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.small-score {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  font-weight: 500;
+  margin: 0;
+}

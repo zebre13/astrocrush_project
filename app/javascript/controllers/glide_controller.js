@@ -17,6 +17,7 @@ export default class extends Controller {
       dragThreshold: 120,
       swipeThreshold: 140,
     } ).mount({ Controls, Breakpoints, Swipe})
+    console.log("heeeyyyy ")
 
     // var glide = new Glide('.glide', {
     //   type: 'carousel',

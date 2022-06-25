@@ -16,4 +16,4 @@ Rails.application.routes.draw do
   get 'test', to: "users#test"
 end
 
-# resources :notifications
+

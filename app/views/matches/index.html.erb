@@ -6,18 +6,20 @@
 
   <div class="new-matches-container">
     <h3>New Matches</h3>
-      <% if @matches.count > 3 %>
+      <% if @newmatches.count > 3 %>
         <div class="glide" data-controller="glide">
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
-              <% @matches.each do |match| %>
+              <% @newmatches.each do |match| %>
 
                   <li class="glide__slide">
-                <div class="match-photo">
+                    <div class="match-photo">
+                      <%= link_to chatroom_path(match) do %>
                         <% if match.mate.photos.any?  %>
                           <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
                           <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
                         <% end %>
+                      <% end %>
                     </div>
 
                     <h1> <%= match.mate.username %> </h1>
@@ -46,13 +48,15 @@
         </div>
       <% else %>
       <div class="d-flex">
-        <% @matches.each do |match| %>
+        <% @newmatches.each do |match| %>
           <li>
             <div class="match-photo ">
+              <%= link_to chatroom_path(match) do %>
                 <% if match.mate.photos.any?  %>
                   <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
                   <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
                 <% end %>
+              <% end %>
             </div>
 
             <h1> <%= match.mate.username %> </h1>
@@ -85,7 +89,7 @@
       Messages
     </h3>
 
-    <% @matches.each do |match| %>
+    <% @oldmatches.each do |match| %>
       <div class="message-card">
         <% if match.mate.photos.any?  %>
           <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>

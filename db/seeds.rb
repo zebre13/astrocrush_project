@@ -79,7 +79,7 @@ maria_data = {
 
 mathieu_trancoso_data = {
   username: 'Mathieu',
-  email: 'm.trancoso@astrocrush.io',
+  email: 'gc',
   password: 'azerty',
   description: "All you need is code",
   hobbies: ['Wagonner'],

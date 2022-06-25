@@ -62,7 +62,9 @@
               <% end %>
             </div>
 
-            <h1> <%= match.mate.username %> </h1>
+            <h1>
+
+            <%= match.mate.username %> </h1>
             <%= link_to " delete ", match_path(match), method: :delete %>
 
 
@@ -80,8 +82,9 @@
     <% @oldmatches.each do |match| %>
       <%= link_to chatroom_path(match) do %>
         <div class="message-card">
-          <% if match.user.photos.any?  %>
-            <%= cl_image_tag(match.user.photos.first&.key, class: "message-avatar") %>
+          <%# <% user == current_user ? user : mate %>
+          <% if match.mate.photos.any?  %>
+            <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>
           <% end %>
           <div class="message-text">
 

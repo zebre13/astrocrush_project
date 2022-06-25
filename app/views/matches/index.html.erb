@@ -10,19 +10,21 @@
     <div class="glide" data-controller="glide">
       <div class="glide__track" data-glide-el="track">
         <ul class="glide__slides">
-          <% @matches.each do |match| %>
-            <li class="glide__slide">
-              <div class="match-photo">
-                  <% if match.mate_for(current_user).photos.any?  %>
-                    <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, :class => "match-photo") %>
-                    <h1> <%= match.mate_for(current_user).username %> </h1>
-                    <div class="score-planet-mid-low">
-                      <%= match.score %>
-                    </div>
-                    <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
-                  <% end %>
-              </div>
-            </li>
+          <% if @newmatches.any? %>
+            <% @newmatches.each do |match| %>
+              <li class="glide__slide">
+                <div class="match-photo">
+                    <% if match.mate_for(current_user).photos.any?  %>
+                      <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, :class => "match-photo") %>
+                      <h1> <%= match.mate_for(current_user).username %> </h1>
+                      <div class="score-planet-mid-low">
+                        <%= match.score %>
+                      </div>
+                      <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
+                    <% end %>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>

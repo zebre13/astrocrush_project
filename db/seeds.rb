@@ -143,6 +143,19 @@ juliette_armanet_data = {
   gender: 2,
   looking_for: 1
 }
+kenza_tighrine_data = {
+  username: 'Kenza',
+  email: 'k.tighrine@astrocrush.io',
+  password: 'azerty',
+  description: "On m'appelle aussi Karima mais c'est pas grave",
+  hobbies: ['Chichah', 'Djellabah'],
+  birth_date: '04/08/1995',
+  birth_hour: '10:45',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
 melanie_thierry_data = {
   username: 'Melanie',
@@ -280,7 +293,8 @@ famous_users_data = [
   pierre_niney_data,
   pio_marmai_data,
   robert_pattinson_data,
-  rege_jean_page_data
+  rege_jean_page_data,
+  kenza_tighrine_data
 ]
 
 # <--- Set Fake users data --->

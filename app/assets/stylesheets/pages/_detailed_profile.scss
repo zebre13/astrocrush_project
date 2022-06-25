@@ -24,11 +24,17 @@
   font-size: 24px;
 }
 
+#carouselText {
+  position: relative;
+}
+
 #carouselText .carousel-indicators button {
   width: 10px;
   height: 10px;
   border-radius: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  top: 24px;
 }
 
 .tag {

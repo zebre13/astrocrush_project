@@ -436,65 +436,65 @@ puts "Finished!"
 
 # <--- Create Matches --->
 
-puts "Creating Matches..."
+# puts "Creating Matches..."
 
-first_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: boris.id,
-  chatroom_id: Chatroom.all[0].id
-}
+# first_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: boris.id,
+#   chatroom_id: Chatroom.all[0].id
+# }
 
-second_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: etienne.id,
-  chatroom_id: Chatroom.all[1].id
-}
+# second_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: etienne.id,
+#   chatroom_id: Chatroom.all[1].id
+# }
 
-third_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: rege_jean_page.id,
-  chatroom_id: Chatroom.all[2].id
-}
+# third_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: rege_jean_page.id,
+#   chatroom_id: Chatroom.all[2].id
+# }
 
-fourth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: robert_pattinson.id,
-  chatroom_id: Chatroom.all[3].id
-}
+# fourth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: robert_pattinson.id,
+#   chatroom_id: Chatroom.all[3].id
+# }
 
-fifth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: pio_marmai.id,
-  chatroom_id: Chatroom.all[4].id
-}
+# fifth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: pio_marmai.id,
+#   chatroom_id: Chatroom.all[4].id
+# }
 
-sixth_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: pierre_niney.id,
-  chatroom_id: Chatroom.all[5].id
-}
+# sixth_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: pierre_niney.id,
+#   chatroom_id: Chatroom.all[5].id
+# }
 
-seventh_match = {
-  status: "accepted",
-  user_id: maria.id,
-  mate_id: tom_leeb.id,
-  chatroom_id: Chatroom.all[6].id
-}
+# seventh_match = {
+#   status: "accepted",
+#   user_id: maria.id,
+#   mate_id: tom_leeb.id,
+#   chatroom_id: Chatroom.all[6].id
+# }
 
-matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
+# matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
 
-matches.each do |match|
-  match_instance = Match.new(match)
-  match_instance.save!
-end
+# matches.each do |match|
+#   match_instance = Match.new(match)
+#   match_instance.save!
+# end
 
-puts "Finished!"
+# puts "Finished!"
 
 # # <--- Create Messages --->
 

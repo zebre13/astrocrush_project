@@ -327,6 +327,8 @@ photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_t
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 
+
+
 team_users_photos = [
   photo_boris,
   photo_etienne,

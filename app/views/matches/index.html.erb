@@ -18,14 +18,14 @@
                   <li class="glide__slide">
                     <div class="match-photo">
                       <%= link_to chatroom_path(match) do %>
-                        <% if match.mate.photos.any?  %>
-                          <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
+                        <% if match.mate_for(current_user).photos.any?  %>
+                          <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, :class => "match-photo") %>
                           <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
                         <% end %>
                       <% end %>
                     </div>
 
-                    <%= match.mate.username %>
+                    <%= match.mate_for(current_user).username %>
 
                     <div class="small-score-container">
                       <% if eval(current_user.affinity_scores)[match.mate_id.to_i] >= 80 %>
@@ -54,14 +54,14 @@
           <li>
             <div class="match-photo ">
               <%= link_to chatroom_path(match) do %>
-                <% if match.mate.photos.any?  %>
-                  <%= cl_image_tag(match.mate.photos.first&.key, :class => "match-photo") %>
+                <% if match.mate_for(current_user).photos.any?  %>
+                  <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, :class => "match-photo") %>
                   <%#= link_to match.user.username, user_path(match.user), class: "fas fa-info-circle", style: "text-decoration: none" %>
                 <% end %>
               <% end %>
             </div>
 
-            <div class="text-center"><%= match.mate.username %></div>
+            <div class="text-center"><%= match.mate_for(current_user).username %></div>
 
           </li>
         <% end %>
@@ -79,12 +79,12 @@
 
         <div class="cardplustext">
           <div class="d-flex">
-            <% if match.mate.photos.any?  %>
-              <%= cl_image_tag(match.mate.photos.first&.key, class: "message-avatar") %>
+            <% if match.mate_for(current_user).photos.any?  %>
+              <%= cl_image_tag(match.mate_for(current_user).photos.first&.key, class: "message-avatar") %>
             <% end %>
             <div class="message-text">
               <h5 class="message-username">
-                <%= link_to match.mate.username, chatroom_path(match.chatroom) %>
+                <%= link_to match.mate_for(current_user).username, chatroom_path(match.chatroom) %>
               </h5>
               <p class="message-content overflow-hidden small text-secondary ">
                 <%= match.chatroom.messages.last.content %>

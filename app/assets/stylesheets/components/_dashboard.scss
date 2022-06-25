@@ -12,6 +12,11 @@ div#slider figure {
   width: 80vw;
 }
 
+
+.zodiac {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
 // div#slider figure div {
 //   width: 100vh;
 //   height: auto;

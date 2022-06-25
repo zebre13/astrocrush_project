@@ -67,7 +67,9 @@
         My passions
       </h5>
       <p>
-        <%= current_user.hobbies %>
+        <% eval(current_user.hobbies).each do |hobbie| %>
+          <%= hobbie %>, 
+        <% end %>
       </p>
     </div>
 
@@ -79,5 +81,3 @@
   </div>
 
 </div>
-
-<%= render "navbar/navbar_screens" %>

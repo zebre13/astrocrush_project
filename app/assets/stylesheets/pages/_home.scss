@@ -1,12 +1,12 @@
 .astrocrush {
   position: absolute;
   top:9px;
+  padding-bottom: 5px;
   font-size: 32px;
   font-family: $headers-font;
-  height: 40px;
+  text-align: center;
   color: $violet_dark;
   width: 390px;
-  text-align: center;
 }
 
 .profiles {
@@ -51,7 +51,6 @@
 
 .profile-infos {
   padding:16px;
-  padding-bottom: 32px;
   position:absolute;
   bottom: 0px;
   background:linear-gradient(0deg, black, transparent);
@@ -135,7 +134,7 @@
 }
 
 #backgroundcolor {
-  display: flex;
+  // display: flex;
   justify-content: center;
   height: 100vh;
   background-image: url(/assets/astro-white-9d5a6a5….svg);

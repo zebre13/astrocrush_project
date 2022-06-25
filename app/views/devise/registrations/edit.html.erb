@@ -30,15 +30,12 @@
 
       <%= f.select :hobbies, required: false %> <%# BOB: change hobbies to "f.select" later on %>
 
-<<<<<<< HEAD
       <%= f.input :photos, as: :file, multiple: true, required: true %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
 
       <%= f.input :birth_date, required: true %>
-=======
+
     <%= f.select :hobbies, required: false %>
 
-    <%= f.file_field :photos, as: :file, multiple: true, required: true %>
->>>>>>> master
 
       <%= f.input :birth_hour, required: true %>
 

@@ -105,7 +105,7 @@ class AstrologyApi
 
   # Get response from API
   def get_response(endpoint, data)
-    url = URI.parse(@@base_url+endpoint)
+    url = URI.parse(@@base_url + endpoint)
     req = Net::HTTP::Post.new(url)
     req.basic_auth @api_uid, @api_key
     req.set_form_data(data)

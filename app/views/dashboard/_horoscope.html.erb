@@ -1,7 +1,11 @@
-  <div class="container mt-5">
+  <div class="container text-align-center mt-5">
     <div class="">
       <br>
-      <h5>Today</h5>
+      <div class="border-bottom">
+      <h5 >Today <%= Time.now.asctime %></h5>
+      <br>
+      </div>
+      <br>
       <p><%= @daily_horoscope %></p>
     </div>
   </div>

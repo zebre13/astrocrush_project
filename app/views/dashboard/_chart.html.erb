@@ -1,5 +1,7 @@
-<div class="container">
+<div class="container text-align-center mt-5">
+
   <div data-controller="dashboard">
+
     <div data-dashboard-target="table">
       <%= render "dashboard/table"%>
     </div>
@@ -8,9 +10,22 @@
       <%= render "dashboard/circle"%>
     </div>
 
-    <div class="d-flex justify-content-between navbar-menu z-1 pt-5">
-      <h6 data-action="click->dashboard#horoscope" data-dashboard-target="table_menu" class="lead"><em>Table</em></h6>
+    <br>
+
+    <div class="d-flex justify-content-around navbar-menu z-1 pt-5">
+
+      <h6 data-action="click->dashboard#table" data-dashboard-target="table_menu" class="lead">
+        <em>Table</em>
+      </h6>
+
       <h6>|</h6>
-      <h6 data-action="click->dashboard#profile" data-dashboard-target="circle_menu"><em>Circle</em></h6>
+
+      <h6 data-action="click->dashboard#circle" data-dashboard-target="circle_menu">
+        <em>Circle</em>
+      </h6>
+
     </div>
+
+  </div>
+
 </div>

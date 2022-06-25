@@ -65,33 +65,18 @@ export default class extends Controller {
 
   circle() {
     this.circleTarget.classList.remove("d-none");
-
-    this.horoscopeTarget.classList.add("d-none");
-    this.profileTarget.classList.add("d-none");
-    this.scoreTarget.classList.add("d-none");
     this.tableTarget.classList.add("d-none");
 
     this.circle_menuTarget.classList.add("lead");
-
-    this.horoscope_menuTarget.classList.remove("lead");
-    this.score_menuTarget.classList.remove("lead");
-    this.profile_menuTarget.classList.remove("lead");
     this.table_menuTarget.classList.remove("lead");
   }
 
   table() {
     this.tableTarget.classList.remove("d-none");
-
-    this.horoscopeTarget.classList.add("d-none");
-    this.profileTarget.classList.add("d-none");
-    this.scoreTarget.classList.add("d-none");
     this.circleTarget.classList.add("d-none");
 
     this.table_menuTarget.classList.add("lead");
-
-    this.horoscope_menuTarget.classList.remove("lead");
-    this.score_menuTarget.classList.remove("lead");
     this.circle_menuTarget.classList.remove("lead");
-    this.profile_menuTarget.classList.remove("lead");
+
   }
 }

@@ -1,23 +1,25 @@
-<div class="container text-align-center mt-5">
-  <br>
-  <div class="d-flex">
+<div class="container mt-5">
+  <div class="border-bottom pb-2">
     <%= image_tag "#{current_user.sign.downcase}.svg", alt: "" %>
-    <p>
-      <span class="me-1">☉</i></span>
-      <span class="me-2"><%= current_user.sign.capitalize %></span>
-    </p>
-    <p>
-      <span class="me-1">↑</span>
-      <span class="me-2"><%= current_user.rising.capitalize %></span>
-    </p>
-    <p>
-      <span class="me-1">☽</span>
-      <span class="me-2"><%= current_user.moon.capitalize %></span>
-    </p>
+    <div class="d-flex">
+      <p>
+        <span class="me-1">☉</i></span>
+        <span class="me-2"><%= current_user.sign.capitalize %></span>
+      </p>
+      <p>
+        <span class="me-1">↑</span>
+        <span class="me-2"><%= current_user.rising.capitalize %></span>
+      </p>
+      <p>
+        <span class="me-1">☽</span>
+        <span class="me-2"><%= current_user.moon.capitalize %></span>
+      </p>
+    </div>
   </div>
 
-  <% personnality_report = eval(current_user.personality_report).split(".") %>
+  <% personnality_report = eval(current_user.personality_report).join.to_s.split(".") %>
   <%# Carousel text %>
+  <br>
   <div id="carouselText" class="carousel carousel-dark slide" data-bs-ride="true">
     <div class="carousel-indicators">
       <% personnality_report.each_with_index do |element, i| %>

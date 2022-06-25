@@ -78,23 +78,23 @@
     </h3>
 
     <% @oldmatches.each do |match| %>
-      <div class="message-card">
-        <% if match.user.photos.any?  %>
-          <%= cl_image_tag(match.user.photos.first&.key, class: "message-avatar") %>
-        <% end %>
-
-        <div class="message-text">
+      <%= link_to chatroom_path(match) do %>
+        <div class="message-card">
+          <% if match.user.photos.any?  %>
+            <%= cl_image_tag(match.user.photos.first&.key, class: "message-avatar") %>
+          <% end %>
+          <div class="message-text">
 
           <h5 class="message-username">
-            <%#= match.mate.username %>
             <%= link_to match.user.username, chatroom_path(match.chatroom) %>
           </h5>
 
-          <p class="message-content">
-            <%#= TO DO %>
+          <p class="message-content overflow-hidden">
+            <%= match.chatroom.messages.last.content %>
           </p>
 
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>

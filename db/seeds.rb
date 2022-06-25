@@ -445,11 +445,11 @@ tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
 
 # <--- Create Chatrooms --->
 
-puts "Creating Chatrooms..."
+# puts "Creating Chatrooms..."
 
-7.times { Chatroom.new.save! }
+# 7.times { Chatroom.new.save! }
 
-puts "Finished!"
+# puts "Finished!"
 
 # <--- Create Matches --->
 

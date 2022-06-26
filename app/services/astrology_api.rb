@@ -259,8 +259,8 @@ end
 # test = AstrologyApi.new("API_UID", "API_KEY")
 # p test.wheel_chart("21/01/1994", "16:00", "Ermont", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
 
-city = 'Conakry'
-country_code = 'GN'
+city = 'Dakar'
+country_code = 'SN'
 # data = { place: city.capitalize, maxRows: 6 }
 api = AstrologyApi.new('619845', '0fe9a97cde1e13cefe57c49cf2643167')
 p api.city_coord(city, country_code)

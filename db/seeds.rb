@@ -198,7 +198,7 @@ aicha_diagne_data = {
   birth_date: '31/05/1996',
   birth_hour: '13:00',
   birth_location: 'Dakar',
-  birth_country: 'SEN',
+  birth_country: 'SN',
   gender: 2,
   looking_for: 1
 }

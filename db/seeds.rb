@@ -33,7 +33,6 @@ boris_data = {
   gender: 1,
   looking_for: 2
 }
-
 etienne_data = {
   username: 'Etienne',
   email: 'etiennededi@hotmail.fr',
@@ -47,7 +46,6 @@ etienne_data = {
   gender: 1,
   looking_for: 2
 }
-
 ghita_data = {
   username: 'Ghita',
   email: 'aa.ghita@gmail.com',
@@ -61,7 +59,6 @@ ghita_data = {
   gender: 2,
   looking_for: 1
 }
-
 maria_data = {
   username: 'Maria',
   email: 'leonor.varela91330@gmail.com',
@@ -75,7 +72,6 @@ maria_data = {
   gender: 2,
   looking_for: 1
 }
-
 mathieu_trancoso_data = {
   username: 'Mathieu',
   email: 'm.trancoso@astrocrush.io',
@@ -89,7 +85,6 @@ mathieu_trancoso_data = {
   gender: 1,
   looking_for: 2
 }
-
 laura_person_data = {
   username: 'Laura',
   email: 'l.person@astrocrush.io',
@@ -103,7 +98,6 @@ laura_person_data = {
   gender: 2,
   looking_for: 1
 }
-
 alexandre_platteeuw_data = {
   username: 'Alex',
   email: 'a.platteeuw@astrocrush.io',
@@ -117,7 +111,6 @@ alexandre_platteeuw_data = {
   gender: 1,
   looking_for: 2
 }
-
 kenza_tighrine_data = {
   username: 'Kenza',
   email: 'k.tighrine@astrocrush.io',
@@ -131,6 +124,19 @@ kenza_tighrine_data = {
   gender: 2,
   looking_for: 1
 }
+bruno_lelay_data = {
+  username: 'Bruno',
+  email: 'b.lelay@astrocrush.io',
+  password: 'azerty',
+  description: "For those about to rock...",
+  hobbies: ['Death metal', 'Drums'],
+  birth_date: '15/01/1995',
+  birth_hour: '23:40',
+  birth_location: 'Longjumeau',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
 team_users_data = [
   boris_data,
@@ -140,7 +146,8 @@ team_users_data = [
   mathieu_trancoso_data,
   laura_person_data,
   alexandre_platteeuw_data,
-  kenza_tighrine_data
+  kenza_tighrine_data,
+  bruno_lelay_data
 ]
 
 # <--- Set famous users data --->
@@ -158,7 +165,6 @@ juliette_armanet_data = {
   gender: 2,
   looking_for: 1
 }
-
 melanie_thierry_data = {
   username: 'Melanie',
   email: 'm.thierry@astrocrush.io',
@@ -172,7 +178,6 @@ melanie_thierry_data = {
   gender: 2,
   looking_for: 1
 }
-
 emma_mackey_data = {
   username: 'Emma',
   email: 'e.mackey@astrocrush.io',
@@ -186,7 +191,6 @@ emma_mackey_data = {
   gender: 2,
   looking_for: 1
 }
-
 zoe_kravitz_data = {
   username: 'Zoe',
   email: 'z.kravitz@astrocrush.io',
@@ -200,7 +204,6 @@ zoe_kravitz_data = {
   gender: 2,
   looking_for: 1
 }
-
 natalie_portman_data = {
   username: 'Natalie',
   email: 'n.portman@astrocrush.io',
@@ -214,7 +217,6 @@ natalie_portman_data = {
   gender: 2,
   looking_for: 1
 }
-
 tom_leeb_data = {
   username: 'Tom',
   email: 't.leeb@astrocrush.io',
@@ -228,7 +230,6 @@ tom_leeb_data = {
   gender: 1,
   looking_for: 2
 }
-
 pierre_niney_data = {
   username: 'Pierre',
   email: 'p.niney@astrocrush.io',
@@ -242,7 +243,6 @@ pierre_niney_data = {
   gender: 1,
   looking_for: 2
 }
-
 pio_marmai_data = {
   username: 'Pio',
   email: 'p.marmai@astrocrush.io',
@@ -256,7 +256,6 @@ pio_marmai_data = {
   gender: 1,
   looking_for: 2
 }
-
 robert_pattinson_data = {
   username: 'Robert',
   email: 'r.pattinson@astrocrush.io',
@@ -270,7 +269,6 @@ robert_pattinson_data = {
   gender: 1,
   looking_for: 2
 }
-
 rege_jean_page_data = {
   username: 'Rege-Jean',
   email: 'rj.page@astrocrush.io',
@@ -298,26 +296,6 @@ famous_users_data = [
   rege_jean_page_data
 ]
 
-# <--- Set Fake users data --->
-
-# fake_users_data = []
-
-# 10.times do
-#   fake_users_data << {
-#     username: Faker::Name.first_name,
-#     email: Faker::Internet.safe_email,
-#     password: 'azerty',
-#     description: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false),
-#     hobbies: Faker::Hobby.activity,
-#     birth_date: Faker::Date.birthday(min_age: 18, max_age: 45),
-#     birth_hour: "#{rand(0..23).to_s.rjust(2, '0')}:#{rand(0..59).to_s.rjust(2, '0')}",
-#     birth_location: 'Paris',
-#     birth_country: 'FR',
-#     gender: rand(1..2),
-#     looking_for: rand(1..2)
-#   }
-# end
-
 # <--- Set Photos --->
 
 photo_boris = File.open(Rails.root.join("public/seed_images/boris.jpg"))
@@ -328,6 +306,7 @@ photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_t
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
+photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
 
 team_users_photos = [
   photo_boris,
@@ -337,7 +316,8 @@ team_users_photos = [
   photo_mathieu_trancoso,
   photo_laura_person,
   photo_alexandre_platteeuw,
-  photo_kenza_tighrine
+  photo_kenza_tighrine,
+  photo_bruno_lelay
 ]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
@@ -364,16 +344,11 @@ famous_users_photos = [
   photo_rege_jean_page
 ]
 
-# fake_users_photos = []
-# 10.times do
-#   fake_users_photos << URI.open('https://thispersondoesnotexist.com/image')
-# end
-
-photos = team_users_photos + famous_users_photos #+ fake_users_photos
+photos = team_users_photos + famous_users_photos
 
 # <--- Create Users --->
 
-users_data = team_users_data + famous_users_data #+ fake_users_data
+users_data = team_users_data + famous_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
@@ -434,14 +409,14 @@ puts "#{User.all.length} users created successfully!"
 
 # <--- Select users --->
 
-maria = User.find_by_email('leonor.varela91330@gmail.com')
-boris = User.find_by_email('boris_bourdet@hotmail.com')
-etienne = User.find_by_email('etiennededi@hotmail.fr')
-rege_jean_page = User.find_by_email('rj.page@astrocrush.io')
-robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
-pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
-pierre_niney = User.find_by_email('p.niney@astrocrush.io')
-tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
+# maria = User.find_by_email('leonor.varela91330@gmail.com')
+# boris = User.find_by_email('boris_bourdet@hotmail.com')
+# etienne = User.find_by_email('etiennededi@hotmail.fr')
+# rege_jean_page = User.find_by_email('rj.page@astrocrush.io')
+# robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
+# pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
+# pierre_niney = User.find_by_email('p.niney@astrocrush.io')
+# tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
 
 # <--- Create Chatrooms --->
 

@@ -137,6 +137,32 @@ bruno_lelay_data = {
   gender: 1,
   looking_for: 2
 }
+sophiana_b_data = {
+  username: 'Sophiana',
+  email: 's.b@astrocrush.io',
+  password: 'azerty',
+  description: "Call me Sophiana",
+  hobbies: ['Drawing', 'Far away travels'],
+  birth_date: '24/02/1986',
+  birth_hour: '02:35',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+ibrahima_kaba_data = {
+  username: 'Ibrahima',
+  email: 'i.kaba@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is a good css",
+  hobbies: ['Css', 'Bicycle'],
+  birth_date: '23/12/1992',
+  birth_hour: '05:30',
+  birth_location: 'Conakry',
+  birth_country: 'GUI',
+  gender: 1,
+  looking_for: 2
+}
 
 team_users_data = [
   boris_data,
@@ -147,7 +173,9 @@ team_users_data = [
   laura_person_data,
   alexandre_platteeuw_data,
   kenza_tighrine_data,
-  bruno_lelay_data
+  bruno_lelay_data,
+  sophiana_b_data,
+  ibrahima_kaba_data
 ]
 
 # <--- Set famous users data --->
@@ -306,7 +334,9 @@ photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_t
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
-photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
+photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
+photo_sophiana_b = File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+photo_ibrahima_kaba = File.open(Rails.root.join("public/seed_images/ibrahima_kaba.jpg"))
 
 team_users_photos = [
   photo_boris,
@@ -317,7 +347,9 @@ team_users_photos = [
   photo_laura_person,
   photo_alexandre_platteeuw,
   photo_kenza_tighrine,
-  photo_bruno_lelay
+  photo_bruno_lelay,
+  photo_sophiana_b,
+  photo_ibrahima_kaba
 ]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))

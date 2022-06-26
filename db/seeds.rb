@@ -18,7 +18,7 @@ puts 'Database clean'
 
 puts 'Creating users...'
 
-# <-- Set Team users data --->
+# <-- Set wagon users data --->
 
 boris_data = {
   username: 'Boris',
@@ -137,8 +137,112 @@ bruno_lelay_data = {
   gender: 1,
   looking_for: 2
 }
+sophiana_b_data = {
+  username: 'Sophiana',
+  email: 's.b@astrocrush.io',
+  password: 'azerty',
+  description: "Call me Sophiana",
+  hobbies: ['Drawing', 'Far away travels'],
+  birth_date: '24/02/1986',
+  birth_hour: '02:35',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+ibrahima_kaba_data = {
+  username: 'Ibrahima',
+  email: 'i.kaba@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is a good css",
+  hobbies: ['Css', 'Bicycle'],
+  birth_date: '23/12/1992',
+  birth_hour: '05:30',
+  birth_location: 'Conakry',
+  birth_country: 'GUI',
+  gender: 1,
+  looking_for: 2
+}
+isabelle_levy_data = {
+  username: 'Isabelle',
+  email: 'i.levy@astrocrush.io',
+  password: 'azerty',
+  description: "Bons baisers de Martinique",
+  hobbies: ['Travel'],
+  birth_date: '01/01/1963',
+  birth_hour: '07:00',
+  birth_location: 'Compiegne',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+corentin_deseine_data = {
+  username: 'Corentin',
+  email: 'c.deseine@astrocrush.io',
+  password: 'azerty',
+  description: "15 is my favourite number!",
+  hobbies: ['Rugby', 'Gaming', 'Pokemons'],
+  birth_date: '02/08/1996',
+  birth_hour: '11:30',
+  birth_location: 'Ermont',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+aicha_diagne_data = {
+  username: 'Aicha',
+  email: 'a.diagne@astrocrush.io',
+  password: 'azerty',
+  description: "I make sure you product is in good hands",
+  hobbies: ['Luggage'],
+  birth_date: '31/05/1996',
+  birth_hour: '13:00',
+  birth_location: 'Dakar',
+  birth_country: 'SEN',
+  gender: 2,
+  looking_for: 1
+}
+paul_portier_data = {
+  username: 'Paul',
+  email: 'p.portier@astrocrush.io',
+  password: 'azerty',
+  description: "I don't believe in astrology, but I can't prove it is bullshit",
+  hobbies: ['Code', 'Photo'],
+  birth_date: '28/12/1991',
+  birth_hour: '11:30',
+  birth_location: 'Boulogne-Billancourt',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+nadia_auger_data = {
+  username: 'Nadia',
+  email: 'n.auger@astrocrush.io',
+  password: 'azerty',
+  description: "Who said geeks cannot be fashionable?",
+  hobbies: ['Code', 'Fashion', 'Chiwawas'],
+  birth_date: '23/08/1993',
+  birth_hour: '09:45',
+  birth_location: 'Bordeaux',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+jeremy_barbedienne_data = {
+  username: 'Jeremy',
+  email: 'j.barbedienne@astrocrush.io',
+  password: 'azerty',
+  description: "Coding is a bit like cooking, always better with good drinks.",
+  hobbies: ['Code', 'Cooking', 'Booze'],
+  birth_date: '20/09/1993',
+  birth_hour: '10:30',
+  birth_location: 'Saint-Lo',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
-team_users_data = [
+wagon_users_data = [
   boris_data,
   etienne_data,
   ghita_data,
@@ -147,7 +251,15 @@ team_users_data = [
   laura_person_data,
   alexandre_platteeuw_data,
   kenza_tighrine_data,
-  bruno_lelay_data
+  bruno_lelay_data,
+  sophiana_b_data,
+  ibrahima_kaba_data,
+  isabelle_levy_data,
+  corentin_deseine_data,
+  aicha_diagne_data,
+  paul_portier_data,
+  nadia_auger_data,
+  jeremy_barbedienne_data
 ]
 
 # <--- Set famous users data --->
@@ -306,9 +418,17 @@ photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_t
 photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
-photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
+photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
+photo_sophiana_b = File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+photo_ibrahima_kaba = File.open(Rails.root.join("public/seed_images/ibrahima_kaba.jpg"))
+photo_isabelle_levy = File.open(Rails.root.join("public/seed_images/isabelle_levy.jpg"))
+photo_corentin_deseine = File.open(Rails.root.join("public/seed_images/corentin_deseine.jpg"))
+photo_aicha_diagne = File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
+photo_paul_portier = File.open(Rails.root.join("public/seed_images/paul_portier.jpg"))
+photo_nadia_auger = File.open(Rails.root.join("public/seed_images/nadia_auger.jpg"))
+photo_jeremy_barbedienne = File.open(Rails.root.join("public/seed_images/jeremy_barbedienne.jpg"))
 
-team_users_photos = [
+wagon_users_photos = [
   photo_boris,
   photo_etienne,
   photo_ghita,
@@ -317,7 +437,15 @@ team_users_photos = [
   photo_laura_person,
   photo_alexandre_platteeuw,
   photo_kenza_tighrine,
-  photo_bruno_lelay
+  photo_bruno_lelay,
+  photo_sophiana_b,
+  photo_ibrahima_kaba,
+  photo_isabelle_levy,
+  photo_corentin_deseine,
+  photo_aicha_diagne,
+  photo_paul_portier,
+  photo_nadia_auger,
+  photo_jeremy_barbedienne
 ]
 
 photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
@@ -344,11 +472,11 @@ famous_users_photos = [
   photo_rege_jean_page
 ]
 
-photos = team_users_photos + famous_users_photos
+photos = wagon_users_photos + famous_users_photos
 
 # <--- Create Users --->
 
-users_data = team_users_data + famous_users_data
+users_data = wagon_users_data + famous_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)

@@ -159,7 +159,7 @@ ibrahima_kaba_data = {
   birth_date: '23/12/1992',
   birth_hour: '05:30',
   birth_location: 'Conakry',
-  birth_country: 'GUI',
+  birth_country: 'GN',
   gender: 1,
   looking_for: 2
 }

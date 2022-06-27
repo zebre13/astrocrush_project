@@ -485,7 +485,7 @@ users_data.each_with_index do |user_data, index|
   user.moon = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
   user.planets = AstrologyApi.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.wheel_chart = AstrologyApi.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  # user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
   p "*** #{user.username} ***"
@@ -498,6 +498,8 @@ users = User.all
 users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
+  partner_report_collection = {}
+  sun_report_collection = {}
   # love_compatibility_report_collection = {}
   potential_mates.each do |mate|
     mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
@@ -511,6 +513,24 @@ users.each do |user|
       mate.birth_country
     )
     score_collection.store(mate.id, mate_score)
+
+    mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
+      user.birth_date,
+      user.gender,
+      mate.birth_date,
+      mate.gender,
+      mate.username
+    )
+    partner_report_collection.store(mate.id, mate_partner_report)
+
+    mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
+      mate.birth_date,
+      mate.birth_hour,
+      mate.birth_location,
+      mate.birth_country,
+      'sun'
+    )
+    sun_report_collection.store(mate.id, mate_sun_report)
 
     # mate_love_compatibility_report = AstrologyApi.new(api_uid, api_key).love_compatibility_report(
     #   user.birth_date,
@@ -526,6 +546,8 @@ users.each do |user|
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
+  user.partner_reports = partner_report_collection
+  user.mate_sun_reports = sun_report_collection
   # user.love_compatibility_reports = love_compatibility_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!

@@ -82,191 +82,191 @@ team_users_data = [
 
 # <-- Set Wagon users data --->
 
-# mathieu_trancoso_data = {
-#   username: 'Mathieu',
-#   email: 'm.trancoso@astrocrush.io',
-#   password: 'azerty',
-#   description: "All you need is code.",
-#   hobbies: ['Wagonner'],
-#   birth_date: '21/01/1994',
-#   birth_hour: '16:00',
-#   birth_location: 'Ermont',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
-# laura_person_data = {
-#   username: 'Laura',
-#   email: 'l.person@astrocrush.io',
-#   password: 'azerty',
-#   description: "All you need is code.",
-#   hobbies: ['Wagonner'],
-#   birth_date: '13/12/1992',
-#   birth_hour: '11:00',
-#   birth_location: 'Landerneau',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
-# alexandre_platteeuw_data = {
-#   username: 'Alex',
-#   email: 'a.platteeuw@astrocrush.io',
-#   password: 'azerty',
-#   description: "All you need is code.",
-#   hobbies: ['Wagonner'],
-#   birth_date: '11/10/1993',
-#   birth_hour: '10:30',
-#   birth_location: 'Roubaix',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
-# kenza_tighrine_data = {
-#   username: 'Kenza',
-#   email: 'k.tighrine@astrocrush.io',
-#   password: 'azerty',
-#   description: "Sometimes they call me Karima but it doesn't matter.",
-#   hobbies: ['Chicha', 'Djellaba'],
-#   birth_date: '04/08/1995',
-#   birth_hour: '10:45',
-#   birth_location: 'Paris',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
-# bruno_lelay_data = {
-#   username: 'Bruno',
-#   email: 'b.lelay@astrocrush.io',
-#   password: 'azerty',
-#   description: "For those about to rock, I salute you.",
-#   hobbies: ['Death metal', 'Drums'],
-#   birth_date: '15/01/1995',
-#   birth_hour: '23:40',
-#   birth_location: 'Longjumeau',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
-# sophiana_b_data = {
-#   username: 'Sophiana',
-#   email: 's.b@astrocrush.io',
-#   password: 'azerty',
-#   description: "If you like space travelling, we might meet.",
-#   hobbies: ['Drawing', 'Long distance trips'],
-#   birth_date: '24/02/1986',
-#   birth_hour: '02:35',
-#   birth_location: 'Paris',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
-# ibrahima_kaba_data = {
-#   username: 'Ibrahima',
-#   email: 'i.kaba@astrocrush.io',
-#   password: 'azerty',
-#   description: "All you need is a good css and a neighbor who cooks well.",
-#   hobbies: ['Css', 'Bicycle', 'Neighborfood'],
-#   birth_date: '23/12/1992',
-#   birth_hour: '05:30',
-#   birth_location: 'Conakry',
-#   birth_country: 'GN',
-#   gender: 1,
-#   looking_for: 2
-# }
-# isabelle_levy_data = {
-#   username: 'Isabelle',
-#   email: 'i.levy@astrocrush.io',
-#   password: 'azerty',
-#   description: "Bons baisers de Martinique.",
-#   hobbies: ['Travel'],
-#   birth_date: '01/01/1963',
-#   birth_hour: '07:00',
-#   birth_location: 'Compiegne',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
-# corentin_deseine_data = {
-#   username: 'Corentin',
-#   email: 'c.deseine@astrocrush.io',
-#   password: 'azerty',
-#   description: "If I had to choose a number between 1 and 100, it would probably be 15.",
-#   hobbies: ['Rugby', 'Gaming', 'Pokemons'],
-#   birth_date: '02/08/1996',
-#   birth_hour: '11:30',
-#   birth_location: 'Ermont',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
-# aicha_diagne_data = {
-#   username: 'Aicha',
-#   email: 'a.diagne@astrocrush.io',
-#   password: 'azerty',
-#   description: "Your product is in good hands.",
-#   hobbies: ['Luggage'],
-#   birth_date: '31/05/1996',
-#   birth_hour: '13:00',
-#   birth_location: 'Dakar',
-#   birth_country: 'SN',
-#   gender: 2,
-#   looking_for: 1
-# }
-# paul_portier_data = {
-#   username: 'Paul',
-#   email: 'p.portier@astrocrush.io',
-#   password: 'azerty',
-#   description: "I don't believe in astrology, but I can't prove it wrong either...",
-#   hobbies: ['Code', 'Photo'],
-#   birth_date: '28/12/1991',
-#   birth_hour: '11:30',
-#   birth_location: 'Boulogne-Billancourt',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
-# nadia_auger_data = {
-#   username: 'Nadia',
-#   email: 'n.auger@astrocrush.io',
-#   password: 'azerty',
-#   description: "Who said geeks cannot be fashionable?",
-#   hobbies: ['Code', 'Fashion', 'Chihuahuas'],
-#   birth_date: '23/08/1993',
-#   birth_hour: '09:45',
-#   birth_location: 'Bordeaux',
-#   birth_country: 'FR',
-#   gender: 2,
-#   looking_for: 1
-# }
-# jeremy_barbedienne_data = {
-#   username: 'Jeremy',
-#   email: 'j.barbedienne@astrocrush.io',
-#   password: 'azerty',
-#   description: "Coding is a like cooking, and more convivial with good drinks.",
-#   hobbies: ['Code', 'Cooking', 'Booze'],
-#   birth_date: '20/09/1993',
-#   birth_hour: '10:30',
-#   birth_location: 'Saint-Lo',
-#   birth_country: 'FR',
-#   gender: 1,
-#   looking_for: 2
-# }
+mathieu_trancoso_data = {
+  username: 'Mathieu',
+  email: 'm.trancoso@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code.",
+  hobbies: ['Wagonner'],
+  birth_date: '21/01/1994',
+  birth_hour: '16:00',
+  birth_location: 'Ermont',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+laura_person_data = {
+  username: 'Laura',
+  email: 'l.person@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code.",
+  hobbies: ['Wagonner'],
+  birth_date: '13/12/1992',
+  birth_hour: '11:00',
+  birth_location: 'Landerneau',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+alexandre_platteeuw_data = {
+  username: 'Alex',
+  email: 'a.platteeuw@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is code.",
+  hobbies: ['Wagonner'],
+  birth_date: '11/10/1993',
+  birth_hour: '10:30',
+  birth_location: 'Roubaix',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+kenza_tighrine_data = {
+  username: 'Kenza',
+  email: 'k.tighrine@astrocrush.io',
+  password: 'azerty',
+  description: "Sometimes they call me Karima but it doesn't matter.",
+  hobbies: ['Chicha', 'Djellaba'],
+  birth_date: '04/08/1995',
+  birth_hour: '10:45',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+bruno_lelay_data = {
+  username: 'Bruno',
+  email: 'b.lelay@astrocrush.io',
+  password: 'azerty',
+  description: "For those about to rock, I salute you.",
+  hobbies: ['Death metal', 'Drums'],
+  birth_date: '15/01/1995',
+  birth_hour: '23:40',
+  birth_location: 'Longjumeau',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+sophiana_b_data = {
+  username: 'Sophiana',
+  email: 's.b@astrocrush.io',
+  password: 'azerty',
+  description: "If you like space travelling, we might meet.",
+  hobbies: ['Drawing', 'Long distance trips'],
+  birth_date: '24/02/1986',
+  birth_hour: '02:35',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+ibrahima_kaba_data = {
+  username: 'Ibrahima',
+  email: 'i.kaba@astrocrush.io',
+  password: 'azerty',
+  description: "All you need is a good css and a neighbor who cooks well.",
+  hobbies: ['Css', 'Bicycle', 'Neighborfood'],
+  birth_date: '23/12/1992',
+  birth_hour: '05:30',
+  birth_location: 'Conakry',
+  birth_country: 'GN',
+  gender: 1,
+  looking_for: 2
+}
+isabelle_levy_data = {
+  username: 'Isabelle',
+  email: 'i.levy@astrocrush.io',
+  password: 'azerty',
+  description: "Bons baisers de Martinique.",
+  hobbies: ['Travel'],
+  birth_date: '01/01/1963',
+  birth_hour: '07:00',
+  birth_location: 'Compiegne',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+corentin_deseine_data = {
+  username: 'Corentin',
+  email: 'c.deseine@astrocrush.io',
+  password: 'azerty',
+  description: "If I had to choose a number between 1 and 100, it would probably be 15.",
+  hobbies: ['Rugby', 'Gaming', 'Pokemons'],
+  birth_date: '02/08/1996',
+  birth_hour: '11:30',
+  birth_location: 'Ermont',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+aicha_diagne_data = {
+  username: 'Aicha',
+  email: 'a.diagne@astrocrush.io',
+  password: 'azerty',
+  description: "Your product is in good hands.",
+  hobbies: ['Luggage'],
+  birth_date: '31/05/1996',
+  birth_hour: '13:00',
+  birth_location: 'Dakar',
+  birth_country: 'SN',
+  gender: 2,
+  looking_for: 1
+}
+paul_portier_data = {
+  username: 'Paul',
+  email: 'p.portier@astrocrush.io',
+  password: 'azerty',
+  description: "I don't believe in astrology, but I can't prove it wrong either...",
+  hobbies: ['Code', 'Photo'],
+  birth_date: '28/12/1991',
+  birth_hour: '11:30',
+  birth_location: 'Boulogne-Billancourt',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
+nadia_auger_data = {
+  username: 'Nadia',
+  email: 'n.auger@astrocrush.io',
+  password: 'azerty',
+  description: "Who said geeks cannot be fashionable?",
+  hobbies: ['Code', 'Fashion', 'Chihuahuas'],
+  birth_date: '23/08/1993',
+  birth_hour: '09:45',
+  birth_location: 'Bordeaux',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+jeremy_barbedienne_data = {
+  username: 'Jeremy',
+  email: 'j.barbedienne@astrocrush.io',
+  password: 'azerty',
+  description: "Coding is a like cooking, and more convivial with good drinks.",
+  hobbies: ['Code', 'Cooking', 'Booze'],
+  birth_date: '20/09/1993',
+  birth_hour: '10:30',
+  birth_location: 'Saint-Lo',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
-# wagon_users_data = [
-#   mathieu_trancoso_data,
-#   laura_person_data,
-#   alexandre_platteeuw_data,
-#   kenza_tighrine_data,
-#   bruno_lelay_data,
-#   sophiana_b_data,
-#   ibrahima_kaba_data,
-#   isabelle_levy_data,
-#   corentin_deseine_data,
-#   aicha_diagne_data,
-#   paul_portier_data,
-#   nadia_auger_data,
-#   jeremy_barbedienne_data
-# ]
+wagon_users_data = [
+  mathieu_trancoso_data,
+  laura_person_data,
+  alexandre_platteeuw_data,
+  kenza_tighrine_data,
+  bruno_lelay_data,
+  sophiana_b_data,
+  ibrahima_kaba_data,
+  isabelle_levy_data,
+  corentin_deseine_data,
+  aicha_diagne_data,
+  paul_portier_data,
+  nadia_auger_data,
+  jeremy_barbedienne_data
+]
 
 # <--- Set famous users data --->
 
@@ -428,35 +428,35 @@ team_users_photos = [
   photo_maria
 ]
 
-# photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
-# photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
-# photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
-# photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
-# photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
-# photo_sophiana_b = File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
-# photo_ibrahima_kaba = File.open(Rails.root.join("public/seed_images/ibrahima_kaba.jpg"))
-# photo_isabelle_levy = File.open(Rails.root.join("public/seed_images/isabelle_levy.jpg"))
-# photo_corentin_deseine = File.open(Rails.root.join("public/seed_images/corentin_deseine.jpg"))
-# photo_aicha_diagne = File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
-# photo_paul_portier = File.open(Rails.root.join("public/seed_images/paul_portier.jpg"))
-# photo_nadia_auger = File.open(Rails.root.join("public/seed_images/nadia_auger.jpg"))
-# photo_jeremy_barbedienne = File.open(Rails.root.join("public/seed_images/jeremy_barbedienne.jpg"))
+photo_mathieu_trancoso = File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
+photo_laura_person = File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
+photo_alexandre_platteeuw = File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
+photo_kenza_tighrine = File.open(Rails.root.join("public/seed_images/kenza_tighrine.jpg"))
+photo_bruno_lelay = File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
+photo_sophiana_b = File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+photo_ibrahima_kaba = File.open(Rails.root.join("public/seed_images/ibrahima_kaba.jpg"))
+photo_isabelle_levy = File.open(Rails.root.join("public/seed_images/isabelle_levy.jpg"))
+photo_corentin_deseine = File.open(Rails.root.join("public/seed_images/corentin_deseine.jpg"))
+photo_aicha_diagne = File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
+photo_paul_portier = File.open(Rails.root.join("public/seed_images/paul_portier.jpg"))
+photo_nadia_auger = File.open(Rails.root.join("public/seed_images/nadia_auger.jpg"))
+photo_jeremy_barbedienne = File.open(Rails.root.join("public/seed_images/jeremy_barbedienne.jpg"))
 
-# wagon_users_photos = [
-#   photo_mathieu_trancoso,
-#   photo_laura_person,
-#   photo_alexandre_platteeuw,
-#   photo_kenza_tighrine,
-#   photo_bruno_lelay,
-#   photo_sophiana_b,
-#   photo_ibrahima_kaba,
-#   photo_isabelle_levy,
-#   photo_corentin_deseine,
-#   photo_aicha_diagne,
-#   photo_paul_portier,
-#   photo_nadia_auger,
-#   photo_jeremy_barbedienne
-# ]
+wagon_users_photos = [
+  photo_mathieu_trancoso,
+  photo_laura_person,
+  photo_alexandre_platteeuw,
+  photo_kenza_tighrine,
+  photo_bruno_lelay,
+  photo_sophiana_b,
+  photo_ibrahima_kaba,
+  photo_isabelle_levy,
+  photo_corentin_deseine,
+  photo_aicha_diagne,
+  photo_paul_portier,
+  photo_nadia_auger,
+  photo_jeremy_barbedienne
+]
 
 # photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))
 # photo_melanie_thierry = File.open(Rails.root.join("public/seed_images/melanie_thierry.jpg"))
@@ -482,11 +482,11 @@ team_users_photos = [
 #   photo_rege_jean_page
 # ]
 
-photos = team_users_photos #+ wagon_users_photos #+ famous_users_photos
+photos = team_users_photos + wagon_users_photos #+ famous_users_photos
 
 # <--- Create Users --->
 
-users_data = team_users_data #+ wagon_users_data #+ famous_users_data
+users_data = team_users_data + wagon_users_data #+ famous_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
@@ -495,7 +495,7 @@ users_data.each_with_index do |user_data, index|
   user.moon = AstrologyApi.new(api_uid, api_key).horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)['planets'][1]['sign']
   user.planets = AstrologyApi.new(api_uid, api_key).planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.wheel_chart = AstrologyApi.new(api_uid, api_key).wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  # user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.personality_report = AstrologyApi.new(api_uid, api_key).personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.photos.attach(io: photos[index], filename: user.username, content_type: 'jpg')
   user.save!
   p "*** #{user.username} ***"

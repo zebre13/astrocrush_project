@@ -75,10 +75,12 @@
           </div>
         <% end %>
     </div>
-    <div class="d-flex justify-content-center align-items-center py-2">
+    <div class="d-flex justify-content-center py-5">
       <div class="logout-button">
-        <%= link_to " Log out", destroy_user_session_path, method: :delete, class: "fas fa-power-off" %>
+        <%= link_to " Log out", destroy_user_session_path, method: :delete %>
       </div>
     </div>
   </div>
 </div>
+  <div class="empty-row">
+  </div>

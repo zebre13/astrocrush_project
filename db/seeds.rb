@@ -215,7 +215,7 @@ natalie_portman_data = {
 
 tom_leeb_data = {
   username: 'Tom',
-  email: 't.leeb@astrocrush.io',
+  email: 'rails db:',
   password: 'azerty',
   description: "La TV me réussit mieux que la chanson.",
   hobbies: ['TV', 'Singing'],

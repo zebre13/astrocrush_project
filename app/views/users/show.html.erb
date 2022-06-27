@@ -92,7 +92,7 @@
 
       <div class="pt-2 pb-5 border-bottom">
         <h5 class="mb-1">
-          <%= @partner_report['title'] %>
+          <%= eval(current_user.partner_reports)[params[:id].to_i]['title'] %>
         </h5>
 
         <div class="relation-container">
@@ -101,20 +101,19 @@
           </div>
           <div class="relation-text">
             <p>
-              <%= @partner_report['msg'] %>
+              <%= eval(current_user.partner_reports)[params[:id].to_i]['msg'] %>
             </p>
           </div>
         </div>
 
         <p>Keywords:</p>
 
-        <% @partner_report['tags'].split(",").each do |tag| %>
+        <% eval(current_user.partner_reports)[params[:id].to_i]['tags'].split(",").each do |tag| %>
           <div class="tag">
             <%= tag %>
           </div>
         <% end %>
       </div>
-
 
       <div class="pt-2 pb-4 border-bottom">
         <h5 class="mb-1">
@@ -127,7 +126,7 @@
           </div>
         </div>
 
-        <% sun_report = @sun_report['report'].split(".") %>
+        <% sun_report = eval(current_user.mate_sun_reports)[params[:id].to_i]['report'].split(".") %>
         <%# Carousel text %>
         <div id="carouselText" class="carousel carousel-dark slide" data-bs-ride="true">
           <div class="carousel-indicators">

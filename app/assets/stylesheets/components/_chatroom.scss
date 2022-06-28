@@ -1,3 +1,41 @@
+.chatroom-header {
+  width: 100vw;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chatroom-avatar {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+}
+
+.chatroom-header p {
+  font-size: 12px;
+  color: rgb(133, 133, 133);
+  padding-top: 4px;
+  margin: 0;
+}
+
+.chatroom-back-button {
+  opacity: 0.5;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
+.match-date {
+  font-style: "Manrope";
+  text-align: center;
+  font-size: 12px;
+  color: rgb(200, 200, 200);
+  margin-bottom: 16px;
+}
+
 .chatroom {
   background: white;
   margin-top: 9px;
@@ -25,7 +63,7 @@
   .messages {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    // padding: 1rem;
   }
 
   #new_message {

@@ -1,12 +1,12 @@
-<div class="container text-align-center mt-5">
+<div class="container text-align-center mt-5 pb-5">
   <div class="">
     <%= image_tag "zodiac.svg", alt: "", class: "zodiac"%>
     <br>
-    <div class=" border-bottom">
+    <div class="border-bottom">
       <h4 >Today <%= Time.now.asctime %></h4>
     </div>
     <br>
-    <div class="overflow-auto pb-4" height="250px">
+    <div class="pb-5">
       <p><%= @daily_horoscope %></p>
     </div>
 

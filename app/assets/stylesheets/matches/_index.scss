@@ -70,9 +70,32 @@ li .glide__slide {
 
 // MESSAGES
 
+.botton-back{
+  margin-left: 8px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.botton-call {
+  margin-right: 23px;
+  display: block;
+  color: #851ed9;
+}
+
+.fa-phone {
+  margin-right: 16px;
+}
+
+
 .messages-container {
   display: block;
   margin-bottom: 24px;
+}
+
+.navbar-profil {
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .message-card {

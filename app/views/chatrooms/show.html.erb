@@ -1,24 +1,18 @@
-<div>
-  <i class="fas fa-chevron-left"></i>
-  <%# <%= link_to "", match_path(match) %>
-
-</div>
-
-  <div class="navbar-profil flex-wrap", style= "border-bottom: 1px solid #e9ecef;">
+  <div class="navbar-profil d-flex align-content-between flex-wrap">
     <% @chatroom.matches.each do |match| %>
       <% if match.user_id != current_user.id %>
         <div>
-          <%= cl_image_tag match.user.photos.first.key, :class =>"message-avatar", crop: :fill %></div>
-        <div class="mx-3 text-dark-gray">
+          <%= cl_image_tag match.user.photos.first.key, :class =>"avatar-large", crop: :fill %></div>
+        <div class="mx-3 text-light">
           <h4><%= match.user.username %></h4>
           <p><em><%= match.user.created_at %><em></p>
         </div>
       <% elsif match.mate_id != current_user.id%>
         <div >
-          <%= cl_image_tag match.mate.photos.first.key, :class =>"message-avatar", crop: :fill %></div>
-        <div class="mx-3 text-dark-gray">
+          <%= cl_image_tag match.mate.photos.first.key, :class =>"avatar-large", crop: :fill %></div>
+        <div class="mx-3 text-light">
           <h4><%= match.mate.username %></h4>
-
+          <p><em><%= match.mate.created_at %><em></p>
         </div>
       <% end %>
     <% end %>

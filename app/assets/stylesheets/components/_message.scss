@@ -1,24 +1,34 @@
 .message {
   margin-bottom: 8px;
   .message-infos {
-    display: flex; align-items: center; margin: 0 4px;
-    font-size: 0.75rem; color: rgb(200, 200, 200); p{
-    margin: 0; }
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+    font-size: 0.75rem;
+    color: rgb(200, 200, 200);
+    p {
+      margin: 0;
+    }
   }
   .message-avatar {
     height: 35px;
     width: 35px;
     object-fit: cover;
     object-position: center;
-    border: 1px rgb(200, 200, 200) solid; border-radius: 50%;
+    // border: 1px rgb(200, 200, 200) solid;
+    border-radius: 50%;
     margin: 0 4px;
   }
   .message-content {
-    display: flex; p{
-      width: 80%;
+    display: flex;
+    p {
+      max-width: 80%;
       margin: 0;
-      border: 1px rgb(200, 200, 200) solid; padding: 8px 16px;
-      border-radius: 5px;
+      background-color: #F4F4F4;
+      // border: 1px rgb(200, 200, 200) solid;
+      padding: 4px 16px;
+      border-radius: 32px;
+      overflow-wrap: break-word;
     }
   }
 }
@@ -28,6 +38,11 @@
        flex-direction: row-reverse;
     }
     .message-content {
-    flex-direction: row-reverse;
-  }
+      flex-direction: row-reverse;
+    p {
+      background-color: $violet_dark;
+      ;
+      color: white;
+    }
+    }
 }

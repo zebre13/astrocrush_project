@@ -1,7 +1,20 @@
-<div id="message-<%= message.id %>">
+<!-- <div id="message-<%= message.id %>">
   <small>
     <strong><%= message.user.username %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>
-</div>
+</div> -->
+
+<!-- app/views/messages/_message.html.erb -->
+<% sender = message.user == current_user %>
+<!-- the message will display on the right side of the chat if the `sender` class is present -->
+<div class="message <%= 'sender' if sender %>">
+  <div class="message-content">
+    <%= image_tag "https://avatars.githubusercontent.com/u/46308640?v=4", alt: "#{message.user.username}'s avatar", class: 'message-avatar'%>
+    <p> <%= message.content %></p>
+  </div>
+
+<div class="message-infos">
+  <p><%= sender ? 'You' : message.user.username %> at <%= message.created_at.strftime("%H:%M") %></p>
+</div> </div>

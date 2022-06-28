@@ -512,17 +512,31 @@ users.each do |user|
   sun_report_collection = {}
   # love_compatibility_report_collection = {}
   potential_mates.each do |mate|
-    mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
-      user.birth_date,
-      user.birth_hour,
-      user.birth_location,
-      user.birth_country,
-      mate.birth_date,
-      mate.birth_hour,
-      mate.birth_location,
-      mate.birth_country
-    )
-    score_collection.store(mate.id, mate_score)
+    if mate.gender == 2
+      mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+        user.birth_date,
+        user.birth_hour,
+        user.birth_location,
+        user.birth_country,
+        mate.birth_date,
+        mate.birth_hour,
+        mate.birth_location,
+        mate.birth_country
+      )
+      score_collection.store(mate.id, mate_score)
+    else
+      mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+        mate.birth_date,
+        mate.birth_hour,
+        mate.birth_location,
+        mate.birth_country,
+        user.birth_date,
+        user.birth_hour,
+        user.birth_location,
+        user.birth_country
+      )
+      score_collection.store(mate.id, mate_score)
+    end
 
     mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
       user.birth_date,

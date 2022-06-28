@@ -54,7 +54,8 @@
   padding:16px;
   position:absolute;
   bottom: 0px;
-  background:linear-gradient(0deg, black, transparent);
+  background:linear-gradient(0deg, black, rgba(255, 255, 255, 0));
+  -webkit-backface-visibility: hidden;
   width: 100%;
   border-radius: inherit;
 }
@@ -112,6 +113,7 @@
   border:solid 2px green;
   color:rgb(29, 141, 29);
   background: rgba(0, 0, 0, 0.371);
+  -webkit-backface-visibility: hidden;
   position: absolute;
   top:48px;
   left:48px;
@@ -127,6 +129,7 @@
   border:solid 2px red;
   color: red;
   background: rgba(0, 0, 0, 0.371);
+  -webkit-backface-visibility: hidden;
   position: absolute;
   top:48px;
   right:48px;

@@ -4,4 +4,4 @@
 <%# <p id="matchUserInfos"><%= User.find(@match.mate.id).username %>
 
 <%= link_to("Chat", chatroom_path(@match), class:"btn", "data-swipe-target":"startConversationBtn", id:"chatButton") %>
-<%= link_to("Keep Swiping", root_path, class:"text-white", "data-swipe-target":"closeModalBtn") %>
+<p data-swipe-target="closeModalBtn" class="text-white">Keep Swiping</p>

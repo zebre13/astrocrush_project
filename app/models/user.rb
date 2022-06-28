@@ -9,11 +9,11 @@ class User < ApplicationRecord
   has_many_attached :photos
   has_many :matches, dependent: :destroy
   has_many :messages, dependent: :destroy
-  has_many :chatrooms, ->(user) {
-    unscope(where: :user_id)
-      .where("first_user_id = :user_id OR second_user_id = :user_id", user_id: user.id)
-  },
-    class_name: 'Chatroom', dependent: :destroy
+  # has_many :chatrooms, ->(user) {
+  #   unscope(where: :user_id)
+  #     .where("first_user_id = :user_id OR second_user_id = :user_id", user_id: user.id)
+  # },
+    # class_name: 'Chatroom', dependent: :destroy
 
   validates :username, presence: true
   validates :email, presence: true

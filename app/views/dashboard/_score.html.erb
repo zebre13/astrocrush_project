@@ -2,13 +2,13 @@
   <br>
   <div>
     <br>
-    <div class="border-bottom">
+    <div class="">
       <h4 class="mb-1">Test your score with</h4>
       <br>
     </div>
   </div>
 
-  <div class="pt-4 bottom-border">
+  <div class="pt-4">
     <form>
       <div class="form-group">
         <input type="date" class="form-control" placeholder="Birthday of your Crush">
@@ -28,37 +28,31 @@
   </div>
 
 <br>
-<br>
-  <div class="border-bottom">
-    <h4 class="mb-1">My astro compatibilites</h4>
-    <br>
-  </div>
-
   <div class="container">
     <br>
     <div>
       <% compatibility_degree = ['highly_compatible', 'mid_compatible', 'low_compatible', 'neutral', 'incompatible', 'mid_incompatible', 'highly_incompatible'] %>
       <% compatibility_degree.each do |degree| %>
         <div class="row justify-content-center">
-          <div class="col-6 border-bottom text text-center font-weight-light">
+          <div class="col-4 border-bottom text text-center font-weight-light">
             <% case degree %>
             <% when 'highly_compatible' %>
-              <%= '+++'%>
+              <%= '❤❤❤'%>
             <% when 'mid_compatible' %>
-              <%= '++' %>
+              <%= '❤❤' %>
             <% when 'low_compatible' %>
-              <%= '+' %>
+              <%= '❤' %>
             <% when 'neutral' %>
               <%= '=' %>
             <% when 'incompatible' %>
-              <%= '-' %>
+              <%= '⚠' %>
             <% when 'mid_incompatible' %>
-              <%= '--' %>
+              <%= '⚠⚠' %>
             <% else 'highly_incompatible' %>
-              <%= '---' %>
+              <%= '⚠⚠⚠' %>
             <% end %>
           </div>
-          <div class="col-6 border-bottom text-center">
+          <div class="col-8 border-bottom text-center">
             <%= @zodiac_compatibility[degree].join(', ') %>
           </div>
         </div>

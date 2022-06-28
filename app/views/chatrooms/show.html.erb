@@ -21,11 +21,11 @@
   <% @chatroom.matches.each do |match| %>
     <% if match.user_id != current_user.id %>
       <div class="match-date">
-        You and <%= match.user.username %> matched on <%= match.user.created_at %>
+        You and <%= match.user.username %> matched on <%= match.user.created_at.strftime("%B %d, %Y") %>
       </div>
     <% elsif match.mate_id != current_user.id %>
       <div class="match-date">
-        You and <%= match.mate.username %> matched on <%= match.mate.created_at %>
+        You and <%= match.mate.username %> matched on <%= match.mate.created_at.strftime("%B %d, %Y") %>
       </div>
     <% end %>
   <% end %>

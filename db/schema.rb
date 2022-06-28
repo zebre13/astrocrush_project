@@ -44,8 +44,12 @@ ActiveRecord::Schema.define(version: 2022_06_27_130003) do
   end
 
   create_table "chatrooms", force: :cascade do |t|
+    t.bigint "first_user_id", null: false
+    t.bigint "second_user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["first_user_id"], name: "index_chatrooms_on_first_user_id"
+    t.index ["second_user_id"], name: "index_chatrooms_on_second_user_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -103,6 +107,8 @@ ActiveRecord::Schema.define(version: 2022_06_27_130003) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatrooms", "users", column: "first_user_id"
+  add_foreign_key "chatrooms", "users", column: "second_user_id"
   add_foreign_key "matches", "chatrooms"
   add_foreign_key "matches", "users"
   add_foreign_key "messages", "chatrooms"

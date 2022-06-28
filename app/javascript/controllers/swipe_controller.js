@@ -18,7 +18,7 @@ export default class extends Controller {
     const maxAngle = 42;
     const smooth = 0.3;
     const threshold = 42;
-    const thresholdMatch = 150;
+    const thresholdMatch = 50;
 
     this.userTargets.forEach((profile) => {
       const hammertime = new Hammer(profile);

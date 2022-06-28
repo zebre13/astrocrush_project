@@ -3,11 +3,9 @@
       <% if match.user_id != current_user.id %>
         <%= cl_image_tag match.user.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
         <h5><%= match.user.username %></h5>
-          <%# <p>= match.user.created_at</p> %>
       <% elsif match.mate_id != current_user.id%>
         <%= cl_image_tag match.mate.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
         <h5><%= match.mate.username %></h5>
-          <%# <p>= match.mate.created_at</p> %>
       <% end %>
     <% end %>
     <div class="chatroom-back-button">
@@ -18,8 +16,19 @@
 
 <div class="container chatroom"
   data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
->
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+
+  <% @chatroom.matches.each do |match| %>
+    <% if match.user_id != current_user.id %>
+      <div class="match-date">
+        You and <%= match.user.username %> matched on <%= match.user.created_at.strftime("%B %d, %Y") %>
+      </div>
+    <% elsif match.mate_id != current_user.id %>
+      <div class="match-date">
+        You and <%= match.mate.username %> matched on <%= match.mate.created_at.strftime("%B %d, %Y") %>
+      </div>
+    <% end %>
+  <% end %>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>

@@ -1,3 +1,33 @@
+.chatroom-header {
+  width: 100vw;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chatroom-avatar {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+}
+
+.chatroom-header h5 {
+  font-size: 12px;
+  opacity: 0.5;
+  padding-top: 4px;
+  margin: 0;
+}
+
+.chatroom-back-button {
+  opacity: 0.5;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
 .chatroom {
   background: white;
   margin-top: 9px;

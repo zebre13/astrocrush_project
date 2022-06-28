@@ -36,7 +36,7 @@
     <% end %>
   </div>
 
-  <div class="bottom">
+  <div class="bottom ">
     <%= simple_form_for [@chatroom, @message],
     remote: true,
     html: {data: {action: "ajax:success->chatroom-subscription#resetForm"}, class: "d-flex input-group"} do |f|

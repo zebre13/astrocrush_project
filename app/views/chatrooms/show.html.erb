@@ -2,10 +2,10 @@
     <% @chatroom.matches.each do |match| %>
       <% if match.user_id != current_user.id %>
         <%= cl_image_tag match.user.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
-        <h5><%= match.user.username %></h5>
+        <p><%= match.user.username %></p>
       <% elsif match.mate_id != current_user.id%>
         <%= cl_image_tag match.mate.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
-        <h5><%= match.mate.username %></h5>
+        <p><%= match.mate.username %></p>
       <% end %>
     <% end %>
     <div class="chatroom-back-button">

@@ -14,9 +14,9 @@
   border-radius: 50%;
 }
 
-.chatroom-header h5 {
+.chatroom-header p {
   font-size: 12px;
-  opacity: 0.5;
+  color: rgb(133, 133, 133);
   padding-top: 4px;
   margin: 0;
 }
@@ -32,7 +32,8 @@
   font-style: "Manrope";
   text-align: center;
   font-size: 12px;
-  opacity: 0.5;
+  color: rgb(200, 200, 200);
+  margin-bottom: 16px;
 }
 
 .chatroom {
@@ -58,7 +59,7 @@
   .messages {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    // padding: 1rem;
   }
 
   #new_message {

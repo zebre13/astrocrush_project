@@ -36,6 +36,18 @@
   margin-bottom: 16px;
 }
 
+.chatroom-send-btn {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: -1px;
+  color: $white;
+  background-color: $blue;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
 .chatroom {
   background: white;
   margin-top: 9px;

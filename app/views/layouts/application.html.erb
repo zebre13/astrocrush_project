@@ -42,9 +42,9 @@
     <%# <%= render "shared/flashes" %>
     <%= yield %>
     <% if params[:controller] == "users" && params[:action] == "index"%>
-      <%# <%= render "navbar/navbar_two" %> %>
+      <%= render "navbar/navbar_two" %>
     <% else %>
-      <%# <%= render "navbar/navbar_screens" %> %>
+      <%= render "navbar/navbar_screens" %>
     <% end %>
     <%#= params[:controller] == "users" && params[:action] == "index" ? render "navbar/navbar" : render "navbar/navbar_two"%>
   </body>

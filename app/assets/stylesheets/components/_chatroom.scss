@@ -37,18 +37,6 @@
   margin-bottom: 16px;
 }
 
-.chatroom-send-btn {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-left: -1px;
-  color: $white;
-  background-color: $blue;
-  border-bottom-right-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
 .chatroom {
   background: white;
   margin-top: 9px;
@@ -92,8 +80,24 @@
     border-radius: 5px;
   }
 
+  .chatroom-send-btn {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 19px;
+    padding-right: 19px;
+    margin-left: -1px;
+    color: $white;
+    background-color: $blue;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 38px;
+    border-color:$blue;
+    border: 1px;
+  }
+
   #message_content {
-    border-radius: 5px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     margin-right: 3px;
   }
 }

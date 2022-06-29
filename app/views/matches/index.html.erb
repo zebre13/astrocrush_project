@@ -25,7 +25,9 @@
                       <% end %>
                     </div>
 
-                    <%= match.mate_for(current_user).username %>
+                    <div class="match-name">
+                      <%= match.mate_for(current_user).username %>
+                    </div>
 
                     <div class="small-score-container">
                       <% if eval(current_user.affinity_scores)[match.mate_id.to_i] >= 80 %>

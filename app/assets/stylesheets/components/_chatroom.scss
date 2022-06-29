@@ -38,7 +38,7 @@
 }
 
 .chatroom {
-  background: white;
+  // background: white;
   margin-top: 9px;
   height: 82vh;
   display: flex;
@@ -87,7 +87,7 @@
     padding-right: 19px;
     margin-left: -1px;
     color: $white;
-    background-color: $blue;
+    background-color: $violet_dark;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
     height: 38px;

@@ -46,10 +46,24 @@ a {
 }
 
 .horoscope-image {
-  height: 200px;
-  width: 200px;
+  height: 240px;
+  width: 240px;
   object-fit: cover;
   margin: 0 auto;
+}
+
+.sign-profile-image {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+#carouselProfileText .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
 // div#slider figure div {

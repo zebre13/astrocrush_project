@@ -10,7 +10,6 @@ class MatchesController < ApplicationController
 
     # Liste des match dans laquelle il y a des messages dans la conversation
     @oldmatches = @matches.left_outer_joins(chatroom: :messages).where.not(messages: {id: nil}).distinct
-
   end
 
   def create

@@ -12,6 +12,7 @@
   height: 48px;
   width: 48px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .chatroom-header p {
@@ -37,7 +38,7 @@
 }
 
 .chatroom {
-  background: white;
+  // background: white;
   margin-top: 9px;
   height: 82vh;
   display: flex;
@@ -66,9 +67,37 @@
   #new_message {
     border-top: 1px solid $gray-200;
     padding: 1rem;
+    margin-bottom: 34px;
 
     .form-group {
       margin-bottom: 0;
     }
+  }
+
+  .btn {
+    margin-left: 3px;
+    height: 38px;
+    border-radius: 5px;
+  }
+
+  .chatroom-send-btn {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 19px;
+    padding-right: 19px;
+    margin-left: -1px;
+    color: $white;
+    background-color: $violet_dark;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 38px;
+    border-color:$blue;
+    border: 1px;
+  }
+
+  #message_content {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: 3px;
   }
 }

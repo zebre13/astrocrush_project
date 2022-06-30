@@ -1,5 +1,5 @@
 <%# Carousel photos %>
-<div id="carouselPhotos" class="carousel slide" data-bs-ride="true">
+<div id="carouselPhotos" class="carousel slide" data-bs-touch="true">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -128,7 +128,7 @@
 
         <% sun_report = eval(current_user.mate_sun_reports)[params[:id].to_i]['report'].split(".") %>
         <%# Carousel text %>
-        <div id="carouselText" class="carousel pb-3 carousel-dark slide" data-bs-ride="true">
+        <div id="carouselText" class="carousel pb-3 carousel-dark slide" data-bs-touch="true">
           <div class="carousel-indicators">
             <% sun_report.each_with_index do |element, i| %>
               <button type="button" data-bs-target="#carouselText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>

@@ -36,6 +36,17 @@ class MatchesController < ApplicationController
     end
   end
 
+  def create_denied_match
+    @mate = User.find(params[:id])
+    if Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
+      @match = Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
+      @match.update!(status: 2)
+    else
+      @chatroom = Chatroom.create!
+      Match.create!(user: current_user, mate: @mate, status: 2, chatroom: @chatroom)
+    end
+  end
+
   def destroy
     @match = Match.find(params[:id])
     @match.destroy

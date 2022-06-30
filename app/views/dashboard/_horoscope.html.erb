@@ -1,14 +1,13 @@
-<div class="container text-align-center mt-5 pb-5">
-  <div class="">
+<div class="container text-align-center pt-1 pb-5">
+  <div class="horoscope-image mb-3">
     <%= image_tag "zodiac.svg", alt: "", class: "zodiac"%>
-    <br>
-    <div class="border-bottom">
-      <h4 >Today <%= Time.now.asctime %></h4>
-    </div>
-    <br>
-    <div class="pb-5">
-      <p><%= @daily_horoscope %></p>
-    </div>
+  </div>
 
+  <div class="border-bottom mb-2">
+    <h4 >Today - <%= Date.today.strftime("%B %d, %Y") %></h4>
+  </div>
+
+  <div>
+    <p><%= @daily_horoscope %></p>
   </div>
 </div>

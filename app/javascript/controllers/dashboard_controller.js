@@ -6,8 +6,29 @@ export default class extends Controller {
   connect() {
     console.log("Hello from our first Stimulus controller");
   }
+  hover(target) {
+    target.classList.add("nav-hov")
+
+    // [this.horoscope_menuTarget, this.profile_menuTarget, this.score_menuTarget, this.chart_menuTarget]
+    if (target !== this.horoscope_menuTarget) {
+      this.horoscope_menuTarget.classList.remove("nav-hov")
+    }
+
+    if (target !== this.profile_menuTarget) {
+      this.profile_menuTarget.classList.remove("nav-hov")
+    }
+
+    if (target !== this.score_menuTarget) {
+      this.score_menuTarget.classList.remove("nav-hov")
+    }
+
+    if (target !== this.chart_menuTarget) {
+      this.chart_menuTarget.classList.remove("nav-hov")
+    }
+  }
 
   horoscope() {
+    this.hover(this.horoscope_menuTarget)
     this.horoscopeTarget.classList.remove("d-none");
 
     this.profileTarget.classList.add("d-none");
@@ -22,6 +43,7 @@ export default class extends Controller {
   }
 
   profile() {
+    this.hover(this.profile_menuTarget)
     this.profileTarget.classList.remove("d-none");
 
     this.horoscopeTarget.classList.add("d-none");
@@ -36,6 +58,7 @@ export default class extends Controller {
   }
 
   score() {
+    this.hover(this.score_menuTarget)
     this.scoreTarget.classList.remove("d-none");
 
     this.horoscopeTarget.classList.add("d-none");
@@ -50,6 +73,7 @@ export default class extends Controller {
   }
 
   chart() {
+    this.hover(this.chart_menuTarget)
     this.chartTarget.classList.remove("d-none");
 
     this.horoscopeTarget.classList.add("d-none");

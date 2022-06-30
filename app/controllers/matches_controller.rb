@@ -18,7 +18,7 @@ class MatchesController < ApplicationController
       @match = Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
       @match.update(status: 1)
       p "You got a new match!"
-      p render_to_string partial: "matches/success"
+      render_to_string partial: "matches/success"
     else
       # sinon si personne de nous deux ne s'est encore liké:
       @match = Match.new

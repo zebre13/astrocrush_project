@@ -3,13 +3,13 @@
   <div data-controller="dashboard" height="80px">
 
     <div class="d-flex justify-content-between navbar-menu z-1">
-      <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead"><em>Horoscope</em></h4>
+      <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead">Horoscope</h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h4>
+      <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu">Profile</h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Affinities</em></h4>
+      <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu">Chart</h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><em>Chart</em></h4>
+      <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu">Affinities</h4>
     </div>
 
     <div data-dashboard-target="horoscope">
@@ -20,12 +20,12 @@
       <%= render "dashboard/profile"%>
     </div>
 
-    <div data-dashboard-target="score" class="d-none">
-      <%= render "dashboard/score"%>
-    </div>
-
     <div data-dashboard-target="chart" class="d-none">
       <%= render "dashboard/chart"%>
+    </div>
+
+    <div data-dashboard-target="score" class="d-none">
+      <%= render "dashboard/score"%>
     </div>
 
   </div>
@@ -35,3 +35,44 @@
   <div class="circle-white">
   </div>
 </div>
+
+
+<%# Save Code Gita %>
+
+<%# <div class=""> %>
+
+  <%# <div data-controller="dashboard" height="80px"> %>
+
+    <%# <div class="d-flex justify-content-between navbar-menu z-1"> %>
+      <%# <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead"><em>Horoscope</em></h4> %>
+      <%# <h4>|</h4> %>
+      <%# <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h4> %>
+      <%# <h4>|</h4> %>
+      <%# <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Affinities</em></h4> %>
+      <%# <h4>|</h4> %>
+      <%# <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><em>Chart</em></h4> %>
+    <%# </div> %>
+
+    <%# <div data-dashboard-target="horoscope"> %>
+      <%#= render "dashboard/horoscope"%>
+    <%# </div> %>
+
+    <%# <div data-dashboard-target="profile" class="d-none"> %>
+      <%#= render "dashboard/profile"%>
+    <%# </div> %>
+
+    <%# <div data-dashboard-target="score" class="d-none"> %>
+      <%#= render "dashboard/score"%>
+    <%# </div> %>
+
+    <%# <div data-dashboard-target="chart" class="d-none"> %>
+      <%#= render "dashboard/chart"%>
+    <%# </div> %>
+
+  <%# </div> %>
+<%# </div> %>
+
+<%# <div class="circle-container z-0"> %>
+  <%# <div class="circle-white"> %>
+  <%# </div> %>
+<%# </div> %>

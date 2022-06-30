@@ -1,8 +1,34 @@
-<div class="">
+
+<div class="astroboard">
+
+  <div class="container d-flex justify-content-between py-2">
+    <div>
+      <div class="name">
+        <%= current_user.username %>,
+        <span class="age"><%= ((Date.today - current_user.birth_date)/365).floor %></span>
+      </div>
+      <div class="d-flex">
+        <p class="mb-0">
+          <span class="me-1">☉</i></span>
+          <span class="me-2"><%= current_user.sign.capitalize %></span>
+        </p>
+        <p class="mb-0">
+          <span class="me-1">↑</span>
+          <span class="me-2"><%= current_user.rising.capitalize %></span>
+        </p>
+        <p class="mb-0">
+          <span class="me-1">☽</span>
+          <span class="me-2"><%= current_user.moon.capitalize %></span>
+        </p>
+      </div>
+    </div>
+
+    <%= cl_image_tag current_user.photos.first.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
+  </div>
 
   <div data-controller="dashboard" height="80px">
 
-    <div class="d-flex justify-content-between navbar-menu z-1">
+    <div class="d-flex justify-content-between navbar-menu py-1 z-1">
       <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead">Horoscope</h4>
       <h4>|</h4>
       <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu">Profile</h4>

@@ -46,8 +46,8 @@ a {
 }
 
 .horoscope-image {
-  height: 240px;
-  width: 240px;
+  height: 200px;
+  width: 200px;
   object-fit: cover;
   margin: 0 auto;
 }
@@ -66,6 +66,16 @@ a {
   background-color: rgb(255, 255, 255);
 }
 
+.astroboard .name {
+  font-family: "Manrope", "sans-serif";
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.astroboard .age {
+  font-family: "Manrope", "sans-serif";
+  font-size: 16px;
+}
 // div#slider figure div {
 //   width: 100vh;
 //   height: auto;

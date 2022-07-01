@@ -251,6 +251,32 @@ jeremy_barbedienne_data = {
   gender: 1,
   looking_for: 2
 }
+charlotte_bory_data = {
+  username: 'Charlotte',
+  email: 'c.bory@astrocrush.io',
+  password: 'azerty',
+  description: "Lines of code and lines of knitting, all the same to me.",
+  hobbies: ['Code', 'Knitting', 'Roller coaster'],
+  birth_date: '25/02/1994',
+  birth_hour: '02:24',
+  birth_location: 'Paris',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
+marine_sourin_data = {
+  username: 'Marine',
+  email: 'm.sourin@astrocrush.io',
+  password: 'azerty',
+  description: "I'm not afraid by a 2 hours ticket to get you out of shit.",
+  hobbies: ['Coding'],
+  birth_date: '07/05/1995',
+  birth_hour: '06:20',
+  birth_location: 'La Garenne-Colombes',
+  birth_country: 'FR',
+  gender: 2,
+  looking_for: 1
+}
 
 wagon_users_data = [
   mathieu_trancoso_data,
@@ -265,7 +291,9 @@ wagon_users_data = [
   aicha_diagne_data,
   paul_portier_data,
   nadia_auger_data,
-  jeremy_barbedienne_data
+  jeremy_barbedienne_data,
+  charlotte_bory_data,
+  marine_sourin_data
 ]
 
 # <--- Set famous users data --->
@@ -441,6 +469,8 @@ photo_aicha_diagne = File.open(Rails.root.join("public/seed_images/aicha_diagne.
 photo_paul_portier = File.open(Rails.root.join("public/seed_images/paul_portier.jpg"))
 photo_nadia_auger = File.open(Rails.root.join("public/seed_images/nadia_auger.jpg"))
 photo_jeremy_barbedienne = File.open(Rails.root.join("public/seed_images/jeremy_barbedienne.jpg"))
+photo_charlotte_bory = File.open(Rails.root.join("public/seed_images/charlotte_bory.jpg"))
+photo_marine_sourin = File.open(Rails.root.join("public/seed_images/marine_sourin.jpg"))
 
 wagon_users_photos = [
   photo_mathieu_trancoso,
@@ -455,7 +485,9 @@ wagon_users_photos = [
   photo_aicha_diagne,
   photo_paul_portier,
   photo_nadia_auger,
-  photo_jeremy_barbedienne
+  photo_jeremy_barbedienne,
+  photo_charlotte_bory,
+  photo_marine_sourin
 ]
 
 # photo_juliette_armanet = File.open(Rails.root.join("public/seed_images/juliette_armanet.jpg"))

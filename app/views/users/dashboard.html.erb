@@ -6,14 +6,14 @@
     <button type="button" data-bs-target="#carouselPhotos" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+      <div class="carousel-item active">
+        <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos[0].key, height: 450, width: 390, crop: :fill %>')"></div>
+      </div>
+    <div class="carousel-item">
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos[1].key, height: 450, width: 390, crop: :fill %>')"></div>
     </div>
     <div class="carousel-item">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
-    </div>
-    <div class="carousel-item">
-      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos.first.key, height: 450, width: 390, crop: :fill %>')"></div>
+      <div class="detailed-profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photos[2].key, height: 450, width: 390, crop: :fill %>')"></div>
     </div>
   </div>
   <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">

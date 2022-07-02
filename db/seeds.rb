@@ -30,8 +30,8 @@ boris_paillard_data = {
   birth_hour: '23:00',
   birth_location: 'Conflans-Sainte-Honorine',
   birth_country: 'FR',
-  gender: 1,
-  looking_for: 2
+  gender: 2,
+  looking_for: 1
 }
 boris_data = {
   username: 'Boris',

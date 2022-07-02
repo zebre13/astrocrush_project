@@ -20,6 +20,19 @@ puts 'Creating users...'
 
 # <-- Set Team users data --->
 
+boris_paillard_data = {
+  username: 'Papillard',
+  email: 'b.paillard@astrocrush.io',
+  password: 'azerty',
+  description: "Change your life, subscribe to astrocrush.",
+  hobbies: ['Worldwide code', 'Beatles', 'Motorcycles'],
+  birth_date: '06/11/1985',
+  birth_hour: '23:00',
+  birth_location: 'Conflans-Sainte-Honorine',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 boris_data = {
   username: 'Boris',
   email: 'boris_bourdet@hotmail.com',
@@ -46,19 +59,6 @@ etienne_data = {
   gender: 1,
   looking_for: 2
 }
-ghita_data = {
-  username: 'Ghita',
-  email: 'aa.ghita@gmail.com',
-  password: 'azerty',
-  description: "I am a cool one, but careful, I can head-butt if someone pisses me off.",
-  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes', 'ZAD'],
-  birth_date: '23/07/1988',
-  birth_hour: '07:30',
-  birth_location: 'Casablanca',
-  birth_country: 'MA',
-  gender: 2,
-  looking_for: 1
-}
 maria_data = {
   username: 'Maria',
   email: 'leonor.varela91330@gmail.com',
@@ -72,12 +72,26 @@ maria_data = {
   gender: 2,
   looking_for: 1
 }
+ghita_data = {
+  username: 'Ghita',
+  email: 'aa.ghita@gmail.com',
+  password: 'azerty',
+  description: "I am a cool one, but careful, I can head-butt if someone pisses me off.",
+  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes', 'ZAD'],
+  birth_date: '23/07/1988',
+  birth_hour: '07:30',
+  birth_location: 'Casablanca',
+  birth_country: 'MA',
+  gender: 2,
+  looking_for: 1
+}
 
 team_users_data = [
+  boris_paillard_data,
   boris_data,
   etienne_data,
-  ghita_data,
-  maria_data
+  maria_data,
+  ghita_data
 ]
 
 # <-- Set Wagon users data --->
@@ -277,19 +291,6 @@ marine_sourin_data = {
   gender: 2,
   looking_for: 1
 }
-boris_paillard_data = {
-  username: 'Papillard',
-  email: 'b.paillard@astrocrush.io',
-  password: 'azerty',
-  description: "Change your life, subscribe to astrocrush.",
-  hobbies: ['Worldwide code', 'Beatles', 'Motorcycles'],
-  birth_date: '06/11/1985',
-  birth_hour: '23:00',
-  birth_location: 'Conflans-Sainte-Honorine',
-  birth_country: 'FR',
-  gender: 1,
-  looking_for: 2
-}
 
 wagon_users_data = [
   mathieu_trancoso_data,
@@ -306,8 +307,7 @@ wagon_users_data = [
   nadia_auger_data,
   jeremy_barbedienne_data,
   charlotte_bory_data,
-  marine_sourin_data,
-  boris_paillard_data
+  marine_sourin_data
 ]
 
 # <--- Set famous users data --->
@@ -458,6 +458,11 @@ famous_users_data = [
 
 # <--- Set Photos --->
 
+photos_boris_paillard = [
+  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
+]
 photos_boris = [
   File.open(Rails.root.join("public/seed_images/boris_1.jpg")),
   File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
@@ -468,22 +473,23 @@ photos_etienne = [
   File.open(Rails.root.join("public/seed_images/etienne.jpg")),
   File.open(Rails.root.join("public/seed_images/etienne.jpg"))
 ]
-photos_ghita = [
-  File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
-]
 photos_maria = [
   File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
 ]
+photos_ghita = [
+  File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
+]
 
 team_users_photos = [
+  photos_boris_paillard,
   photos_boris,
   photos_etienne,
-  photos_ghita,
-  photos_maria
+  photos_maria,
+  photos_ghita
 ]
 
 photos_mathieu_trancoso = [
@@ -561,11 +567,6 @@ photos_marine_sourin = [
   File.open(Rails.root.join("public/seed_images/marine_sourin_2.jpg")),
   File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg"))
 ]
-photos_boris_paillard = [
-  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
-]
 
 wagon_users_photos = [
   photos_mathieu_trancoso,
@@ -582,8 +583,7 @@ wagon_users_photos = [
   photos_nadia_auger,
   photos_jeremy_barbedienne,
   photos_charlotte_bory,
-  photos_marine_sourin,
-  photos_boris_paillard
+  photos_marine_sourin
 ]
 
 # # photos_juliette_armanet = [

@@ -464,9 +464,9 @@ photos_boris = [
   File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
 ]
 photos_etienne = [
-  File.open(Rails.root.join("public/seed_images/etienne.jpg")),
-  File.open(Rails.root.join("public/seed_images/etienne.jpg")),
-  File.open(Rails.root.join("public/seed_images/etienne.jpg"))
+  File.open(Rails.root.join("public/seed_images/etienne_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
 ]
 photos_ghita = [
   File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),

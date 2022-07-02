@@ -38,7 +38,7 @@ etienne_data = {
   email: 'etiennededi@hotmail.fr',
   password: 'azerty',
   description: "If you too like to code in bathrobe, we are made to be together.",
-  hobbies: ['Diabolo', 'Bolas', 'Fire eating', 'Permaculture'],
+  hobbies: ['Diabolo', 'Bolas', 'Fire-eating', 'Permaculture'],
   birth_date: '23/06/1994',
   birth_hour: '06:30',
   birth_location: 'Paris',
@@ -51,7 +51,7 @@ ghita_data = {
   email: 'aa.ghita@gmail.com',
   password: 'azerty',
   description: "I am a cool one, but careful, I can head-butt if someone pisses me off.",
-  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes'],
+  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes', 'ZAD'],
   birth_date: '23/07/1988',
   birth_hour: '07:30',
   birth_location: 'Casablanca',
@@ -125,7 +125,7 @@ kenza_tighrine_data = {
   username: 'Kenza',
   email: 'k.tighrine@astrocrush.io',
   password: 'azerty',
-  description: "Sometimes they call me Karima but it doesn't matter.",
+  description: "Sometimes they call me Karima, but it doesn't matter.",
   hobbies: ['Chicha', 'Djellaba'],
   birth_date: '04/08/1995',
   birth_hour: '10:45',
@@ -177,7 +177,7 @@ isabelle_levy_data = {
   username: 'Isabelle',
   email: 'i.levy@astrocrush.io',
   password: 'azerty',
-  description: "Bons baisers de Martinique.",
+  description: "Don't tell my son.",
   hobbies: ['Travel'],
   birth_date: '01/01/1963',
   birth_hour: '07:00',
@@ -229,7 +229,7 @@ nadia_auger_data = {
   username: 'Nadia',
   email: 'n.auger@astrocrush.io',
   password: 'azerty',
-  description: "Who said geeks cannot be fashionable?",
+  description: "Who said geeks can't be fashionable?",
   hobbies: ['Code', 'Fashion', 'Chihuahuas'],
   birth_date: '23/08/1993',
   birth_hour: '09:45',
@@ -242,7 +242,7 @@ jeremy_barbedienne_data = {
   username: 'Jeremy',
   email: 'j.barbedienne@astrocrush.io',
   password: 'azerty',
-  description: "Coding is a like cooking, and more convivial with good drinks.",
+  description: "Don't forget to sign the attendance sheet.",
   hobbies: ['Code', 'Cooking', 'Booze'],
   birth_date: '20/09/1993',
   birth_hour: '10:30',
@@ -277,6 +277,19 @@ marine_sourin_data = {
   gender: 2,
   looking_for: 1
 }
+boris_paillard_data = {
+  username: 'Papillard',
+  email: 'b.paillard@astrocrush.io',
+  password: 'azerty',
+  description: "Change your life, subscribe to astrocrush.",
+  hobbies: ['Worldwide code', 'Beatles', 'Motorcycles'],
+  birth_date: '06/11/1985',
+  birth_hour: '23:00',
+  birth_location: 'Conflans-Sainte-Honorine',
+  birth_country: 'FR',
+  gender: 1,
+  looking_for: 2
+}
 
 wagon_users_data = [
   mathieu_trancoso_data,
@@ -293,7 +306,8 @@ wagon_users_data = [
   nadia_auger_data,
   jeremy_barbedienne_data,
   charlotte_bory_data,
-  marine_sourin_data
+  marine_sourin_data,
+  boris_paillard_data
 ]
 
 # <--- Set famous users data --->
@@ -337,19 +351,19 @@ wagon_users_data = [
 #   gender: 2,
 #   looking_for: 1
 # }
-# zoe_kravitz_data = {
-#   username: 'Zoe',
-#   email: 'z.kravitz@astrocrush.io',
-#   password: 'azerty',
-#   description: "Miaou!",
-#   hobbies: ['Cinema', 'Perfume', 'Cats'],
-#   birth_date: '01/12/1988',
-#   birth_hour: '02:00',
-#   birth_location: 'Los Angeles',
-#   birth_country: 'US',
-#   gender: 2,
-#   looking_for: 1
-# }
+zoe_kravitz_data = {
+  username: 'Zoe',
+  email: 'z.kravitz@astrocrush.io',
+  password: 'azerty',
+  description: "Miaou!",
+  hobbies: ['Cinema', 'Perfume', 'Cats'],
+  birth_date: '01/12/1988',
+  birth_hour: '02:00',
+  birth_location: 'Los Angeles',
+  birth_country: 'US',
+  gender: 2,
+  looking_for: 1
+}
 # natalie_portman_data = {
 #   username: 'Natalie',
 #   email: 'n.portman@astrocrush.io',
@@ -429,18 +443,18 @@ wagon_users_data = [
 #   looking_for: 2
 # }
 
-# famous_users_data = [
+famous_users_data = [
 #   juliette_armanet_data,
 #   melanie_thierry_data,
 #   emma_mackey_data,
-#   zoe_kravitz_data,
+  zoe_kravitz_data
 #   natalie_portman_data,
 #   tom_leeb_data,
 #   pierre_niney_data,
 #   pio_marmai_data,
 #   robert_pattinson_data,
 #   rege_jean_page_data
-# ]
+]
 
 # <--- Set Photos --->
 
@@ -460,9 +474,9 @@ photos_ghita = [
   File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
 photos_maria = [
-  File.open(Rails.root.join("public/seed_images/maria.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria.jpg"))
+  File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
 ]
 
 team_users_photos = [
@@ -547,6 +561,11 @@ photos_marine_sourin = [
   File.open(Rails.root.join("public/seed_images/marine_sourin.jpg")),
   File.open(Rails.root.join("public/seed_images/marine_sourin.jpg"))
 ]
+photos_boris_paillard = [
+  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
+]
 
 wagon_users_photos = [
   photos_mathieu_trancoso,
@@ -563,7 +582,8 @@ wagon_users_photos = [
   photos_nadia_auger,
   photos_jeremy_barbedienne,
   photos_charlotte_bory,
-  photos_marine_sourin
+  photos_marine_sourin,
+  photos_boris_paillard
 ]
 
 # # photos_juliette_armanet = [
@@ -581,11 +601,11 @@ wagon_users_photos = [
 #   File.open(Rails.root.join("public/seed_images/emma_mackey.jpg")),
 #   File.open(Rails.root.join("public/seed_images/emma_mackey.jpg"))
 # ]
-# # photos_zoe_kravitz = [
-#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
-#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
-#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
-# ]
+photos_zoe_kravitz = [
+  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
+  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
+  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
+]
 # # photos_natalie_portman = [
 #   File.open(Rails.root.join("public/seed_images/natalie_portman.jpg")),
 #   File.open(Rails.root.join("public/seed_images/natalie_portman.jpg")),
@@ -617,24 +637,24 @@ wagon_users_photos = [
 #   File.open(Rails.root.join("public/seed_images/rege_jean_page.jpg"))
 # ]
 
-# famous_users_photos = [
+famous_users_photos = [
 #   photos_juliette_armanet,
 #   photos_melanie_thierry,
 #   photos_emma_mackey,
-#   photos_zoe_kravitz,
+  photos_zoe_kravitz
 #   photos_natalie_portman,
 #   photos_tom_leeb,
 #   photos_pierre_niney,
 #   photos_pio_marmai,
 #   photos_robert_pattinson,
 #   photos_rege_jean_page
-# ]
+]
 
-photos = team_users_photos + wagon_users_photos #+ famous_users_photos
+photos = team_users_photos + wagon_users_photos + famous_users_photos
 
 # <--- Create Users --->
 
-users_data = team_users_data + wagon_users_data #+ famous_users_data
+users_data = team_users_data + wagon_users_data + famous_users_data
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)

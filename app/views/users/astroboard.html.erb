@@ -1,7 +1,7 @@
 
 <div class="astroboard">
 
-  <div class="container d-flex justify-content-between py-2">
+  <div class="container border-bottom d-flex justify-content-between py-2">
     <div>
       <div class="name">
         <%= current_user.username %>,
@@ -25,6 +25,8 @@
 
     <%= cl_image_tag current_user.photos.first.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
   </div>
+  
+<br>
 
   <div data-controller="dashboard" height="80px">
 

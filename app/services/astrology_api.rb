@@ -251,10 +251,10 @@ class AstrologyApi
   end
 end
 
-planet_icon_color = "#2E3A59"
-inner_circle_background = "#ffffff"
-sign_icon_color = "#ffffff"
-sign_background = "#2E3A59"
+# planet_icon_color = "#2E3A59"
+# inner_circle_background = "#ffffff"
+# sign_icon_color = "#ffffff"
+# sign_background = "#2E3A59"
 
-test = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
-p test.wheel_chart("07/05/1995", "06:20", "La garenne-Colombes", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
+# test = AstrologyApi.new("api_uid", "api_key")
+# p test.wheel_chart("07/05/1995", "06:20", "La garenne-Colombes", "FR", planet_icon_color, inner_circle_background, sign_icon_color, sign_background)

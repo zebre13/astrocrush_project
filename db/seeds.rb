@@ -639,7 +639,7 @@ users_photos = [
   # photos_boris_paillard,
   # photos_claire_ziemendorf,
   # photos_zoe_kravitz,
-  # # photos_juliette_armanet,
+  # photos_juliette_armanet,
   # photos_melanie_thierry,
   # photos_emma_mackey,
   # photos_natalie_portman,
@@ -660,6 +660,7 @@ users_data.each_with_index do |user_data, index|
   user.sign = horo_elements['planets'].first['sign']
   user.rising = horo_elements['houses'].first['sign']
   user.moon = horo_elements['planets'][1]['sign']
+  user.planets = horo_elements['planets'].map { |item| item }
   user.planets = API_CALL.planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
   user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
   user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)

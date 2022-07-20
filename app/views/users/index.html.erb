@@ -1,6 +1,8 @@
 <div id="backgroundcolor">
 
-  <div class="astrocrush"><i class="fas fa-meteor"></i>Astrocrush</div>
+  <div class="astrocrush">
+    <i class="fas fa-meteor"></i>Astrocrush
+  </div>
 
   <div class="profiles d-flex flex-column align-items-center" data-controller="swipe" >
     <% if @users.any? %>
@@ -72,5 +74,6 @@
 
   <%# <%= embedded_svg("lineplanet.svg") %>
   </div>
+
   <%= render "navbar/navbar_two" %>
 </div>

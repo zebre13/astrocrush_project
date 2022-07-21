@@ -1,10 +1,10 @@
   <div class="chatroom-header">
     <% @chatroom.matches.each do |match| %>
       <% if match.user_id != current_user.id %>
-        <%= cl_image_tag match.user.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
+        <%= link_to cl_image_tag(match.user.photos.first.key, class: "chatroom-avatar", crop: :fill), user_path(match.user) %>
         <p><%= match.user.username %></p>
       <% elsif match.mate_id != current_user.id%>
-        <%= cl_image_tag match.mate.photos.first.key, :class =>"chatroom-avatar", crop: :fill %>
+        <%= link_to cl_image_tag(match.mate.photos.first.key, class: "chatroom-avatar", crop: :fill), user_path(match.mate) %>
         <p><%= match.mate.username %></p>
       <% end %>
     <% end %>

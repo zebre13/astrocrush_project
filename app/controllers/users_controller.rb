@@ -1,8 +1,8 @@
 require 'json'
 # require_relative '../services/astrology_api'
-
 API_UID = ENV["API_UID"]
 API_KEY = ENV["API_KEY"]
+API_CALL = AstrologyApi.new(API_UID, API_KEY)
 
 class UsersController < ApplicationController
 
@@ -81,6 +81,19 @@ class UsersController < ApplicationController
   end
 
   def new_user_api_calls
+    horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    current_user.sign = horo_elements['planets'].first['sign']
+    current_user.rising = horo_elements['houses'].first['sign']
+    current_user.moon = horo_elements['planets'][1]['sign']
+    current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+
+    # current_user.photos.each do |photo|
+    #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')
+    # end
+    p "création des signes planetes etc OK"
+
     # Selection des personnes correspondant aux critères de recherche de ce nouvel user
     potential_mates = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
     p "potential mates ok"

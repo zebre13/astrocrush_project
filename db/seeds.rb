@@ -310,26 +310,26 @@ zoe_kravitz_data = {
 users_data = [
   boris_bourdet_data,
   etienne_de_dianous_data,
-  ghita_aaddaj_data,
-  maria_leonor_varela_borges_data,
-  mathieu_trancoso_data,
-  laura_person_data,
-  alexandre_platteeuw_data,
-  kenza_tighrine_data,
-  bruno_lelay_data,
-  sophiana_b_data,
-  ibrahima_kaba_data,
-  isabelle_levy_data,
-  corentin_deseine_data,
-  aicha_diagne_data,
-  paul_portier_data,
-  nadia_auger_data,
-  jeremy_barbedienne_data,
-  charlotte_bory_data,
-  marine_sourin_data,
-  boris_paillard_data,
-  claire_ziemendorf_data,
-  zoe_kravitz_data
+  ghita_aaddaj_data
+  # maria_leonor_varela_borges_data,
+  # mathieu_trancoso_data,
+  # laura_person_data,
+  # alexandre_platteeuw_data,
+  # kenza_tighrine_data,
+  # bruno_lelay_data,
+  # sophiana_b_data,
+  # ibrahima_kaba_data,
+  # isabelle_levy_data,
+  # corentin_deseine_data,
+  # aicha_diagne_data,
+  # paul_portier_data,
+  # nadia_auger_data,
+  # jeremy_barbedienne_data,
+  # charlotte_bory_data,
+  # marine_sourin_data,
+  # boris_paillard_data,
+  # claire_ziemendorf_data,
+  # zoe_kravitz_data
 ]
 
 # <--- Set Photos --->
@@ -349,125 +349,125 @@ photos_ghita_aaddaj = [
   File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
   File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
-photos_maria_leonor_varela_borges = [
-  File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
-]
-photos_mathieu_trancoso = [
-  File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
-  File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
-  File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
-]
-photos_laura_person = [
-  File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
-  File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
-  File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
-]
-photos_alexandre_platteeuw = [
-  File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
-  File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
-  File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
-]
-photos_kenza_tighrine = [
-  File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/kenza_tighrine_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg"))
-]
-photos_bruno_lelay = [
-  File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
-  File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
-  File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
-]
-photos_sophiana_b = [
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
-]
-photos_ibrahima_kaba = [
-  File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/ibrahima_kaba_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg"))
-]
-photos_isabelle_levy = [
-  File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/isabelle_levy_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg"))
-]
-photos_corentin_deseine = [
-  File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/corentin_deseine_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg"))
-]
-photos_aicha_diagne = [
-  File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
-  File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
-  File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
-]
-photos_paul_portier = [
-  File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/paul_portier_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg"))
-]
-photos_nadia_auger = [
-  File.open(Rails.root.join("public/seed_images/nadia_auger_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/nadia_auger_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/nadia_auger_3.jpg"))
-]
-photos_jeremy_barbedienne = [
-  File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg"))
-]
-photos_charlotte_bory = [
-  File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/charlotte_bory_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg"))
-]
-photos_marine_sourin = [
-  File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/marine_sourin_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg"))
-]
-photos_boris_paillard = [
-  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
-]
-photos_claire_ziemendorf = [
-  File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
-]
-photos_zoe_kravitz = [
-  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
-  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
-  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
-]
+# photos_maria_leonor_varela_borges = [
+#   File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
+# ]
+# photos_mathieu_trancoso = [
+#   File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
+#   File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
+#   File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
+# ]
+# photos_laura_person = [
+#   File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
+#   File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
+#   File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
+# ]
+# photos_alexandre_platteeuw = [
+#   File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
+#   File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
+#   File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
+# ]
+# photos_kenza_tighrine = [
+#   File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/kenza_tighrine_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg"))
+# ]
+# photos_bruno_lelay = [
+#   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
+#   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
+#   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
+# ]
+# photos_sophiana_b = [
+#   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
+#   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
+#   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+# ]
+# photos_ibrahima_kaba = [
+#   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg"))
+# ]
+# photos_isabelle_levy = [
+#   File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/isabelle_levy_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg"))
+# ]
+# photos_corentin_deseine = [
+#   File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/corentin_deseine_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg"))
+# ]
+# photos_aicha_diagne = [
+#   File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
+#   File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
+#   File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
+# ]
+# photos_paul_portier = [
+#   File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/paul_portier_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg"))
+# ]
+# photos_nadia_auger = [
+#   File.open(Rails.root.join("public/seed_images/nadia_auger_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/nadia_auger_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/nadia_auger_3.jpg"))
+# ]
+# photos_jeremy_barbedienne = [
+#   File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg"))
+# ]
+# photos_charlotte_bory = [
+#   File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/charlotte_bory_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg"))
+# ]
+# photos_marine_sourin = [
+#   File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/marine_sourin_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg"))
+# ]
+# photos_boris_paillard = [
+#   File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
+#   File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
+# ]
+# photos_claire_ziemendorf = [
+#   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
+#   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
+# ]
+# photos_zoe_kravitz = [
+#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
+#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
+#   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
+# ]
 
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-  photos_ghita_aaddaj,
-  photos_maria_leonor_varela_borges,
-  photos_mathieu_trancoso,
-  photos_laura_person,
-  photos_alexandre_platteeuw,
-  photos_kenza_tighrine,
-  photos_bruno_lelay,
-  photos_sophiana_b,
-  photos_ibrahima_kaba,
-  photos_isabelle_levy,
-  photos_corentin_deseine,
-  photos_aicha_diagne,
-  photos_paul_portier,
-  photos_nadia_auger,
-  photos_jeremy_barbedienne,
-  photos_charlotte_bory,
-  photos_marine_sourin,
-  photos_boris_paillard,
-  photos_claire_ziemendorf,
-  photos_zoe_kravitz
+  photos_ghita_aaddaj
+  # photos_maria_leonor_varela_borges,
+  # photos_mathieu_trancoso,
+  # photos_laura_person,
+  # photos_alexandre_platteeuw,
+  # photos_kenza_tighrine,
+  # photos_bruno_lelay,
+  # photos_sophiana_b,
+  # photos_ibrahima_kaba,
+  # photos_isabelle_levy,
+  # photos_corentin_deseine,
+  # photos_aicha_diagne,
+  # photos_paul_portier,
+  # photos_nadia_auger,
+  # photos_jeremy_barbedienne,
+  # photos_charlotte_bory,
+  # photos_marine_sourin,
+  # photos_boris_paillard,
+  # photos_claire_ziemendorf,
+  # photos_zoe_kravitz
 ]
 
 API_CALL = AstrologyApi.new(api_uid, api_key)

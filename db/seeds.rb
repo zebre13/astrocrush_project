@@ -470,7 +470,7 @@ users_photos = [
   # photos_zoe_kravitz
 ]
 
-API_CALL = AstrologyApi.new(api_uid, api_key)
+# API_CALL = AstrologyApi.new(api_uid, api_key)
 
 # <--- Create Users --->
 

@@ -1,12 +1,16 @@
 # frozen_string_literal: true
+require 'pry-byebug'
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  after_create :new_user_api_calls
-
-  private
+  after_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
-    horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    return unless user_signed_in?
+    api_uid = ENV["API_UID"]
+    api_key = ENV["API_KEY"]
+
+    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
     current_user.sign = horo_elements['planets'].first['sign']
     current_user.rising = horo_elements['houses'].first['sign']
     current_user.moon = horo_elements['planets'][1]['sign']

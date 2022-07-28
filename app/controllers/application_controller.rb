@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
         :password_confirmation,
         :description,
         :hobbies,
-        :photos,
         :birth_date,
         :birth_hour,
         :birth_country,
@@ -23,7 +22,10 @@ class ApplicationController < ActionController::Base
         :looking_for,
         :star_sign,
         :rising,
-        :moon)}
+        :moon,
+        photos: []
+      )
+    }
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(
         :username,
         :email,

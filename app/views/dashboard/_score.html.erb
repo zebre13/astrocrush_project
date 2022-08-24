@@ -7,28 +7,41 @@
     </div>
   </div>
 
-<!--test the score-->
+<!--test the score form-->
 
-  <div class="pt-4" data-controller="test-score">
+  <div class="pt-4" data-controller="score">
     <form>
       <div class="form-group">
-        <input type="date" class="form-control" placeholder="Birthday of your Crush">
-      </div>
+        <label for="birthday">Birthday</label>
+        <input type="date" class="form-control" id="birthday" data-score-target="birthday" placeholder="Birthday of your Crush">
+      </div><br>
 
       <div class="form-group">
-        <input type="hour" class="form-control" placeholder="Birth hour of your Crush">
-      </div>
+        <label for="birth_hour">Birth hour</label>
+        <input type="hour" class="form-control" id="birth_hour" data-score-target="birth_hour" placeholder="Birth hour of your Crush">
+      </div><br>
 
       <div class="form-group">
-        <input type="string" class="form-control" placeholder="Birth location of your Crush">
-      </div>
-      <br>
+        <label for="birth_location">Birth location</label>
+        <input type="text" class="form-control" id="birh_location" data-score-target="birth_location" placeholder="Birth location of your Crush">
+      </div><br>
 
-      <button type="submit" class="d-flex btn btn-secondary">Submit</button>
+      <div class="form-group">
+        <label for="birth_country">Birth country</label>
+        <input type="text" class="form-control" id="birh_country" data-score-target="birth_country" placeholder="Birth country of your Crush">
+      </div><br>
+
+      <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">>Submit</button>
+
     </form>
   </div>
 
 <br>
+<%#
+      mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+        mate.birth_date,
+        mate.birth_hour,
+        mate.birth_location, %>
 
 <!--compatibilies-->
 

@@ -94,10 +94,6 @@
   color: rgb(133, 30, 217);
 }
 
-
-
-
-
 .navigation ul li:nth-child(1).active ~ .indicator {
   transform: translateX(calc(70px * 0));
 }

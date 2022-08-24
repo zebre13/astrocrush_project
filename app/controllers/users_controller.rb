@@ -1,8 +1,8 @@
 require 'json'
 # require_relative '../services/astrology_api'
-
 API_UID = ENV["API_UID"]
 API_KEY = ENV["API_KEY"]
+API_CALL = AstrologyApi.new(API_UID, API_KEY)
 
 class UsersController < ApplicationController
 
@@ -78,8 +78,84 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-
   end
+
+  # def new_user_api_calls
+  #   horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+  #   current_user.sign = horo_elements['planets'].first['sign']
+  #   current_user.rising = horo_elements['houses'].first['sign']
+  #   current_user.moon = horo_elements['planets'][1]['sign']
+  #   current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+  #   current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+  #   current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+
+  #   # current_user.photos.each do |photo|
+  #   #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')
+  #   # end
+  #   p "création des signes planetes etc OK"
+
+  #   # Selection des personnes correspondant aux critères de recherche de ce nouvel user
+  #   potential_mates = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+  #   p "potential mates ok"
+  #   score_collection = {}
+  #   partner_report_collection = {}
+  #   sun_report_collection = {}
+
+  #   # Calcul du score de match avec chaque potential mate
+  #   potential_mates.each do |mate|
+  #     if mate.gender == 2
+  #       mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+  #         current_user.birth_date,
+  #         current_user.birth_hour,
+  #         current_user.birth_location,
+  #         current_user.birth_country,
+  #         mate.birth_date,
+  #         mate.birth_hour,
+  #         mate.birth_location,
+  #         mate.birth_country
+  #       )
+  #       score_collection.store(mate.id, mate_score)
+  #     else
+  #       mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+  #         mate.birth_date,
+  #         mate.birth_hour,
+  #         mate.birth_location,
+  #         mate.birth_country,
+  #         current_user.birth_date,
+  #         current_user.birth_hour,
+  #         current_user.birth_location,
+  #         current_user.birth_country
+  #       )
+  #       p "Score match ok"
+  #       score_collection.store(mate.id, mate_score)
+  #     end
+  #     # Call api pour obtenir les textes descriptifs
+  #     mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
+  #       current_user.birth_date,
+  #       current_user.gender,
+  #       mate.birth_date,
+  #       mate.gender,
+  #       mate.username
+  #     )
+  #     partner_report_collection.store(mate.id, mate_partner_report)
+
+  #     # Descriptif de ton signe
+  #     mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
+  #       mate.birth_date,
+  #       mate.birth_hour,
+  #       mate.birth_location,
+  #       mate.birth_country,
+  #       'sun'
+  #     )
+  #     sun_report_collection.store(mate.id, mate_sun_report)
+  #   end
+
+  #   ordered_score_collection = score_collection.sort_by { |_id, score| score }
+  #   current_user.affinity_scores = ordered_score_collection.reverse.to_h
+  #   current_user.partner_reports = partner_report_collection
+  #   current_user.mate_sun_reports = sun_report_collection
+  #   current_user.save!
+  # end
 
   private
 

@@ -58,11 +58,12 @@
   <body class= "<%= params[:controller] == 'users' && params[:action] == 'astroboard' ? "background-violet" : "background-white" %>">
     <%# <%= render "shared/flashes" %>
     <%= yield %>
-    <% if params[:controller] == "users" && params[:action] == "index"%>
-      <%= render "navbar/navbar_two" %>
-    <% else %>
-      <%= render "navbar/navbar_screens" %>
+    <% if user_signed_in? %>
+      <% if params[:controller] == "users" && params[:action] == "index"%>
+        <%= render "navbar/navbar_two" %>
+      <% else %>
+        <%= render "navbar/navbar_screens" %>
+      <% end %>
     <% end %>
-    <%#= params[:controller] == "users" && params[:action] == "index" ? render "navbar/navbar" : render "navbar/navbar_two"%>
-  </body>
+    </body>
 </html>

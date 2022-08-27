@@ -22,7 +22,13 @@ ActiveStorage.start()
 import "controllers"
 import "bootstrap"
 
-
+window.initMap = function(...args){
+  // This is gonna create a event to broadcast at our stimulus controllers that need google map
+  const event = document.createEvent("Events")
+  event.initEvent("google-maps-callback", true, true)
+  event.args = args
+  window.dispatchEvent(event )
+}
 document.addEventListener('turbolinks:load', () => {
   const list = document.querySelectorAll('.list');
   function activeLink(){

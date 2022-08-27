@@ -53,6 +53,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <!-- Google Map Places API Js -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjbPQy6w9YE_Otwqu8QeFrIC_put34-Lw&libraries=places&callback=initMap" async defer data-turbolinks-eval="false">
+    </script>
   </head>
 
   <body class= "<%= params[:controller] == 'users' && params[:action] == 'astroboard' ? "background-violet" : "background-white" %>">

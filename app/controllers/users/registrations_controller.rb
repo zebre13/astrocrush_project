@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     api_uid = ENV["API_UID"]
     api_key = ENV["API_KEY"]
 
+    # Définir le user countrycode  et user city en 2 variables différentes.
+    current_user.birth_country = current_user.birth_location[1]
+    current_user.birth_location = current_user.birth_location[0]
+
     horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
     # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
     current_user.sign = horo_elements['planets'].first['sign']
@@ -17,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
     current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
     current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+
 
     # current_user.photos.each do |photo|
     #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')

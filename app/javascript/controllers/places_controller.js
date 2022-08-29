@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
-  static targets = ["field", "country", "utcoffset", "latitude", "longitude"]
+  static targets = ["field", "country","city", "utcoffset", "latitude", "longitude"]
   connect() {
     console.log("places controller connect")
     if(typeof(google) != undefined){
@@ -20,9 +20,8 @@ export default class extends Controller {
     let place = this.autocomplete.getPlace()
     this.latitudeTarget.value = place.geometry.location.lat()
     this.longitudeTarget.value = place.geometry.location.lng()
-    // console.log("Lookunder")
-    // console.log(place.geometry.location.lat())
     this.countryTarget.value = place.address_components[3].short_name
+    this.cityTarget.value = place.address_components[0].long_name
     this.utcoffsetTarget.value = place.utc_offset_minutes
   }
 

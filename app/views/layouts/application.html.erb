@@ -54,8 +54,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <!-- Google Map Places API Js -->
+    <% places_api_key = ENV['PLACES_API_KEY'] %>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjbPQy6w9YE_Otwqu8QeFrIC_put34-Lw&libraries=places&callback=initMap" async defer data-turbolinks-eval="false">
+      src="https://maps.googleapis.com/maps/api/js?key=<%= places_api_key %>&libraries=places,geometry&callback=initMap" async defer data-turbolinks-eval="false">
     </script>
   </head>
 

@@ -14,13 +14,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
     horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
-    # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.country)
     current_user.sign = horo_elements['planets'].first['sign']
     current_user.rising = horo_elements['houses'].first['sign']
     current_user.moon = horo_elements['planets'][1]['sign']
-    current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
-    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
+    current_user.planets = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).planets_location(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
+    current_user.wheel_chart = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    current_user.personality_report = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).personality_report(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
 
 
     # current_user.photos.each do |photo|
@@ -41,24 +41,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           current_user.birth_date,
           current_user.birth_hour,
-          current_user.birth_location,
-          current_user.birth_country,
+          current_user.city,
+          current_user.country,
           mate.birth_date,
           mate.birth_hour,
-          mate.birth_location,
-          mate.birth_country
+          mate.city,
+          mate.country
         )
         score_collection.store(mate.id, mate_score)
       else
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           mate.birth_date,
           mate.birth_hour,
-          mate.birth_location,
-          mate.birth_country,
+          mate.city,
+          mate.country,
           current_user.birth_date,
           current_user.birth_hour,
-          current_user.birth_location,
-          current_user.birth_country
+          current_user.city,
+          current_user.country
         )
         p "Score match ok"
         score_collection.store(mate.id, mate_score)
@@ -77,8 +77,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
         mate.birth_date,
         mate.birth_hour,
-        mate.birth_location,
-        mate.birth_country,
+        mate.city,
+        mate.country,
         'sun'
       )
       sun_report_collection.store(mate.id, mate_sun_report)

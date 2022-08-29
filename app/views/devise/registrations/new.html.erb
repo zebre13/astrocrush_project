@@ -20,6 +20,10 @@
           <%= f.input :birth_hour, required: true %>
           <%# <%= f.input :birth_location, required: true %>
           <%= f.text_field :country, type: :hidden, data: {target: "places.country"} %>
+          <%= f.text_field :utcoffset, type: :hidden, data: {target: "places.utcoffset"} %>
+          <%= f.text_field :latitude, type: :hidden, data: {target: "places.latitude"} %>
+          <%= f.text_field :longitude, type: :hidden, data: {target: "places.longitude"} %>
+
 
           <%= f.search_field :birth_location, data: {target: "places.field"} %>
           <div class="d-flex justify-content-between mx-5">

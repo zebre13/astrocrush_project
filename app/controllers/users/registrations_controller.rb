@@ -9,18 +9,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     api_uid = ENV["API_UID"]
     api_key = ENV["API_KEY"]
 
-    # Définir le user countrycode  et user city en 2 variables différentes.
-    current_user.birth_country = current_user.birth_location[1]
-    current_user.birth_location = current_user.birth_location[0]
+    # Transformer "Barcelona, Spain" en "Barcelona" par exemple. Garder que la ville
+    current_user.city = current_user.birth_location.split(' ')[0].tr(',', '')
 
-    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+
+    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
     # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
     current_user.sign = horo_elements['planets'].first['sign']
     current_user.rising = horo_elements['houses'].first['sign']
     current_user.moon = horo_elements['planets'][1]['sign']
-    current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
-    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
+    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.city, current_user.country)
 
 
     # current_user.photos.each do |photo|

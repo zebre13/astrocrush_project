@@ -20,6 +20,8 @@ export default class extends Controller {
     let place = this.autocomplete.getPlace()
     // this.latitudeTarget.value = place.geometry.location.lat()
     // this.longitudeTarget.value = place.geometry.location.lng()
+    console.log(place)
+    console.log(place.utc_offset)
     console.log(place.address_components[3].short_name)
     this.countryTarget.value = place.address_components[3].short_name
   }

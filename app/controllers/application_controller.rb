@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
         :birth_date,
         :birth_hour,
         :country,
+        :utcoffset,
         :birth_location,
         :gender,
         :looking_for,
@@ -42,6 +43,7 @@ class ApplicationController < ActionController::Base
         :looking_for,
         :star_sign,
         :rising,
+        :utcoffset,
         :moon
         )}
   end

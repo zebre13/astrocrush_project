@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_29_211923) do
+ActiveRecord::Schema.define(version: 2022_08_29_220455) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -113,8 +112,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_211923) do
     t.string "longitude"
     t.string "country"
     t.string "city"
-    t.hstore "affinity_scores"
-    t.index ["affinity_scores"], name: "index_users_on_affinity_scores", using: :gin
+    t.text "affinity_scores"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

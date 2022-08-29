@@ -33,6 +33,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     partner_report_collection = {}
     sun_report_collection = {}
 
+    # Ajout etienne
+    current_user.affinity_scores = {}
     # Calcul du score de match avec chaque potential mate
     potential_mates.each do |mate|
       if mate.gender == 2
@@ -46,7 +48,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
           mate.latitude.to_f,
           mate.longitude.to_f
         )
-        score_collection.store(mate.id, mate_score)
+        # Stocker le score de match chez le current_user avec son mate
+        current_user.affinity_scores.store(mate.id, mate_score)
+        current_user.save
+
+        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
+        other_user= User.find(mate.id)
+        other_user.affinity_scores.store(current_user.id, mate_score)
+        other_user.save
+
       else
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           mate.birth_date,
@@ -59,16 +69,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
           current_user.longitude.to_f
         )
         p "Score match ok"
-        score_collection.store(mate.id, mate_score)
-        # Coder ici le renvoi du score de match au partenaire d'en face
+        # Stocker le score de match chez le current_user avec son mate
+        current_user.affinity_scores.store(mate.id, mate_score)
+        current_user.save
 
-          # Trouver le User qui a pour id le mate id et sauvegarder son affinity score calculé avec le current user
-          score_collection_of_mate.store(current_user.id, mate_score)
+        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
+        other_user = User.find(mate.id)
+        other_user.affinity_scores.store(current_user.id, mate_score)
+        other_user.save
 
-          User.find(mate.id).affinity_scores = score_collection_of_mate
-          raise
-          # User.find(mate.id).affinity_scores.store({current_user: :mate_score})
-          p score_collection_of_mate
       end
       # Call api pour obtenir les textes descriptifs
       mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
@@ -91,9 +100,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sun_report_collection.store(mate.id, mate_sun_report)
     end
 
-    ordered_score_collection = score_collection.sort_by { |_id, score| score }
-    current_user.affinity_scores = ordered_score_collection.reverse.to_h
-    # test
+    # ordered_score_collection = score_collection.sort_by { |_id, score| score }
+    # current_user.affinity_scores = ordered_score_collection.reverse.to_h
 
     current_user.partner_reports = partner_report_collection
     current_user.mate_sun_reports = sun_report_collection

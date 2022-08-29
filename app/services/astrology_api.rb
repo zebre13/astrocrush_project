@@ -113,13 +113,16 @@ class AstrologyApi
     JSON.parse(resp.body)
   end
 
-  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
-  def city_coord(city, country_code)
-    endpoint = "geo_details"
-    data = { place: city.capitalize, maxRows: 6 }
-    cities = get_response(endpoint, data)
-    city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
-    return { lat: city.first['latitude'], lon: city.first['longitude'] }
+  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR").
+  # ATTENTION: j'ai remove city, countrycode des autres fonctions.
+  # def city_coord(city, country_code)
+    # endpoint = "geo_details"
+    # data = { place: city.capitalize, maxRows: 6 }
+    # cities = get_response(endpoint, data)
+    # city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
+    # return { lat: city.first['latitude'], lon: city.first['longitude'] }
+  def city_coord()
+    return { lat: current_user.latitude, lon: current_user.longitude }
   end
 
   # Get timezone code given coordinates (lat/lon) and date ("dd/mm/yyyy")
@@ -137,7 +140,7 @@ class AstrologyApi
 
   # Hash with formatted birth data given birth data
   def birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
+    coord = city_coord()
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
@@ -155,7 +158,7 @@ class AstrologyApi
 
   # Hash with formatted birth data given birth data for the user in match making method
   def m_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
+    coord = city_coord()
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
@@ -173,7 +176,7 @@ class AstrologyApi
 
   # Hash with formatted birth data given birth data for the mate in match making method
   def f_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
+    coord = city_coord()
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
@@ -191,7 +194,7 @@ class AstrologyApi
 
   # Hash with formatted birth data given birth data for the user in match making method
   def p_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
+    coord = city_coord()
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
@@ -209,7 +212,7 @@ class AstrologyApi
 
   # Hash with formatted birth data given birth data for the mate in match making method
   def s_birth_data_set(birth_date, birth_hour, city, country_code)
-    coord = city_coord(city, country_code)
+    coord = city_coord()
     tzone = time_zone(coord[:lat], coord[:lon], birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour

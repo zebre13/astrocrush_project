@@ -1,12 +1,11 @@
 class User < ApplicationRecord
   serialize :affinity_scores, Hash
   serialize :planets, Hash
-  # serialize :personality_report
-  # serialize :hobbies
-  # serialize :partner_reports
+  serialize :personality_report, Array
+  serialize :hobbies, Array
+  serialize :partner_reports, Hash
   # serialize :mate_sun_reports
   attr_reader :my_zodiac
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

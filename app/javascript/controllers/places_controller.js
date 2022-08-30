@@ -3,6 +3,7 @@ export default class extends Controller {
   static targets = ["field", "country","city", "utcoffset", "latitude", "longitude"]
   connect() {
     console.log("places controller connect")
+    console.log(google)
     if(typeof(google) != undefined){
       this.initMap()
     }

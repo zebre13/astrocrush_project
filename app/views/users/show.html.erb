@@ -52,19 +52,19 @@
         </div>
 
         <div class="score-container">
-          <% if eval(current_user.affinity_scores)[params[:id].to_i] >= 80 %>
+          <% if current_user.affinity_scores[params[:id].to_i] >= 80 %>
             <% level = "high" %>
-          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(60..79) %>
+          <% elsif current_user.affinity_scores[params[:id].to_i].in?(60..79) %>
             <% level = "mid-high" %>
-          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(40..59) %>
+          <% elsif current_user.affinity_scores[params[:id].to_i].in?(40..59) %>
             <% level = "neutral" %>
-          <% elsif eval(current_user.affinity_scores)[params[:id].to_i].in?(20..39) %>
+          <% elsif current_user.affinity_scores[params[:id].to_i].in?(20..39) %>
             <% level = "mid-low" %>
           <% else %>
             <% level = "low" %>
           <% end %>
           <div class="score-planet-<%= level %>">
-            <%= eval(current_user.affinity_scores)[params[:id].to_i] %>
+            <%= current_user.affinity_scores[params[:id].to_i] %>
             <div class="score-ring-<%= level %>"></div>
           </div>
         </div>
@@ -83,7 +83,7 @@
         <h5 class="mb-1">
           My passions
         </h5>
-        <% eval(@mate.hobbies).each do |hobby| %>
+        <% @mate.hobbies.each do |hobby| %>
         <div class="tag">
           <%= hobby %>
         </div>
@@ -92,7 +92,7 @@
 
       <div class="pt-2 pb-5 border-bottom">
         <h5 class="mb-1">
-          <%= eval(current_user.partner_reports)[params[:id].to_i]['title'] %>
+          <%= current_user.partner_reports[params[:id].to_i]['title'] %>
         </h5>
 
         <div class="relation-container">
@@ -101,14 +101,14 @@
           </div>
           <div class="relation-text">
             <p>
-              <%= eval(current_user.partner_reports)[params[:id].to_i]['msg'] %>
+              <%= current_user.partner_reports[params[:id].to_i]['msg'] %>
             </p>
           </div>
         </div>
 
         <p>Keywords:</p>
 
-        <% eval(current_user.partner_reports)[params[:id].to_i]['tags'].split(",").each do |tag| %>
+        <% current_user.partner_reports[params[:id].to_i]['tags'].split(",").each do |tag| %>
           <div class="tag">
             <%= tag %>
           </div>

@@ -76,7 +76,7 @@
         My passions
       </h5>
         <% if current_user.hobbies %>
-          <% eval(current_user.hobbies).each do |hobby| %>
+          <% current_user.hobbies.each do |hobby| %>
             <div class="tag">
               <%= hobby %>
             </div>

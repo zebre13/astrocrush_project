@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   serialize :affinity_scores, Hash
-  # serialize :planets
+  serialize :planets, Hash
   # serialize :personality_report
   # serialize :hobbies
   # serialize :partner_reports

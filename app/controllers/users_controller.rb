@@ -172,7 +172,7 @@ class UsersController < ApplicationController
   end
 
   def find_planets(zodiac_index)
-    hash_planets = eval(current_user.planets)
+    hash_planets = current_user.planets
     planets = []
     data_to_display = {}
     hash_planets.each do |planet, hash|

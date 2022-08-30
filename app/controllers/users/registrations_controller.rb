@@ -36,6 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # Ajout etienne
     current_user.affinity_scores = {}
     current_user.partner_reports = {}
+    current_user.mate_sun_reports = {}
     # Calcul du score de match avec chaque potential mate
     potential_mates.each do |mate|
       if mate.gender == 2
@@ -88,10 +89,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         mate.gender,
         mate.username
       )
-      p mate_partner_report
       current_user.partner_reports.store(mate.id, mate_partner_report)
       current_user.save
-      p current_user.partner_reports
       # On stocke le partner report aussi chez l'utilisateur d'en face, el mate
       other_user = User.find(mate.id)
       other_user.partner_reports.store(current_user.id, mate_partner_report)
@@ -106,12 +105,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         mate.longitude.to_f,
         'sun'
       )
-      sun_report_collection.store(mate.id, mate_sun_report)
+      current_user.mate_sun_reports.store(mate.id, mate_sun_report)
+      current_user.save
     end
 
     # ordered_score_collection = score_collection.sort_by { |_id, score| score }
     # current_user.affinity_scores = ordered_score_collection.reverse.to_h
-    current_user.mate_sun_reports = sun_report_collection
     current_user.save!
   end
   # before_action :configure_sign_up_params, only: [:create]

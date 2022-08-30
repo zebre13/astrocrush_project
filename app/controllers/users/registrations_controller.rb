@@ -30,11 +30,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     p "potential mates ok"
     score_collection = {}
     score_collection_of_mate = {}
-    partner_report_collection = {}
+    # partner_report_collection = {}
     sun_report_collection = {}
 
     # Ajout etienne
     current_user.affinity_scores = {}
+    current_user.partner_reports = {}
     # Calcul du score de match avec chaque potential mate
     potential_mates.each do |mate|
       if mate.gender == 2
@@ -87,7 +88,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
         mate.gender,
         mate.username
       )
-      partner_report_collection.store(mate.id, mate_partner_report)
+      p mate_partner_report
+      current_user.partner_reports.store(mate.id, mate_partner_report)
+      current_user.save
+      p current_user.partner_reports
+      # On stocke le partner report aussi chez l'utilisateur d'en face, el mate
+      other_user = User.find(mate.id)
+      other_user.partner_reports.store(current_user.id, mate_partner_report)
+      other_user.save!
+
 
       # Descriptif de ton signe
       mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
@@ -102,8 +111,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # ordered_score_collection = score_collection.sort_by { |_id, score| score }
     # current_user.affinity_scores = ordered_score_collection.reverse.to_h
-
-    current_user.partner_reports = partner_report_collection
     current_user.mate_sun_reports = sun_report_collection
     current_user.save!
   end

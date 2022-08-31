@@ -257,5 +257,3 @@ class AstrologyApi
   end
 end
 
-api_call = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
-p api_call.city_coordinates("Los Angeles", "US")

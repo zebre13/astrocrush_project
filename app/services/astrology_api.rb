@@ -11,7 +11,6 @@ class AstrologyApi
     @api_key = key
   end
 
-
   # Hash containing all data from an horoscope
   def horoscope(birth_date, birth_hour, latitude, longitude)
     endpoint = "western_horoscope"
@@ -114,15 +113,19 @@ class AstrologyApi
     JSON.parse(resp.body)
   end
 
-  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR").
+  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
   def city_coord(latitude, longitude)
-    # endpoint = "geo_details"
-    # data = { place: city, maxRows: 6 }
-    # cities = get_response(endpoint, data)
-    # city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
-    # return { lat: city.first['latitude'], lon: city.first['longitude'] }
-  # def city_coord()
     return { lat: latitude, lon: longitude }
+  end
+
+  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
+  # Utilisée pour retrouver lat et lon d'une ville dans la seed
+  def city_coordinates(city, country_code)
+    endpoint = "geo_details"
+    data = { place: city, maxRows: 6 }
+    cities = get_response(endpoint, data)
+    city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
+    return { lat: city.first['latitude'], lon: city.first['longitude'] }
   end
 
   # Get timezone code given coordinates (lat/lon) and date ("dd/mm/yyyy")
@@ -253,3 +256,6 @@ class AstrologyApi
     }
   end
 end
+
+api_call = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
+p api_call.city_coordinates("Los Angeles", "US")

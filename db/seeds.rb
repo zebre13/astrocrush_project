@@ -30,6 +30,8 @@ boris_bourdet_data = {
   birth_hour: '05:30',
   birth_location: 'Aix-en-Provence',
   birth_country: 'FR',
+  latitude: '43.52830',
+  longitude: '43.52830',
   gender: 1,
   looking_for: 2
 }
@@ -43,6 +45,8 @@ etienne_de_dianous_data = {
   birth_hour: '06:30',
   birth_location: 'Paris',
   birth_country: 'FR',
+  latitude: '48.85341',
+  longitude: '2.3488',
   gender: 1,
   looking_for: 2
 }
@@ -56,6 +60,8 @@ ghita_aaddaj_data = {
   birth_hour: '07:30',
   birth_location: 'Casablanca',
   birth_country: 'MA',
+  latitude: '33.58831',
+  longitude: '-7.61138',
   gender: 2,
   looking_for: 1
 }
@@ -69,6 +75,8 @@ maria_leonor_varela_borges_data = {
   birth_hour: '15:15',
   birth_location: 'Cascais',
   birth_country: 'PT',
+  latitude: '38.69790',
+  longitude: '-9.42146',
   gender: 2,
   looking_for: 1
 }
@@ -82,6 +90,8 @@ mathieu_trancoso_data = {
   birth_hour: '16:00',
   birth_location: 'Ermont',
   birth_country: 'FR',
+  latitude: '48.99004',
+  longitude: '2.25804',
   gender: 1,
   looking_for: 2
 }
@@ -95,6 +105,8 @@ laura_person_data = {
   birth_hour: '11:00',
   birth_location: 'Landerneau',
   birth_country: 'FR',
+  latitude: '48.45252',
+  longitude: '-4.25252',
   gender: 2,
   looking_for: 1
 }
@@ -108,6 +120,8 @@ alexandre_platteeuw_data = {
   birth_hour: '10:30',
   birth_location: 'Roubaix',
   birth_country: 'FR',
+  latitude: '50.69421',
+  longitude: '3.17456',
   gender: 1,
   looking_for: 2
 }
@@ -121,6 +135,8 @@ kenza_tighrine_data = {
   birth_hour: '10:45',
   birth_location: 'Paris',
   birth_country: 'FR',
+  latitude: '48.85341',
+  longitude: '2.3488',
   gender: 2,
   looking_for: 1
 }
@@ -134,6 +150,8 @@ bruno_lelay_data = {
   birth_hour: '23:40',
   birth_location: 'Longjumeau',
   birth_country: 'FR',
+  latitude: '48.69503',
+  longitude: '2.30736',
   gender: 1,
   looking_for: 2
 }
@@ -147,6 +165,8 @@ sophiana_b_data = {
   birth_hour: '02:35',
   birth_location: 'Paris',
   birth_country: 'FR',
+  latitude: '48.85341',
+  longitude: '2.3488',
   gender: 2,
   looking_for: 1
 }
@@ -160,6 +180,8 @@ ibrahima_kaba_data = {
   birth_hour: '05:30',
   birth_location: 'Conakry',
   birth_country: 'GN',
+  latitude: '9.53795',
+  longitude: '-13.67729',
   gender: 1,
   looking_for: 2
 }
@@ -173,6 +195,8 @@ isabelle_levy_data = {
   birth_hour: '07:00',
   birth_location: 'Compiegne',
   birth_country: 'FR',
+  latitude: '49.41794',
+  longitude: '2.82606',
   gender: 2,
   looking_for: 1
 }
@@ -186,6 +210,8 @@ corentin_deseine_data = {
   birth_hour: '11:30',
   birth_location: 'Ermont',
   birth_country: 'FR',
+  latitude: '48.99004',
+  longitude: '2.25804',
   gender: 1,
   looking_for: 2
 }
@@ -199,6 +225,8 @@ aicha_diagne_data = {
   birth_hour: '13:00',
   birth_location: 'Dakar',
   birth_country: 'SN',
+  latitude: '14.69370',
+  longitude: '-17.44406',
   gender: 2,
   looking_for: 1
 }
@@ -225,6 +253,8 @@ nadia_auger_data = {
   birth_hour: '09:45',
   birth_location: 'Bordeaux',
   birth_country: 'FR',
+  latitude: '44.84044',
+  longitude: '-0.5805',
   gender: 2,
   looking_for: 1
 }
@@ -238,6 +268,8 @@ jeremy_barbedienne_data = {
   birth_hour: '10:30',
   birth_location: 'Saint-Lo',
   birth_country: 'FR',
+  latitude: '49.11624',
+  longitude: '-1.09031',
   gender: 1,
   looking_for: 2
 }
@@ -251,6 +283,8 @@ charlotte_bory_data = {
   birth_hour: '02:24',
   birth_location: 'Paris',
   birth_country: 'FR',
+  latitude: '48.85341',
+  longitude: '2.3488',
   gender: 2,
   looking_for: 1
 }
@@ -264,6 +298,8 @@ marine_sourin_data = {
   birth_hour: '06:20',
   birth_location: 'La Garenne-Colombes',
   birth_country: 'FR',
+  latitude: '48.90472',
+  longitude: '2.2469',
   gender: 2,
   looking_for: 1
 }
@@ -277,6 +313,8 @@ boris_paillard_data = {
   birth_hour: '23:00',
   birth_location: 'Conflans-Sainte-Honorine',
   birth_country: 'FR',
+  latitude: '49.00158',
+  longitude: '2.09694',
   gender: 1,
   looking_for: 2
 }
@@ -290,6 +328,8 @@ claire_ziemendorf_data = {
   birth_hour: '23:58',
   birth_location: 'Rueil-Malmaison',
   birth_country: 'FR',
+  latitude: '48.87650',
+  longitude: '2.18967',
   gender: 2,
   looking_for: 1
 }
@@ -303,6 +343,8 @@ zoe_kravitz_data = {
   birth_hour: '02:00',
   birth_location: 'Los Angeles',
   birth_country: 'US',
+  latitude: '34.05223',
+  longitude: '-118.2436',
   gender: 2,
   looking_for: 1
 }
@@ -476,13 +518,13 @@ API_CALL = AstrologyApi.new(api_uid, api_key)
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
-  horo_elements = API_CALL.horoscope(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  horo_elements = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   user.sign = horo_elements['planets'].first['sign']
   user.rising = horo_elements['houses'].first['sign']
   user.moon = horo_elements['planets'][1]['sign']
-  user.planets = API_CALL.planets_location(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
-  user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.birth_location, user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.birth_location, user.birth_country)
+  user.planets = API_CALL.planets_location(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+  user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+  user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   users_photos[index].each do |photo|
     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
   end
@@ -504,24 +546,24 @@ users.each do |user|
       mate_score = API_CALL.match_percentage(
         user.birth_date,
         user.birth_hour,
-        user.birth_location,
-        user.birth_country,
+        user.latitude,
+        user.longitude,
         mate.birth_date,
         mate.birth_hour,
-        mate.birth_location,
-        mate.birth_country
+        mate.latitude,
+        mate.longitude
       )
       score_collection.store(mate.id, mate_score)
     else
       mate_score = API_CALL.match_percentage(
         mate.birth_date,
         mate.birth_hour,
-        mate.birth_location,
-        mate.birth_country,
+        mate.latitude,
+        mate.longitude,
         user.birth_date,
         user.birth_hour,
-        user.birth_location,
-        user.birth_country
+        user.latitude,
+        user.longitude
       )
       score_collection.store(mate.id, mate_score)
     end
@@ -538,8 +580,8 @@ users.each do |user|
     mate_sun_report = API_CALL.sign_report(
       mate.birth_date,
       mate.birth_hour,
-      mate.birth_location,
-      mate.birth_country,
+      mate.latitude,
+      mate.longitude,
       'sun'
     )
     sun_report_collection.store(mate.id, mate_sun_report)

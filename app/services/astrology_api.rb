@@ -256,4 +256,3 @@ class AstrologyApi
     }
   end
 end
-

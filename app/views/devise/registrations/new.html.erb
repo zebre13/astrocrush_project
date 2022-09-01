@@ -15,13 +15,13 @@
           <%= f.input :username, required: true %>
           <%# <%= f.input :description, required: false %>
           <%# <%= f.select :hobbies, required: false %>
-          <%= f.input :hobbies, as: :check_boxes, collection: [
+          <%= f.input :hobbies, collection: [
             'Bataille de polochons',
             'Soirée pyjama drogue',
             'Voyager en jet privé',
             'Faire plein de gosses',
             'Cracher du feu sur des bolas',
-            'Me déguiser en cornichon et danser'] %>
+            'Me déguiser en cornichon et danser'], input_html: {multiple: true} %>
 
           <%= f.file_field :photos, as: :file, multiple: true %>
           <%= f.input :birth_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 90, required: true %>

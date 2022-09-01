@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
         :password,
         :password_confirmation,
         :description,
-        :hobbies,
         :birth_date,
         :birth_hour,
         :country,
@@ -27,6 +26,7 @@ class ApplicationController < ActionController::Base
         :star_sign,
         :rising,
         :moon,
+        hobbies: [],
         photos: []
       )
     }
@@ -36,7 +36,6 @@ class ApplicationController < ActionController::Base
         :password,
         :password_confirmation,
         :description,
-        :hobbies,
         :photos,
         :birth_date,
         :birth_hour,
@@ -50,7 +49,9 @@ class ApplicationController < ActionController::Base
         :star_sign,
         :rising,
         :utcoffset,
-        :moon
+        :moon,
+        hobbies: [],
+        photos: []
         )}
   end
 

@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 2022_08_30_153427) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.text "description"
-    t.string "hobbies"
     t.date "birth_date"
     t.time "birth_hour"
     t.string "birth_location"
@@ -111,6 +110,7 @@ ActiveRecord::Schema.define(version: 2022_08_30_153427) do
     t.string "city"
     t.text "affinity_scores"
     t.text "planets"
+    t.text "hobbies"
     t.text "partner_reports"
     t.text "mate_sun_reports"
     t.index ["email"], name: "index_users_on_email", unique: true

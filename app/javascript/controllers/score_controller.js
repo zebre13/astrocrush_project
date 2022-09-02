@@ -13,7 +13,11 @@ export default class extends Controller {
 
   match_percentage(event){
     event.preventDefault()
-    console.log(event.target.parentElement)
+    console.log(document.querySelector("#user-latitude").getAttribute("data-user-latitude"))
+    console.log(document.querySelector("#user-longitude").getAttribute("data-user-longitude"))
+    console.log(document.querySelector("#user-birth-hour").getAttribute("data-user-birth-hour"))
+    console.log(document.querySelector("#user-birth-date").getAttribute("data-user-birth-date"))
+    console.log(document.querySelector("#user-gender").getAttribute("data-user-gender"))
 
     console.log(this.birth_dayTarget.value)
     console.log(this.birth_hourTarget.value)

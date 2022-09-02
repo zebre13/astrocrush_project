@@ -46,11 +46,11 @@
       </div>
 
       <div class="hiden data" type="hidden">
-          <div data-user-latitude="<%= current_user.latitude %>"></div>
-          <div data-user-longitude="<%= current_user.longitude %>"></div>
-          <div data-user-birth-hour="<%= current_user.birth_hour %>"></div>
-          <div data-user-birth-date="<%= current_user.birth_date %>"></div>
-          <div data-user-gender="<%= current_user.gender %>"></div>
+          <div id="user-latitude" data-user-latitude="<%= current_user.latitude %>"></div>
+          <div id="user-longitude" data-user-longitude="<%= current_user.longitude %>"></div>
+          <div id="user-birth-hour" data-user-birth-hour="<%= current_user.birth_hour %>"></div>
+          <div id="user-birth-date" data-user-birth-date="<%= current_user.birth_date %>"></div>
+          <div id="user-gender" data-user-gender="<%= current_user.gender %>"></div>
       </div>
 
       <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
@@ -58,7 +58,6 @@
     </form>
   </div
 
-<br>
 <%# data-action="click->score#match_percentage"
       mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
         mate.birth_date,

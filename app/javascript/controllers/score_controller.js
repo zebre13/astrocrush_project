@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["birth_day", "birth_hour", "birth_location", "birth_country", "field", "latitude", "longitude" ]
+  static targets = ["birth_day", "birth_hour", "field", "latitude", "longitude", "gender"]
 
   connect() {
     console.log("Hello from our Score controller")
@@ -20,10 +20,10 @@ export default class extends Controller {
       // const m_birth_hour = currentUser.birth_hour
       // const m_birth_location = currentUser.birth_location
       // const m_birth_country = currentUser.birth_country
-      const f_birth_day = this.birth_dayTarget.value
-      const f_birth_hour = this.birth_hourTarget.value
-      const f_birth_location = this.birth_locationTarget.value
-      const f_birth_country = this.birth_countryTarget.value
+      // const f_birth_day = this.birth_dayTarget.value
+      // const f_birth_hour = this.birth_hourTarget.value
+      // const f_birth_location = this.latitudeTarget.value
+      // const f_birth_country = this.longitudeTarget.value
     // }
   //   console.log(birthday)
   //   console.log(birth_hour)
@@ -31,8 +31,8 @@ export default class extends Controller {
   //   console.log(birth_country)
     console.log(this.birth_dayTarget.value)
     console.log(this.birth_hourTarget.value)
-    console.log(this.birth_locationTarget.value)
-    console.log(this.birth_countryTarget.value)
+    console.log(this.latitudeTarget.value)
+    console.log(this.longitudeTarget.value)
     console.log(this.genderTarget.value)
 
     // je veux un nouvel user avec les données + haut

@@ -29,15 +29,11 @@
         <input type="hour" class="form-control" id="birth_hour" data-score-target="birth_hour" placeholder="Birth hour of your Crush">
       </div><br>
 
-      <div class="form-group">
-        <label for="birth_location">Birth location</label>
-        <input type="text" class="form-control" id="birh_location" data-score-target="birth_location" placeholder="Birth location of your Crush">
-      </div><br>
+      <%# Autocomplete Google API %>
+      <input type="hidden" data-score-target="latitude">
+      <input type="hidden" data-score-target="longitude">
+      <input data-score-target="field" type="search" class="pac-target-input" placeholder="Indiquez un lieu" autocomplete="off">
 
-      <div class="form-group">
-        <label for="birth_country">Birth country</label>
-        <input type="text" class="form-control" id="birh_country" data-score-target="birth_country" placeholder="Birth country of your Crush">
-      </div><br>
 
       <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
 

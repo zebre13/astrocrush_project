@@ -45,6 +45,14 @@
         </select>
       </div>
 
+      <div class="hiden data" type="hidden">
+          <div data-score-target = "current-latitude"data-user-latitude="<%= current_user.latitude %>"></div>
+          <div data-score-target = "current-longitude"data-user-longitude="<%= current_user.longitude %>"></div>
+          <div data-score-target = "current-birthhour"data-user-birth-hour="<%= current_user.birth_hour %>"></div>
+          <div data-score-target = "current-birthdate"data-user-birth-date="<%= current_user.birth_date %>"></div>
+          <div data-score-target = "current-gender"data-user-gender="<%= current_user.gender %>"></div>
+      </div>
+
       <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
 
     </form>

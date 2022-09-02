@@ -71,9 +71,6 @@ class UsersController < ApplicationController
               find_planets(11)]
   end
 
-  def dashboard
-  end
-
   # def new_user_api_calls
   #   horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
   #   current_user.sign = horo_elements['planets'].first['sign']
@@ -180,7 +177,6 @@ class UsersController < ApplicationController
       end
     end
     return planets
-
   end
 end
 

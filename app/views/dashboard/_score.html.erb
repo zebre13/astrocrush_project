@@ -30,27 +30,20 @@
       </div><br>
 
       <%# Autocomplete Google API %>
-      <input type="hidden" data-score-target="latitude">
-      <input type="hidden" data-score-target="longitude">
-      <input data-score-target="field" type="search" class="pac-target-input" placeholder="Indiquez un lieu" autocomplete="off">
+
+      <div class="form-group">
+        <input type="hidden" data-score-target="latitude">
+        <input type="hidden" data-score-target="longitude">
+        <input data-score-target="field" type="search" class="pac-target-input" placeholder="Indiquez un lieu" autocomplete="off">
+      </div>
 
 
-      <fieldset>
-          <legend class="h6">Gender of your Crush</legend>
-
-          <div>
-            <input type="radio" id="female" name="gender" value="female"
-                  checked>
-            <label for="female">Female</label>
-          </div>
-
-          <div>
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male</label>
-          </div>
-      </fieldset>
-      
-      <br>
+      <div class="form-group">
+        <select id="gender" name="gender" data-score-target="gender">
+          <option  value="1"> Male</option>
+          <option  value="2"> Female</option>
+        </select>
+      </div>
 
       <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
 

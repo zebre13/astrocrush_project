@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["birth_day", "birth_hour", "field", "latitude", "longitude", "gender"]
+  static targets = ["birth_day", "birth_hour", "field", "latitude", "longitude", "gender", "current-latitude", "current-longitude", "current-birthhour", "current-birthdate", "current-gender"]
 
   connect() {
     console.log("Hello from our Score controller")
@@ -34,6 +34,12 @@ export default class extends Controller {
     console.log(this.latitudeTarget.value)
     console.log(this.longitudeTarget.value)
     console.log(this.genderTarget.value)
+    console.log(this.current-latitudeTarget.value)
+    console.log(this.current-longitudeTarget.value)
+    console.log(this.current-birthhourTarget.value)
+    console.log(this.current-birthdateTarget.value)
+    console.log(this.current-genderTarget.value)
+
 
     // je veux un nouvel user avec les données + haut
     // je veux comparer le pourcentage match entre mon current user et ce user

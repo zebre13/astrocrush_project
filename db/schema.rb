@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_28_202940) do
+ActiveRecord::Schema.define(version: 2022_08_30_153427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,11 +101,16 @@ ActiveRecord::Schema.define(version: 2022_06_28_202940) do
     t.string "sign"
     t.string "rising"
     t.string "moon"
-    t.string "planets"
     t.string "birth_country"
     t.string "wheel_chart"
     t.text "personality_report"
-    t.string "affinity_scores"
+    t.integer "utcoffset"
+    t.string "latitude"
+    t.string "longitude"
+    t.string "country"
+    t.string "city"
+    t.text "affinity_scores"
+    t.text "planets"
     t.text "partner_reports"
     t.text "mate_sun_reports"
     t.index ["email"], name: "index_users_on_email", unique: true

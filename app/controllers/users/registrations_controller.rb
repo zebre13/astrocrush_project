@@ -9,14 +9,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     api_uid = ENV["API_UID"]
     api_key = ENV["API_KEY"]
 
-    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
-    # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+
+    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    # horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.country)
     current_user.sign = horo_elements['planets'].first['sign']
     current_user.rising = horo_elements['houses'].first['sign']
     current_user.moon = horo_elements['planets'][1]['sign']
-    current_user.planets = API_CALL.planets_location(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
-    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.birth_location, current_user.birth_country)
+    current_user.planets = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).planets_location(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    current_user.wheel_chart = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    current_user.personality_report = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+
 
     # current_user.photos.each do |photo|
     #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')
@@ -27,36 +29,57 @@ class Users::RegistrationsController < Devise::RegistrationsController
     potential_mates = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
     p "potential mates ok"
     score_collection = {}
-    partner_report_collection = {}
+    score_collection_of_mate = {}
+    # partner_report_collection = {}
     sun_report_collection = {}
 
+    # Ajout etienne
+    current_user.affinity_scores = {}
+    current_user.partner_reports = {}
+    current_user.mate_sun_reports = {}
     # Calcul du score de match avec chaque potential mate
     potential_mates.each do |mate|
       if mate.gender == 2
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           current_user.birth_date,
           current_user.birth_hour,
-          current_user.birth_location,
-          current_user.birth_country,
+          current_user.latitude.to_f,
+          current_user.longitude.to_f,
           mate.birth_date,
           mate.birth_hour,
-          mate.birth_location,
-          mate.birth_country
+          mate.latitude.to_f,
+          mate.longitude.to_f
         )
-        score_collection.store(mate.id, mate_score)
+        # Stocker le score de match chez le current_user avec son mate
+        current_user.affinity_scores.store(mate.id, mate_score)
+        current_user.save
+
+        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
+        other_user= User.find(mate.id)
+        other_user.affinity_scores.store(current_user.id, mate_score)
+        other_user.save
+
       else
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           mate.birth_date,
           mate.birth_hour,
-          mate.birth_location,
-          mate.birth_country,
+          mate.latitude.to_f,
+          mate.longitude.to_f,
           current_user.birth_date,
           current_user.birth_hour,
-          current_user.birth_location,
-          current_user.birth_country
+          current_user.latitude.to_f,
+          current_user.longitude.to_f
         )
         p "Score match ok"
-        score_collection.store(mate.id, mate_score)
+        # Stocker le score de match chez le current_user avec son mate
+        current_user.affinity_scores.store(mate.id, mate_score)
+        current_user.save
+
+        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
+        other_user = User.find(mate.id)
+        other_user.affinity_scores.store(current_user.id, mate_score)
+        other_user.save
+
       end
       # Call api pour obtenir les textes descriptifs
       mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
@@ -66,23 +89,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
         mate.gender,
         mate.username
       )
-      partner_report_collection.store(mate.id, mate_partner_report)
+      current_user.partner_reports.store(mate.id, mate_partner_report)
+      current_user.save
+      # On stocke le partner report aussi chez l'utilisateur d'en face, el mate
+      other_user = User.find(mate.id)
+      other_user.partner_reports.store(current_user.id, mate_partner_report)
+      other_user.save!
+
 
       # Descriptif de ton signe
       mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
         mate.birth_date,
         mate.birth_hour,
-        mate.birth_location,
-        mate.birth_country,
+        mate.latitude.to_f,
+        mate.longitude.to_f,
         'sun'
       )
-      sun_report_collection.store(mate.id, mate_sun_report)
+      current_user.mate_sun_reports.store(mate.id, mate_sun_report)
+      current_user.save
     end
 
-    ordered_score_collection = score_collection.sort_by { |_id, score| score }
-    current_user.affinity_scores = ordered_score_collection.reverse.to_h
-    current_user.partner_reports = partner_report_collection
-    current_user.mate_sun_reports = sun_report_collection
+    # ordered_score_collection = score_collection.sort_by { |_id, score| score }
+    # current_user.affinity_scores = ordered_score_collection.reverse.to_h
     current_user.save!
   end
   # before_action :configure_sign_up_params, only: [:create]

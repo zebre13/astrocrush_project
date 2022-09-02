@@ -20,7 +20,7 @@
     <%# </div> %>
   </div>
 
-  <% personnality_report = eval(current_user.personality_report).join.to_s.split(".") %>
+  <% personnality_report = current_user.personality_report.join.to_s.split(".") %>
   <%# Carousel text %>
   <div id="carouselProfileText" class="carousel slide" data-bs-touch="true">
     <div class="carousel-indicators">

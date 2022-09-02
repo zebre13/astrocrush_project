@@ -30,19 +30,19 @@
                     </div>
 
                     <div class="small-score-container">
-                      <% if eval(current_user.affinity_scores)[match.mate_id.to_i] >= 80 %>
+                      <% if current_user.affinity_scores[match.mate_id.to_s] >= 80 %>
                         <% level = "high" %>
-                      <% elsif eval(current_user.affinity_scores)[match.mate_id.to_i].in?(60..79) %>
+                      <% elsif current_user.affinity_scores[match.mate_id.to_s].in?(60..79) %>
                         <% level = "mid-high" %>
-                      <% elsif eval(current_user.affinity_scores)[match.mate_id.to_i].in?(40..59) %>
+                      <% elsif current_user.affinity_scores[match.mate_id.to_s].in?(40..59) %>
                         <% level = "neutral" %>
-                      <% elsif eval(current_user.affinity_scores)[match.mate_id.to_i].in?(20..39) %>
+                      <% elsif current_user.affinity_scores[match.mate_id.to_s].in?(20..39) %>
                         <% level = "mid-low" %>
                       <% else %>
                         <% level = "low" %>
                       <% end %>
                       <div class="small-score-planet-<%= level %>">
-                        <%= eval(current_user.affinity_scores)[match.mate_id.to_i] %>
+                        <%= current_user.affinity_scores[match.mate_id.to_s] %>
                       </div>
                     </div>
                   </li>

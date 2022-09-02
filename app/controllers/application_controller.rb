@@ -13,16 +13,20 @@ class ApplicationController < ActionController::Base
         :password,
         :password_confirmation,
         :description,
-        :hobbies,
         :birth_date,
         :birth_hour,
-        :birth_country,
+        :country,
+        :city,
+        :utcoffset,
         :birth_location,
         :gender,
+        :latitude,
+        :longitude,
         :looking_for,
         :star_sign,
         :rising,
         :moon,
+        hobbies: [],
         photos: []
       )
     }
@@ -32,17 +36,22 @@ class ApplicationController < ActionController::Base
         :password,
         :password_confirmation,
         :description,
-        :hobbies,
         :photos,
         :birth_date,
         :birth_hour,
-        :birth_country,
+        :country,
+        :city,
         :birth_location,
         :gender,
+        :latitude,
+        :longitude,
         :looking_for,
         :star_sign,
         :rising,
-        :moon
+        :utcoffset,
+        :moon,
+        hobbies: [],
+        photos: []
         )}
   end
 

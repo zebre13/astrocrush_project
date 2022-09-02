@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :matches
+  get 'current_user', to: 'users#current_user'
   get 'dashboard', to: 'users#dashboard'
   get 'astroboard', to: 'users#astroboard'
   post '/create_denied_match', to: 'matches#create_denied_match', as: 'create_denied_match'

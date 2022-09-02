@@ -103,6 +103,8 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
+  private
+
   # Get response from API
   def get_response(endpoint, data)
     url = URI.parse(@@base_url + endpoint)

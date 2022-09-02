@@ -39,6 +39,23 @@
         <input type="text" class="form-control" id="birh_country" data-score-target="birth_country" placeholder="Birth country of your Crush">
       </div><br>
 
+      <fieldset>
+          <legend class="h6">Gender of your Crush</legend>
+
+          <div>
+            <input type="radio" id="female" name="gender" value="female"
+                  checked>
+            <label for="female">Female</label>
+          </div>
+
+          <div>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+          </div>
+      </fieldset>
+      
+      <br>
+
       <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
 
     </form>

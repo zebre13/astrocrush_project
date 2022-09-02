@@ -33,6 +33,7 @@ export default class extends Controller {
     console.log(this.birth_hourTarget.value)
     console.log(this.birth_locationTarget.value)
     console.log(this.birth_countryTarget.value)
+    console.log(this.genderTarget.value)
 
     // je veux un nouvel user avec les données + haut
     // je veux comparer le pourcentage match entre mon current user et ce user

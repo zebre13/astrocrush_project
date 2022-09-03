@@ -258,7 +258,3 @@ class AstrologyApi
     }
   end
 end
-
-api_call = AstrologyApi.new("619845", "0fe9a97cde1e13cefe57c49cf2643167")
-tzone = api_call.time_zone("19.23232", "72.23234", "05/12/1993")
-p tzone

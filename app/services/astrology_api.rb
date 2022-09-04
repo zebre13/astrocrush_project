@@ -18,18 +18,6 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
-  # Hash providing sign and house for each of the 10 planets
-  def planets_location(birth_date, birth_hour, latitude, longitude)
-    horo_elements = horoscope(birth_date, birth_hour, latitude, longitude)['planets']
-    planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
-    planets.each_key do |key|
-      horo_elements.each do |element|
-        planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
-      end
-    end
-    return planets
-  end
-
   # URL of a natal wheel chart in svg format
   def wheel_chart(birth_date, birth_hour, latitude, longitude, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
     endpoint = "natal_wheel_chart"

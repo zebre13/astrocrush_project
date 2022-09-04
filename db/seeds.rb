@@ -524,7 +524,13 @@ users_data.each_with_index do |user_data, index|
   user.sign = horo_elements['planets'].first['sign']
   user.rising = horo_elements['houses'].first['sign']
   user.moon = horo_elements['planets'][1]['sign']
-  user.planets = API_CALL.planets_location(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+  planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
+  planets.each_key do |key|
+    horo_elements['planets'].each do |element|
+      planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
+    end
+  end
+  user.planets = planets
   user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
   user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   users_photos[index].each do |photo|

@@ -1,80 +1,62 @@
-<div class="container text-align-center pb-5">
-  <div>
-    <br>
-    <div class="">
-      <h4>Test your score with</h4>
-      <br>
-    </div>
-  </div>
-
-<!--test the score form-->
-
-  <%#= simple_form_for @user, url: astroboard_path  do |f| %>
-    <%#= f.input :birth_date, label: 'Birthday of your Crush', as: :date, data: { score_target: "birth_day"}%>
-    <%#= f.input :birth_hour, label: 'Birthhour of your Crush', as: :time, data: { score_target: "birth_hour"}  %>
-    <%#= f.input :birth_location, label: 'Birthlocation of your Crush', as: :string, data: { score_target: "birth_location"}  %>
-    <%#= f.input :birth_country, label: 'Birthcountry of your Crush', as: :string, data: { score_target: "birth_counrty"}  %>
-    <%#= f.button :submit, 'Submit', class: 'btn btn-secondary' %>
-  <%# end %>
-
-  <div class="pt-4" data-controller="score">
-    <form>
-      <div class="form-group">
-        <label for="birthday">Birthday</label>
-        <input type="date" class="form-control" id="birth_day" data-score-target="birth_day" placeholder="Birthday of your Crush">
-      </div><br>
-
-      <div class="form-group">
-        <label for="birth_hour">Birth hour</label>
-        <input type="hour" class="form-control" id="birth_hour" data-score-target="birth_hour" placeholder="Birth hour of your Crush">
-      </div><br>
-
-      <%# Autocomplete Google API %>
-
-      <div class="form-group">
-        <input type="hidden" data-score-target="latitude">
-        <input type="hidden" data-score-target="longitude">
-        <input data-score-target="field" type="search" class="pac-target-input" placeholder="Indiquez un lieu" autocomplete="off">
-      </div>
-
-
-      <div class="form-group">
-        <select id="gender" name="gender" data-score-target="gender">
-          <option  value="1"> Male</option>
-          <option  value="2"> Female</option>
-        </select>
-      </div>
-
-      <div class="hiden data" type="hidden">
-          <div id="user-latitude" data-user-latitude="<%= current_user.latitude %>"></div>
-          <div id="user-longitude" data-user-longitude="<%= current_user.longitude %>"></div>
-          <div id="user-birth-hour" data-user-birth-hour="<%= current_user.birth_hour %>"></div>
-          <div id="user-birth-date" data-user-birth-date="<%= current_user.birth_date %>"></div>
-          <div id="user-gender" data-user-gender="<%= current_user.gender %>"></div>
-      </div>
-
-      <button type="submit" class="d-flex btn btn-secondary" data-action="click->score#match_percentage">Submit</button>
-
-    </form>
-  </div
-
-<%# data-action="click->score#match_percentage"
-      mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
-        mate.birth_date,
-        mate.birth_hour,
-        mate.birth_location, %>
-
-<!--compatibilies-->
+<div class="pb-5">
+  <!--score-->
 
   <div class="container">
-    <br>
 
     <div class="">
-      <h4>Your compatibilities</h4>
-      <br>
+      <h4>Test your score with</h4>
     </div>
 
-    <div>
+    <div class="pt-4" data-controller="score"
+                      data-score-current-birth-date-value="<%= current_user.birth_date %>"
+                      data-score-current-birth-hour-value="<%= current_user.birth_hour %>"
+                      data-score-current-latitude-value="<%= current_user.latitude %>"
+                      data-score-current-longitude-value="<%= current_user.longitude %>"
+                      data-score-current-gender-value="<%= current_user.gender %>">
+
+      <form>
+        <div class="form-group">
+          <label for="birth_day">Birthday of your crush</label>
+          <input type="date" class="form-control" id="birth-day" data-score-target="birthDate" placeholder="Birthday of your Crush">
+        </div><br>
+
+        <div class="form-group">
+          <label for="birth_hour">Birth hour of your crush</label>
+          <input type="time" class="form-control" id="birth-hour" data-score-target="birthHour" placeholder="Birth hour of your Crush">
+        </div><br>
+
+        <div class="form-group">
+          <label for="birth_location">Birth location of your crush</label>
+          <input type="hidden" data-score-target="latitude">
+          <input type="hidden" data-score-target="longitude">
+          <input data-score-target="field" id= "birth_location" type="search" class="pac-target-input form-control" placeholder=" " autocomplete="off">
+        </div><br>
+
+        <div class="form-group d-grid gap-2">
+          <button type="button" class="btn btn-outline-light btn-lg" data-action="click->score#match_percentage">Test</button>
+        </div><br>
+      </form>
+
+      <div data-score-target="scoreAlert" class="d-none">
+        <div class="text-center">
+          <div id="matchAlert">88%</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--compatibilies-->
+
+  <div class="container">
+
+    <div class="">
+      <br>
+      <h4>Your compatibilities</h4>
+    </div>
+
+    <div class="pt-4">
       <% compatibility_degree = ['highly_compatible', 'mid_compatible', 'low_compatible', 'neutral', 'incompatible', 'mid_incompatible', 'highly_incompatible'] %>
       <% compatibility_degree.each do |degree| %>
         <div class="row justify-content-center">
@@ -102,5 +84,7 @@
         </div>
       <% end %>
     </div>
+
   </div>
+
 </div>

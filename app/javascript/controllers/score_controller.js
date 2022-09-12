@@ -76,6 +76,7 @@ export default class extends Controller {
     var resource = 'match_percentage';
     var userId = '';
     var apiKey = '';
+    var self = this;
 
     var request = $.ajax({
       url: "https://json.astrologyapi.com/v1/"+resource,
@@ -91,14 +92,12 @@ export default class extends Controller {
     const response ={}
     request.then(function(resp){
       console.log(resp)
-      Object.entries(response, resp);
+      // Object.entries(response, resp);
+      self.scoreAlertTarget.classList.remove("d-none");
+      self.scoreAlertTarget.innerText = `${resp.match_percentage} %`
     }, function(err){
       console.log(err);
     });
-
-    console.log(typeof response)
-    this.scoreAlertTarget.classList.remove("d-none");
-    this.scoreAlertTarget.innerText = response
   };
 
 

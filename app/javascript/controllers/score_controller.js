@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-
 export default class extends Controller {
   static targets = ["birthDate", "birthHour", "field", "latitude", "longitude", "gender", "scoreAlert"]
   static values = {
@@ -93,7 +92,7 @@ export default class extends Controller {
       console.log(resp)
       // Object.entries(response, resp);
       this.scoreAlertTarget.classList.remove("d-none");
-      this.scoreAlertTarget.innerText = `<div id = "matchAlert"> ${resp.match_percentage} % </div>`
+      this.scoreAlertTarget.innerText = `${resp.match_percentage} %`
     }, (err) => {
       console.log(err);
     });

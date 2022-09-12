@@ -21,6 +21,8 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+require("jquery")
+
 
 window.initMap = function(...args){
   // This is gonna create a event to broadcast at our stimulus controllers that need google map

@@ -1,7 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
+
 export default class extends Controller {
-  static targets = ["birth_day", "birth_hour", "field", "latitude", "longitude", "gender"]
+  static targets = ["birthDate", "birthHour", "field", "latitude", "longitude", "gender", "scoreAlert"]
+  static values = {
+    currentBirthDate: String,
+    currentBirthHour: String,
+    currentLatitude: String,
+    currentLongitude: String,
+    currentGender: String
+  }
 
   connect() {
     console.log("Hello from our Score controller")
@@ -13,19 +21,87 @@ export default class extends Controller {
 
   match_percentage(event){
     event.preventDefault()
-    console.log(document.querySelector("#user-latitude").getAttribute("data-user-latitude"))
-    console.log(document.querySelector("#user-longitude").getAttribute("data-user-longitude"))
-    console.log(document.querySelector("#user-birth-hour").getAttribute("data-user-birth-hour"))
-    console.log(document.querySelector("#user-birth-date").getAttribute("data-user-birth-date"))
-    console.log(document.querySelector("#user-gender").getAttribute("data-user-gender"))
 
-    console.log(this.birth_dayTarget.value)
-    console.log(this.birth_hourTarget.value)
-    console.log(this.latitudeTarget.value)
-    console.log(this.longitudeTarget.value)
-    console.log(this.genderTarget.value)
+    // récupère les données du crush
+    const crushData = {
+      'day': parseInt(this.birthDateTarget.value.split('-')[2]),
+      'month': parseInt(this.birthDateTarget.value.split('-')[1]),
+      'year': parseInt(this.birthDateTarget.value.split('-')[0]),
+      'hour': parseInt(this.birthHourTarget.value.split(':')[0]),
+      'min': parseInt(this.birthHourTarget.value.split(':')[1]),
+      'lat': parseFloat(this.latitudeTarget.value),
+      'lon': parseFloat(this.longitudeTarget.value),
+      'tzone': 5.5
+    };
 
+    // récupère les données du current user
+    const currentData = {
+      'day': parseInt(this.currentBirthDateValue.split('-')[2]),
+      'month': parseInt(this.currentBirthDateValue.split('-')[1]),
+      'year': parseInt(this.currentBirthDateValue.split('-')[0]),
+      'hour': parseInt(this.currentBirthHourValue.split(' ')[1].split(':')[0]),
+      'min': parseInt(this.currentBirthHourValue.split(' ')[1].split(':')[1]),
+      'lat': parseFloat(this.currentLatitudeValue),
+      'lon': parseFloat(this.currentLongitudeValue),
+      'tzone': 5.5
+    };
+
+    // transforme les clés du current user et du crush en male ou female en fonction du sexe du current user
+
+    var mData = {}
+    var fData = {}
+    if(this.currentGenderValue === 1){
+      Object.entries(currentData).forEach(([k, v]) => {
+        const el = {[`m_${k}`]: v};
+        Object.assign(mData, el)
+      });
+      Object.entries(crushData).forEach(([k, v]) => {
+        const el = {[`f_${k}`]: v};
+        Object.assign(fData, el)
+      });
+    } else {
+      Object.entries(crushData).forEach(([k, v]) => {
+        const el = {[`m_${k}`]: v};
+        Object.assign(mData, el)
+      });
+      Object.entries(currentData).forEach(([k, v]) => {
+        const el = {[`f_${k}`]: v};
+        Object.assign(fData, el)
+      });
+    }
+
+
+    // appelle l'api
+
+    var resource = 'match_percentage';
+    var userId = '';
+    var apiKey = '';
+    var self = this;
+
+    var request = $.ajax({
+      url: "https://json.astrologyapi.com/v1/"+resource,
+      method: "POST",
+      dataType:'json',
+      headers: {
+      "authorization": "Basic " + btoa(userId+":"+apiKey),
+      "Content-Type":'application/json'
+      },
+      data:JSON.stringify({...mData, ...fData})
+    });
+
+    const response ={}
+    request.then(function(resp){
+      console.log(resp)
+      // Object.entries(response, resp);
+      self.scoreAlertTarget.classList.remove("d-none");
+      self.scoreAlertTarget.innerText = `${resp.match_percentage} %`
+    }, function(err){
+      console.log(err);
+    });
   };
+
+
+  // google map
 
   initMap(){
     console.log(google)
@@ -33,11 +109,12 @@ export default class extends Controller {
     this.autocomplete.setFields(['address_components', 'geometry', 'name', 'utc_offset_minutes'])
     this.autocomplete.addListener('place_changed', this.placeChanged.bind(this))
     console.log(this.autocomplete)
-  }
+  };
 
   placeChanged(){
     let place = this.autocomplete.getPlace()
     this.latitudeTarget.value = place.geometry.location.lat()
     this.longitudeTarget.value = place.geometry.location.lng()
-  }
+  };
+
 }

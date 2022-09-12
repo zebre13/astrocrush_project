@@ -18,19 +18,7 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
-  # Hash providing sign and house for each one of the 10 planets
-  def planets_location(birth_date, birth_hour, latitude, longitude)
-    horo_elements = horoscope(birth_date, birth_hour, latitude, longitude)['planets']
-    planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
-    planets.each_key do |key|
-      horo_elements.each do |element|
-        planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
-      end
-    end
-    return planets
-  end
-
-  # URL for natal wheel chart in svg format
+  # URL of a natal wheel chart in svg format
   def wheel_chart(birth_date, birth_hour, latitude, longitude, planet_icon_color, inner_circle_background, sign_icon_color, sign_background)
     endpoint = "natal_wheel_chart"
     design_params = {
@@ -46,13 +34,6 @@ class AstrologyApi
   # Personality report based on a user's birth data
   def personality_report(birth_date, birth_hour, latitude, longitude)
     endpoint = "personality_report/tropical"
-    data = birth_data_set(birth_date, birth_hour, latitude, longitude)
-    return get_response(endpoint, data)['report']
-  end
-
-  # Romantic personality report based on a user's birth data
-  def romantic_personality_report(birth_date, birth_hour, latitude, longitude)
-    endpoint = "romantic_personality_report/tropical"
     data = birth_data_set(birth_date, birth_hour, latitude, longitude)
     return get_response(endpoint, data)['report']
   end
@@ -76,7 +57,7 @@ class AstrologyApi
     return get_response(endpoint, {})
   end
 
-  # Affinity percentage between a user (m) and and mate (f)
+  # Affinity percentage between a male user (m) and a female user (f)
   def match_percentage(m_birth_date, m_birth_hour, m_latitude, m_longitude, f_birth_date, f_birth_hour, f_latitude, f_longitude)
     endpoint = "match_percentage"
     m_data = m_birth_data_set(m_birth_date, m_birth_hour, m_latitude, m_longitude)
@@ -85,27 +66,18 @@ class AstrologyApi
     return get_response(endpoint, data)['match_percentage']
   end
 
-  # Love compatibility report for relationship between primary user (p) and secondary mate (s)
-  def love_compatibility_report(p_birth_date, p_birth_hour, p_city, p_country_code, s_birth_date, s_birth_hour, s_city, s_country_code)
-    endpoint = "love_compatibility_report/tropical"
-    p_data = p_birth_data_set(p_birth_date, p_birth_hour, p_city, p_country_code)
-    s_data = s_birth_data_set(s_birth_date, s_birth_hour, s_city, s_country_code)
-    data = p_data.merge(s_data)
-    return get_response(endpoint, data)['love_report']
-  end
-
-  # Partner report for relationship between you and match
-  def partner_report(you_birth_date, you_gender, match_birth_date, match_gender, match_name)
+  # Partner report for relationship between user and mate
+  def partner_report(user_birth_date, user_gender, mate_birth_date, mate_gender, mate_name)
     endpoint = "partner_report"
-    you_data = you_data_set(you_birth_date, you_gender)
-    match_data = match_data_set(match_birth_date, match_gender, match_name)
-    data = you_data.merge(match_data)
+    user_data = user_data_set(user_birth_date, user_gender)
+    mate_data = mate_data_set(mate_birth_date, mate_gender, mate_name)
+    data = user_data.merge(mate_data)
     return get_response(endpoint, data)
   end
 
   private
 
-  # Get response from API
+  # Get response from API given endpoint and data
   def get_response(endpoint, data)
     url = URI.parse(@@base_url + endpoint)
     req = Net::HTTP::Post.new(url)
@@ -115,38 +87,22 @@ class AstrologyApi
     JSON.parse(resp.body)
   end
 
-  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
-  def city_coord(latitude, longitude)
-    return { lat: latitude, lon: longitude }
-  end
-
-  # Get coordinates (lat/lon) for a given city name (ex: "Paris") and country code (ex: "FR")
-  # Utilisée pour retrouver lat et lon d'une ville dans la seed
-  def city_coordinates(city, country_code)
-    endpoint = "geo_details"
-    data = { place: city, maxRows: 6 }
-    cities = get_response(endpoint, data)
-    city = cities['geonames'].select { |item| item['country_code'] == country_code.upcase }
-    return { lat: city.first['latitude'], lon: city.first['longitude'] }
-  end
-
-  # Get timezone code given coordinates (lat/lon) and date ("dd/mm/yyyy")
+  # Get timezone offset with daylight saving time (in hours) given geo coordinates (lat/lon) and date ("dd/mm/yyyy")
   def time_zone(lat, lon, birth_date)
     endpoint = "timezone_with_dst"
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     data = {
-      latitude: lat.to_i,
-      longitude: lon.to_i,
+      latitude: lat.to_f,
+      longitude: lon.to_f,
       date: birth_date.strftime("%-m-%-d-%Y")
     }
     info = get_response(endpoint, data)
     return info['timezone']
   end
 
-  # Hash with formatted birth data given birth data
+  # Hash with formatted birth data used in the "horoscope", "sign_report", "personality report" and "wheel_chart" methods
   def birth_data_set(birth_date, birth_hour, latitude, longitude)
-    coord = city_coord(latitude, longitude)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    tzone = time_zone(latitude, longitude, birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
     {
@@ -155,16 +111,15 @@ class AstrologyApi
       year: birth_date.year,
       hour: birth_hour.hour,
       min: birth_hour.min,
-      lat: coord[:lat],
-      lon: coord[:lon],
+      lat: latitude,
+      lon: longitude,
       tzone: tzone
     }
   end
 
-  # Hash with formatted birth data given birth data for the user in match making method
+  # Hash with formatted MALE (m) USER's birth data used in the "match_percentage" method
   def m_birth_data_set(birth_date, birth_hour, latitude, longitude)
-    coord = city_coord(latitude, longitude)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    tzone = time_zone(latitude, longitude, birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
     {
@@ -173,16 +128,15 @@ class AstrologyApi
       m_year: birth_date.year,
       m_hour: birth_hour.hour,
       m_min: birth_hour.min,
-      m_lat: coord[:lat],
-      m_lon: coord[:lon],
+      m_lat: latitude,
+      m_lon: longitude,
       m_tzone: tzone
     }
   end
 
-  # Hash with formatted birth data given birth data for the mate in match making method
+  # Hash with formatted FEMALE (f) USER's birth data used in the "match_percentage" method
   def f_birth_data_set(birth_date, birth_hour, latitude, longitude)
-    coord = city_coord(latitude, longitude)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
+    tzone = time_zone(latitude, longitude, birth_date)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
     {
@@ -191,50 +145,14 @@ class AstrologyApi
       f_year: birth_date.year,
       f_hour: birth_hour.hour,
       f_min: birth_hour.min,
-      f_lat: coord[:lat],
-      f_lon: coord[:lon],
+      f_lat: latitude,
+      f_lon: longitude,
       f_tzone: tzone
     }
   end
 
-  # Hash with formatted birth data given birth data for the user in match making method
-  def p_birth_data_set(birth_date, birth_hour, latitude, longitude)
-    coord = city_coord(latitude, longitude)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
-    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    {
-      p_day: birth_date.day,
-      p_month: birth_date.month,
-      p_year: birth_date.year,
-      p_hour: birth_hour.hour,
-      p_min: birth_hour.min,
-      p_lat: coord[:lat],
-      p_lon: coord[:lon],
-      p_tzone: tzone
-    }
-  end
-
-  # Hash with formatted birth data given birth data for the mate in match making method
-  def s_birth_data_set(birth_date, birth_hour, latitude, longitude)
-    coord = city_coord(latitude, longitude)
-    tzone = time_zone(coord[:lat], coord[:lon], birth_date)
-    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
-    birth_hour = birth_hour.is_a?(String) ? Time.parse(birth_hour) : birth_hour
-    {
-      s_day: birth_date.day,
-      s_month: birth_date.month,
-      s_year: birth_date.year,
-      s_hour: birth_hour.hour,
-      s_min: birth_hour.min,
-      s_lat: coord[:lat],
-      s_lon: coord[:lon],
-      s_tzone: tzone
-    }
-  end
-
-  # Hash with formatted data for partner report method (you)
-  def you_data_set(birth_date, gender)
+  # Hash with USER's formatted data used int the "partner_report" method
+  def user_data_set(birth_date, gender)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     gender == 1 ? string_gender = 'male' : string_gender = 'female'
     {
@@ -245,8 +163,8 @@ class AstrologyApi
     }
   end
 
-  # Hash with formatted data for partner report method (match)
-  def match_data_set(birth_date, gender, username)
+  # Hash with MATE's formatted data used in the "partner_report" method
+  def mate_data_set(birth_date, gender, username)
     birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
     gender == 1 ? string_gender = 'male' : string_gender = 'female'
     {

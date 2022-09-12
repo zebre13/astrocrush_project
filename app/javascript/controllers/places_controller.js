@@ -11,7 +11,8 @@ export default class extends Controller {
 
   initMap(){
     console.log(google)
-    this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
+    var options = { types: ['(cities)']}
+    this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget, options)
     this.autocomplete.setFields(['address_components', 'geometry', 'name', 'utc_offset_minutes'])
     this.autocomplete.addListener('place_changed', this.placeChanged.bind(this))
     console.log(this.autocomplete)

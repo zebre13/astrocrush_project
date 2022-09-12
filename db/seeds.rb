@@ -30,8 +30,8 @@ boris_bourdet_data = {
   birth_hour: '05:30',
   birth_location: 'Aix-en-Provence',
   birth_country: 'FR',
-  latitude: '43.52830',
-  longitude: '43.52830',
+  latitude: '43.529742',
+  longitude: '5.447427',
   gender: 1,
   looking_for: 2
 }
@@ -45,8 +45,8 @@ etienne_de_dianous_data = {
   birth_hour: '06:30',
   birth_location: 'Paris',
   birth_country: 'FR',
-  latitude: '48.85341',
-  longitude: '2.3488',
+  latitude: '48.856614',
+  longitude: '2.3522219',
   gender: 1,
   looking_for: 2
 }
@@ -60,8 +60,8 @@ ghita_aaddaj_data = {
   birth_hour: '07:30',
   birth_location: 'Casablanca',
   birth_country: 'MA',
-  latitude: '33.58831',
-  longitude: '-7.61138',
+  latitude: '33.5731104',
+  longitude: '-7.5898434',
   gender: 2,
   looking_for: 1
 }
@@ -75,8 +75,8 @@ maria_leonor_varela_borges_data = {
   birth_hour: '15:15',
   birth_location: 'Cascais',
   birth_country: 'PT',
-  latitude: '38.69790',
-  longitude: '-9.42146',
+  latitude: '38.6970565',
+  longitude: '-9.4222945',
   gender: 2,
   looking_for: 1
 }
@@ -90,8 +90,8 @@ mathieu_trancoso_data = {
   birth_hour: '16:00',
   birth_location: 'Ermont',
   birth_country: 'FR',
-  latitude: '48.99004',
-  longitude: '2.25804',
+  latitude: '48.989071',
+  longitude: '2.258451',
   gender: 1,
   looking_for: 2
 }
@@ -105,8 +105,8 @@ laura_person_data = {
   birth_hour: '11:00',
   birth_location: 'Landerneau',
   birth_country: 'FR',
-  latitude: '48.45252',
-  longitude: '-4.25252',
+  latitude: '48.450821',
+  longitude: '-4.248437',
   gender: 2,
   looking_for: 1
 }
@@ -120,8 +120,8 @@ alexandre_platteeuw_data = {
   birth_hour: '10:30',
   birth_location: 'Roubaix',
   birth_country: 'FR',
-  latitude: '50.69421',
-  longitude: '3.17456',
+  latitude: '50.6927049',
+  longitude: '3.177847',
   gender: 1,
   looking_for: 2
 }
@@ -135,8 +135,8 @@ kenza_tighrine_data = {
   birth_hour: '10:45',
   birth_location: 'Paris',
   birth_country: 'FR',
-  latitude: '48.85341',
-  longitude: '2.3488',
+  latitude: '48.856614',
+  longitude: '2.3522219',
   gender: 2,
   looking_for: 1
 }
@@ -150,8 +150,8 @@ bruno_lelay_data = {
   birth_hour: '23:40',
   birth_location: 'Longjumeau',
   birth_country: 'FR',
-  latitude: '48.69503',
-  longitude: '2.30736',
+  latitude: '48.6930642',
+  longitude: '2.2947615',
   gender: 1,
   looking_for: 2
 }
@@ -165,8 +165,8 @@ sophiana_b_data = {
   birth_hour: '02:35',
   birth_location: 'Paris',
   birth_country: 'FR',
-  latitude: '48.85341',
-  longitude: '2.3488',
+  latitude: '48.856614',
+  longitude: '2.3522219',
   gender: 2,
   looking_for: 1
 }
@@ -180,8 +180,8 @@ ibrahima_kaba_data = {
   birth_hour: '05:30',
   birth_location: 'Conakry',
   birth_country: 'GN',
-  latitude: '9.53795',
-  longitude: '-13.67729',
+  latitude: '9.6411855',
+  longitude: '-13.5784012',
   gender: 1,
   looking_for: 2
 }
@@ -195,8 +195,8 @@ isabelle_levy_data = {
   birth_hour: '07:00',
   birth_location: 'Compiegne',
   birth_country: 'FR',
-  latitude: '49.41794',
-  longitude: '2.82606',
+  latitude: '49.417816',
+  longitude: '2.826145',
   gender: 2,
   looking_for: 1
 }
@@ -210,8 +210,8 @@ corentin_deseine_data = {
   birth_hour: '11:30',
   birth_location: 'Ermont',
   birth_country: 'FR',
-  latitude: '48.99004',
-  longitude: '2.25804',
+  latitude: '48.989071',
+  longitude: '2.258451',
   gender: 1,
   looking_for: 2
 }
@@ -225,8 +225,8 @@ aicha_diagne_data = {
   birth_hour: '13:00',
   birth_location: 'Dakar',
   birth_country: 'SN',
-  latitude: '14.69370',
-  longitude: '-17.44406',
+  latitude: '14.716677',
+  longitude: '-17.4676861',
   gender: 2,
   looking_for: 1
 }
@@ -240,6 +240,8 @@ paul_portier_data = {
   birth_hour: '11:30',
   birth_location: 'Boulogne-Billancourt',
   birth_country: 'FR',
+  latitude: '48.8396952',
+  longitude: '2.2399123',
   gender: 1,
   looking_for: 2
 }
@@ -253,8 +255,8 @@ nadia_auger_data = {
   birth_hour: '09:45',
   birth_location: 'Bordeaux',
   birth_country: 'FR',
-  latitude: '44.84044',
-  longitude: '-0.5805',
+  latitude: '44.837789',
+  longitude: '-0.57918',
   gender: 2,
   looking_for: 1
 }
@@ -268,8 +270,8 @@ jeremy_barbedienne_data = {
   birth_hour: '10:30',
   birth_location: 'Saint-Lo',
   birth_country: 'FR',
-  latitude: '49.11624',
-  longitude: '-1.09031',
+  latitude: '49.1154686',
+  longitude: '-1.0828136',
   gender: 1,
   looking_for: 2
 }
@@ -283,8 +285,8 @@ charlotte_bory_data = {
   birth_hour: '02:24',
   birth_location: 'Paris',
   birth_country: 'FR',
-  latitude: '48.85341',
-  longitude: '2.3488',
+  latitude: '48.856614',
+  longitude: '2.3522219',
   gender: 2,
   looking_for: 1
 }
@@ -298,8 +300,8 @@ marine_sourin_data = {
   birth_hour: '06:20',
   birth_location: 'La Garenne-Colombes',
   birth_country: 'FR',
-  latitude: '48.90472',
-  longitude: '2.2469',
+  latitude: '48.906535',
+  longitude: '2.244085',
   gender: 2,
   looking_for: 1
 }
@@ -313,8 +315,8 @@ boris_paillard_data = {
   birth_hour: '23:00',
   birth_location: 'Conflans-Sainte-Honorine',
   birth_country: 'FR',
-  latitude: '49.00158',
-  longitude: '2.09694',
+  latitude: '49.000275',
+  longitude: '2.09178',
   gender: 1,
   looking_for: 2
 }
@@ -328,8 +330,8 @@ claire_ziemendorf_data = {
   birth_hour: '23:58',
   birth_location: 'Rueil-Malmaison',
   birth_country: 'FR',
-  latitude: '48.87650',
-  longitude: '2.18967',
+  latitude: '48.882767',
+  longitude: '2.17693',
   gender: 2,
   looking_for: 1
 }
@@ -343,8 +345,8 @@ zoe_kravitz_data = {
   birth_hour: '02:00',
   birth_location: 'Los Angeles',
   birth_country: 'US',
-  latitude: '34.05223',
-  longitude: '-118.2436',
+  latitude: '34.0522342',
+  longitude: '-118.2436849',
   gender: 2,
   looking_for: 1
 }
@@ -522,7 +524,13 @@ users_data.each_with_index do |user_data, index|
   user.sign = horo_elements['planets'].first['sign']
   user.rising = horo_elements['houses'].first['sign']
   user.moon = horo_elements['planets'][1]['sign']
-  user.planets = API_CALL.planets_location(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+  planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
+  planets.each_key do |key|
+    horo_elements['planets'].each do |element|
+      planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
+    end
+  end
+  user.planets = planets
   user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
   user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   users_photos[index].each do |photo|

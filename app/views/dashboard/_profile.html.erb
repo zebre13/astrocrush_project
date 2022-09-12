@@ -24,13 +24,13 @@
   <%# Carousel text %>
   <div id="carouselProfileText" class="carousel slide" data-bs-touch="true">
     <div class="carousel-indicators">
-      <% personnality_report.each_with_index do |element, i| %>
-        <button type="button" data-bs-target="#carouselProfileText" data-bs-slide-to="<%= i %>" class=<%= "active" if i.zero? %> aria-current=<%= "true" if i.zero? %> aria-label="Slide <%= i + 1 %>"></button>
+      <% personnality_report.each_with_index do |element, index| %>
+        <button type="button" data-bs-target="#carouselProfileText" data-bs-slide-to="<%= index %>" class=<%= "active" if index.zero? %> aria-current=<%= "true" if index.zero? %> aria-label="Slide <%= index + 1 %>"></button>
       <% end %>
     </div>
     <div class="carousel-inner">
-      <% personnality_report.each_with_index do |element, i| %>
-        <div class="carousel-item <%= 'active' if i.zero? %>">
+      <% personnality_report.each_with_index do |element, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
           <div class="sign-text">
             <p>
               <%= element %>.

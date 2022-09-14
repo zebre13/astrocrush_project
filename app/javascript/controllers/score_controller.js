@@ -18,11 +18,27 @@ export default class extends Controller {
     }
   }
 
+
   match_percentage(event){
     event.preventDefault()
 
+    var request = (resource, data) => {
+      const userId = '';
+      const apiKey = '';
+
+      return $.ajax({
+        url: "https://json.astrologyapi.com/v1/"+resource,
+        method: "POST",
+        dataType:'json',
+        headers: {
+          "authorization": "Basic " + btoa(userId+":"+apiKey),
+          "Content-Type":'application/json'
+        },
+        data:JSON.stringify(data)
+      });
+    }
     // récupère les données du crush
-    const crushData = {
+    var crushData = {
       'day': parseInt(this.birthDateTarget.value.split('-')[2]),
       'month': parseInt(this.birthDateTarget.value.split('-')[1]),
       'year': parseInt(this.birthDateTarget.value.split('-')[0]),
@@ -30,11 +46,28 @@ export default class extends Controller {
       'min': parseInt(this.birthHourTarget.value.split(':')[1]),
       'lat': parseFloat(this.latitudeTarget.value),
       'lon': parseFloat(this.longitudeTarget.value),
-      'tzone': 5.5
+      'tzone': 0.0
     };
 
+    // appel de l'api pour le timezone crush
+    let resource = 'timezone_with_dst';
+    let data = {
+      'latitude': crushData['lat'],
+      'longitude': crushData['lon'],
+      'date': `${crushData['month']}-${crushData['day']}-${crushData['year']}`,
+    }
+
+    request(resource, data).then((resp) => {
+      const response = parseFloat(resp['timezone'])
+      console.log(resp)
+      console.log(response)
+      crushData['tzone'] = response
+    }, (err) => {
+      console.log(err);
+    });
+
     // récupère les données du current user
-    const currentData = {
+    var currentData = {
       'day': parseInt(this.currentBirthDateValue.split('-')[2]),
       'month': parseInt(this.currentBirthDateValue.split('-')[1]),
       'year': parseInt(this.currentBirthDateValue.split('-')[0]),
@@ -42,9 +75,28 @@ export default class extends Controller {
       'min': parseInt(this.currentBirthHourValue.split(' ')[1].split(':')[1]),
       'lat': parseFloat(this.currentLatitudeValue),
       'lon': parseFloat(this.currentLongitudeValue),
-      'tzone': 5.5
+      'tzone': 1.5
     };
 
+    // appel de l'api pour timezone current
+    resource = 'timezone_with_dst';
+    data = {
+      'latitude': currentData['lat'],
+      'longitude': currentData['lon'],
+      'date': `${currentData['month']}-${currentData['day']}-${currentData['year']}`,
+    }
+
+    request(resource, data).then((resp) => {
+      const response = parseFloat(resp['timezone'])
+      console.log(resp)
+      console.log(response)
+      currentData['tzone'] = response
+    }, (err) => {
+      console.log(err);
+    });
+
+    console.log(currentData)
+    console.log(crushData)
     // transforme les clés du current user et du crush en male ou female en fonction du sexe du current user
 
     var mData = {}
@@ -69,33 +121,19 @@ export default class extends Controller {
       });
     }
 
+    resource = 'match_percentage';
+    data = {...mData, ...fData};
 
-    // appelle l'api
+    console.log(data)
 
-    var resource = 'match_percentage';
-    var userId = '';
-    var apiKey = '';
-
-    var request = $.ajax({
-      url: "https://json.astrologyapi.com/v1/"+resource,
-      method: "POST",
-      dataType:'json',
-      headers: {
-      "authorization": "Basic " + btoa(userId+":"+apiKey),
-      "Content-Type":'application/json'
-      },
-      data:JSON.stringify({...mData, ...fData})
-    });
-
-    const response ={}
-    request.then((resp) => {
+    request(resource, data).then((resp) => {
       console.log(resp)
-      // Object.entries(response, resp);
       this.scoreAlertTarget.classList.remove("d-none");
       this.scoreAlertTarget.innerText = `${resp.match_percentage} %`
     }, (err) => {
       console.log(err);
     });
+
   };
 
 
@@ -115,4 +153,4 @@ export default class extends Controller {
     this.longitudeTarget.value = place.geometry.location.lng()
   };
 
-}
+};

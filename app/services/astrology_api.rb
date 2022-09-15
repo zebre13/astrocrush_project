@@ -75,6 +75,18 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
+  def time_zone(lat, lon, birth_date)
+    endpoint = "timezone_with_dst"
+    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
+    data = {
+      latitude: lat.to_f,
+      longitude: lon.to_f,
+      date: birth_date.strftime("%-m-%-d-%Y")
+    }
+    info = get_response(endpoint, data)
+    return info['timezone']
+  end
+  
   private
 
   # Get response from API given endpoint and data
@@ -88,17 +100,6 @@ class AstrologyApi
   end
 
   # Get timezone offset with daylight saving time (in hours) given geo coordinates (lat/lon) and date ("dd/mm/yyyy")
-  def time_zone(lat, lon, birth_date)
-    endpoint = "timezone_with_dst"
-    birth_date = birth_date.is_a?(String) ? Date.parse(birth_date) : birth_date
-    data = {
-      latitude: lat.to_f,
-      longitude: lon.to_f,
-      date: birth_date.strftime("%-m-%-d-%Y")
-    }
-    info = get_response(endpoint, data)
-    return info['timezone']
-  end
 
   # Hash with formatted birth data used in the "horoscope", "sign_report", "personality report" and "wheel_chart" methods
   def birth_data_set(birth_date, birth_hour, latitude, longitude)

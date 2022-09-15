@@ -23,7 +23,6 @@ export default class extends Controller {
     event.preventDefault()
 
     // function request pour l'appel d'API
-
     var request = (resource, data) => {
       const userId = '';
       const apiKey = '';
@@ -64,11 +63,8 @@ export default class extends Controller {
       'tzone': 0.0
     };
 
-    var mData = {}
-    var fData = {}
-
     // function appel de l'api pour le timezone crush
-    const timeZone = () => {
+    const setTimeZone = () => {
       const resource = 'timezone_with_dst';
       const data = {
         'latitude': crushData['lat'],
@@ -76,72 +72,74 @@ export default class extends Controller {
         'date': `${crushData['month']}-${crushData['day']}-${crushData['year']}`,
       }
 
-      request(resource, data).then((resp) => {
-        crushData['tzone'] = parseFloat(resp['timezone']);
-        return crushData
-      }, (err) => {
-        console.log(err);
-      })
-    }
-
-    // function transforme les clés du current user et du crush en male ou female en fonction du sexe du current user
-    var setGender = () => {
-      if(this.currentGenderValue === 1){
-        Object.entries(currentData).forEach(([k, v]) => {
-          const el = {[`m_${k}`]: v};
-          Object.assign(mData, el)
-        });
-        Object.entries(crushData).forEach(([k, v]) => {
-          const el = {[`f_${k}`]: v};
-          Object.assign(fData, el)
-        });
-      } else {
-        Object.entries(crushData).forEach(([k, v]) => {
-          const el = {[`m_${k}`]: v};
-          Object.assign(mData, el)
-        });
-        Object.entries(currentData).forEach(([k, v]) => {
-          const el = {[`f_${k}`]: v};
-          Object.assign(fData, el)
-        });
-      } var data = {...mData, ...fData};
-      return data
-    }
-
-    // function appel de l'api pour le match_percentage
-    var match = () => {
-      const resource = 'match_percentage';
-      // const data = {...mData, ...fData};
-
-      request(resource, data).then((resp) => {
-        console.log(resp);
-        this.scoreAlertTarget.classList.remove("d-none");
-        this.scoreAlertTarget.innerText = `${resp.match_percentage} %`;
-      }, (err) => {
-        console.log(err);
+      return new Promise((resolve, reject) => {
+        request(resource, data).then((resp) => {
+          crushData['tzone'] = parseFloat(resp['timezone']);
+          console.log(crushData)
+          resolve(crushData)
+        }, (err) => {
+          console.log(err);
+        })
       });
     }
 
-    console.log(timeZone())
-    // appel de l'api
-    timeZone().then((resp) => {
-      console.log(resp)
-      setGender()
-      .then((resp) => {
-        console.log(resp)
-        match()
-      }, (err) =>{
+    // function transforme les clés du current user et du crush en male ou female en fonction du sexe du current user
+    const setGender = (crushData) => {
+      const mData = {}
+      const fData = {}
+      console.log('coucou')
+      return new Promise((resolve) => {
+        if(this.currentGenderValue === 1){
+          Object.entries(currentData).forEach(([k, v]) => {
+            const el = {[`m_${k}`]: v};
+            Object.assign(mData, el)
+          });
+          Object.entries(crushData).forEach(([k, v]) => {
+            const el = {[`f_${k}`]: v};
+            Object.assign(fData, el)
+          });
+        } else {
+          Object.entries(crushData).forEach(([k, v]) => {
+            const el = {[`m_${k}`]: v};
+            Object.assign(mData, el)
+          });
+          Object.entries(currentData).forEach(([k, v]) => {
+            const el = {[`f_${k}`]: v};
+            Object.assign(fData, el)
+          });
+$        }
+        console.log({...mData, ...fData})
+        resolve({...mData, ...fData});
+      })
+    }
+
+    // function appel de l'api pour le match_percentage
+    const getMatchPercentage = (data) => {
+      const resource = 'match_percentage';
+
+      request(resource, data).then((resp) => {
+        // console.log(resp);
+        // this.scoreAlertTarget.classList.remove("d-none");
+        // this.scoreAlertTarget.innerText = `${resp.match_percentage} %`;
+        alert(`Your compatibility : ${resp.match_percentage} %`)
+      }, (err) => {
         console.log(err);
       })
-    }, (err) => {
-      console.log(err);
-    })
+    }
+
+    const failureCallback = () => {
+      // console.error(`Error`);
+      // return false;
+    }
+
+    // appel de l'api
+    setTimeZone()
+    .then((resp) => setGender(resp))
+    .then((resp) => getMatchPercentage(resp))
+    .catch(failureCallback)
   };
 
-
-
   // google map
-
   initMap(){
     console.log(google)
     this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)

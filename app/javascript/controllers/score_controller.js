@@ -75,7 +75,6 @@ export default class extends Controller {
       return new Promise((resolve, reject) => {
         request(resource, data).then((resp) => {
           crushData['tzone'] = parseFloat(resp['timezone']);
-          console.log(crushData)
           resolve(crushData)
         }, (err) => {
           console.log(err);
@@ -108,7 +107,6 @@ export default class extends Controller {
             Object.assign(fData, el)
           });
 $        }
-        console.log({...mData, ...fData})
         resolve({...mData, ...fData});
       })
     }
@@ -125,11 +123,6 @@ $        }
       }, (err) => {
         console.log(err);
       })
-    }
-
-    const failureCallback = () => {
-      // console.error(`Error`);
-      // return false;
     }
 
     // appel de l'api

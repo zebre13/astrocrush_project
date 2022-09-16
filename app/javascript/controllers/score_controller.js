@@ -24,8 +24,8 @@ export default class extends Controller {
 
     // function request pour l'appel d'API
     var request = (resource, data) => {
-      const userId = '619845';
-      const apiKey = '0fe9a97cde1e13cefe57c49cf2643167';
+      const userId = '';
+      const apiKey = '';
 
       return $.ajax({
         url: "https://json.astrologyapi.com/v1/"+resource,

@@ -1,7 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
+import { Modal } from "bootstrap";
+const Swal = require('sweetalert2')
+
 
 export default class extends Controller {
-  static targets = ["birthDate", "birthHour", "field", "latitude", "longitude", "gender", "scoreAlert"]
+  static targets = ["birthDate", "birthHour", "field", "latitude", "longitude", "gender", "scoreAlert", "modal", "modalbody", "closeModalBtn"]
   static values = {
     currentBirthDate: String,
     currentBirthHour: String,
@@ -117,8 +120,22 @@ $        }
       request(resource, data).then((resp) => {
         // console.log(resp);
         // this.scoreAlertTarget.classList.remove("d-none");
-        // this.scoreAlertTarget.innerText = `${resp.match_percentage} %`;
-        alert(`Your compatibility : ${resp.match_percentage} %`)
+        // this.modalbodyTarget.innerText = `Your compatibility : ${resp.match_percentage} %`;
+
+        console.log(this.modalTarget)
+
+        var modal = new Modal(this.modalTarget)
+        this.modalbodyTarget.innerHTML = `${resp.match_percentage} %`
+        modal.show()
+        this.closeModalBtnTarget.addEventListener('click', (e) => {
+          modal.hide()
+          document.getElementById('myform').reset();
+        });
+        this.startConversationBtnTarget.addEventListener('click', (e) => {
+              modal.hide()
+            });
+
+        // alert(`Your compatibility : ${resp.match_percentage} %`)
       }, (err) => {
         reject(err);
       })

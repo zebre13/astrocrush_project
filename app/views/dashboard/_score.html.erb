@@ -16,7 +16,7 @@
                       data-score-current-timezone-value="<%= current_user.timezone %>">
 
 
-      <form>
+      <form id="myform" >
         <div class="form-group">
           <label for="birth_day">Birthday of your crush</label>
           <input type="date" class="form-control" id="birth-day" data-score-target="birthDate" placeholder="Birthday of your Crush">
@@ -39,11 +39,13 @@
         </div><br>
       </form>
 
-      <div data-score-target="scoreAlert" class="d-none">
-        <div class="text-center">
-
+    <div class="modal fade" data-score-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%= render "dashboard/scorealert" %>
         </div>
       </div>
+    </div>
 
     </div>
 

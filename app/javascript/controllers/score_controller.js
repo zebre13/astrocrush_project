@@ -24,8 +24,8 @@ export default class extends Controller {
 
     // function request pour l'appel d'API
     var request = (resource, data) => {
-      const userId = '';
-      const apiKey = '';
+      const userId = '619845';
+      const apiKey = '0fe9a97cde1e13cefe57c49cf2643167';
 
       return $.ajax({
         url: "https://json.astrologyapi.com/v1/"+resource,
@@ -72,12 +72,12 @@ export default class extends Controller {
         'date': `${crushData['month']}-${crushData['day']}-${crushData['year']}`,
       }
 
-      return new Promise((resolve, reject) => {
+      new Promise((resolve, reject) => {
         request(resource, data).then((resp) => {
           crushData['tzone'] = parseFloat(resp['timezone']);
           resolve(crushData)
         }, (err) => {
-          console.log(err);
+          reject(err);
         })
       });
     }
@@ -86,8 +86,7 @@ export default class extends Controller {
     const setGender = (crushData) => {
       const mData = {}
       const fData = {}
-      console.log('coucou')
-      return new Promise((resolve) => {
+      new Promise((resolve) => {
         if(this.currentGenderValue === 1){
           Object.entries(currentData).forEach(([k, v]) => {
             const el = {[`m_${k}`]: v};
@@ -121,15 +120,18 @@ $        }
         // this.scoreAlertTarget.innerText = `${resp.match_percentage} %`;
         alert(`Your compatibility : ${resp.match_percentage} %`)
       }, (err) => {
-        console.log(err);
+        reject(err);
       })
     }
+
+    // function echec
+    const failureCallback = (err) => console.log(err)
 
     // appel de l'api
     setTimeZone()
     .then((resp) => setGender(resp))
     .then((resp) => getMatchPercentage(resp))
-    .catch(failureCallback)
+    .catch((err) => failureCallback(err))
   };
 
   // google map

@@ -72,7 +72,7 @@ export default class extends Controller {
         'date': `${crushData['month']}-${crushData['day']}-${crushData['year']}`,
       }
 
-      new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         request(resource, data).then((resp) => {
           crushData['tzone'] = parseFloat(resp['timezone']);
           resolve(crushData)
@@ -86,7 +86,7 @@ export default class extends Controller {
     const setGender = (crushData) => {
       const mData = {}
       const fData = {}
-      new Promise((resolve) => {
+      return new Promise((resolve) => {
         if(this.currentGenderValue === 1){
           Object.entries(currentData).forEach(([k, v]) => {
             const el = {[`m_${k}`]: v};
@@ -127,7 +127,7 @@ $        }
     // function echec
     const failureCallback = (err) => console.log(err)
 
-    // appel de l'api
+    // setTimezone puis setGender puis getMatchPercentage
     setTimeZone()
     .then((resp) => setGender(resp))
     .then((resp) => getMatchPercentage(resp))

@@ -1,7 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 import { Modal } from "bootstrap";
-const Swal = require('sweetalert2')
-
 
 export default class extends Controller {
   static targets = ["birthDate", "birthHour", "field", "latitude", "longitude", "gender", "scoreAlert", "modal", "modalbody", "closeModalBtn"]
@@ -137,7 +135,7 @@ $        }
 
         // alert(`Your compatibility : ${resp.match_percentage} %`)
       }, (err) => {
-        reject(err);
+        console.log(err);
       })
     }
 

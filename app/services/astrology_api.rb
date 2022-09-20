@@ -86,7 +86,7 @@ class AstrologyApi
     info = get_response(endpoint, data)
     return info['timezone']
   end
-  
+
   private
 
   # Get response from API given endpoint and data
@@ -98,8 +98,6 @@ class AstrologyApi
     resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
     JSON.parse(resp.body)
   end
-
-  # Get timezone offset with daylight saving time (in hours) given geo coordinates (lat/lon) and date ("dd/mm/yyyy")
 
   # Hash with formatted birth data used in the "horoscope", "sign_report", "personality report" and "wheel_chart" methods
   def birth_data_set(birth_date, birth_hour, latitude, longitude)

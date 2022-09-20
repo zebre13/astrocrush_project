@@ -175,3 +175,4 @@ class AstrologyApi
     }
   end
 end
+

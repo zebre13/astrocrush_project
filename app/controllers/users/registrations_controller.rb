@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'pry-byebug'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   after_action :new_user_api_calls, only: [:create]

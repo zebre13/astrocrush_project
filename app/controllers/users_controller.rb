@@ -6,6 +6,8 @@ API_CALL = AstrologyApi.new(API_UID, API_KEY)
 
 class UsersController < ApplicationController
 
+  before_action :define_coordinate, only: %i[index show]
+
   ZODIAC = [
     "Aries",
     "Taurus",
@@ -38,9 +40,16 @@ class UsersController < ApplicationController
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
     @matches = current_user.matches
 
-    @users_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    #selectionner les utilisateurs par preferences age / rayon / gender
+    @users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+
+    #parmi les utilisateurs selectionnés par préférence rejecter les utilisateurs si affinity_score n'existe pas
+    @users_with_score = @users_by_preference.reject do |user|
+      user.affinity_scores == nil
+    end
+    #mate if pas déjà matché et pas déjà reject
     # On rejette tous les users qui sont dans les matchs du current user.
-    @users = @users_by_gender.reject do |user|
+    @users = @users_with_score.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
       # Match.where("user_id = ? OR (mate_id = ? AND status IN ?)", current_user.id, current_user.id, [1, 2]).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end
@@ -51,8 +60,6 @@ class UsersController < ApplicationController
   def show
     @mate = User.find(params[:id])
   end
-
-
 
   def astroboard
     @daily_horoscope = AstrologyApi.new(API_UID, API_KEY).daily_horoscope(current_user.sign)
@@ -149,6 +156,12 @@ class UsersController < ApplicationController
   # end
 
   private
+
+  def define_coordinate
+    ip = request.remote_ip
+    current_user.local_lat = Geocoder.search(ip).first.coordinates[0]
+    current_user.local_lon = Geocoder.search(ip).first.coordinates[1]
+  end
 
   def create_zodiac
     cut = 0

@@ -36,6 +36,9 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
 
+#Geocode
+gem "geocoder"
+
 #Timeout
 # gem 'em-resolv-replace'
 

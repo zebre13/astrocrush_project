@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  # à chaque connection lancer la fonction
+  after_action :calcul_ten_scores, only: [:new]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def calcul_ten_scores
+  # récupérer les local_lat et local_lon du current_user en fonction de l'adresse ip
+  # mettre à jour les préférences utilisateurs
+  # virer les users avec un affinity_score déjà présent
+  # calculer 10 nouveaux scores à partir des users obtenus
+  end
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+
+
 
   # protected
 

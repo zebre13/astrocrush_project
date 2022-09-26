@@ -11,7 +11,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_validation :geocode
+  # after_validation :geoloc
 
   has_many_attached :photos
   has_many :matches, dependent: :destroy
@@ -35,6 +35,9 @@ class User < ApplicationRecord
   # validate :user_is_adult
   validates_length_of :description, maximum: 500
     # private
+
+  # validates :local_lat, default: Geocoder.search("172.56.21.89").first.coordinates[0]
+  # validates :local_lon, default: Geocoder.search("172.56.21.89").first.coordinates[1]
 
     # def user_is_adult
     #   if Date.today.year - birth_date.year < 18

@@ -40,8 +40,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.affinity_scores = {}
     current_user.partner_reports = {}
     current_user.mate_sun_reports = {}
-    # Calcul du score de match avec chaque potential mate
-    potential_mates.each do |mate|
+    # Calcul du score de match avec 10 potentiels matchs
+    potential_mates.sample(10).each do |mate|
       if mate.gender == 2
         mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
           current_user.birth_date,

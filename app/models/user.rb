@@ -11,6 +11,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_validation :geocode
+
   has_many_attached :photos
   has_many :matches, dependent: :destroy
   has_many :messages, dependent: :destroy

@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
         :rising,
         :moon,
         hobbies: [],
-        photos: []
+        photos: [],
+        timezone:
       )
     }
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(
@@ -51,7 +52,8 @@ class ApplicationController < ActionController::Base
         :utcoffset,
         :moon,
         hobbies: [],
-        photos: []
+        photos: [],
+        timezone:
         )}
   end
 

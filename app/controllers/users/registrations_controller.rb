@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 require 'pry-byebug'
+require_relative '../app/services/astrology_api.rb'
+
+API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
 class Users::RegistrationsController < Devise::RegistrationsController
   after_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
     return unless user_signed_in?
-    api_uid = ENV["API_UID"]
-    api_key = ENV["API_KEY"]
 
-    horo_elements = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
     current_user.sign = horo_elements['planets'].first['sign']
     current_user.rising = horo_elements['houses'].first['sign']
     current_user.moon = horo_elements['planets'][1]['sign']
@@ -20,8 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
     current_user.planets = planets
-    current_user.wheel_chart = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-    current_user.personality_report = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"]).personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+
+    current_user.timezone = API_CALL.time_zone(current_user.latitude.to_f, current_user.longitude.to_f, current_user.birth_date)
 
     # current_user.photos.each do |photo|
     #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')
@@ -43,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # Calcul du score de match avec 10 potentiels matchs
     potential_mates.sample(10).each do |mate|
       if mate.gender == 2
-        mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+        mate_score = API_CALL.match_percentage(
           current_user.birth_date,
           current_user.birth_hour,
           current_user.latitude.to_f,
@@ -63,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         other_user.save
 
       else
-        mate_score = AstrologyApi.new(api_uid, api_key).match_percentage(
+        mate_score = API_CALL.match_percentage(
           mate.birth_date,
           mate.birth_hour,
           mate.latitude.to_f,
@@ -85,7 +88,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       end
       # Call api pour obtenir les textes descriptifs
-      mate_partner_report = AstrologyApi.new(api_uid, api_key).partner_report(
+      mate_partner_report = API_CALL.partner_report(
         current_user.birth_date,
         current_user.gender,
         mate.birth_date,
@@ -100,7 +103,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       other_user.save!
 
       # Descriptif du signe du mate stocké chez le current user
-      mate_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
+      mate_sun_report = API_CALL.sign_report(
         mate.birth_date,
         mate.birth_hour,
         mate.latitude.to_f,
@@ -111,7 +114,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       current_user.save
 
       # Descriptif du signe du current_user stocké chez le mate
-      my_sun_report = AstrologyApi.new(api_uid, api_key).sign_report(
+      my_sun_report = API_CALL.sign_report(
         current_user.birth_date,
         current_user.birth_hour,
         current_user.latitude.to_f,

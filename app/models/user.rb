@@ -36,9 +36,6 @@ class User < ApplicationRecord
   validates_length_of :description, maximum: 500
     # private
 
-  # validates :local_lat, default: Geocoder.search("172.56.21.89").first.coordinates[0]
-  # validates :local_lon, default: Geocoder.search("172.56.21.89").first.coordinates[1]
-
     # def user_is_adult
     #   if Date.today.year - birth_date.year < 18
     #     self.errors.add(:birth_date, "User must be over 18 years old")

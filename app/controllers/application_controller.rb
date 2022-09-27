@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
         :search_perimeter,
         :latitude,
         :longitude,
+        :minimum_age,
+        :maximum_age,
         :looking_for,
         :star_sign,
         :rising,
@@ -48,13 +50,15 @@ class ApplicationController < ActionController::Base
         :latitude,
         :longitude,
         :looking_for,
+        :minimum_age,
+        :maximum_age,
         :star_sign,
         :rising,
         :utcoffset,
         :moon,
         :timezone,
         hobbies: [],
-        photos: [],
+        photos: []
         )}
   end
 

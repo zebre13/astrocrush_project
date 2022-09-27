@@ -1,10 +1,8 @@
 # frozen_string_literal: true
-require 'pry-byebug'
 require_relative '../../../app/services/astrology_api.rb'
 
-API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-
 class Users::RegistrationsController < Devise::RegistrationsController
+  API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
   after_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls

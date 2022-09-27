@@ -23,9 +23,9 @@
       </div>
     </div>
 
-    <%= cl_image_tag current_user.photos.first.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
+    <%= cl_image_tag current_user.photos.first&.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
   </div>
-  
+
 <br>
 
   <div data-controller="dashboard" height="80px">

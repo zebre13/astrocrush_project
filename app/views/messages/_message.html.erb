@@ -12,9 +12,9 @@
 <div class="message <%= 'sender' if sender %>">
   <div class="message-content">
     <% if sender %>
-      <%= cl_image_tag current_user.photos.first.key, alt: "#{current_user.username}'s avatar", class: "message-avatar" %>
+      <%= cl_image_tag current_user.photos.first&.key, alt: "#{current_user.username}'s avatar", class: "message-avatar" %>
     <% else %>
-      <%= cl_image_tag message.user.photos.first.key, alt: "#{message.user.username}'s avatar", class: "message-avatar" %>
+      <%= cl_image_tag message.user.photos.first&.key, alt: "#{message.user.username}'s avatar", class: "message-avatar" %>
     <% end %>
     <p>
       <%= message.content %>

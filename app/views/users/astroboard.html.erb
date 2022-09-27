@@ -22,8 +22,9 @@
         </p>
       </div>
     </div>
-
-    <%= cl_image_tag current_user.photos.first&.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
+    <% if current_user.photos.any?   %>
+      <%= cl_image_tag current_user.photos.first&.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
+    <% end %>
   </div>
 
 <br>

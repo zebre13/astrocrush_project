@@ -1,9 +1,8 @@
 require 'json'
 require_relative '../services/astrology_api'
 
-API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-
 class UsersController < ApplicationController
+  API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
   ZODIAC = [
     "Aries",

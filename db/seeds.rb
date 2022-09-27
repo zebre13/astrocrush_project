@@ -3,8 +3,7 @@ require 'faker'
 require_relative '../app/services/astrology_api'
 require 'resolv-replace'
 
-api_uid = ENV["API_UID"]
-api_key = ENV["API_KEY"]
+API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
 # <=== DATABASE CLEANOUT ===>
 
@@ -513,8 +512,6 @@ users_photos = [
   # photos_claire_ziemendorf,
   # photos_zoe_kravitz
 ]
-
-API_CALL = AstrologyApi.new(api_uid, api_key)
 
 # <--- Create Users --->
 

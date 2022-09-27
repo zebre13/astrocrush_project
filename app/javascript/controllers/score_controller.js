@@ -25,8 +25,8 @@ export default class extends Controller {
 
     // function request pour l'appel d'API
     var request = (resource, data) => {
-      const userId = '619845';
-      const apiKey = '0fe9a97cde1e13cefe57c49cf2643167';
+      const userId = '';
+      const apiKey = '';
 
       return $.ajax({
         url: "https://json.astrologyapi.com/v1/"+resource,
@@ -76,6 +76,7 @@ export default class extends Controller {
       return new Promise((resolve, reject) => {
         request(resource, data).then((resp) => {
           crushData['tzone'] = parseFloat(resp['timezone']);
+          console.log(crushData)
           resolve(crushData)
         }, (err) => {
           reject(err);
@@ -107,6 +108,7 @@ export default class extends Controller {
             Object.assign(fData, el)
           });
 $        }
+        console.log({...mData, ...fData})
         resolve({...mData, ...fData});
       })
     }

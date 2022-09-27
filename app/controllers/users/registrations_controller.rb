@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'pry-byebug'
-require_relative '../app/services/astrology_api.rb'
+require_relative '../../../app/services/astrology_api.rb'
 
 API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
@@ -26,9 +26,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     current_user.timezone = API_CALL.time_zone(current_user.latitude.to_f, current_user.longitude.to_f, current_user.birth_date)
 
-    # current_user.photos.each do |photo|
-    #   current_user.photos.attach(io: photo, filename: current_user.username, content_type: 'jpg')
-    # end
     p "création des signes planetes etc OK"
 
     # Selection des personnes correspondant aux critères de recherche de ce nouvel user

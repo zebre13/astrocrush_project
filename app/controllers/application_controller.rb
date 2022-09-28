@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
         :rising,
         :moon,
         :timezone,
+        :local_lat,
+        :local_lon,
         hobbies: [],
         photos: []
       )
@@ -57,6 +59,8 @@ class ApplicationController < ActionController::Base
         :utcoffset,
         :moon,
         :timezone,
+        :local_lat,
+        :local_lon,
         hobbies: [],
         photos: []
         )}

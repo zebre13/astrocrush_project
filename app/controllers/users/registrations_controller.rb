@@ -20,29 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.local_lat = define_local_lat
     current_user.local_lon = define_local_lon
 
-    score_collection = {}
-    partner_report_collection = {}
-    sun_report_collection = {}
-    ten_mates.each do |mate|
-      if mate.gender == 2
-        mate_score = match_percentage(current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude, mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude)
-      else
-        mate_score = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude)
-      end
-      score_collection.store(mate.id, mate_score)
-
-      mate_partner_report = API_CALL.partner_report(current_user.birth_date, current_user.gender, mate.birth_date, mate.gender, mate.username)
-      partner_report_collection.store(mate.id, mate_partner_report)
-
-      mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')
-      sun_report_collection.store(mate.id, mate_sun_report)
-    end
-
-    ordered_score_collection = score_collection.sort_by { |_id, score| score }
-    current_user.affinity_scores = ordered_score_collection.reverse.to_h
-    current_user.partner_reports = partner_report_collection
-    current_user.mate_sun_reports = sun_report_collection
-    current_user.save!
+    get_affinities
   end
 
   private
@@ -92,6 +70,44 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def ten_mates
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
     return mates_by_gender.sample(10)
+  end
+
+  def get_affinities
+    score_collection = {}
+    partner_report_collection = {}
+    sun_report_collection = {}
+    ten_mates.each do |mate|
+
+      if current_user.gender == mate.gender
+        mate_score_one = API_CALL.match_percentage(current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude, mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude)
+        mate_score_two = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude)
+        if mate_score_one > mate_score_two
+          mate_score = mate_score_one
+        else
+          mate_score = mate_score_two
+        end
+      else
+        if mate.gender == 2
+          mate_score = API_CALL.match_percentage(current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude, mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude)
+        else
+          mate_score = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude)
+        end
+      end
+
+      score_collection.store(mate.id, mate_score)
+
+      mate_partner_report = API_CALL.partner_report(current_user.birth_date, current_user.gender, mate.birth_date, mate.gender, mate.username)
+      partner_report_collection.store(mate.id, mate_partner_report)
+
+      mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')
+      sun_report_collection.store(mate.id, mate_sun_report)
+    end
+
+    ordered_score_collection = score_collection.sort_by { |_id, score| score }
+    current_user.affinity_scores = ordered_score_collection.reverse.to_h
+    current_user.partner_reports = partner_report_collection
+    current_user.mate_sun_reports = sun_report_collection
+    current_user.save!
   end
 
   # def my_sun_report(birth_date, birth_hour, latitude, longitude)

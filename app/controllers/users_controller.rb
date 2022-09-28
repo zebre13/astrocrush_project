@@ -39,17 +39,17 @@ class UsersController < ApplicationController
     # Constituer l'index de l'addition quotidienne de ces users updates avec ceux
 
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
-    @matches = current_user.matches
+    matches = current_user.matches
 
     # selectionner les utilisateurs par preferences age / rayon / gender
-    @users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
 
     # Ne garder que les utilisateurs qui ont un score de match calculé avec moi
-    # @users_with_score = @users_by_preference.select do |user|
-    #   user.affinity_scores.keys.include?(current_user.id)
-    # end
+    users_with_score = users_by_preference.select do |user|
+      user.affinity_scores.keys.include?(current_user.id)
+    end
     # On rejette tous les users qui sont dans les matchs du current user.
-    @users = @users_by_preference.reject do |user|
+    @users = users_with_score.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
       # Match.where("user_id = ? OR (mate_id = ? AND status IN ?)", current_user.id, current_user.id, [1, 2]).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end

@@ -41,10 +41,10 @@ class UsersController < ApplicationController
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
     @matches = current_user.matches
 
-    #selectionner les utilisateurs par preferences age / rayon / gender
+    # selectionner les utilisateurs par preferences age / rayon / gender
     @users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
 
-    #Ne garder que les utilisateurs qui ont un score de match calculé avec moi
+    # Ne garder que les utilisateurs qui ont un score de match calculé avec moi
     # @users_with_score = @users_by_preference.select do |user|
     #   user.affinity_scores.keys.include?(current_user.id)
     # end
@@ -65,17 +65,7 @@ class UsersController < ApplicationController
     @daily_horoscope = API_CALL.daily_horoscope(current_user.sign)
     @zodiac_compatibility = API_CALL.zodiac_compatibility(current_user.sign)
     @my_zodiac = create_zodiac
-    @signs = [find_planets(1),
-              find_planets(2),
-              find_planets(3),
-              find_planets(4),
-              find_planets(5),
-              find_planets(6),
-              find_planets(7),
-              find_planets(8),
-              find_planets(9),
-              find_planets(10),
-              find_planets(11)]
+    @signs = [find_planets(1), find_planets(2), find_planets(3), find_planets(4), find_planets(5), find_planets(6), find_planets(7), find_planets(8), find_planets(9), find_planets(10), find_planets(11)]
   end
 
   private
@@ -84,9 +74,7 @@ class UsersController < ApplicationController
     cut = 0
 
     ZODIAC.each_with_index do |sign, index|
-      if sign == current_user.rising.capitalize
-        cut = index
-      end
+      cut = index if sign == current_user.rising.capitalize
     end
 
     ZODIAC.slice(cut..-1) + ZODIAC.slice(0..(cut - 1))
@@ -140,17 +128,15 @@ class UsersController < ApplicationController
   #   calculate_scores(ten_users)
   # end
 
-  def calculate_distance(user)
-    #TODO
-    # current_user distance avec user
-  end
+  # def calculate_distance(user)
+  #   # TODO
+  #   # current_user distance avec user
+  # end
 
-
-  def calculate_scores(users)
-      # user.API.match_percentage ETC TODO
-  end
+  # def calculate_scores(users)
+  #     # user.API.match_percentage ETC TODO
+  # end
 end
-
 
 # # sign =  {planet: planet, house: house}
 # hash[:sign] = planet: hash.key

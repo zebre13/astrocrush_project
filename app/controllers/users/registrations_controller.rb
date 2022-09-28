@@ -1,176 +1,106 @@
 # frozen_string_literal: true
-require_relative '../../../app/services/astrology_api.rb'
+
+require_relative '../../../app/services/astrology_api'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
+  before_action :get_other_user, only: %i[partner_report my_sun_report mate_sun_report]
   after_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
     return unless user_signed_in?
 
-    planets
+    current_user.sign = horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)['planets'].first['sign']
+    current_user.rising = horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)['houses'].first['sign']
+    current_user.moon = horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)['planets'][1]['sign']
+    current_user.wheel_chart = wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    current_user.planets = planets(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    current_user.personality_report = personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+    current_user.timezone = time_zone(current_user.latitude.to_f, current_user.longitude.to_f, current_user.birth_date)
+    current_user.local_lat = define_local_lat
+    current_user.local_lon = define_local_lon
 
-    wheel_chart
+    score_collection = {}
+    partner_report_collection = {}
+    sun_report_collection = {}
+    ten_mates.each do |mate|
+      if mate.gender == 2
+        mate_score = match_percentage(current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude, mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude)
+      else
+        mate_score = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude)
+      end
+      score_collection.store(mate.id, mate_score)
 
-    personality_report
+      mate_partner_report = API_CALL.partner_report(current_user.birth_date, current_user.gender, mate.birth_date, mate.gender, mate.username)
+      partner_report_collection.store(mate.id, mate_partner_report)
 
-    time_zone
+      mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')
+      sun_report_collection.store(mate.id, mate_sun_report)
+    end
 
-    partner_report
-
-    mate_sun_report
-
-    my_sun_report
-
-    match_percentage
-
-    define_coordinates
-
+    ordered_score_collection = score_collection.sort_by { |_id, score| score }
+    current_user.affinity_scores = ordered_score_collection.reverse.to_h
+    current_user.partner_reports = partner_report_collection
+    current_user.mate_sun_reports = sun_report_collection
     current_user.save!
   end
 
   private
 
-  def planets
-    horo_elements = API_CALL.horoscope(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+  def horoscope(birth_date, birth_hour, latitude, longitude)
+    API_CALL.horoscope(birth_date, birth_hour, latitude, longitude)
+  end
 
-    current_user.sign = horo_elements['planets'].first['sign']
+  def wheel_chart(birth_date, birth_hour, latitude, longitude)
+    API_CALL.wheel_chart(birth_date, birth_hour, latitude, longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+  end
 
-    current_user.rising = horo_elements['houses'].first['sign']
-
-    current_user.moon = horo_elements['planets'][1]['sign']
+  def planets(birth_date, birth_hour, latitude, longitude)
     planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
-
     planets.each_key do |key|
-      horo_elements['planets'].each do |element|
+      horoscope(birth_date, birth_hour, latitude, longitude)['planets'].each do |element|
         planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
       end
     end
-
-    current_user.planets = planets
-
-    p "création des signes planetes etc OK"
   end
 
-  def wheel_chart
-    current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+  def personality_report(birth_date, birth_hour, latitude, longitude)
+    API_CALL.personality_report(birth_date, birth_hour, latitude, longitude)
   end
 
-  def personality_report
-    current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
+  # sign_report
+
+  # sign_compatbility
+
+  def time_zone(lat, lon, birth_date)
+    API_CALL.time_zone(lat, lon, birth_date)
   end
 
-  def time_zone
-    current_user.timezone = API_CALL.time_zone(current_user.latitude.to_f, current_user.longitude.to_f, current_user.birth_date)
+  def define_local_lat
+    Geocoder.search(request.remote_ip).first.coordinates[0]
   end
 
-  def partner_report
-    mate_partner_report = API_CALL.partner_report(
-      current_user.birth_date,
-      current_user.gender,
-      mate.birth_date,
-      mate.gender,
-      mate.username
-    )
-    current_user.partner_reports.store(mate.id, mate_partner_report)
-    current_user.save
-
-    # On stocke le partner report aussi chez l'utilisateur d'en face, le mate
-    other_user = User.find(mate.id)
-    other_user.partner_reports.store(current_user.id, mate_partner_report)
-    other_user.save!
+  def define_local_lon
+    Geocoder.search(request.remote_ip).first.coordinates[1]
   end
 
-  def mate_sun_report
-    # Descriptif du signe du mate stocké chez le current user
-    mate_sun_report = API_CALL.sign_report(
-      mate.birth_date,
-      mate.birth_hour,
-      mate.latitude.to_f,
-      mate.longitude.to_f,
-      'sun'
-    )
-    current_user.mate_sun_reports.store(mate.id, mate_sun_report)
-    current_user.save
+  def sun_report(birth_date, birth_hour, latitude, longitude)
+    API_CALL.sign_report(birth_date, birth_hour, latitude, longitude, 'sun')
   end
 
-  def my_sun_report
-    # Descriptif du signe du current_user stocké chez le mate
-    my_sun_report = API_CALL.sign_report(
-      current_user.birth_date,
-      current_user.birth_hour,
-      current_user.latitude.to_f,
-      current_user.longitude.to_f,
-      'sun'
-    )
-    other_user = User.find(mate.id)
-    other_user.mate_sun_reports.store(current_user.id, my_sun_report)
-    other_user.save!
+  # calculated only on ten mates
+  def ten_mates
+    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    return mates_by_gender.sample(10)
   end
 
-  def match_percentage
-    # Selection des personnes correspondant aux critères de recherche de ce nouvel user
-    potential_mates = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
-    p "potential mates ok"
-    score_collection = {}
-    score_collection_of_mate = {}
-    # partner_report_collection = {}
-    sun_report_collection = {}
-
-    # Ajout etienne
-    current_user.affinity_scores = {}
-    current_user.partner_reports = {}
-    current_user.mate_sun_reports = {}
-    # Calcul du score de match avec 10 potentiels matchs
-    potential_mates.sample(10).each do |mate|
-      if mate.gender == 2
-        mate_score = API_CALL.match_percentage(
-          current_user.birth_date,
-          current_user.birth_hour,
-          current_user.latitude.to_f,
-          current_user.longitude.to_f,
-          mate.birth_date,
-          mate.birth_hour,
-          mate.latitude.to_f,
-          mate.longitude.to_f
-        )
-        # Stocker le score de match chez le current_user avec son mate
-        current_user.affinity_scores.store(mate.id, mate_score)
-        current_user.save
-
-        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
-        other_user = User.find(mate.id)
-        other_user.affinity_scores.store(current_user.id, mate_score)
-        other_user.save
-
-      else
-        mate_score = API_CALL.match_percentage(
-          mate.birth_date,
-          mate.birth_hour,
-          mate.latitude.to_f,
-          mate.longitude.to_f,
-          current_user.birth_date,
-          current_user.birth_hour,
-          current_user.latitude.to_f,
-          current_user.longitude.to_f
-        )
-        p "Score match ok"
-        # Stocker le score de match chez le current_user avec son mate
-        current_user.affinity_scores.store(mate.id, mate_score)
-        current_user.save
-
-        # Stocker dans le affinity_score du mate le score de match. TROUVER COMMENT SAUVER
-        other_user = User.find(mate.id)
-        other_user.affinity_scores.store(current_user.id, mate_score)
-        other_user.save
-      end
-    end
-  end
-
-  def define_coordinates
-    current_user.local_lat = Geocoder.search(request.remote_ip).first.coordinates[0]
-    current_user.local_lon = Geocoder.search(request.remote_ip).first.coordinates[1]
-  end
+  # def my_sun_report(birth_date, birth_hour, latitude, longitude)
+  #   ten_mates.each do |mate|
+  #     other_user = User.find(mate.id)
+  #     other_user.mate_sun_reports.store(current_user.id, sun_report(birth_date, birth_hour, latitude, longitude))
+  #     other_user.save!
+  #   end
+  # end
 
   # protected
 

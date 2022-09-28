@@ -1,9 +1,10 @@
 # frozen_string_literal: true
-require_relative '../../../app/services/astrology_api.rb'
+
+require_relative '../../../app/services/astrology_api'
 
 class Users::SessionsController < Devise::SessionsController
-  API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-  after_action :define_coordinates, only: %i[new create]
+  # API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
+  # after_action :define_coordinates, only: %i[new create]
 
   # Mettre a jour les coordonées de l'utilisateur.
 

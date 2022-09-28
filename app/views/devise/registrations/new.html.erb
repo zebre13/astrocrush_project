@@ -30,7 +30,7 @@
           <%= f.text_field :country, type: :hidden, data: {target: "places.country"} %>
           <%= f.text_field :city, type: :hidden, data: {target: "places.city"} %>
           <%= f.input :search_perimeter, as: :numeric, hint:"Rayon de recherche (en km)" %>
-          <%= f.input :minimum_age, as: :numeric, hint:"age minimal de recherche (a modifier)" %>
+          <%= f.input :minimal_age, as: :numeric, hint:"age minimal de recherche (a modifier)" %>
           <%= f.input :maximum_age, as: :numeric, hint:"age maximum de recherche (a modifier)" %>
           <%= f.text_field :utcoffset, type: :hidden, data: {target: "places.utcoffset"} %>
           <%= f.text_field :latitude, type: :hidden, data: {target: "places.latitude"} %>

@@ -35,7 +35,8 @@ gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
-
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 #Geocode
 gem "geocoder"
 

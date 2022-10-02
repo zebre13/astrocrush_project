@@ -14,7 +14,7 @@ class UpdateUserJob < ApplicationJob
     # Pour récupérer les novueaux scores de match obtenus afin de faire ce calcul, il faut récupérer les matchs avec A qui ont été create à date de Date.today
     # Ex si today a minuit les users B, C et D on des nouveaux scores avec A grace à leur propre update,
     # alors compter ces nouveaux scores de match impliquant A qui ont été crée a Date.today
-    # et les soustraire du nombre de users qu'on va aller cherche pour update A. 
-    #
+    # et les soustraire du nombre de users qu'on va aller cherche pour update A.
+    
   end
 end

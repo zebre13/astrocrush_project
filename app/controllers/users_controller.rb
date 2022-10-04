@@ -41,13 +41,18 @@ class UsersController < ApplicationController
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
     matches = current_user.matches
 
+    # current_user.minimal_age < ((Date.today - mate.birth_date)/365).floor < current_user.maximal_age
+    mini_date = Date.today - (current_user.minimal_age * 365)
+    max_date = Date.today - (current_user.maximum_age * 365)
+
     # selectionner les utilisateurs par preferences age / rayon / gender
-    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date > ?)", mini_date).where("(birth_date < ?)", max_date)
 
     # Ne garder que les utilisateurs qui ont un score de match calculé avec moi
     users_with_score = users_by_preference.select do |user|
       user.affinity_scores.keys.include?(current_user.id)
     end
+
     # On rejette tous les users qui sont dans les matchs du current user.
     @users = users_with_score.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)

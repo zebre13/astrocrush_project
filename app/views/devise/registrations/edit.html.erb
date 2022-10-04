@@ -28,27 +28,26 @@
 
       <%= f.input :description, required: false %>
 
-      <%= f.select :hobbies, required: false %> <%# BOB: change hobbies to "f.select" later on %>
+      <%= f.input :hobbies, collection: [
+        'Bataille de polochons',
+        'Soirée pyjama drogue',
+        'Voyager en jet privé',
+        'Faire plein de gosses',
+        'Cracher du feu sur des bolas',
+        'Me déguiser en cornichon et danser'], input_html: {multiple: true}, include_blank: false, include_hidden: false %>
 
-      <%= f.input :photos, as: :file, multiple: true, required: true %> <%# BOB: (1) "f.file_field" previously | (2) "as: :file" added | (3) turned required to false for seeding %>
+      <%= f.file_field :photos, as: :file, multiple: true, class: "form-control"%>
 
-      <%= f.input :birth_date, required: true %>
+      <%= f.input :looking_for, as: :radio_buttons, collection: [['1', 'male'], ['2', 'female']], label_method: :second, value_method: :first, required: true %>
+      <%= f.input :minimal_age, required: false %>
+      <%= f.input :maximum_age, required: false %>
+      <%= f.input :search_perimeter, required: false %>
 
-    <%= f.select :hobbies, required: false %>
-
-
-      <%= f.input :birth_hour, required: true %>
-
-      <%= f.input :birth_location, required: true %>
-
-      <%= f.select :gender, required: true %>
-
-      <%= f.select :looking_for, required: true %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Update" %>
-    </div>
+      <div class="form-actions d-flex flex-column">
+        <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      </div>
   <% end %>
 
   <h3>Cancel my account</h3>

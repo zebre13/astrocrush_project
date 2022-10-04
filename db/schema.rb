@@ -116,9 +116,9 @@ ActiveRecord::Schema.define(version: 2022_09_27_214414) do
     t.float "timezone"
     t.float "local_lat"
     t.float "local_lon"
-    t.integer "search_perimeter"
-    t.integer "minimal_age"
-    t.integer "maximum_age"
+    t.integer "search_perimeter", default: 1000
+    t.integer "minimal_age", default: 8
+    t.integer "maximum_age", default: 88
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     # Constituer l'index de l'addition quotidienne de ces users updates avec ceux
 
     # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
-    matches = current_user.matches
+    # matches = current_user.matches
 
     # current_user.minimal_age < ((Date.today - mate.birth_date)/365).floor < current_user.maximal_age
     mini_date = Date.today - (current_user.minimal_age * 365)

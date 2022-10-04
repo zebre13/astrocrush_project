@@ -31,6 +31,7 @@ class User < ApplicationRecord
   # validates_date :date_of_birth, :after => Proc.new { Date.today }
   validates :birth_hour, presence: true
   validates :birth_location, presence: true
+  validates :photos, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
   # validate :user_is_adult

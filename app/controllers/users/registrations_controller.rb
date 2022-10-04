@@ -76,6 +76,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     score_collection = {}
     partner_report_collection = {}
     sun_report_collection = {}
+    
     ten_mates.each do |mate|
 
       if current_user.gender == mate.gender

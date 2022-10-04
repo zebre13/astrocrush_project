@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
                                                                        :email,
                                                                        :password,
                                                                        :password_confirmation,
+                                                                       :current_password,
                                                                        :description,
                                                                        :birth_date,
                                                                        :birth_hour,
@@ -59,6 +60,9 @@ class ApplicationController < ActionController::Base
                                                                        :timezone,
                                                                        :local_lat,
                                                                        :local_lon,
+                                                                       :minimal_age,
+                                                                       :maximum_age,
+                                                                       :search_perimeter,
                                                                        hobbies: [],
                                                                        photos: [])
     end

@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     max_date = Date.today - (current_user.maximum_age * 365)
 
     # selectionner les utilisateurs par preferences age / rayon / gender
-    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date > ?)", mini_date).where("(birth_date < ?)", max_date)
+    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", mini_date).where("(birth_date > ?)", max_date)
 
     # Ne garder que les utilisateurs qui ont un score de match calculé avec moi
     users_with_score = users_by_preference.select do |user|

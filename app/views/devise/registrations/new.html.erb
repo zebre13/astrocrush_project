@@ -58,12 +58,20 @@
           </div>
         </div>
 
-        <div class="form-actions d-flex flex-column" data-controller = "loading">
-          <%= f.button :submit, "Sign up", class: "btn btn-primary", data: { action: "submit#load" } %>
+        <div class="" data-controller = "loading">
+          <div class="form-actions d-flex flex-column" data-action="click->loading#load">
+            <%= f.button :submit, "Sign up", class: "btn btn-primary"%>
+          </div>
+          <div class="modal fade" data-loading-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <%= render "loading" %>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
 
-      <%= render "devise/shared/links" %>
 
     </div>
   </div>

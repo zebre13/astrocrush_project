@@ -1,16 +1,17 @@
-# frozen_string_literal: true
-
 require_relative '../../../app/services/astrology_api'
+require_relative '../../../app/services/geocoder'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-  before_action :get_other_user, only: %i[partner_report my_sun_report mate_sun_report]
+  GEOCODE = Geocoder.new
+  before_action :set_coordinates, only: [:set_profil]
   after_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
     return unless user_signed_in?
+
     set_profil
-    get_affinities
+    set_affinities
   end
 
   private
@@ -24,8 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.wheel_chart = API_CALL.wheel_chart(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
     current_user.personality_report = API_CALL.personality_report(current_user.birth_date, current_user.birth_hour, current_user.latitude.to_f, current_user.longitude.to_f)
     current_user.timezone = API_CALL.time_zone(current_user.latitude.to_f, current_user.longitude.to_f, current_user.birth_date)
-    current_user.local_lat = Geocoder.search(request.remote_ip).first.coordinates[0]
-    current_user.local_lon = Geocoder.search(request.remote_ip).first.coordinates[1]
+  end
+
+  def set_coordinates
+    current_user.local_lat = GEOCODE.set_latitude
+    current_user.local_lon = GEOCODE.set_longitude
   end
 
   def planets(horoscope)
@@ -37,28 +41,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # sign_report
-
-  # sign_compatbility
-
-
-  def sun_report(birth_date, birth_hour, latitude, longitude)
-    API_CALL.sign_report(birth_date, birth_hour, latitude, longitude, 'sun')
-  end
-
   # calculated only on ten mates
   def ten_mates
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
     return mates_by_gender.sample(10)
   end
 
-  def get_affinities
+  def set_affinities
     score_collection = {}
     partner_report_collection = {}
     sun_report_collection = {}
 
     ten_mates.each do |mate|
-
       if current_user.gender == mate.gender
         mate_score_one = API_CALL.match_percentage(current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude, mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude)
         mate_score_two = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, current_user.birth_date, current_user.birth_hour, current_user.latitude, current_user.longitude)
@@ -88,34 +82,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.mate_sun_reports = sun_report_collection
     current_user.save!
   end
-
-  # def my_sun_report(birth_date, birth_hour, latitude, longitude)
-  #   ten_mates.each do |mate|
-  #     other_user = User.find(mate.id)
-  #     other_user.mate_sun_reports.store(current_user.id, sun_report(birth_date, birth_hour, latitude, longitude))
-  #     other_user.save!
-  #   end
-  # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

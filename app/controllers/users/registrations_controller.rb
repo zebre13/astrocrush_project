@@ -167,10 +167,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def define_coordinates
-    current_user.local_lat = Geocoder.search(request.remote_ip).first.coordinates[0]
-    current_user.local_lon = Geocoder.search(request.remote_ip).first.coordinates[1]
-  end
+  # NOW ITS IN THE APPLICATION_HELPERS FILE BELOW
+  # def define_coordinates
+  #   current_user.local_lat = Geocoder.search(request.remote_ip).first.coordinates[0]
+  #   current_user.local_lon = Geocoder.search(request.remote_ip).first.coordinates[1]
+  # end
 
   # protected
 

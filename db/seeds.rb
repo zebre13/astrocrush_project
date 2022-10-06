@@ -24,7 +24,7 @@ boris_bourdet_data = {
   email: 'boris_bourdet@hotmail.com',
   password: 'azerty',
   description: "For a long time, I alternated abs and hanging belly.",
-  hobbies: ['Chamber music', 'Astrology'],
+  hobbies: [],
   birth_date: '26/06/1977',
   birth_hour: '05:30',
   birth_location: 'Aix-en-Provence',
@@ -39,7 +39,7 @@ etienne_de_dianous_data = {
   email: 'etiennededi@hotmail.fr',
   password: 'azerty',
   description: "If you too like to code in bathrobe, we are made to be together.",
-  hobbies: ['Diabolo', 'Bolas', 'Fire-eating', 'Permaculture'],
+  hobbies: [],
   birth_date: '23/06/1994',
   birth_hour: '06:30',
   birth_location: 'Paris',
@@ -540,67 +540,67 @@ end
 
 # <--- Calculate and attach affinity scores and reports --->
 
-users = User.all
+# users = User.all
 
-users.each do |user|
-  potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-  score_collection = {}
-  partner_report_collection = {}
-  sun_report_collection = {}
-  potential_mates.each do |mate|
-    if mate.gender == 2
-      mate_score = API_CALL.match_percentage(
-        user.birth_date,
-        user.birth_hour,
-        user.latitude,
-        user.longitude,
-        mate.birth_date,
-        mate.birth_hour,
-        mate.latitude,
-        mate.longitude
-      )
-      score_collection.store(mate.id, mate_score)
-    else
-      mate_score = API_CALL.match_percentage(
-        mate.birth_date,
-        mate.birth_hour,
-        mate.latitude,
-        mate.longitude,
-        user.birth_date,
-        user.birth_hour,
-        user.latitude,
-        user.longitude
-      )
-      score_collection.store(mate.id, mate_score)
-    end
+# users.each do |user|
+#   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
+#   score_collection = {}
+#   partner_report_collection = {}
+#   sun_report_collection = {}
+#   potential_mates.each do |mate|
+#     if mate.gender == 2
+#       mate_score = API_CALL.match_percentage(
+#         user.birth_date,
+#         user.birth_hour,
+#         user.latitude,
+#         user.longitude,
+#         mate.birth_date,
+#         mate.birth_hour,
+#         mate.latitude,
+#         mate.longitude
+#       )
+#       score_collection.store(mate.id, mate_score)
+#     else
+#       mate_score = API_CALL.match_percentage(
+#         mate.birth_date,
+#         mate.birth_hour,
+#         mate.latitude,
+#         mate.longitude,
+#         user.birth_date,
+#         user.birth_hour,
+#         user.latitude,
+#         user.longitude
+#       )
+#       score_collection.store(mate.id, mate_score)
+#     end
 
-    mate_partner_report = API_CALL.partner_report(
-      user.birth_date,
-      user.gender,
-      mate.birth_date,
-      mate.gender,
-      mate.username
-    )
-    partner_report_collection.store(mate.id, mate_partner_report)
+#     mate_partner_report = API_CALL.partner_report(
+#       user.birth_date,
+#       user.gender,
+#       mate.birth_date,
+#       mate.gender,
+#       mate.username
+#     )
+#     partner_report_collection.store(mate.id, mate_partner_report)
 
-    mate_sun_report = API_CALL.sign_report(
-      mate.birth_date,
-      mate.birth_hour,
-      mate.latitude,
-      mate.longitude,
-      'sun'
-    )
-    sun_report_collection.store(mate.id, mate_sun_report)
-  end
-  ordered_score_collection = score_collection.sort_by { |_id, score| score }
-  user.affinity_scores = ordered_score_collection.reverse.to_h
-  user.partner_reports = partner_report_collection
-  user.mate_sun_reports = sun_report_collection
-  puts "*** #{user.username} complementary attachments ok ***"
-  user.save!
-end
+#     mate_sun_report = API_CALL.sign_report(
+#       mate.birth_date,
+#       mate.birth_hour,
+#       mate.latitude,
+#       mate.longitude,
+#       'sun'
+#     )
+#     sun_report_collection.store(mate.id, mate_sun_report)
+#   end
+#   ordered_score_collection = score_collection.sort_by { |_id, score| score }
+#   user.affinity_scores = ordered_score_collection.reverse.to_h
+#   user.partner_reports = partner_report_collection
+#   user.mate_sun_reports = sun_report_collection
+#   puts "*** #{user.username} complementary attachments ok ***"
+#   user.save!
+# end
 
-puts "#{User.all.length} users created successfully!"
+# puts "#{User.all.length} users created successfully!"
 
 # <=== MATCHES SEEDING ===>
 

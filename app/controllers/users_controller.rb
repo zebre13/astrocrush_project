@@ -4,44 +4,10 @@ require_relative '../services/astrology_api'
 class UsersController < ApplicationController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
-  ZODIAC = [
-    "Aries",
-    "Taurus",
-    "Gemini",
-    "Cancer",
-    "Leo",
-    "Virgo",
-    "Libra",
-    "Scorpio",
-    "Sagittarius",
-    "Capricorn",
-    "Aquarius",
-    "Pisces"
-  ]
-
-  LOGOS = {
-    Sun: "☉ ",
-    Moon: "☽ ",
-    Mercury: "☿ ",
-    Venus: "♀︎ ",
-    Mars: "♂︎ ",
-    Jupiter: "♃ ",
-    Saturn: "♄ ",
-    Uranus: "♅ ",
-    Neptune: "♆ ",
-    Pluto: "♇ "
-  }
+  ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+  LOGOS = { Sun: "☉ ", Moon: "☽ ", Mercury: "☿ ", Venus: "♀︎ ", Mars: "♂︎ ", Jupiter: "♃ ", Saturn: "♄ ", Uranus: "♅ ", Neptune: "♆ ", Pluto: "♇ " }
 
   def index
-    # Quand c'est un nouveau jour, updater l'index pour ajouter les nouvelles personnes à celles qui restent pas encore swipées
-    # Une fois par jour declencher ca:
-    # update_index()
-    # Constituer l'index de l'addition quotidienne de ces users updates avec ceux
-
-    # Faire en sorte que l'index proposé corresponde a ce que l'utilisateur recherche
-    # matches = current_user.matches
-
-    # current_user.minimal_age < ((Date.today - mate.birth_date)/365).floor < current_user.maximal_age
     mini_date = Date.today - (current_user.minimal_age * 365)
     max_date = Date.today - (current_user.maximum_age * 365)
 
@@ -56,10 +22,7 @@ class UsersController < ApplicationController
     # On rejette tous les users qui sont dans les matchs du current user.
     @users = users_with_score.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
-      # Match.where("user_id = ? OR (mate_id = ? AND status IN ?)", current_user.id, current_user.id, [1, 2]).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end
-
-    p @users
   end
 
   def show
@@ -81,8 +44,7 @@ class UsersController < ApplicationController
     ZODIAC.each_with_index do |sign, index|
       cut = index if sign == current_user.rising.capitalize
     end
-
-    ZODIAC.slice(cut..-1) + ZODIAC.slice(0..(cut - 1))
+    ZODIAC.slice(cut..) + ZODIAC.slice(0..(cut - 1))
   end
 
   def find_planets(zodiac_index)
@@ -143,5 +105,3 @@ class UsersController < ApplicationController
   # end
 end
 
-# # sign =  {planet: planet, house: house}
-# hash[:sign] = planet: hash.key

@@ -2,7 +2,6 @@ require_relative '../../../app/services/affinities'
 require_relative '../../../app/services/astroprofil'
 require_relative '../../../app/services/geocode'
 
-
 class Users::RegistrationsController < Devise::RegistrationsController
   ASTROPROFIL = Astroprofil.new
   AFFINITIES = Affinities.new
@@ -12,25 +11,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new_user_api_calls
     return unless user_signed_in?
 
-    ASTROPROFIL.profil
-    affinities(ten_mates)
-    set_coordinates
+    ASTROPROFIL.profil(current_user)
+    GEOCODE.coordinates(current_user, current_user.current_sign_in_ip)
+    affinities(current_user, ten_mates)
   end
 
   private
 
-  def set_coordinates
-    current_user.local_lat = GEOCODE.set_latitude
-    current_user.local_lon = GEOCODE.set_longitude
+  def afinities(user, mates)
+    AFFINITIES.partner_report(user, mates)
+    AFFINITIES.sun_reports(user, mates)
+    AFFINITIES.match_percentage(user, mates)
   end
-
-  def afinities(mates)
-    AFFINITIES.partner_report(mates)
-    AFFINITIES.sun_reports(mates)
-    AFFINITIES.match_percentage(mates)
-  end
-
-  ###
 
   def ten_mates
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)

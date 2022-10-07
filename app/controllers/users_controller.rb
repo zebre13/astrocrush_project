@@ -96,34 +96,9 @@ class UsersController < ApplicationController
   # end
 
 
-  def calculate_distance(user)
-    current_ip = current_user.last_sign_in_ip
-    user_ip = user.last_sign_in_ip
-
-    # Current User location ( => [lat, lon ])
-    current_user_results = Geocoder.search(current_ip.to_s)
-    current_user_loc = current_user_results.first.coordinates
-
-    user_results = Geocoder.search(user_ip.to_s)
-    user_loc = user_results.first.coordinates
-
-    # current_user distance avec user
-    # Geocoder Github
-    distance = current_user_results.distance_to(user_loc)  # distance from obj to point[lat, lon]
-    # OU
-    distance = current_user_loc.distance_to(user_loc)  # distance from obj to point[lat, lon]
-
-    # if obj.geocoded?
-    #   obj.nearbys(30)                       # other objects within 30 miles
-    #   obj.distance_from([40.714,-100.234])  # distance from arbitrary point to object
-    #   obj.bearing_to("Paris, France")       # direction from object to arbitrary point
-    # end
-  end
-
 
 
   # def calculate_scores(users)
   #     # user.API.match_percentage ETC TODO
   # end
 end
-

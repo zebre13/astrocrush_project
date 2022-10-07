@@ -15,7 +15,7 @@ class Affinities
     user.save!
   end
 
-  def sun_reports(user, mates)
+  def sign_report(user, mates)
     sun_report_collection = {}
     mates.each do |mate|
       mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')

@@ -57,15 +57,6 @@ class AstrologyApi
     return get_response(endpoint, {})
   end
 
-  # Affinity percentage between a male user (m) and a female user (f)
-  def match_percentage(m_birth_date, m_birth_hour, m_latitude, m_longitude, f_birth_date, f_birth_hour, f_latitude, f_longitude)
-    endpoint = "match_percentage"
-    m_data = m_birth_data_set(m_birth_date, m_birth_hour, m_latitude, m_longitude)
-    f_data = f_birth_data_set(f_birth_date, f_birth_hour, f_latitude, f_longitude)
-    data = m_data.merge(f_data)
-    return get_response(endpoint, data)['match_percentage']
-  end
-
   # Partner report for relationship between user and mate
   def partner_report(user_birth_date, user_gender, mate_birth_date, mate_gender, mate_name)
     endpoint = "partner_report"
@@ -73,6 +64,15 @@ class AstrologyApi
     mate_data = mate_data_set(mate_birth_date, mate_gender, mate_name)
     data = user_data.merge(mate_data)
     return get_response(endpoint, data)
+  end
+
+  # Affinity percentage between a male user (m) and a female user (f)
+  def match_percentage(m_birth_date, m_birth_hour, m_latitude, m_longitude, f_birth_date, f_birth_hour, f_latitude, f_longitude)
+    endpoint = "match_percentage"
+    m_data = m_birth_data_set(m_birth_date, m_birth_hour, m_latitude, m_longitude)
+    f_data = f_birth_data_set(f_birth_date, f_birth_hour, f_latitude, f_longitude)
+    data = m_data.merge(f_data)
+    return get_response(endpoint, data)['match_percentage']
   end
 
   def time_zone(lat, lon, birth_date)

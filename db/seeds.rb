@@ -353,46 +353,47 @@ zoe_kravitz_data = {
 users_data = [
   boris_bourdet_data,
   etienne_de_dianous_data,
-  ghita_aaddaj_data
-  # maria_leonor_varela_borges_data,
-  # mathieu_trancoso_data,
-  # laura_person_data,
-  # alexandre_platteeuw_data,
-  # kenza_tighrine_data,
-  # bruno_lelay_data,
-  # sophiana_b_data,
-  # ibrahima_kaba_data,
-  # isabelle_levy_data,
-  # corentin_deseine_data,
-  # aicha_diagne_data,
-  # paul_portier_data,
-  # nadia_auger_data,
-  # jeremy_barbedienne_data,
-  # charlotte_bory_data,
-  # marine_sourin_data,
-  # boris_paillard_data,
-  # claire_ziemendorf_data,
-  # zoe_kravitz_data
+  ghita_aaddaj_data,
+  maria_leonor_varela_borges_data,
+  mathieu_trancoso_data,
+  laura_person_data,
+  alexandre_platteeuw_data,
+  kenza_tighrine_data,
+  bruno_lelay_data,
+  sophiana_b_data,
+  ibrahima_kaba_data,
+  isabelle_levy_data,
+  corentin_deseine_data,
+  aicha_diagne_data,
+  paul_portier_data,
+  nadia_auger_data,
+  jeremy_barbedienne_data,
+  charlotte_bory_data,
+  marine_sourin_data,
+  boris_paillard_data,
+  claire_ziemendorf_data,
+  zoe_kravitz_data
 ]
 
 # <--- Set Photos --->
 
 photos_boris_bourdet = [
-  File.open(Rails.root.join("public/seed_images/boris_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
 ]
 photos_etienne_de_dianous = [
-  File.open(Rails.root.join("public/seed_images/etienne_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
   File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
 ]
 photos_ghita_aaddaj = [
-  File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/ghita_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
 photos_maria_leonor_varela_borges = [
+
   File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
@@ -486,12 +487,14 @@ photos_zoe_kravitz = [
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
+
 ]
 
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-  photos_ghita_aaddaj
+
+  photos_ghita_aaddaj,
   photos_maria_leonor_varela_borges,
   photos_mathieu_trancoso,
   photos_laura_person,
@@ -539,6 +542,7 @@ users_data.each_with_index do |user_data, index|
 end
 
 # <--- Calculate and attach affinity scores and reports --->
+
 
 # users = User.all
 

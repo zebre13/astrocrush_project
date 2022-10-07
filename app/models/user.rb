@@ -1,18 +1,16 @@
 class User < ApplicationRecord
+  attr_reader :my_zodiac
   serialize :affinity_scores, Hash
   serialize :planets, Hash
   serialize :personality_report, Array
   serialize :hobbies, Array
   serialize :partner_reports, Hash
   serialize :mate_sun_reports, Hash
-  attr_reader :my_zodiac
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :validatable, :trackable
 
   # after_validation :geoloc
-
 
   has_many_attached :photos
   has_many :matches, dependent: :destroy
@@ -31,6 +29,7 @@ class User < ApplicationRecord
   # validates_date :date_of_birth, :after => Proc.new { Date.today }
   validates :birth_hour, presence: true
   validates :birth_location, presence: true
+  validates :photos, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
   # validate :user_is_adult

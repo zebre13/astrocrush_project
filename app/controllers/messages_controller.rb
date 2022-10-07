@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   def index
     @messages = Message.current.includes(:user).reverse
   end
@@ -10,12 +9,7 @@ class MessagesController < ApplicationController
     @message.chatroom = @chatroom
     @message.user = current_user
     if @message.save
-      ChatroomChannel.broadcast_to(
-        @chatroom, {
-          html: render_to_string(partial: "message", locals: { message: @message }),
-          user_id: @message.user.id
-        }
-      )
+      ChatroomChannel.broadcast_to(@chatroom, { html: render_to_string(partial: "message", locals: { message: @message }), user_id: @message.user.id })
       head :ok
     else
       render "chatrooms/show"

@@ -52,12 +52,6 @@ class MatchesController < ApplicationController
     @match.destroy
     flash[:success] = "you have successfully destroyed."
     redirect_to '/matches', :notice => "Your match has been deleted"
-  # def destroy
-  #   @matches = Match.where(user_id: current_user.id).where.not(status: 0)
-  # @mattches.each do |match|
-  # match.destroy
-  # end
-  # @match.mate.destroy
   end
 
   def match_data

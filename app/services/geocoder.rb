@@ -1,4 +1,4 @@
-class Geocoder
+class Geocode
   def set_latitude
     return Geocoder.search(request.remote_ip).first.coordinates[0]
   end

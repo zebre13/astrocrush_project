@@ -1,53 +1,55 @@
-<h2>Change your password</h2>
+<div class="container pb-5">
+  <h2>Change your password</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-
-  <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
-          <%= f.input :password, required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
-          <%= f.input :username, required: true %>
-          <%# <%= f.input :description, required: false %>
-          <%# <%= f.select :hobbies, required: false %>
-          <%= f.input :hobbies, collection: [
-            'Bataille de polochons',
-            'Soirée pyjama drogue',
-            'Voyager en jet privé',
-            'Faire plein de gosses',
-            'Cracher du feu sur des bolas',
-            'Me déguiser en cornichon et danser'], input_html: {multiple: true}, include_blank: false, include_hidden: false %>
-
-          <%= f.file_field :photos, as: :file, multiple: true %>
-          <%= f.input :birth_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 90, required: true %>
-          <%= f.input :birth_hour, required: true %>
-          <%# <%= f.input :birth_location, required: true %>
-          <%= f.text_field :country, type: :hidden, data: {target: "places.country"} %>
-          <%= f.text_field :city, type: :hidden, data: {target: "places.city"} %>
-          <%= f.input :search_perimeter, as: :numeric, hint:"Rayon de recherche (en km)" %>
-          <%= f.input :minimum_age, as: :numeric, hint:"age minimal de recherche (a modifier)" %>
-          <%= f.input :maximum_age, as: :numeric, hint:"age maximum de recherche (a modifier)" %>
-          <%= f.text_field :utcoffset, type: :hidden, data: {target: "places.utcoffset"} %>
-          <%= f.text_field :latitude, type: :hidden, data: {target: "places.latitude"} %>
-          <%= f.text_field :longitude, type: :hidden, data: {target: "places.longitude"} %>
+    <%= f.input :reset_password_token, as: :hidden %>
+    <%= f.full_error :reset_password_token %>
 
 
-          <%= f.search_field :birth_location, data: {target: "places.field"} %>
-          <div class="d-flex justify-content-between mx-5">
-            <%= f.input :gender, as: :radio_buttons, collection: [['2', 'female'], ['1', 'male']], label_method: :second, value_method: :first, required: true %>
-            <%= f.input :looking_for, as: :radio_buttons, collection: [['1', 'male'], ['2', 'female']], label_method: :second, value_method: :first, required: true %>
+    <div class="form-inputs">
+            <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
+            <%= f.input :password, required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+            <%= f.input :username, required: true %>
+            <%# <%= f.input :description, required: false %>
+            <%# <%= f.select :hobbies, required: false %>
+            <%= f.input :hobbies, collection: [
+              'Bataille de polochons',
+              'Soirée pyjama drogue',
+              'Voyager en jet privé',
+              'Faire plein de gosses',
+              'Cracher du feu sur des bolas',
+              'Me déguiser en cornichon et danser'], input_html: {multiple: true}, include_blank: false, include_hidden: false %>
+
+            <%= f.file_field :photos, as: :file, multiple: true %>
+            <%= f.input :birth_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 90, required: true %>
+            <%= f.input :birth_hour, required: true %>
+            <%# <%= f.input :birth_location, required: true %>
+            <%= f.text_field :country, type: :hidden, data: {target: "places.country"} %>
+            <%= f.text_field :city, type: :hidden, data: {target: "places.city"} %>
+            <%= f.input :search_perimeter, as: :numeric, hint:"Rayon de recherche (en km)" %>
+            <%= f.input :minimum_age, as: :numeric, hint:"age minimal de recherche (a modifier)" %>
+            <%= f.input :maximum_age, as: :numeric, hint:"age maximum de recherche (a modifier)" %>
+            <%= f.text_field :utcoffset, type: :hidden, data: {target: "places.utcoffset"} %>
+            <%= f.text_field :latitude, type: :hidden, data: {target: "places.latitude"} %>
+            <%= f.text_field :longitude, type: :hidden, data: {target: "places.longitude"} %>
+
+
+            <%= f.search_field :birth_location, data: {target: "places.field"} %>
+            <div class="d-flex justify-content-between mx-5">
+              <%= f.input :gender, as: :radio_buttons, collection: [['2', 'female'], ['1', 'male']], label_method: :second, value_method: :first, required: true %>
+              <%= f.input :looking_for, as: :radio_buttons, collection: [['1', 'male'], ['2', 'female']], label_method: :second, value_method: :first, required: true %>
+            </div>
           </div>
-        </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, "Change my password", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

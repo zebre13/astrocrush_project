@@ -1,9 +1,16 @@
 class Geocode
-  def set_latitude
-    return Geocoder.search(request.remote_ip).first.coordinates[0]
+  def coordinates(user, ip)
+    user.local_lat = latitude(ip)
+    user.local_lon = longitude(ip)
   end
 
-  def set_longitude
-    return Geocoder.search(request.remote_ip).first.coordinates[0]
+  private
+
+  def latitude(ip)
+    return Geocoder.search(ip).first.coordinates[0]
+  end
+
+  def longitude(ip)
+    return Geocoder.search(ip).first.coordinates[0]
   end
 end

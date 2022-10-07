@@ -12,7 +12,6 @@ class User < ApplicationRecord
 
   # after_validation :geoloc
 
-
   has_many_attached :photos
   has_many :matches, dependent: :destroy
   has_many :messages, dependent: :destroy

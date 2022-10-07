@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def afinities(user, mates)
+  def affinities(user, mates)
     AFFINITIES.partner_report(user, mates)
     AFFINITIES.sign_report(user, mates)
     AFFINITIES.match_percentage(user, mates)

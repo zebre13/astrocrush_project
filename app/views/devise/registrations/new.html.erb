@@ -3,7 +3,6 @@
     <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4" data-controller="places">
       <h2>Sign up</h2>
 
-
         <% if resource.errors.any? %>
           <% resource.errors.full_messages.each do |message|%>
             <div class="error_notification alert-danger"><%= message %></div>
@@ -64,7 +63,7 @@
           </div>
           <div class="modal fade" data-loading-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content text-center">
                 <%= render "loading" %>
               </div>
             </div>

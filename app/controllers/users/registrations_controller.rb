@@ -3,7 +3,7 @@ require_relative '../../../app/services/geocoder'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-  GEOCODE = Geocoder.new
+  GEOCODE = Geocode.new
   before_action :set_coordinates, only: [:set_profil]
   after_action :new_user_api_calls, only: [:create]
 

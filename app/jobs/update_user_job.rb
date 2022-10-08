@@ -5,11 +5,13 @@ class UpdateUserJob < ApplicationJob
     # TODO : une fois par jour
 
     # Set le nombre de nouveaux affinity scores quotidien à 0.
-    user.each{ |user| user.new_affinity_scores_today! = 0 }
+    user.each{ |user| user.new_affinity_scores_today = 0 }
 
+    # Calculer des nouveaux scores pour tout le monde
     users.each do |user|
-      # Compter le nombre de nouveaux scores de matchs de l'user avant l'appel d'update index. Le de la boucle en aura 0 forcément.
-      update_index(user, 10)
+      # Calculer le nombre d'affinity scores à calculer pour l'user en question
+      number_of_scores_to_calculate = 10 - user.new_affinity_scores_today
+      update_index(user, number_of_scores_to_calculate)
     end
   end
 

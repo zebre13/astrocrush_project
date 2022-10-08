@@ -4,6 +4,7 @@ class Geocode
     user.local_lon = longitude(ip)
   end
 
+
   def calculate_distance(user, mate)
     user_ip = user.last_sign_in_ip
     mate_ip = mate.last_sign_in_ip

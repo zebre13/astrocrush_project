@@ -1,9 +1,18 @@
+require '../services/affinities'
+require '../services/astrology_api'
+require '../services/astroprofil'
+require '../services/geocode'
+require '../services/preferences'
+
 class UpdateUserJob < ApplicationJob
   queue_as :default
 
-  def perform(users)
-    # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
+  # cronjob pour lancer tous les 24 heures, sur heroku
 
+
+  def perform
+    # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
+    users = User.all
     # Set le nombre de nouveaux affinity scores quotidien à 0 dans une boucle séparée.
     users.each { |user| user.new_affinity_scores_today = 0 }
 
@@ -18,8 +27,6 @@ class UpdateUserJob < ApplicationJob
   end
 
   def update_index(user, number_of_scores_to_calculate)
-    # Définir les coordonnées de l'user qu'on update
-    define_coordinates(user)
 
     # Mates du bon age et genre
     potential_mates = PREFERENCES.array_of_gender_and_age_preferences(user)
@@ -43,4 +50,5 @@ class UpdateUserJob < ApplicationJob
     n_mates.each{ |mate| mate.new_affinity_scores_today += 1 }
 
   end
+
 end

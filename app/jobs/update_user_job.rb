@@ -16,21 +16,16 @@ class UpdateUserJob < ApplicationJob
     potential_mates = PREFERENCES.array_of_gender_and_age_preferences(user)
 
     # Filtre de ceux dans le périmetre
-    mates_in_perimeter = mates_in_perimeter(user, potential_mates)
+    mates_in_perimeter = PREFERENCES.mates_in_perimeter(user, potential_mates)
 
+    # Selectionner pour ensuite rejeter les utilisateurs qui ont un score de match calculé avec moi
+    mates_without_score = PREFERENCES.reject_mates_with_affinity_score_with_user(user, mates_in_perimeter)
 
+    # On rejette tous les users qui sont dans les matchs du current user et on en prend 10
+    mates = PREFERENCES.reject_matches(user, mates_without_score).sample(10)
 
-
-
-    # Rejeter les utilisateurs qui ont un score de match calculé avec moi
-    users_with_score = users_by_perimeter.select do |user|
-      user.affinity_scores.keys.include?(user.id)
-    end
-
-    # On rejette tous les users qui sont dans les matchs du current user.
-    users = users_with_score.reject do |user|
-      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", user.id, user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
-    end
+    # Calculer l'affinity scores avec ces ten_users
+    AFFINITIES.match_percentage(user, mates)
 
   end
     # Si un user B voit son index updaté comprenant un score avec user A, alors en calculer un de moins

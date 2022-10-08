@@ -12,4 +12,18 @@ class Preferences
     end
     mates_in_perimeter
   end
+
+  def reject_mates_with_affinity_score_with_user(user, mates)
+    mates_without_previous_score = mates.reject do |mate|
+      mates.affinity_scores.keys.include?(user.id)
+    end
+    mates_without_previous_score
+  end
+
+  def reject_matches(user, mates)
+    users = mates.reject do |user|
+      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", user.id, user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+    end
+    users
+  end
 end

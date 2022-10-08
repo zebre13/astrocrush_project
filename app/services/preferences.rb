@@ -20,6 +20,10 @@ class Preferences
     mates_without_previous_score
   end
 
+  def reject_mates_with_too_much_new_affinity_scores_today(mates)
+    mates.reject{|mate| mate.new_affinity_scores_today >= 10}
+  end
+
   def reject_matches(user, mates)
     users = mates.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", user.id, user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)

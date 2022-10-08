@@ -2,12 +2,18 @@ class UpdateUserJob < ApplicationJob
   queue_as :default
 
   def perform(users)
+    # TODO : une fois par jour
+
+    # Set le nombre de nouveaux affinity scores quotidien à 0.
+    user.each{ |user| user.new_affinity_scores_today! = 0 }
+
     users.each do |user|
-      update_index(user)
+      # Compter le nombre de nouveaux scores de matchs de l'user avant l'appel d'update index. Le de la boucle en aura 0 forcément.
+      update_index(user, 10)
     end
   end
 
-  def update_index(user)
+  def update_index(user, number_of_scores_to_calculate)
 
     # Définir les coordonnées de l'user qu'on update
     define_coordinates(user)
@@ -22,10 +28,13 @@ class UpdateUserJob < ApplicationJob
     mates_without_score = PREFERENCES.reject_mates_with_affinity_score_with_user(user, mates_in_perimeter)
 
     # On rejette tous les users qui sont dans les matchs du current user et on en prend 10
-    mates = PREFERENCES.reject_matches(user, mates_without_score).sample(10)
+    n_mates = PREFERENCES.reject_matches(user, mates_without_score).sample(number_of_scores_to_calculate)
 
     # Calculer l'affinity scores avec ces ten_users
-    AFFINITIES.match_percentage(user, mates)
+    AFFINITIES.match_percentage(user, n_mates)
+
+    # Màj le nombre de nouveaux affinity_scores de chacun des n_mates
+    n_mates.each{ |mate| mate.new_affinity_scores_today += 1 }
 
   end
     # Si un user B voit son index updaté comprenant un score avec user A, alors en calculer un de moins

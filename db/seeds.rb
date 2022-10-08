@@ -2,7 +2,7 @@ require 'open-uri'
 require 'faker'
 require_relative '../app/services/astrology_api'
 require 'resolv-replace'
-
+require_relative '../app/services/astroprofil'
 API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
 # <=== DATABASE CLEANOUT ===>
@@ -378,19 +378,19 @@ users_data = [
 # <--- Set Photos --->
 
 photos_boris_bourdet = [
-  File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
-  # File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
-  # File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/boris_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
 ]
 photos_etienne_de_dianous = [
+  File.open(Rails.root.join("public/seed_images/etienne_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
   File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
-  # File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
-  # File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
 ]
 photos_ghita_aaddaj = [
-  File.open(Rails.root.join("public/seed_images/ghita_1.jpg"))
-  # File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
-  # File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),
+  File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
+  File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
 photos_maria_leonor_varela_borges = [
 
@@ -520,20 +520,7 @@ users_photos = [
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
-  horo_elements = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
-  user.sign = horo_elements['planets'].first['sign']
-  user.rising = horo_elements['houses'].first['sign']
-  user.moon = horo_elements['planets'][1]['sign']
-  planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
-  planets.each_key do |key|
-    horo_elements['planets'].each do |element|
-      planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
-    end
-  end
-  user.planets = planets
-  user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.latitude, user.longitude)
-  user.timezone = API_CALL.time_zone(user.latitude, user.longitude, user.birth_date)
+  Astroprofil.profil(user)
   users_photos[index].each do |photo|
     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
   end

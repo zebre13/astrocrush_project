@@ -3,7 +3,7 @@ require_relative 'astrology_api'
 class Astroprofil
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
-  def profil(user)
+  def self.profil(user)
     horoscope = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude.to_f, user.longitude.to_f)
     user.sign = horoscope['planets'].first['sign']
     user.rising = horoscope['houses'].first['sign']
@@ -14,9 +14,8 @@ class Astroprofil
     user.timezone = API_CALL.time_zone(user.latitude.to_f, user.longitude.to_f, user.birth_date)
   end
 
-  private
 
-  def planets(horoscope)
+  def self.planets(horoscope)
     planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
     planets.each_key do |key|
       horoscope['planets'].each do |element|

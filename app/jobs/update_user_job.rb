@@ -2,10 +2,10 @@ class UpdateUserJob < ApplicationJob
   queue_as :default
 
   def perform(users)
-    # TODO : une fois par jour
+    # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
 
-    # Set le nombre de nouveaux affinity scores quotidien à 0.
-    user.each{ |user| user.new_affinity_scores_today = 0 }
+    # Set le nombre de nouveaux affinity scores quotidien à 0 dans une boucle séparée.
+    users.each { |user| user.new_affinity_scores_today = 0 }
 
     # Calculer des nouveaux scores pour tout le monde
     users.each do |user|
@@ -13,12 +13,11 @@ class UpdateUserJob < ApplicationJob
       number_of_scores_to_calculate = 10 - user.new_affinity_scores_today
 
       # Updater l'index de cet user si son nombre de scores de match à calculer est positif (sinon il est chanceux)
-      update_index(user, number_of_scores_to_calculate) if number_of_scores_to_calculate > 0
+      update_index(user, number_of_scores_to_calculate) if number_of_scores_to_calculate.positive?
     end
   end
 
   def update_index(user, number_of_scores_to_calculate)
-
     # Définir les coordonnées de l'user qu'on update
     define_coordinates(user)
 
@@ -42,15 +41,6 @@ class UpdateUserJob < ApplicationJob
 
     # Màj le nombre de nouveaux affinity_scores de chacun des n_mates
     n_mates.each{ |mate| mate.new_affinity_scores_today += 1 }
-
-  end
-    # Si un user B voit son index updaté comprenant un score avec user A, alors en calculer un de moins
-    # En fait chaque jour, si le nombre de nouveaux scores que users A obtient via l'update d'index d'autres users est < 10
-    # Déclencher l'update de l'index afin que ce nombre de nouveaux score de A passe à 10.
-    # Pour récupérer les novueaux scores de match obtenus afin de faire ce calcul, il faut récupérer les matchs avec A qui ont été create à date de Date.today
-    # Ex si today a minuit les users B, C et D on des nouveaux scores avec A grace à leur propre update,
-    # alors compter ces nouveaux scores de match impliquant A qui ont été crée a Date.today
-    # et les soustraire du nombre de users qu'on va aller cherche pour update A.
 
   end
 end

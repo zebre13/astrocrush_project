@@ -7,11 +7,31 @@ class UpdateUserJob < ApplicationJob
     end
   end
 
-  def update_index
-    helpers.define_coordinates
-    # current_user.local_lat = Geocoder.search(request.remote_ip).first.coordinates[0]
-    # current_user.local_lon = Geocoder.search(request.remote_ip).first.coordinates[1]
-    
+  def update_index(user)
+
+    # Définir les coordonnées de l'user qu'on update
+    define_coordinates(user)
+
+    # Mates du bon age et genre
+    potential_mates = PREFERENCES.array_of_gender_and_age_preferences(user)
+
+    # Filtre de ceux dans le périmetre
+    mates_in_perimeter = mates_in_perimeter(user, potential_mates)
+
+
+
+
+
+    # Rejeter les utilisateurs qui ont un score de match calculé avec moi
+    users_with_score = users_by_perimeter.select do |user|
+      user.affinity_scores.keys.include?(user.id)
+    end
+
+    # On rejette tous les users qui sont dans les matchs du current user.
+    users = users_with_score.reject do |user|
+      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", user.id, user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+    end
+
   end
     # Si un user B voit son index updaté comprenant un score avec user A, alors en calculer un de moins
     # En fait chaque jour, si le nombre de nouveaux scores que users A obtient via l'update d'index d'autres users est < 10

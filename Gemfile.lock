@@ -110,12 +110,17 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.11.0)
+    et-orbi (1.2.7)
+      tzinfo
     execjs (2.7.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     font-awesome-sass (5.6.1)
       sassc (>= 1.11)
+    fugit (1.7.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -165,6 +170,7 @@ GEM
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-proxy (0.7.4)
@@ -230,6 +236,8 @@ GEM
       rspec-support (~> 3.11)
     rspec-support (3.11.1)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.2)
+      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -252,6 +260,11 @@ GEM
       redis (>= 4.5.0, < 5)
     sidekiq-failures (1.0.4)
       sidekiq (>= 4.0.0)
+    sidekiq-scheduler (4.0.3)
+      redis (>= 4.2.0)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 4, < 7)
+      tilt (>= 1.4.0)
     spring (4.1.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -324,6 +337,7 @@ DEPENDENCIES
   selenium-webdriver (>= 4.0.0.rc1)
   sidekiq
   sidekiq-failures (~> 1.0)
+  sidekiq-scheduler
   simple_form!
   spring
   turbolinks (~> 5)
@@ -336,4 +350,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.5
+   2.3.23

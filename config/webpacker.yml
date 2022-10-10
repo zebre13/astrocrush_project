@@ -53,7 +53,7 @@ development:
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
-    https: true
+    https: false
     host: localhost
     port: 3035
     public: localhost:3035
@@ -70,7 +70,6 @@ development:
       'Access-Control-Allow-Origin': '*'
     watch_options:
       ignored: '**/node_modules/**'
-
 
 test:
   <<: *default

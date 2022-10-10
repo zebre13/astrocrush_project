@@ -11,6 +11,7 @@ puts 'Cleaning database...'
 User.destroy_all
 Match.destroy_all
 Chatroom.destroy_all
+Cloudinary::Api.delete_all_resources
 puts 'Database clean'
 
 # <=== USERS SEEDING ===>

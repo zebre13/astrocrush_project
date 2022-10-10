@@ -1,3 +1,4 @@
+
 import { Controller } from "@hotwired/stimulus"
 import { Modal } from "bootstrap";
 
@@ -10,6 +11,8 @@ export default class extends Controller {
     currentLongitude: Number,
     currentGender: Number,
     currentTimezone: Number,
+    userId: String,
+    apiKey: String,
   }
 
   connect() {
@@ -25,8 +28,8 @@ export default class extends Controller {
 
     // function request pour l'appel d'API
     var request = (resource, data) => {
-      const userId = '';
-      const apiKey = '';
+      const userId = this.userIdValue;
+      const apiKey = this.apiKeyValue;
 
       return $.ajax({
         url: "https://json.astrologyapi.com/v1/"+resource,

@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   ASTROPROFIL = Astroprofil.new
   AFFINITIES = Affinities.new
   GEOCODE = Geocode.new
-  after_action :new_user_api_calls, only: [:create]
+  before_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
     return unless user_signed_in?
@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def afinities(user, mates)
+  def affinities(user, mates)
     AFFINITIES.partner_report(user, mates)
     AFFINITIES.sign_report(user, mates)
     AFFINITIES.match_percentage(user, mates)

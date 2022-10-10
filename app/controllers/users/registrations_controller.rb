@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   ASTROPROFIL = Astroprofil.new
   AFFINITIES = Affinities.new
   GEOCODE = Geocode.new
-  after_action :new_user_api_calls, only: [:create]
+  before_action :new_user_api_calls, only: [:create]
 
   def new_user_api_calls
     return unless user_signed_in?

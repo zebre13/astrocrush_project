@@ -10,17 +10,40 @@ GEOCODE = Geocode.new
 
 RSpec.describe User, type: :model do
 
-  describe 'Registration' do
-    it 'should persist a user' do
-      user = create_male
+  context 'validation' do
+    it 'shouldnt validate falsy users' do
+      user = User.new
+      user.validate
 
-      expect(User.count).to eq(1)
+      expect(user.errors.messages).to include(:username, :email, :birth_date, :birth_hour, :photos, :birth_location, :gender, :looking_for)
+      expect(user.valid?).to be false
+    end
+
+    it 'should validate users' do
+      user = build(:user) do |user|
+        photo = File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
+        user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
+      end
+      user.validate
+
+      expect(user.valid?).to be true
+    end
+  end
+
+  context 'creation' do
+    it 'should persist a user' do
+      photo = File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
+
+      user = build(:user)
+      user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
+      user.save
+
+      expect(user.valid?).to be true
     end
 
     it 'should set coordinates for the user' do
       user = create_male
       GEOCODE.coordinates(user, '168.212.226.204')
-      user.save!
 
       expect(user.local_lat).not_to eq(nil)
       expect(user.local_lon).not_to eq(nil)
@@ -29,7 +52,6 @@ RSpec.describe User, type: :model do
     it 'should create an astroprofil' do
       user = create_male
       ASTROPROFIL.profil(user)
-      user.save!
 
       expect(user.planets).not_to eq(nil)
     end
@@ -37,9 +59,8 @@ RSpec.describe User, type: :model do
     it 'should create a partner report' do
       user = create_male
       create_ten_females
-      mates = (User.where(gender: user.looking_for).where.not(id: user.id)).sample(10)
+      mates = (User.where(gender: user.looking_for).where.not(id: user.id))
       AFFINITIES.partner_report(user, mates)
-      user.save!
 
       expect(user.partner_reports).not_to eq(nil)
     end
@@ -47,9 +68,8 @@ RSpec.describe User, type: :model do
     it 'should create a sun report' do
       user = create_male
       create_ten_females
-      mates = (User.where(gender: user.looking_for).where.not(id: user.id)).sample(10)
+      mates = (User.where(gender: user.looking_for).where.not(id: user.id))
       AFFINITIES.sign_report(user, mates)
-      user.save!
 
       expect(user.mate_sun_reports).not_to eq(nil)
     end
@@ -57,9 +77,8 @@ RSpec.describe User, type: :model do
     it 'should create a match percentage' do
       user = create_male
       create_ten_females
-      mates = (User.where(gender: user.looking_for).where.not(id: user.id)).sample(10)
+      mates = (User.where(gender: user.looking_for).where.not(id: user.id))
       AFFINITIES.match_percentage(user, mates)
-      user.save!
 
       expect(User.last.affinity_scores).not_to eq(nil)
     end
@@ -68,52 +87,21 @@ RSpec.describe User, type: :model do
   private
 
   def create_male
-    male = { username: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: '******',
-      description: Faker::Lorem.sentence(word_count: 6),
-      hobbies: ['Chamber music', 'Astrology'],
-      birth_date: '26/06/1977',
-      birth_hour: '05:30',
-      birth_location: 'Aix-en-Provence',
-      birth_country: 'FR',
-      latitude: '43.529742',
-      longitude: '5.447427',
-      gender: 1,
-      looking_for: 2 }
-
+    build(:user) do |user|
       photo = File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
-
-      user = User.new(male)
       user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
-      user.save!
-
-      return user
     end
+  end
 
   def create_ten_females
     ten_females = []
-    female = { username: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: '******',
-      description: Faker::Lorem.sentence(word_count: 6),
-      hobbies: ['Chamber music', 'Astrology'],
-      birth_date: '26/06/1977',
-      birth_hour: '05:30',
-      birth_location: 'Aix-en-Provence',
-      birth_country: 'FR',
-      latitude: '43.529742',
-      longitude: '5.447427',
-      gender: 2,
-      looking_for: 1 }
+    photo = File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
 
-      photo = File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
+    10.times do
+      ten_females << build(:user_female) do |user|
 
-      10.times do
-        user = User.new(female)
-        user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
-        ten_females << user
       end
+    end
 
     return ten_females
   end

@@ -9,7 +9,8 @@ class Affinities
     mates.each do |mate|
       mate_partner_report = API_CALL.partner_report(user.birth_date, user.gender, mate.birth_date, mate.gender, mate.username)
       partner_report_collection.store(mate.id, mate_partner_report)
-      mate.partner_reports.store(user.id, mate_score)
+      mate.partner_reports.store(user.id, mate_partner_report)
+      mate.save!
     end
     user.partner_reports = partner_report_collection
     user.save!
@@ -20,7 +21,8 @@ class Affinities
     mates.each do |mate|
       mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')
       sun_report_collection.store(mate.id, mate_sun_report)
-      mate.mate_sun_reports.store(user.id, mate_score)
+      mate.mate_sun_reports.store(user.id, mate_sun_report)
+      mate.save!
     end
     user.mate_sun_reports = sun_report_collection
     user.save!
@@ -40,6 +42,7 @@ class Affinities
       end
       score_collection.store(mate.id, mate_score)
       mate.affinity_scores.store(user.id, mate_score)
+      mate.save!
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h

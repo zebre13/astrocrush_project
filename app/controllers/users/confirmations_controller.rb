@@ -1,16 +1,8 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
-
   def new
     super
-    resource.login = current_user.email if user_signed_in?
   end
-
-  def create
-    super
-  end
-
-  def show
-    super
+    # resource.login = current_user.email if user_signed_in?
   end
 
   protected

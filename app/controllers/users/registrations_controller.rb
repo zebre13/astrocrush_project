@@ -6,16 +6,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   ASTROPROFIL = Astroprofil.new
   AFFINITIES = Affinities.new
   GEOCODE = Geocode.new
-  before_action :new_user_api_calls, only: %i[new create]
+  after_action :new_user_api_calls, only: %i[new create]
 
   def new_user_api_calls
     return unless user_signed_in?
 
-    ASTROPROFIL.profil(current_user)
-    GEOCODE.coordinates(current_user, current_user.current_sign_in_ip)
+    user = current_user
+    ASTROPROFIL.profil(user)
+    GEOCODE.coordinates(user, user.current_sign_in_ip)
     mates = ten_mates
-    affinities(current_user, mates)
-    current_user.save!
+    affinities(user, mates)
+    user.save!
   end
 
   private

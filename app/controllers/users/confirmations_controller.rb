@@ -3,7 +3,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     super
   end
     # resource.login = current_user.email if user_signed_in?
-  end
 
   protected
 

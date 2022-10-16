@@ -1,5 +1,6 @@
 require 'json'
 require_relative '../services/astrology_api'
+require_relative '../services/sun_reports'
 
 class UsersController < ApplicationController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
 
   def show
     @mate = User.find(params[:id])
+    @mate_sun_report = SUN_REPORTS[@mate.sign.to_sym]
   end
 
   def astroboard
@@ -104,4 +106,3 @@ class UsersController < ApplicationController
   #     # user.API.match_percentage ETC TODO
   # end
 end
-

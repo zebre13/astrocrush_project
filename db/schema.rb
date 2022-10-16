@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_27_214414) do
+ActiveRecord::Schema.define(version: 2022_10_16_152849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 2022_09_27_214414) do
     t.text "affinity_scores"
     t.text "planets"
     t.text "partner_reports"
-    t.text "mate_sun_reports"
     t.float "timezone"
     t.float "local_lat"
     t.float "local_lon"

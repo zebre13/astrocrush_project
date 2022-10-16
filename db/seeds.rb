@@ -586,4 +586,3 @@ users.each do |user|
 end
 
 puts "all confirmations skiped"
-

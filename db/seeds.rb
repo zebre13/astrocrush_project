@@ -32,8 +32,10 @@ boris_bourdet_data = {
   latitude: '43.529742',
   longitude: '5.447427',
   gender: 1,
-  looking_for: 2
+  looking_for: 2,
+
 }
+
 etienne_de_dianous_data = {
   username: 'Etienne',
   email: 'etiennededi@hotmail.fr',
@@ -528,6 +530,13 @@ users_data.each_with_index do |user_data, index|
   p "*** #{user.username} ***"
 end
 
+
+# Adding fictive ip address
+
+User.all.each do |user|
+  user.last_sign_in_ip = Faker::Internet.ip_v4_address
+  user.save
+end
 # <--- Calculate and attach affinity scores and reports --->
 
 

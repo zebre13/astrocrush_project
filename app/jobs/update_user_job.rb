@@ -6,8 +6,9 @@ require_relative '../services/preferences'
 
 class UpdateUserJob < ApplicationJob
   queue_as :default
-
+  require 'preferences.rb'
   # cronjob pour lancer tous les 24 heures, sur heroku
+  PREFERENCE = Preferences.new
 
 
   def perform
@@ -29,16 +30,16 @@ class UpdateUserJob < ApplicationJob
   def update_index(user, number_of_scores_to_calculate)
 
     # Mates du bon age et genre
-    potential_mates = PREFERENCES.array_of_gender_and_age_preferences(user)
+    potential_mates = Preferences.array_of_gender_and_age_preferences(user)
 
     # Filtre de ceux dans le périmetre
-    mates_in_perimeter = PREFERENCES.mates_in_perimeter(user, potential_mates)
+    mates_in_perimeter = Preferences.mates_in_perimeter(user, potential_mates)
 
     # Selectionner pour ensuite rejeter les utilisateurs qui ont un score de match calculé avec moi
-    mates_without_score = PREFERENCES.reject_mates_with_affinity_score_with_user(user, mates_in_perimeter)
+    mates_without_score = Preferences.reject_mates_with_affinity_score_with_user(user, mates_in_perimeter)
 
     # On rejette tous les users qui sont dans les matchs du current user
-    mates_already_matched = PREFERENCES.reject_matches(user, mates_without_score)
+    mates_already_matched = Preferences.reject_matches(user, mates_without_score)
 
     # On rejette tous ceux qui ont eu plus de 10 nouveaux scores aujourd'hui et on en prend n
     n_mates = reject_mates_with_too_much_new_affinity_scores_today(mates_already_matched).sample(number_of_scores_to_calculate)

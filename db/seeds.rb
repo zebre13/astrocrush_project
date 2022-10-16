@@ -354,25 +354,25 @@ zoe_kravitz_data = {
 users_data = [
   boris_bourdet_data,
   etienne_de_dianous_data,
-  ghita_aaddaj_data,
-  maria_leonor_varela_borges_data,
-  mathieu_trancoso_data,
-  laura_person_data,
-  alexandre_platteeuw_data,
-  kenza_tighrine_data,
-  bruno_lelay_data,
-  sophiana_b_data,
-  ibrahima_kaba_data,
-  isabelle_levy_data,
-  corentin_deseine_data,
-  aicha_diagne_data,
-  paul_portier_data,
-  nadia_auger_data,
-  jeremy_barbedienne_data,
-  charlotte_bory_data,
-  marine_sourin_data,
-  boris_paillard_data,
-  claire_ziemendorf_data
+  ghita_aaddaj_data
+  # maria_leonor_varela_borges_data,
+  # mathieu_trancoso_data,
+  # laura_person_data,
+  # alexandre_platteeuw_data,
+  # kenza_tighrine_data,
+  # bruno_lelay_data,
+  # sophiana_b_data,
+  # ibrahima_kaba_data,
+  # isabelle_levy_data,
+  # corentin_deseine_data,
+  # aicha_diagne_data,
+  # paul_portier_data,
+  # nadia_auger_data,
+  # jeremy_barbedienne_data,
+  # charlotte_bory_data,
+  # marine_sourin_data,
+  # boris_paillard_data,
+  # claire_ziemendorf_data,
   # zoe_kravitz_data
 ]
 
@@ -467,25 +467,25 @@ photos_zoe_kravitz = [
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-  photos_ghita_aaddaj,
-  photos_maria_leonor_varela_borges,
-  photos_mathieu_trancoso,
-  photos_laura_person,
-  photos_alexandre_platteeuw,
-  photos_kenza_tighrine,
-  photos_bruno_lelay,
-  photos_sophiana_b,
-  photos_ibrahima_kaba,
-  photos_isabelle_levy,
-  photos_corentin_deseine,
-  photos_aicha_diagne,
-  photos_paul_portier,
-  photos_nadia_auger,
-  photos_jeremy_barbedienne,
-  photos_charlotte_bory,
-  photos_marine_sourin,
-  photos_boris_paillard,
-  photos_claire_ziemendorf
+  photos_ghita_aaddaj
+  # photos_maria_leonor_varela_borges,
+  # photos_mathieu_trancoso,
+  # photos_laura_person,
+  # photos_alexandre_platteeuw,
+  # photos_kenza_tighrine,
+  # photos_bruno_lelay,
+  # photos_sophiana_b,
+  # photos_ibrahima_kaba,
+  # photos_isabelle_levy,
+  # photos_corentin_deseine,
+  # photos_aicha_diagne,
+  # photos_paul_portier,
+  # photos_nadia_auger,
+  # photos_jeremy_barbedienne,
+  # photos_charlotte_bory,
+  # photos_marine_sourin,
+  # photos_boris_paillard,
+  # photos_claire_ziemendorf,
   # photos_zoe_kravitz
 ]
 
@@ -522,7 +522,6 @@ users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
   partner_report_collection = {}
-  sun_report_collection = {}
   potential_mates.each do |mate|
     if mate.gender == 2
       mate_score = API_CALL.match_percentage(
@@ -557,20 +556,10 @@ users.each do |user|
       mate.username
     )
     partner_report_collection.store(mate.id, mate_partner_report)
-
-    mate_sun_report = API_CALL.sign_report(
-      mate.birth_date,
-      mate.birth_hour,
-      mate.latitude,
-      mate.longitude,
-      'sun'
-    )
-    sun_report_collection.store(mate.id, mate_sun_report)
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
   user.partner_reports = partner_report_collection
-  user.mate_sun_reports = sun_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!
 end

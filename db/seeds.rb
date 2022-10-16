@@ -372,7 +372,7 @@ users_data = [
   # charlotte_bory_data,
   # marine_sourin_data,
   # boris_paillard_data,
-  # claire_ziemendorf_data
+  # claire_ziemendorf_data,
   # zoe_kravitz_data
 ]
 
@@ -485,7 +485,7 @@ users_photos = [
   # photos_charlotte_bory,
   # photos_marine_sourin,
   # photos_boris_paillard,
-  # photos_claire_ziemendorf
+  # photos_claire_ziemendorf,
   # photos_zoe_kravitz
 ]
 

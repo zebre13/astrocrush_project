@@ -11,8 +11,9 @@ class Geocode
 
     coordinates(user, user_ip.to_s)
     coordinates(mate, mate_ip.to_s)
-    p user.local_lat, 'this is user.local_lat'
-    Geocoder::Calculations.distance_between([user.local_lat, user.local_lon], [mate.local_lat, mate.local_lon], options = {})
+    distance = Geocoder::Calculations.distance_between([user.local_lat, user.local_lon], [mate.local_lat, mate.local_lon], options = {})
+    p distance
+    return distance
   end
 
   private
@@ -21,13 +22,10 @@ class Geocode
     if Geocoder.search(ip).first.coordinates.any?
       return Geocoder.search(ip).first.coordinates[0]
       # => Geocoder.search("176.160.0.121") ==> 48.8763
-    else
-      p ip, " ||||||||||||||||       This ip latitude could not be geocoded... ||||||||||||||||||||"
     end
   end
 
   def longitude(ip)
     return Geocoder.search(ip).first.coordinates[0] if Geocoder.search(ip).first.coordinates.any?
-    p ip, "||||||||||||||||           this ip longitude could not be geocoded   ||||||||||||||||"
   end
 end

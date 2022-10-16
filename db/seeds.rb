@@ -372,7 +372,7 @@ users_data = [
   # charlotte_bory_data,
   # marine_sourin_data,
   # boris_paillard_data,
-  # claire_ziemendorf_data,
+  # claire_ziemendorf_data
   # zoe_kravitz_data
 ]
 
@@ -485,7 +485,7 @@ users_photos = [
   # photos_charlotte_bory,
   # photos_marine_sourin,
   # photos_boris_paillard,
-  # photos_claire_ziemendorf,
+  # photos_claire_ziemendorf
   # photos_zoe_kravitz
 ]
 
@@ -522,7 +522,6 @@ users.each do |user|
   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
   score_collection = {}
   partner_report_collection = {}
-  sun_report_collection = {}
   potential_mates.each do |mate|
     if mate.gender == 2
       mate_score = API_CALL.match_percentage(
@@ -557,20 +556,10 @@ users.each do |user|
       mate.username
     )
     partner_report_collection.store(mate.id, mate_partner_report)
-
-    mate_sun_report = API_CALL.sign_report(
-      mate.birth_date,
-      mate.birth_hour,
-      mate.latitude,
-      mate.longitude,
-      'sun'
-    )
-    sun_report_collection.store(mate.id, mate_sun_report)
   end
   ordered_score_collection = score_collection.sort_by { |_id, score| score }
   user.affinity_scores = ordered_score_collection.reverse.to_h
   user.partner_reports = partner_report_collection
-  user.mate_sun_reports = sun_report_collection
   puts "*** #{user.username} complementary attachments ok ***"
   user.save!
 end
@@ -586,4 +575,3 @@ users.each do |user|
 end
 
 puts "all confirmations skiped"
-

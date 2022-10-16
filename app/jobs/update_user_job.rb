@@ -13,7 +13,8 @@ class UpdateUserJob < ApplicationJob
 
   def perform
     # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
-    users = User.all
+    # users = User.all
+    users = User.first(4)
     # Set le nombre de nouveaux affinity scores quotidien à 0 dans une boucle séparée.
     users.each { |user| user.new_affinity_scores_today = 0 }
 

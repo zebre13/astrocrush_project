@@ -14,10 +14,10 @@ class Preferences
   def self.mates_in_perimeter(user, mates)
     mates_in_perimeter = []
     mates.each do |mate|
-
       p GEOCODE.calculate_distance(user, mate)
-
-      mates_in_perimeter << mate if (GEOCODE.calculate_distance(user, mate).to_i  <= user.search_perimeter)
+      if (GEOCODE.calculate_distance(user, mate).to_i  <= user.search_perimeter)
+        mates_in_perimeter << mate
+      end
     end
     mates_in_perimeter
   end

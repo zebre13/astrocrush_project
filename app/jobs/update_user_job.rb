@@ -16,7 +16,8 @@ class UpdateUserJob < ApplicationJob
   def perform
     # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
     # users = User.all
-    users = User.last(2)
+    a = Time.now
+    users = User.all
     # Set le nombre de nouveaux affinity scores quotidien à 0 dans une boucle séparée.
     users.each { |user| user.new_affinity_scores_today = 0 }
 
@@ -27,7 +28,12 @@ class UpdateUserJob < ApplicationJob
 
       # Updater l'index de cet user si son nombre de scores de match à calculer est positif (sinon il est chanceux)
       update_index(user, number_of_scores_to_calculate) if number_of_scores_to_calculate.positive?
+      p "updated index for #{user.email}"
+      user.save
     end
+    b = Time.now
+    c = b - a
+    p c
   end
 
   def update_index(user, number_of_scores_to_calculate)
@@ -38,7 +44,7 @@ class UpdateUserJob < ApplicationJob
 
     # Filtre de ceux dans le périmetre
     mates_in_perimeter = Preferences.mates_in_perimeter(user, potential_mates)
-    p mates_in_perimeter.count, 'this is mates in perimeter.count'
+    p mates_in_perimeter.count, "this is mates in perimeter.count for #{user.email}"
 
     # Selectionner pour ensuite rejeter les utilisateurs qui ont un score de match calculé avec moi
     mates_without_score = Preferences.reject_mates_with_affinity_score_with_user(user, mates_in_perimeter)

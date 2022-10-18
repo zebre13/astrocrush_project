@@ -24,7 +24,7 @@ gem 'redis', '~> 4.0'
 gem 'sidekiq-scheduler'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'geo-distance'
 # Reduces bogstot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

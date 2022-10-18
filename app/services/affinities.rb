@@ -38,8 +38,10 @@ class Affinities
       else
         mate_score = API_CALL.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, user.birth_date, user.birth_hour, user.latitude, user.longitude)
       end
+      p mate_score, 'this is mate_score'
       score_collection.store(mate.id, mate_score)
       mate.affinity_scores.store(user.id, mate_score)
+      mate.save
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h

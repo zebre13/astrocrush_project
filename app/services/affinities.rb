@@ -41,10 +41,14 @@ class Affinities
       p mate_score, 'this is mate_score'
       score_collection.store(mate.id, mate_score)
       mate.affinity_scores.store(user.id, mate_score)
+      mate.new_affinity_scores_today += 1
       mate.save
+      user.new_affinity_scores_today += 1
+      user.save
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h
     user.save!
   end
+
 end

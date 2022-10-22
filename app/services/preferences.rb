@@ -5,14 +5,17 @@ class Preferences
                  :reject_mates_with_too_much_new_affinity_scores_today,
                  :reject_matches
   GEOCODE = Geocode.new
-  def self.array_of_gender_and_age_preferences(user)
+  def self.array_of_gender_and_age_preferences(user, mates)
     mini_date = Date.today - (user.minimal_age * 365)
     max_date = Date.today - (user.maximum_age * 365)
-    User.where(gender: user.looking_for).where.not(id: user.id).where("(birth_date < ?)", mini_date).where("(birth_date > ?)", max_date)
+    mates.select do |mate|
+      mate.gender == user.looking_for && mate.id != user.id && mate.birth_date >= mini_date && mate.birth_date <= max_date
+    end
   end
 
   def self.mates_in_perimeter(user, mates)
     mates_in_perimeter = []
+    GEOCODE.coordinates(user)
     mates.each do |mate|
       distance = GEOCODE.calculate_distance(user, mate)
       if distance.round.to_i <= user.search_perimeter

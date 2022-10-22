@@ -1,8 +1,9 @@
 class Geocode
   attr_reader :coordinates
-  def coordinates(user, ip)
-    p ip, "this is ip"
-    data = Geocoder.search(ip).first.coordinates
+  def coordinates(user)
+    #  Assigne local_lon et local_lat
+    p user.last_sign_in_ip
+    data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
     p data, "this is data"
     user.local_lat = data[0]
     user.local_lon = data[1]
@@ -12,13 +13,7 @@ class Geocode
 
 
   def calculate_distance(user, mate)
-    user_ip = user.last_sign_in_ip
-    mate_ip = mate.last_sign_in_ip
-
-    coordinates(user, user_ip.to_s)
-    coordinates(mate, mate_ip.to_s)
-
-
+    coordinates(mate)
     distance = Geocoder::Calculations.distance_between([user.local_lat, user.local_lon], [mate.local_lat, mate.local_lon], options = {})
     p distance
     return distance
@@ -27,9 +22,8 @@ class Geocode
 
   def latitude(ip)
 
-   Geocoder.search(ip).first.coordinates[0]
+    Geocoder.search(ip).first.coordinates[0]
 
-      # => Geocoder.search("176.160.0.121") ==> 48.8763
   end
 
   def longitude(ip)

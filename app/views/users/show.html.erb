@@ -115,7 +115,7 @@
         </div>
 
         <%# Carousel text %>
-        <% sun_report = current_user.mate_sun_reports[params[:id].to_i]['report'].split(".") %>
+        <% sun_report = @mate_sun_report.split(".") %>
         <div id="carouselText" class="carousel pb-3 carousel-dark slide" data-bs-touch="true">
           <div class="carousel-indicators">
             <% sun_report.each_with_index do |element, index| %>

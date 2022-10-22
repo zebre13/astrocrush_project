@@ -16,18 +16,6 @@ class Affinities
     user.save!
   end
 
-  def sign_report(user, mates)
-    sun_report_collection = {}
-    mates.each do |mate|
-      mate_sun_report = API_CALL.sign_report(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude,'sun')
-      sun_report_collection.store(mate.id, mate_sun_report)
-      mate.mate_sun_reports.store(user.id, mate_sun_report)
-      mate.save!
-    end
-    user.mate_sun_reports = sun_report_collection
-    user.save!
-  end
-
   def match_percentage(user, mates)
     score_collection = {}
     mates.each do |mate|

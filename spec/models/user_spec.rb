@@ -65,15 +65,6 @@ RSpec.describe User, type: :model do
       expect(user.partner_reports).not_to eq(nil)
     end
 
-    it 'should create a sun report' do
-      user = create_male
-      create_ten_females
-      mates = (User.where(gender: user.looking_for).where.not(id: user.id))
-      AFFINITIES.sign_report(user, mates)
-
-      expect(user.mate_sun_reports).not_to eq(nil)
-    end
-
     it 'should create a match percentage' do
       user = create_male
       create_ten_females

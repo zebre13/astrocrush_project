@@ -11,7 +11,6 @@ puts 'Cleaning database...'
 User.destroy_all
 Match.destroy_all
 Chatroom.destroy_all
-Cloudinary::Api.delete_all_resources
 puts 'Database clean'
 
 # <=== USERS SEEDING ===>
@@ -335,6 +334,7 @@ claire_ziemendorf_data = {
   gender: 2,
   looking_for: 1
 }
+
 zoe_kravitz_data = {
   username: 'Zoe',
   email: 'z.kravitz@astrocrush.io',
@@ -570,7 +570,7 @@ puts "#{User.all.length} users created successfully!"
 
 users = User.all
 users.each do |user|
-  user.skip_confirmation!
+  user.confirm
   user.save!
 end
 

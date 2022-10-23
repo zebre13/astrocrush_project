@@ -8,41 +8,56 @@ class UpdateUserJob < ApplicationJob
   queue_as :default
   require 'preferences.rb'
   require 'affinities.rb'
+  require 'geocode.rb'
   # cronjob pour lancer tous les 24 heures, sur heroku
   PREFERENCE = Preferences.new
   AFFINITIES = Affinities.new
-
+  GEOCODE = Geocode.new
 
   def perform
     # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
     # users = User.all
-    user = User.first
-    mates = User.all.shuffle.each_slice(2).to_a
-    i = 0
-    user.new_affinity_scores_today = 0
+    users = User.all
+    users.each do |user|
+      mates = User.all.shuffle.each_slice(2).to_a
+      i = 0
+      user.new_affinity_scores_today = 0
 
-    until user.new_affinity_scores_today == 2 || mates[i].nil?ù
-      # selectionner ceux du bon age et sexe
-      p mates[i], "this is mates[#{i}]"
-      mates_with_right_gender_and_age = Preferences.array_of_gender_and_age_preferences(user, mates[i]) unless mates[i].nil?
+      until user.new_affinity_scores_today == 2 || mates[i].nil?
+        # Commencer par calculer local lat et local lon du user pour pas avoir a le refaire a chaque fois
+        GEOCODE.coordinates(user)
+        # selectionner ceux du bon age et sexe
+        p mates[i], "this is mates[#{i}], there are this nmber of mates:#{mates[i].count}"
+        if !mates[i].nil?
+          mates_with_right_gender_and_age = Preferences.array_of_gender_and_age_preferences(user, mates[i])
+          p "mates_with_right_gender_and_age : #{mates_with_right_gender_and_age}"
 
-      # Rejeter ceux avec un score de match préexistant avec moi
-      mates_without_score = Preferences.reject_mates_with_affinity_score_with_user(user, mates_with_right_gender_and_age)
+          # Rejeter ceux avec un score de match préexistant avec moi
+          mates_without_score = Preferences.reject_mates_with_affinity_score_with_user(user, mates_with_right_gender_and_age)
+          p "mates without score : #{mates_without_score.count}"
 
-      # Rejeter les mates qui ont déja un match avec moi
-      mates_without_match_with_me = Preferences.reject_matches(user, mates_without_score)
+          # Rejeter les mates qui ont déja un match avec moi
+          mates_without_match_with_me = Preferences.reject_matches(user, mates_without_score)
+          p "mates_without_match_with_me : #{mates_without_match_with_me.count}"
 
-      # Rejeter les mates qui ont déja 10 new affinity-scores_today
-      potential_mates = Preferences.reject_mates_with_too_much_new_affinity_scores_today(mates_without_match_with_me)
+          # Rejeter les mates qui ont déja 10 new affinity-scores_today
+          potential_mates = Preferences.reject_mates_with_too_much_new_affinity_scores_today(mates_without_match_with_me)
+          p "potential_mates: #{potential_mates.count}"
 
-      # Calculer ceux dans le périmètre
-      mates_in_perimeter = Preferences.mates_in_perimeter(user, potential_mates)
+          # Calculer ceux dans le périmètre
+          mates_in_perimeter = Preferences.mates_in_perimeter(user, potential_mates)
+          p "mates_in_perimeter : #{mates_in_perimeter.count}"
 
-      # A moins que mates_in_perimeter soit vide, calculer le score de match avec ces mates et incrémenter new affinity_scores_today a chaque fois
-      AFFINITIES.match_percentage(user, mates_in_perimeter) unless mates_in_perimeter.empty?
-      i += 1 unless mates[i].nil?
+          # A moins que mates_in_perimeter soit vide, calculer le score de match avec ces mates et incrémenter new affinity_scores_today a chaque fois
+          AFFINITIES.match_percentage(user, mates_in_perimeter) unless mates_in_perimeter.empty?
+          if !mates[i+1].nil?
+            i += 1
+          else
+            break
+          end
+        end
+      end
     end
-    puts 'bye '
   end
 end
 

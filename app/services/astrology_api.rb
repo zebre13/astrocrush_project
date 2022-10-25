@@ -51,6 +51,13 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
+    # General ascendant report
+    def ascendant_report(birth_date, birth_hour, latitude, longitude)
+      endpoint = "general_ascendant_report/tropical"
+      data = birth_data_set(birth_date, birth_hour, latitude, longitude)
+      return get_response(endpoint, data)
+    end
+
   # General house report
   def house_report(birth_date, birth_hour, latitude, longitude, planet)
     endpoint = "general_house_report/tropical/#{planet.upcase}"
@@ -183,8 +190,3 @@ class AstrologyApi
   end
 end
 
-planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto" ]
-planets.each do |planet|
-  # p AstrologyApi.new('619845', 'b5c800baa32b755c12832f22ec5d2fee').sign_report('15/01/1995', '23:40', '48.6930642', '2.2947615', planet)
-  p AstrologyApi.new('619845', 'b5c800baa32b755c12832f22ec5d2fee').house_report('15/01/1995', '23:40', '48.6930642', '2.2947615', planet)
-end

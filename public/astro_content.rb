@@ -1,5 +1,147 @@
 class AstroContent
 
+  PLANETS_IN_SIGNS_FR = {
+    Sun: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    },
+    Moon: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    },
+    Mercury: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Venus: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Mars: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Jupiter: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Saturn: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Uranus: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Neptune: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+    Pluto: {
+      Aries: ,
+      Taurus: ,
+      Gemini: ,
+      Cancer: ,
+      Leo: ,
+      Virgo: ,
+      Libra: ,
+      Scorpio: ,
+      Sagittarius: ,
+      Capricorn: ,
+      Aquarius: ,
+      Pisces:
+    }
+  }
   PLANETS_IN_SIGNS_EN = {
     Sun: {
       Aries: "Arians can be inspirational, courageous, enthusiastic, original, independent, impatient, aggressive, headstrong, selfish, self-centered, and impulsive. The Arian's energies are directed toward building a new individuality, thus all the Arian's energies are directed towards themself and what they want. An Arian likes roles where there leadership abilities are put on display. Arians have executive and organizing ability which is mainly directed in starting things. Sustaining projects is not their strength, but initiating projects is. The tendency to 'damn the torpedoes' and ram full-speed ahead must be controlled. Arians are capable of great accomplishments if they learn how to constructively use their abundant energies. Arians are naturally enthusiastic and are always ready for activity and competition. They are inspiring to others because of these tendencies. Ideas and creative projects seem to flow from them in a never-ending stream. They are full of energy and never lack courage. Because Arians can be pretty self-centered, they must remember that other people may have good ideas and can assume responsibility and leadership roles, too. The natural tendency for an Arian is to stand alone and do everything themself. But cooperation with others can be very effective in getting things done to the end rather than simply starting things and quitting before completion. Arians have a tendency to start a project, then to suddenly lose interest in it if progress is too slow or things have become too complicated.",
@@ -142,7 +284,7 @@ class AstroContent
       Pisces: "You transform in an impressionable and inspirational way matters to do with transcendent beliefs, such as religion and spiritual matters, including universal love and sympathy. You delve into secret matters involving feeling and emotions, and deeply held secrets, perhaps by humanity, may rush to the surface, perhaps increasing psychic ability. In the search for (religious) ecstasy, and to escape the emotional pressures, there may be a danger of an increased use of pleasure-producing, psychic drugs in this generation."
     }
   }
-
+  
   ASCENDANT_IN_SIGNS_EN = {
     Aries: "People with Aries rising tend to be energetic, pioneering, rash, argumentative, selfish, impulsive, quick-tempered, aggressive, assertive, headstrong, independent, alert, mechanically-inclined, physically active, self-promoting, self-centered in an unthinking way, and more thoughtless than mean. You have a general dislike for restraint of any kind, don't like to be told what to do, need to learn diplomacy and tact, need to look before leaping, need to better learn how to channel your energies for more constructive purposes and results. Like the ram who symbolizes this sign, you tend to butt your head against your problems hoping that with enough force you can eventually knock down whatever stands before you, including people. You like the challenges of life and are very competitive and sometimes combative. You get bored easily with routine and one thing you may need to practice more of is persistence. You tend to jump from one thing to another, always looking for something new. Finish what you start before moving on. Spiritual lesson to learn: Patience. Mars rules Aries so Mars will be important in your chart.",
     Taurus: "People with Taurus rising tend to be strong, persistent, slow to change, determined, stable, quiet (until pushed too far then there will be trouble), practical, stubborn, non-aggressive, patient, affectionate, loyal, hard-working, passive and unassuming in general, and fixed in their convictions with a general slow pace of mind. Taureans can be led or coaxed, but never pushed or driven. Resources and possessions, whether people or finances are very important to you. You want to build and make things grow, but you can't be hurried. You want to get your hands on things and see the practical results of your own hard work. You are good at taking what others have started then carrying on. Success comes to you by sheer persistence and will. Your love of sweet or rich food can incline you to put on weight. Try to be less rigid in all you do. Tame any jealousy and instinct to possessiveness. You hate and fear sickness and pain. Spiritual lesson to learn: Detachment. Venus rules Taurus so Venus will be important in your chart.",
@@ -300,4 +442,5 @@ class AstroContent
       12: "You feel a need to search for truth and wisdom so that you can understand life. Perhaps life has enslaved you in some way and you are searching for transformation or regeneration. Occasional upheavals in your life come about in order to bring you back to the correct path. There is a desire to retreat from society in order to re-analyze your life. You can become a champion of the downtrodden masses. Serving others in this life may be important for you. You enjoy working behind the scenes."
     }
   }
+
 end

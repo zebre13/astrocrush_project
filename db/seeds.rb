@@ -154,9 +154,9 @@ bruno_lelay_data = {
   gender: 1,
   looking_for: 2
 }
-sophiana_b_data = {
+sophiana_busso_data = {
   username: 'Sophiana',
-  email: 's.b@astrocrush.io',
+  email: 's.busso@astrocrush.io',
   password: 'azerty',
   description: "If you like space travelling, we might meet.",
   hobbies: ['Drawing', 'Long distance trips'],
@@ -361,7 +361,7 @@ users_data = [
   alexandre_platteeuw_data,
   kenza_tighrine_data,
   bruno_lelay_data,
-  sophiana_b_data,
+  sophiana_busso_data,
   ibrahima_kaba_data,
   isabelle_levy_data,
   corentin_deseine_data,
@@ -413,7 +413,7 @@ photos_kenza_tighrine = [
 photos_bruno_lelay = [
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
 ]
-photos_sophiana_b = [
+photos_sophiana_busso = [
   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
 ]
 photos_ibrahima_kaba = [
@@ -474,7 +474,7 @@ users_photos = [
   photos_alexandre_platteeuw,
   photos_kenza_tighrine,
   photos_bruno_lelay,
-  photos_sophiana_b,
+  photos_sophiana_busso,
   photos_ibrahima_kaba,
   photos_isabelle_levy,
   photos_corentin_deseine,

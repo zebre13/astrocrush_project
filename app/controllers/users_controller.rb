@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   def show
     @mate = User.find(params[:id])
     @mate_sun_report = SUN_REPORTS[@mate.sign.to_sym]
+    # @mate_sun_report = AstroContent::PLANETS_IN_SIGNS[:Sun][@mate.sign.to_sym]
   end
 
   def astroboard

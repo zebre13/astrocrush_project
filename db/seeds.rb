@@ -128,7 +128,7 @@ kenza_tighrine_data = {
   username: 'Kenza',
   email: 'k.tighrine@astrocrush.io',
   password: 'azerty',
-  description: "Certains préfèrent m'appeler Karima, mais c'est pas grave.",
+  description: "Certains m'appellent Karima, mais c'est pas grave.",
   hobbies: ['Chicha', 'Djellaba'],
   birth_date: '04/08/1995',
   birth_hour: '10:45',
@@ -154,11 +154,11 @@ bruno_lelay_data = {
   gender: 1,
   looking_for: 2
 }
-sophiana_b_data = {
+sophiana_busso_data = {
   username: 'Sophiana',
-  email: 's.b@astrocrush.io',
+  email: 's.busso@astrocrush.io',
   password: 'azerty',
-  description: "Si vous aimez vous voyager dans le cosmos, nous devrions nous croiser.",
+  description: "Si vous aimez voyager dans le cosmos, nous devrions nous croiser.",
   hobbies: ['Drawing', 'Long distance trips'],
   birth_date: '24/02/1986',
   birth_hour: '02:35',
@@ -248,7 +248,7 @@ nadia_auger_data = {
   username: 'Nadia',
   email: 'n.auger@astrocrush.io',
   password: 'azerty',
-  description: "Qui a dit que les développeurs informatiques ne pouvaient pas être stylés ?",
+  description: "Code rime avec mode !",
   hobbies: ['Code', 'Mode', 'Chihuahuas'],
   birth_date: '23/08/1993',
   birth_hour: '09:45',
@@ -278,7 +278,7 @@ charlotte_bory_data = {
   username: 'Charlotte',
   email: 'c.bory@astrocrush.io',
   password: 'azerty',
-  description: "Lignes de code ou fils de tricot ? Pour moi c'est du pareil au même !",
+  description: "Du code au tricot, il n'y a qu'une ligne !",
   hobbies: ['Code', 'Tricot', 'Montagnes russes'],
   birth_date: '25/02/1994',
   birth_hour: '02:24',
@@ -413,7 +413,7 @@ photos_bruno_lelay = [
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
 ]
 photos_sophiana_busso = [
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg"))
 ]
 photos_ibrahima_kaba = [
   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg")),

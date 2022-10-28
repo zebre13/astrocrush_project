@@ -30,6 +30,28 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  show:
+    description_title: "About me"
+    hobbies_title: "My passions"
+    sign_report_title_is: " is "
+    sign_report_title_main: ". Let's find out what it means about "
+    sign_report_title_gender:
+      1: "him"
+      2: "her"
+
+  hobbies:
+    surf: "Surf"
+    music: "Music"
+    swimming: "Swimming"
+    yoga: "Yoga"
+    cinema: "Cinema"
+
+  astroboard:
+    horoscope: "Horoscope"
+    profile: "Profile"
+    chart: "Chart"
+    affinities: "Affinities"
+    today: "Today"
 
   signs:
     Aries: "Aries"

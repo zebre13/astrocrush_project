@@ -1,4 +1,26 @@
 fr:
+  show:
+    description_title: "A propos de moi"
+    hobbies_title: "Mes passions"
+    sign_report_title_is: " est "
+    sign_report_title_main: ". Découvre ce que cela révèle sur "
+    sign_report_title_gender:
+      1: "lui"
+      2: "elle"
+
+  hobbies:
+    surf: "Surf"
+    music: "Music"
+    swimming: "Swimming"
+    yoga: "Yoga"
+    cinema: "Cinema"
+
+  astroboard:
+    horoscope: "Horoscope"
+    profile: "Profil"
+    chart: "Carte"
+    affinities: "Affinités"
+    today: "Aujourd'hui"
 
   signs:
     Aries: "Bélier"

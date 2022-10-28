@@ -54,6 +54,8 @@ en:
     today: "Today"
     signs: "Signs"
     houses: "Houses"
+    table: "Table"
+    wheel: "Wheel"
 
   signs:
     Aries: "Aries"

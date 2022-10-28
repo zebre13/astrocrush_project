@@ -23,6 +23,8 @@ fr:
     today: "Aujourd'hui"
     signs: "Signes"
     houses: "Maisons"
+    table: "Tableau"
+    wheel: "Roue"
 
   signs:
     Aries: "Bélier"

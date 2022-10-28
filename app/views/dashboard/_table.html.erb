@@ -25,11 +25,11 @@
             <div class="row astrotab">
 
               <div class ="col-4 text">
-                <%=sign[0]["sign"]%>
+                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
               </div>
 
               <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[0]["logo"]%> <%=sign[0]["planet"]%></h5>
+                <h5><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h5>
               </div>
 
               <div class ="col-2">
@@ -46,11 +46,11 @@
             <div class="row astrotab">
 
               <div class ="col-4 text">
-                <%=sign[0]["sign"]%>
+                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
               </div>
 
               <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[0]["logo"]%> <%=sign[0]["planet"]%></h5>
+                <h5><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h5>
               </div>
 
               <div class ="col-2">
@@ -63,7 +63,7 @@
               </div>
 
               <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[1]["logo"]%> <%=sign[1]["planet"]%></h5>
+                <h5><%=sign[1]["logo"]%> <%=(I18n.t "planets.#{sign[1]["planet"]}").upcase%></h5>
               </div>
 
               <div class ="col-2">

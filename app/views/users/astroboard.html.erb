@@ -22,12 +22,10 @@
         </p>
       </div>
     </div>
-    <% if current_user.photos.any?   %>
+    <% if current_user.photos.any? %>
       <%= cl_image_tag current_user.photos.first&.key, :class =>"chatroom-avatar mt-2", crop: :fill %>
     <% end %>
   </div>
-
-<br>
 
   <div data-controller="dashboard" height="80px">
 

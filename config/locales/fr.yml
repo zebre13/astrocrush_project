@@ -21,6 +21,8 @@ fr:
     chart: "Carte"
     affinities: "Affinités"
     today: "Aujourd'hui"
+    signs: "Signes"
+    houses: "Maisons"
 
   signs:
     Aries: "Bélier"
@@ -35,6 +37,18 @@ fr:
     Capricorn: "Capricorne"
     Aquarius: "Verseau"
     Pisces: "Poissons"
+
+  planets:
+    Sun: "Soleil"
+    Moon: "Lune"
+    Mercury: "Mercure"
+    Venus: "Vénus"
+    Mars: "Mars"
+    Jupiter: "Jupiter"
+    Saturn: "Saturne"
+    Uranus: "Uranus"
+    Neptune: "Neptune"
+    Pluto: "Pluton"
 
   planets_in_signs:
     Sun:

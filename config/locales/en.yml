@@ -52,6 +52,8 @@ en:
     chart: "Chart"
     affinities: "Affinities"
     today: "Today"
+    signs: "Signs"
+    houses: "Houses"
 
   signs:
     Aries: "Aries"
@@ -66,6 +68,18 @@ en:
     Capricorn: "Capricorn"
     Aquarius: "Aquarius"
     Pisces: "Pisces"
+
+  planets:
+    Sun: "Sun"
+    Moon: "Moon"
+    Mercury: "Mercury"
+    Venus: "Venus"
+    Mars: "Mars"
+    Jupiter: "Jupiter"
+    Saturn: "Saturn"
+    Uranus: "Uranus"
+    Neptune: "Neptune"
+    Pluto: "Pluto"
 
   planets_in_signs:
     Sun:

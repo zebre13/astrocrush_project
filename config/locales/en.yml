@@ -63,6 +63,11 @@ en:
     score_button: "Display score"
     compatibilities: "Your compatibilities"
 
+  chat:
+    crushes_title: "New Crushes"
+    crushes_message: "No new Crushes yet..."
+    messages: "Messages"
+
   signs:
     Aries: "Aries"
     Taurus: "Taurus"

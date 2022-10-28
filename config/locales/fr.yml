@@ -32,6 +32,10 @@ fr:
     score_button: "Afficher le score"
     compatibilities: "Tes compatibilités"
 
+  chat:
+    crushes_title: "Nouveaux Crushes"
+    crushes_message: "Pas de nouveau Crush pour l'instant..."
+    messages: "Messages"
 
   signs:
     Aries: "Bélier"

@@ -30,7 +30,80 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  date:
+    formats:
+      default: "%b-%d-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+  description_title: "About me"
+
+  hobbies_title: "My passions"
+
+  hobbies:
+    surf: "Surf"
+    music: "Music"
+    swimming: "Swimming"
+    yoga: "Yoga"
+    cinema: "Cinema"
+
+  show:
+    sign_report_title_is: " is "
+    sign_report_title_main: ". Let's find out what it means about "
+    sign_report_title_gender:
+      1: "him"
+      2: "her"
+
+  astroboard:
+    horoscope: "Horoscope"
+    profile: "Profile"
+    chart: "Chart"
+    affinities: "Affinities"
+    today: "Today"
+    signs: "Signs"
+    houses: "Houses"
+    table: "Table"
+    wheel: "Wheel"
+    score_title: "Test your affinity with..."
+    score_date: "Birth date of your Crush"
+    score_hour: "Birth hour of your Crush"
+    score_location: "Birth location of your Crush"
+    score_button: "Display score"
+    compatibilities: "Your compatibilities"
+
+  chat:
+    crushes_title: "New Crushes"
+    crushes_message: "No new Crushes yet..."
+    messages: "Messages"
+
+  log_out_button: "Log out"
+
+  signs:
+    Aries: "Aries"
+    Taurus: "Taurus"
+    Gemini: "Gemini"
+    Cancer: "Cancer"
+    Leo: "Leo"
+    Virgo: "Virgo"
+    Libra: "Libra"
+    Scorpio: "Scorpio"
+    Sagittarius: "Sagittarius"
+    Capricorn: "Capricorn"
+    Aquarius: "Aquarius"
+    Pisces: "Pisces"
+
+  planets:
+    Sun: "Sun"
+    Moon: "Moon"
+    Mercury: "Mercury"
+    Venus: "Venus"
+    Mars: "Mars"
+    Jupiter: "Jupiter"
+    Saturn: "Saturn"
+    Uranus: "Uranus"
+    Neptune: "Neptune"
+    Pluto: "Pluto"
 
   planets_in_signs:
     Sun:

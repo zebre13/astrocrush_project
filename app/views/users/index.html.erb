@@ -40,15 +40,15 @@
               <div class="profile-astro">
                 <p>
                   <span class="me-1">☉</i></span>
-                  <span class="me-2"><%= user.sign.capitalize %></span>
+                  <span class="me-2"><%= I18n.t "signs.#{user.sign.capitalize}" %></span>
                 </p>
                 <p>
                   <span class="me-1">↑</span>
-                  <span class="me-2"><%= user.rising.capitalize %></span>
+                  <span class="me-2"><%= I18n.t "signs.#{user.rising.capitalize}" %></span>
                 </p>
                 <p>
                   <span class="me-1">☽</span>
-                  <span class="me-2"><%= user.moon.capitalize %></span>
+                  <span class="me-2"><%= I18n.t "signs.#{user.moon.capitalize}" %></span>
                 </p>
               </div>
             </div>

@@ -10,15 +10,15 @@
       <div class="d-flex">
         <p class="mb-0">
           <span class="me-1">☉</i></span>
-          <span class="me-2"><%= current_user.sign.capitalize %></span>
+          <span class="me-2"><%= I18n.t "signs.#{current_user.sign.capitalize}" %></span>
         </p>
         <p class="mb-0">
           <span class="me-1">↑</span>
-          <span class="me-2"><%= current_user.rising.capitalize %></span>
+          <span class="me-2"><%= I18n.t "signs.#{current_user.rising.capitalize}" %></span>
         </p>
         <p class="mb-0">
           <span class="me-1">☽</span>
-          <span class="me-2"><%= current_user.moon.capitalize %></span>
+          <span class="me-2"><%= I18n.t "signs.#{current_user.moon.capitalize}" %></span>
         </p>
       </div>
     </div>
@@ -31,16 +31,14 @@
 
   <div data-controller="dashboard" height="80px">
 
-
     <div class="d-flex justify-content-between navbar-menu z-1">
-      <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead nav-hov"><em>Horoscope</em></h4>
-
+      <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead nav-hov"><%= I18n.t "astroboard.horoscope" %></h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu">Profile</h4>
+      <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><%= I18n.t "astroboard.profile" %></h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu">Chart</h4>
+      <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><%= I18n.t "astroboard.chart" %></h4>
       <h4>|</h4>
-      <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu">Affinities</h4>
+      <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu"><%= I18n.t "astroboard.affinities" %></h4>
     </div>
 
     <div data-dashboard-target="horoscope">
@@ -68,7 +66,7 @@
 </div>
 
 
-<%# Save Code Gita %>
+<%# Save Code Ghita %>
 
 <%# <div class=""> %>
 

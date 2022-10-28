@@ -1,5 +1,18 @@
 fr:
-  hello: "Hello world"
+
+  signs:
+    Aries: "Bélier"
+    Taurus: "Taureau"
+    Gemini: "Gémeaux"
+    Cancer: "Cancer"
+    Leo: "Lion"
+    Virgo: "Vierge"
+    Libra: "Balance"
+    Scorpio: "Scorpion"
+    Sagittarius: "Sagittaire"
+    Capricorn: "Capricorne"
+    Aquarius: "Verseau"
+    Pisces: "Poissons"
 
   planets_in_signs:
     Sun:

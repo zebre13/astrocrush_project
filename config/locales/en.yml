@@ -56,6 +56,12 @@ en:
     houses: "Houses"
     table: "Table"
     wheel: "Wheel"
+    score_title: "Test your affinity with..."
+    score_date: "Birth date of your Crush"
+    score_hour: "Birth hour of your Crush"
+    score_location: "Birth location of your Crush"
+    score_button: "Display score"
+    compatibilities: "Your compatibilities"
 
   signs:
     Aries: "Aries"

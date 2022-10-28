@@ -4,7 +4,7 @@
   <div class="container">
 
     <div class="">
-      <h4>Test your score with</h4>
+      <h4><%= I18n.t "astroboard.score_title" %></h4>
     </div>
 
     <div class="pt-4" data-controller="score"
@@ -20,24 +20,24 @@
 
       <form id="myform" >
         <div class="form-group">
-          <label for="birth_day">Birthday of your crush</label>
+          <label for="birth_day"><%= I18n.t "astroboard.score_date" %></label>
           <input type="date" class="form-control" id="birth-day" data-score-target="birthDate" placeholder="Birthday of your Crush">
         </div><br>
 
         <div class="form-group">
-          <label for="birth_hour">Birth hour of your crush</label>
+          <label for="birth_hour"><%= I18n.t "astroboard.score_hour" %></label>
           <input type="time" class="form-control" id="birth-hour" data-score-target="birthHour" placeholder="Birth hour of your Crush">
         </div><br>
 
         <div class="form-group">
-          <label for="birth_location">Birth location of your crush</label>
+          <label for="birth_location"><%= I18n.t "astroboard.score_location" %></label>
           <input type="hidden" data-score-target="latitude">
           <input type="hidden" data-score-target="longitude">
           <input data-score-target="field" id= "birth_location" type="search" class="pac-target-input form-control" placeholder=" " autocomplete="off">
         </div><br>
 
         <div class="form-group d-grid gap-2">
-          <button type="button" class="btn btn-outline-light btn-lg" data-action="click->score#match_percentage">Test</button>
+          <button type="button" class="btn btn-outline-light btn-lg" data-action="click->score#match_percentage"><%= I18n.t "astroboard.score_button" %></button>
         </div><br>
       </form>
 
@@ -59,7 +59,7 @@
 
     <div class="">
       <br>
-      <h4>Your compatibilities</h4>
+      <h4><%= I18n.t "astroboard.compatibilities" %></h4>
     </div>
 
     <div class="pt-4">

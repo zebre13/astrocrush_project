@@ -25,6 +25,13 @@ fr:
     houses: "Maisons"
     table: "Tableau"
     wheel: "Roue"
+    score_title: "Teste ton affinité avec..."
+    score_date: "Date de naissance de ton Crush"
+    score_hour: "Jour de naissance de ton Crush"
+    score_location: "Lieu de naissance de ton Crush"
+    score_button: "Afficher le score"
+    compatibilities: "Tes compatibilités"
+
 
   signs:
     Aries: "Bélier"

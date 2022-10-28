@@ -31,10 +31,16 @@
 
 en:
 
+  date:
+    formats:
+      default: "%b-%d-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
   description_title: "About me"
 
   hobbies_title: "My passions"
-  
+
   hobbies:
     surf: "Surf"
     music: "Music"

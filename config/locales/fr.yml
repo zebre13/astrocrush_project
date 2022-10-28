@@ -1,4 +1,11 @@
 fr:
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d %m"
+      long: "%d/%m/%Y"
+
   description_title: "A propos de moi"
 
   hobbies_title: "Mes passions"

@@ -1,12 +1,7 @@
 fr:
-  show:
-    description_title: "A propos de moi"
-    hobbies_title: "Mes passions"
-    sign_report_title_is: " est "
-    sign_report_title_main: ". Découvre ce que cela révèle sur "
-    sign_report_title_gender:
-      1: "lui"
-      2: "elle"
+  description_title: "A propos de moi"
+
+  hobbies_title: "Mes passions"
 
   hobbies:
     surf: "Surf"
@@ -14,6 +9,13 @@ fr:
     swimming: "Swimming"
     yoga: "Yoga"
     cinema: "Cinema"
+
+  show:
+    sign_report_title_is: " est "
+    sign_report_title_main: ". Découvre ce que cela révèle sur "
+    sign_report_title_gender:
+      1: "lui"
+      2: "elle"
 
   astroboard:
     horoscope: "Horoscope"
@@ -36,6 +38,8 @@ fr:
     crushes_title: "Nouveaux Crushes"
     crushes_message: "Pas de nouveau Crush pour l'instant..."
     messages: "Messages"
+
+  log_out_button: "Déconnexion"
 
   signs:
     Aries: "Bélier"

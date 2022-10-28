@@ -30,21 +30,24 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  show:
-    description_title: "About me"
-    hobbies_title: "My passions"
-    sign_report_title_is: " is "
-    sign_report_title_main: ". Let's find out what it means about "
-    sign_report_title_gender:
-      1: "him"
-      2: "her"
 
+  description_title: "About me"
+
+  hobbies_title: "My passions"
+  
   hobbies:
     surf: "Surf"
     music: "Music"
     swimming: "Swimming"
     yoga: "Yoga"
     cinema: "Cinema"
+
+  show:
+    sign_report_title_is: " is "
+    sign_report_title_main: ". Let's find out what it means about "
+    sign_report_title_gender:
+      1: "him"
+      2: "her"
 
   astroboard:
     horoscope: "Horoscope"
@@ -67,6 +70,8 @@ en:
     crushes_title: "New Crushes"
     crushes_message: "No new Crushes yet..."
     messages: "Messages"
+
+  log_out_button: "Log out"
 
   signs:
     Aries: "Aries"

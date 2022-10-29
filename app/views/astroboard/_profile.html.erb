@@ -55,25 +55,34 @@
     <div class="mb-5">
       <div class="d-flex justify-content-between">
         <h2><%= I18n.t "planets.Sun" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.sign}" %></h2>
-        <p>Top ↑</p>
+        <div class="sign-profile-image">
+          <%= image_tag "#{current_user.sign.downcase}.svg", alt: "" %>
+        </div>
       </div>
       <p class="text-justify"><%= I18n.t "planets_in_signs.Sun.#{current_user.sign}" %></p>
+      <p>Top ↑</p>
     </div>
 
     <div class="mb-5">
       <div class="d-flex justify-content-between">
         <h2>Ascendant <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.rising}" %></h2>
-        <p>Top ↑</p>
+        <div class="sign-profile-image">
+          <%= image_tag "#{current_user.rising.downcase}.svg", alt: "" %>
+        </div>
       </div>
       <p class="text-justify"><%= I18n.t "ascendant_in_signs.#{current_user.rising}" %></p>
+      <p>Top ↑</p>
     </div>
 
     <div class="mb-5">
       <div class="d-flex justify-content-between">
         <h2><%= I18n.t "planets.Moon" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.moon}" %></h2>
-        <p>Top ↑</p>
+        <div class="sign-profile-image">
+          <%= image_tag "#{current_user.moon.downcase}.svg", alt: "" %>
+        </div>
       </div>
       <p class="text-justify"><%= I18n.t "planets_in_signs.Moon.#{current_user.moon}" %></p>
+      <p>Top ↑</p>
     </div>
   </div>
 

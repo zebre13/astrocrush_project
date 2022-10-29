@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   GEOCODE = Geocode.new
 
   after_action :create_astroprofil, only: %i[new create]
-  after_action :create_affinities, only: %i[new create]
+  after_action :create_ten_affinities, only: %i[new create]
 
   def create
     build_resource(sign_up_params)
@@ -39,15 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     ASTROPROFIL.profil(current_user)
   end
 
-  def create_affinities
+  def create_ten_affinities
     return unless user_signed_in?
 
-    affinities(current_user, ten_mates)
+    ten_mates.each { |mate| affinities(current_user, mate) }
   end
 
-  def affinities(user, mates)
-    AFFINITIES.partner_report(user, mates)
-    AFFINITIES.match_percentage(user, mates)
+  def affinities(user, mate)
+    AFFINITIES.partner_report(user, mate)
+    AFFINITIES.match_percentage(user, mats)
   end
 
   def ten_mates

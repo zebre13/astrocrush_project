@@ -1,7 +1,3 @@
-require_relative '../../../app/services/affinities'
-require_relative '../../../app/services/astroprofil'
-require_relative '../../../app/services/geocode'
-
 class Users::RegistrationsController < Devise::RegistrationsController
   ASTROPROFIL = Astroprofil.new
   AFFINITIES = Affinities.new

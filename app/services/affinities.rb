@@ -1,5 +1,3 @@
-require_relative 'astrology_api'
-
 class Affinities
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 

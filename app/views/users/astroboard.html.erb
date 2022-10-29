@@ -30,16 +30,16 @@
   <div data-controller="astroboard" height="80px">
 
     <%#--- Menu ---%>
-    <div class="container mb-5 mt-2 border-bottom">
+    <div class="container mb-5 mt-2 border-bottom astroboard-menu">
       <div class="row">
-        <div class="col-4 text-center">
-          <h5 data-action="click->astroboard#horoscope" data-astroboard-target="horoscope_menu" class="lead nav-hov"><%= I18n.t "astroboard.horoscope" %></h5>
+        <div class="col-4 text-center lead nav-hov" data-action="click->astroboard#horoscope" data-astroboard-target="horoscope_menu">
+          <h5><%= I18n.t "astroboard.horoscope" %></h5>
         </div>
-        <div class="col-4 text-center">
-          <h5 data-action="click->astroboard#profile" data-astroboard-target="profile_menu"><%= I18n.t "astroboard.profile" %></h5>
+        <div class="col-4 text-center" data-action="click->astroboard#profile" data-astroboard-target="profile_menu">
+          <h5><%= I18n.t "astroboard.profile" %></h5>
         </div>
-        <div class="col-4 text-center">
-          <h5 data-action="click->astroboard#score" data-astroboard-target="score_menu"><%= I18n.t "astroboard.affinities" %></h5>
+        <div class="col-4 text-center" data-action="click->astroboard#score" data-astroboard-target="score_menu">
+          <h5><%= I18n.t "astroboard.affinities" %></h5>
         </div>
       </div>
     </div>

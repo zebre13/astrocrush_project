@@ -5,17 +5,13 @@
     <div data-controller="astroboard">
 
       <div class="d-flex justify-content-around navbar-menu z-1">
-
         <h5 data-action="click->astroboard#table" data-astroboard-target="table_menu" class="lead">
           <%= I18n.t "astroboard.table" %>
         </h5>
-
         <h5>|</h5>
-
         <h5 data-action="click->astroboard#circle" data-astroboard-target="circle_menu">
           <%= I18n.t "astroboard.wheel" %>
         </h5>
-
       </div>
 
       <div data-astroboard-target="table">

@@ -3,6 +3,10 @@
   padding-right: 16px;
 }
 
+.astroboard-menu h5 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .planet-text {
   background-color: rgba(255, 255, 255, 0.9);
   color: $violet_dark;
@@ -19,6 +23,9 @@
 
 .nav-hov {
    box-shadow: inset 0 -2px 0 0 #fff;
+   h5 {
+    color: white;
+   }
  }
 
  .astroboard-user-details {

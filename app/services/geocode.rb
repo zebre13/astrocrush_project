@@ -4,6 +4,20 @@ class Geocode
     user.local_lon = longitude(ip)
   end
 
+  def haversine_distance(lat_a, lon_a, lat_b, lon_b, miles = false)
+    d_lat = (lat_b - lat_a) * Math::PI / 180
+    d_lon = (lon_b - lon_a) * Math::PI / 180
+
+    a = Math.sin(d_lat / 2) *
+        Math.sin(d_lat / 2) +
+        Math.cos(lat1 * Math::PI / 180) *
+        Math.cos(lat2 * Math::PI / 180) *
+        Math.sin(d_lon / 2) * Math.sin(d_lon / 2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+    return 6371 * c * (miles ? 1 / 1.6 : 1)
+  end
+
   private
 
   def latitude(ip)

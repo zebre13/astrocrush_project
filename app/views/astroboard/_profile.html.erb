@@ -1,8 +1,8 @@
 <div class="container pb-5">
-  <div>
-    <div class="sign-profile-image">
-      <%= image_tag "#{current_user.sign.downcase}.svg", alt: "" %>
-    </div>
+  <%# <div> %>
+    <%# <div class="sign-profile-image"> %>
+      <%#= image_tag "#{current_user.sign.downcase}.svg", alt: "" %>
+    <%# </div> %>
 
     <%# <div class="d-flex border-bottom justify-content-center mb-0 pb-0"> %>
       <%# <p> %>
@@ -18,7 +18,37 @@
         <%# <span class="me-2">= current_user.moon.capitalize</span> %>
       <%# </p> %>
     <%# </div> %>
-  </div>
+  <%# </div> %>
+
+  <div class="container text-align-center pb-5">
+
+    <div data-controller="astroboard">
+
+      <div data-dashboard-target="table">
+        <%= render "astroboard/table"%>
+      </div>
+
+      <div data-dashboard-target="circle" class="d-none">
+        <%= render "astroboard/circle"%>
+      </div>
+
+      <div class="d-flex justify-content-around navbar-menu z-1">
+
+        <h4 data-action="click->astroboard#table" data-dashboard-target="table_menu" class="lead">
+          <%= I18n.t "astroboard.table" %>
+        </h4>
+
+        <h4>|</h4>
+
+        <h4 data-action="click->astroboard#circle" data-dashboard-target="circle_menu">
+          <%= I18n.t "astroboard.wheel" %>
+        </h4>
+
+      </div>
+
+    </div>
+
+</div>
 
   <% personnality_report = current_user.personality_report.join.to_s.split(".") %>
   <%# Carousel text %>

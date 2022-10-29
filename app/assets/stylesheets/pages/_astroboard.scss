@@ -1,0 +1,34 @@
+.back-to-top a {
+  color: $violet_dark;
+  padding-right: 16px;
+}
+
+.planet-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: $violet_dark;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  border-radius: 8px;
+  p {
+    padding-right: 16px;
+  }
+  h2 {
+    color: $violet_dark;
+  }
+}
+
+.nav-hov {
+   box-shadow: inset 0 -2px 0 0 #fff;
+ }
+
+ .astroboard-user-details {
+  padding-top: 8px;
+  padding-bottom: 8px;
+ }
+
+ .sign-profile-image {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  margin: 0;
+}

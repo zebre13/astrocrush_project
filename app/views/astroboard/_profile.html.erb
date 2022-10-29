@@ -6,15 +6,15 @@
 
       <div class="d-flex justify-content-around navbar-menu z-1">
 
-        <h4 data-action="click->astroboard#table" data-astroboard-target="table_menu" class="lead">
+        <h5 data-action="click->astroboard#table" data-astroboard-target="table_menu" class="lead">
           <%= I18n.t "astroboard.table" %>
-        </h4>
+        </h5>
 
-        <h4>|</h4>
+        <h5>|</h5>
 
-        <h4 data-action="click->astroboard#circle" data-astroboard-target="circle_menu">
+        <h5 data-action="click->astroboard#circle" data-astroboard-target="circle_menu">
           <%= I18n.t "astroboard.wheel" %>
-        </h4>
+        </h5>
 
       </div>
 
@@ -25,44 +25,48 @@
       <div data-astroboard-target="circle" class="d-none">
         <%= render "astroboard/circle"%>
       </div>
-
-
     </div>
 
 </div>
 
   <div>
-    <div class="mb-5">
-      <div class="d-flex justify-content-between">
+    <div class="planet-text mb-5">
+      <div class="d-flex justify-content-between align-items-center">
         <h2><%= I18n.t "planets.Sun" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.sign}" %></h2>
         <div class="sign-profile-image">
           <%= image_tag "#{current_user.sign.downcase}.svg", alt: "" %>
         </div>
       </div>
       <p class="text-justify"><%= I18n.t "planets_in_signs.Sun.#{current_user.sign}" %></p>
-      <p>Top ↑</p>
+      <div class="text-end back-to-top">
+        <%= link_to 'Top ↑', "#" %>
+      </div>
     </div>
 
-    <div class="mb-5">
-      <div class="d-flex justify-content-between">
+    <div class="planet-text mb-5">
+      <div class="d-flex justify-content-between align-items-center">
         <h2>Ascendant <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.rising}" %></h2>
         <div class="sign-profile-image">
           <%= image_tag "#{current_user.rising.downcase}.svg", alt: "" %>
         </div>
       </div>
       <p class="text-justify"><%= I18n.t "ascendant_in_signs.#{current_user.rising}" %></p>
-      <p>Top ↑</p>
+      <div class="text-end back-to-top">
+        <%= link_to 'Top ↑', "#" %>
+      </div>
     </div>
 
-    <div class="mb-5">
-      <div class="d-flex justify-content-between">
+    <div class="planet-text mb-5">
+      <div class="d-flex justify-content-between align-items-center">
         <h2><%= I18n.t "planets.Moon" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.moon}" %></h2>
-        <div class="sign-profile-image">
+        <div class="sign-profile-image align-items-center">
           <%= image_tag "#{current_user.moon.downcase}.svg", alt: "" %>
         </div>
       </div>
       <p class="text-justify"><%= I18n.t "planets_in_signs.Moon.#{current_user.moon}" %></p>
-      <p>Top ↑</p>
+      <div class="text-end back-to-top">
+        <%= link_to 'Top ↑', "#" %>
+      </div>
     </div>
   </div>
 

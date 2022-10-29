@@ -24,52 +24,79 @@
 
     <div data-controller="astroboard">
 
-      <div data-dashboard-target="table">
-        <%= render "astroboard/table"%>
-      </div>
-
-      <div data-dashboard-target="circle" class="d-none">
-        <%= render "astroboard/circle"%>
-      </div>
-
       <div class="d-flex justify-content-around navbar-menu z-1">
 
-        <h4 data-action="click->astroboard#table" data-dashboard-target="table_menu" class="lead">
+        <h4 data-action="click->astroboard#table" data-astroboard-target="table_menu" class="lead">
           <%= I18n.t "astroboard.table" %>
         </h4>
 
         <h4>|</h4>
 
-        <h4 data-action="click->astroboard#circle" data-dashboard-target="circle_menu">
+        <h4 data-action="click->astroboard#circle" data-astroboard-target="circle_menu">
           <%= I18n.t "astroboard.wheel" %>
         </h4>
 
       </div>
 
+      <div data-astroboard-target="table">
+        <%= render "astroboard/table"%>
+      </div>
+
+      <div data-astroboard-target="circle" class="d-none">
+        <%= render "astroboard/circle"%>
+      </div>
+
+
     </div>
 
 </div>
 
-  <% personnality_report = current_user.personality_report.join.to_s.split(".") %>
-  <%# Carousel text %>
-  <div id="carouselProfileText" class="carousel slide" data-bs-touch="true">
-    <div class="carousel-indicators">
-      <% personnality_report.each_with_index do |element, index| %>
-        <button type="button" data-bs-target="#carouselProfileText" data-bs-slide-to="<%= index %>" class=<%= "active" if index.zero? %> aria-current=<%= "true" if index.zero? %> aria-label="Slide <%= index + 1 %>"></button>
-      <% end %>
+  <div>
+    <div class="mb-5">
+      <div class="d-flex justify-content-between">
+        <h2><%= I18n.t "planets.Sun" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.sign}" %></h2>
+        <p>Top ↑</p>
+      </div>
+      <p class="text-justify"><%= I18n.t "planets_in_signs.Sun.#{current_user.sign}" %></p>
     </div>
-    <div class="carousel-inner">
-      <% personnality_report.each_with_index do |element, index| %>
-        <div class="carousel-item <%= 'active' if index.zero? %>">
-          <div class="sign-text">
-            <p>
-              <%= element %>.
-            </p>
-          </div>
-        </div>
-      <% end %>
+
+    <div class="mb-5">
+      <div class="d-flex justify-content-between">
+        <h2>Ascendant <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.rising}" %></h2>
+        <p>Top ↑</p>
+      </div>
+      <p class="text-justify"><%= I18n.t "ascendant_in_signs.#{current_user.rising}" %></p>
+    </div>
+
+    <div class="mb-5">
+      <div class="d-flex justify-content-between">
+        <h2><%= I18n.t "planets.Moon" %> <%= I18n.t "astroboard.in" %> <%= I18n.t "signs.#{current_user.moon}" %></h2>
+        <p>Top ↑</p>
+      </div>
+      <p class="text-justify"><%= I18n.t "planets_in_signs.Moon.#{current_user.moon}" %></p>
     </div>
   </div>
+
+  <%# personnality_report = current_user.personality_report.join.to_s.split(".") %>
+  <%#--- Carousel text ---%>
+  <%# <div id="carouselProfileText" class="carousel slide" data-bs-touch="true"> %>
+    <%# <div class="carousel-indicators"> %>
+      <%# personnality_report.each_with_index do |element, index| %>
+        <%# <button type="button" data-bs-target="#carouselProfileText" data-bs-slide-to="<%= index" class=<%= "active" if index.zero? aria-current=<%= "true" if index.zero? aria-label="Slide <%= index + 1"></button> %>
+      <%# end %>
+    <%# </div> %>
+    <%# <div class="carousel-inner"> %>
+      <%# personnality_report.each_with_index do |element, index| %>
+        <%# <div class="carousel-item <%= 'active' if index.zero?"> %>
+          <%# <div class="sign-text"> %>
+            <%# <p> %>
+              <%# = element. %>
+            <%# </p> %>
+          <%# </div> %>
+        <%# </div> %>
+      <%# end %>
+    <%# </div> %>
+  <%# </div> %>
 
   <div class="empty-row">
   </div>

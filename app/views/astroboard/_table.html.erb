@@ -2,7 +2,7 @@
 
   <div class="row astrotab pb-4 pt-4">
     <div class="col-1">
-      <h5 class="verticaltext"><%= (I18n.t "astroboard.signs").upcase %></h5>
+      <h6 class="verticaltext"><%= (I18n.t "astroboard.signs").upcase %></h6>
     </div>
 
     <div class="col-10">
@@ -13,8 +13,8 @@
         <div class="row astrotab">
 
           <div class ="col-4 text"> <%=current_user.rising.capitalize%></div>
-          <div class ="col-6 grey-background pt-1"><h5>↑ ASCENDANT</h5></div>
-          <div class ="col-2"><h5>1</h5></div>
+          <div class ="col-6 text grey-background pt-1"><strong>↑ ASCENDANT</strong></div>
+          <div class ="col-2"><h6>1</h6></div>
 
         </div>
 
@@ -28,12 +28,12 @@
                 <%=I18n.t "signs.#{sign[0]["sign"]}"%>
               </div>
 
-              <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h5>
+              <div class ="col-6 text grey-background pt-1">
+                <strong><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></strong>
               </div>
 
-              <div class ="col-2">
-                <h5><%=sign[0]["house"]%></h5>
+              <div class ="col-2 text">
+                <%=sign[0]["house"]%>
               </div>
 
             </div>
@@ -49,12 +49,12 @@
                 <%=I18n.t "signs.#{sign[0]["sign"]}"%>
               </div>
 
-              <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h5>
+              <div class ="col-6 text grey-background pt-1">
+                <strong><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></strong>
               </div>
 
-              <div class ="col-2">
-                <h5><%=sign[0]["house"]%></h5>
+              <div class ="col-2 text">
+                <%=sign[0]["house"]%>
               </div>
             </div>
 
@@ -62,8 +62,8 @@
               <div class ="col-4 text">
               </div>
 
-              <div class ="col-6 grey-background pt-1">
-                <h5><%=sign[1]["logo"]%> <%=(I18n.t "planets.#{sign[1]["planet"]}").upcase%></h5>
+              <div class ="col-6 text grey-background pt-1">
+                <strong><%=sign[1]["logo"]%> <%=(I18n.t "planets.#{sign[1]["planet"]}").upcase%></strong>
               </div>
 
               <div class ="col-2">
@@ -76,7 +76,7 @@
     </div>
 
     <div class="col-1 d-flex">
-      <h5 class="verticaltext"><%= (I18n.t "astroboard.houses").upcase %></h5>
+      <h6 class="verticaltext"><%= (I18n.t "astroboard.houses").upcase %></h6>
     </div>
 
   </div>

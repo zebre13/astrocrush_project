@@ -1,11 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["horoscope", "profile", "score", "chart", "table", "circle", "horoscope_menu", "profile_menu", "score_menu", "chart_menu", "table_menu", "circle_menu"]
+  static targets = ["horoscope", "profile", "score", "table", "circle", "horoscope_menu", "profile_menu", "score_menu", "table_menu", "circle_menu"]
+  // static targets = ["horoscope", "profile", "score", "chart", "table", "circle", "horoscope_menu", "profile_menu", "score_menu", "chart_menu", "table_menu", "circle_menu"]
 
   connect() {
     console.log("Hello from our first Stimulus controller");
   }
+
   hover(target) {
     target.classList.add("nav-hov")
 
@@ -22,9 +24,9 @@ export default class extends Controller {
       this.score_menuTarget.classList.remove("nav-hov")
     }
 
-    if (target !== this.chart_menuTarget) {
-      this.chart_menuTarget.classList.remove("nav-hov")
-    }
+    // if (target !== this.chart_menuTarget) {
+    //   this.chart_menuTarget.classList.remove("nav-hov")
+    // }
   }
 
   horoscope() {
@@ -33,13 +35,13 @@ export default class extends Controller {
 
     this.profileTarget.classList.add("d-none");
     this.scoreTarget.classList.add("d-none");
-    this.chartTarget.classList.add("d-none");
+    // this.chartTarget.classList.add("d-none");
 
     this.horoscope_menuTarget.classList.add("lead");
 
     this.profile_menuTarget.classList.remove("lead");
     this.score_menuTarget.classList.remove("lead");
-    this.chart_menuTarget.classList.remove("lead");
+    // this.chart_menuTarget.classList.remove("lead");
   }
 
   profile() {
@@ -48,13 +50,13 @@ export default class extends Controller {
 
     this.horoscopeTarget.classList.add("d-none");
     this.scoreTarget.classList.add("d-none");
-    this.chartTarget.classList.add("d-none");
+    // this.chartTarget.classList.add("d-none");
 
     this.profile_menuTarget.classList.add("lead");
 
     this.horoscope_menuTarget.classList.remove("lead");
     this.score_menuTarget.classList.remove("lead");
-    this.chart_menuTarget.classList.remove("lead");
+    // this.chart_menuTarget.classList.remove("lead");
   }
 
   score() {
@@ -63,29 +65,29 @@ export default class extends Controller {
 
     this.horoscopeTarget.classList.add("d-none");
     this.profileTarget.classList.add("d-none");
-    this.chartTarget.classList.add("d-none");
+    // this.chartTarget.classList.add("d-none");
 
     this.score_menuTarget.classList.add("lead");
 
     this.horoscope_menuTarget.classList.remove("lead");
     this.profile_menuTarget.classList.remove("lead");
-    this.chart_menuTarget.classList.remove("lead");
+    // this.chart_menuTarget.classList.remove("lead");
   }
 
-  chart() {
-    this.hover(this.chart_menuTarget)
-    this.chartTarget.classList.remove("d-none");
+  // chart() {
+  //   this.hover(this.chart_menuTarget)
+  //   this.chartTarget.classList.remove("d-none");
 
-    this.horoscopeTarget.classList.add("d-none");
-    this.profileTarget.classList.add("d-none");
-    this.scoreTarget.classList.add("d-none");
+  //   this.horoscopeTarget.classList.add("d-none");
+  //   this.profileTarget.classList.add("d-none");
+  //   this.scoreTarget.classList.add("d-none");
 
-    this.chart_menuTarget.classList.add("lead");
+  //   this.chart_menuTarget.classList.add("lead");
 
-    this.horoscope_menuTarget.classList.remove("lead");
-    this.profile_menuTarget.classList.remove("lead");
-    this.score_menuTarget.classList.remove("lead");
-  }
+  //   this.horoscope_menuTarget.classList.remove("lead");
+  //   this.profile_menuTarget.classList.remove("lead");
+  //   this.score_menuTarget.classList.remove("lead");
+  // }
 
   circle() {
     this.circleTarget.classList.remove("d-none");
@@ -101,6 +103,5 @@ export default class extends Controller {
 
     this.table_menuTarget.classList.add("lead");
     this.circle_menuTarget.classList.remove("lead");
-
   }
 }

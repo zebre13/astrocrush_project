@@ -35,8 +35,8 @@
       <h4>|</h4>
       <h4 data-action="click->astroboard#profile" data-astroboard-target="profile_menu"><%= I18n.t "astroboard.profile" %></h4>
       <h4>|</h4>
-      <h4 data-action="click->astroboard#chart" data-astroboard-target="chart_menu"><%= I18n.t "astroboard.chart" %></h4>
-      <h4>|</h4>
+      <%# <h4 data-action="click->astroboard#chart" data-astroboard-target="chart_menu"><%= I18n.t "astroboard.chart"</h4> %>
+      <%# <h4>|</h4> %>
       <h4 data-action="click->astroboard#score" data-astroboard-target="score_menu"><%= I18n.t "astroboard.affinities" %></h4>
     </div>
 
@@ -47,9 +47,9 @@
     <div data-astroboard-target="profile" class="d-none">
       <%= render "astroboard/profile"%>
     </div>
-    <div data-astroboard-target="chart" class="d-none">
-      <%= render "astroboard/chart"%>
-    </div>
+    <%# <div data-astroboard-target="chart" class="d-none"> %>
+      <%#= render "astroboard/chart"%>
+    <%# </div> %>
     <div data-astroboard-target="score" class="d-none">
       <%= render "astroboard/score"%>
     </div>
@@ -57,7 +57,7 @@
   </div>
 </div>
 
-<div class="circle-container z-0">
+<%# <div class="circle-container z-0">
   <div class="circle-white">
   </div>
-</div>
+</div> %>

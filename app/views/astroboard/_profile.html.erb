@@ -4,22 +4,21 @@
 
     <div data-controller="astroboard">
 
-      <div class="d-flex justify-content-around navbar-menu z-1">
-        <h5 data-action="click->astroboard#table" data-astroboard-target="table_menu" class="lead">
-          <%= I18n.t "astroboard.table" %>
-        </h5>
-        <h5>|</h5>
-        <h5 data-action="click->astroboard#circle" data-astroboard-target="circle_menu">
-          <%= I18n.t "astroboard.wheel" %>
-        </h5>
+      <div class="switch-container">
+        <div class="switch-button on" data-action="click->astroboard#table" data-astroboard-target="table_menu">
+          <h5><%= I18n.t "astroboard.table" %></h5>
+        </div>
+        <div class="switch-button" data-action="click->astroboard#wheel" data-astroboard-target="wheel_menu">
+          <h5><%= I18n.t "astroboard.wheel" %></h5>
+        </div>
       </div>
 
       <div data-astroboard-target="table">
         <%= render "astroboard/table"%>
       </div>
 
-      <div data-astroboard-target="circle" class="d-none">
-        <%= render "astroboard/circle"%>
+      <div data-astroboard-target="wheel" class="d-none">
+        <%= render "astroboard/wheel"%>
       </div>
     </div>
 

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["horoscope", "profile", "score", "table", "circle", "horoscope_menu", "profile_menu", "score_menu", "table_menu", "circle_menu"]
+  static targets = ["horoscope", "profile", "score", "table", "wheel", "horoscope_menu", "profile_menu", "score_menu", "table_menu", "wheel_menu"]
 
   connect() {
     console.log("Hello from our first Stimulus controller");
@@ -47,20 +47,20 @@ export default class extends Controller {
     this.score_menuTarget.classList.remove("lead");
   }
 
-  circle() {
-    this.circleTarget.classList.remove("d-none");
-    this.circle_menuTarget.classList.add("lead");
+  wheel() {
+    this.wheel_menuTarget.classList.add("on");
+    this.table_menuTarget.classList.remove("on");
 
+    this.wheelTarget.classList.remove("d-none");
     this.tableTarget.classList.add("d-none");
-    this.table_menuTarget.classList.remove("lead");
   }
 
   table() {
-    this.tableTarget.classList.remove("d-none");
-    this.table_menuTarget.classList.add("lead");
+    this.table_menuTarget.classList.add("on");
+    this.wheel_menuTarget.classList.remove("on");
 
-    this.circleTarget.classList.add("d-none");
-    this.circle_menuTarget.classList.remove("lead");
+    this.tableTarget.classList.remove("d-none");
+    this.wheelTarget.classList.add("d-none");
     }
 
   score() {

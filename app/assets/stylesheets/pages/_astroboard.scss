@@ -39,3 +39,25 @@
   object-fit: cover;
   margin: 0;
 }
+
+.switch-container {
+  width: 176px;
+  margin: 32px auto;
+  display: flex;
+}
+
+.switch-button {
+  width: 88px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 4px;
+  padding: 4px 8px;
+  background-color: $violet_dark;
+  &.on {
+    background-color: rgb(255, 255, 255);
+    color: $violet_dark;
+  }
+  h5 {
+    margin-bottom : 0;
+  }
+}

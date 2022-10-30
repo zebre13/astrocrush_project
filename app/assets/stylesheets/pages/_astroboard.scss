@@ -42,7 +42,10 @@
 
 .switch-container {
   width: 176px;
-  margin: 32px auto;
+  margin-top: 88px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
 }
 
@@ -52,7 +55,8 @@
   text-align: center;
   margin: 0 4px;
   padding: 4px 8px;
-  background-color: $violet_dark;
+  // background-color: $violet_dark;
+  background-color: rgba(255, 255, 255, 0.1);
   &.on {
     background-color: rgb(255, 255, 255);
     color: $violet_dark;

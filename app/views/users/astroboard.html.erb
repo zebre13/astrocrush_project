@@ -1,7 +1,7 @@
-
 <div class="astroboard">
 
-  <div class="container border-bottom d-flex justify-content-between py-2">
+  <%#--- User details ---%>
+  <div class="container astroboard-user-details d-flex justify-content-between">
     <div>
       <div class="name">
         <%= current_user.username %>,
@@ -27,32 +27,32 @@
     <% end %>
   </div>
 
-  <div data-controller="dashboard" height="80px">
+  <div data-controller="astroboard" height="80px">
 
-    <div class="d-flex justify-content-between navbar-menu z-1">
-      <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead nav-hov"><%= I18n.t "astroboard.horoscope" %></h4>
-      <h4>|</h4>
-      <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><%= I18n.t "astroboard.profile" %></h4>
-      <h4>|</h4>
-      <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><%= I18n.t "astroboard.chart" %></h4>
-      <h4>|</h4>
-      <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu"><%= I18n.t "astroboard.affinities" %></h4>
+    <%#--- Menu ---%>
+    <div class="container mb-5 border-bottom astroboard-menu">
+      <div class="row">
+        <div class="col-4 text-center lead nav-hov" data-action="click->astroboard#horoscope" data-astroboard-target="horoscope_menu">
+          <h5><%= I18n.t "astroboard.horoscope" %></h5>
+        </div>
+        <div class="col-4 text-center" data-action="click->astroboard#profile" data-astroboard-target="profile_menu">
+          <h5><%= I18n.t "astroboard.profile" %></h5>
+        </div>
+        <div class="col-4 text-center" data-action="click->astroboard#score" data-astroboard-target="score_menu">
+          <h5><%= I18n.t "astroboard.affinities" %></h5>
+        </div>
+      </div>
     </div>
 
-    <div data-dashboard-target="horoscope">
-      <%= render "dashboard/horoscope"%>
+    <%#--- Content ---%>
+    <div data-astroboard-target="horoscope">
+      <%= render "astroboard/horoscope"%>
     </div>
-
-    <div data-dashboard-target="profile" class="d-none">
-      <%= render "dashboard/profile"%>
+    <div data-astroboard-target="profile" class="d-none">
+      <%= render "astroboard/profile"%>
     </div>
-
-    <div data-dashboard-target="chart" class="d-none">
-      <%= render "dashboard/chart"%>
-    </div>
-
-    <div data-dashboard-target="score" class="d-none">
-      <%= render "dashboard/score"%>
+    <div data-astroboard-target="score" class="d-none">
+      <%= render "astroboard/score"%>
     </div>
 
   </div>
@@ -62,44 +62,3 @@
   <div class="circle-white">
   </div>
 </div>
-
-
-<%# Save Code Ghita %>
-
-<%# <div class=""> %>
-
-  <%# <div data-controller="dashboard" height="80px"> %>
-
-    <%# <div class="d-flex justify-content-between navbar-menu z-1"> %>
-      <%# <h4 data-action="click->dashboard#horoscope" data-dashboard-target="horoscope_menu" class="lead"><em>Horoscope</em></h4> %>
-      <%# <h4>|</h4> %>
-      <%# <h4 data-action="click->dashboard#profile" data-dashboard-target="profile_menu"><em>Profile</em></h4> %>
-      <%# <h4>|</h4> %>
-      <%# <h4 data-action="click->dashboard#score" data-dashboard-target="score_menu"><em>Affinities</em></h4> %>
-      <%# <h4>|</h4> %>
-      <%# <h4 data-action="click->dashboard#chart" data-dashboard-target="chart_menu"><em>Chart</em></h4> %>
-    <%# </div> %>
-
-    <%# <div data-dashboard-target="horoscope"> %>
-      <%#= render "dashboard/horoscope"%>
-    <%# </div> %>
-
-    <%# <div data-dashboard-target="profile" class="d-none"> %>
-      <%#= render "dashboard/profile"%>
-    <%# </div> %>
-
-    <%# <div data-dashboard-target="score" class="d-none"> %>
-      <%#= render "dashboard/score"%>
-    <%# </div> %>
-
-    <%# <div data-dashboard-target="chart" class="d-none"> %>
-      <%#= render "dashboard/chart"%>
-    <%# </div> %>
-
-  <%# </div> %>
-<%# </div> %>
-
-<%# <div class="circle-container z-0"> %>
-  <%# <div class="circle-white"> %>
-  <%# </div> %>
-<%# </div> %>

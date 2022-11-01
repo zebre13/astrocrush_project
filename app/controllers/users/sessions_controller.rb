@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
 class Users::SessionsController < Devise::SessionsController
   # after_action :define_coordinates, only: %i[new]
 

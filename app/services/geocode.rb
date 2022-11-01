@@ -13,7 +13,6 @@ class Geocode
     user.save!
   end
 
-
   def calculate_distance(user, mate)
     coordinates(mate) unless mate.coordinates_updated_today == true
     distance = Geocoder::Calculations.distance_between([user.local_lat, user.local_lon], [mate.local_lat, mate.local_lon], options = {})
@@ -21,7 +20,7 @@ class Geocode
     return distance unless distance.nil?
   end
 
-  def haversine_distance(lat_a, lon_a, lat_b, lon_b, miles = false)
+  def haversine_distance(lat_a, lon_a, lat_b, lon_b, miles: false)
     # TODO
     d_lat = (lat_b - lat_a) * Math::PI / 180
     d_lon = (lon_b - lon_a) * Math::PI / 180
@@ -36,7 +35,7 @@ class Geocode
     return 6371 * c * (miles ? 1 / 1.6 : 1)
   end
 
-  private
+  # private
 
   # def latitude(ip)
   #   Geocoder.search(ip).first.coordinates[0]

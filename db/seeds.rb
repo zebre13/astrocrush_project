@@ -424,7 +424,7 @@ photos_bruno_lelay = [
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
 ]
-photos_sophiana_b = [
+photos_sophiana_busso = [
   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
   File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))

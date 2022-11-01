@@ -52,12 +52,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def ten_mates
-<<<<<<< HEAD
-    # Normal que ca prenne pas en compte le perimetre et si on a déja matché avec. C'est temporaire.
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
-=======
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
->>>>>>> master
-    return mates_by_gender.sample(10)
+    return mates_by_gender
   end
 end

@@ -21,7 +21,7 @@ class UpdateUserJob < ApplicationJob
     max_count = 3
 
     # Pour chaque user, met les new_affinity_scores à 0 et coordinates_updated_today à false
-    users = User.all
+    users = User.last(2)
     initialize_update(users)
 
     # Pour l'update de l'index de chaque users
@@ -31,24 +31,38 @@ class UpdateUserJob < ApplicationJob
       # (re)mettre i à 0
       i = 0
       # Pour chaque user, jusqu'a ce que son nombre de scores passe à 3 ou que i == mates.count -1, faire ça :
-      until user.new_affinity_scores_today == max_count || i == mates.count
+      until user.new_affinity_scores_today == max_count || i == (mates.count - 1)
         # itérer sur chacun des array mates[i]
         mates[i].each do |mate|
           # Sortir de cette boucle si l'utilisateur a atteint son nombre de max count avant la fin du premier array
-          break if user.new_affinity_scores_today == max_count
+          break if user.new_affinity_scores_today >= max_count
+
+          p "user new affinity scores today = #{user.new_affinity_scores_today}"
           # nexter sauf si mate du bon age et du bon sexe ?
-          next unless PREFERENCE.fits_gender_and_age_preferences?(user, mate)
+          next unless Preferences.fits_gender_and_age_preferences?(user, mate)
+
+          p "user fits gender and age"
           # nexter si y'a un affinity score avec user
           next if PREFERENCE.affinity_score_with_user?(user, mate)
+
+          p "user and mate don't have affinity scores already"
           # Rejeter les mates qui ont déja un match avec moi
           next if PREFERENCE.has_matched_with_user?(user, mate)
+
+          p "user hasn't match with user yet"
           # Rejeter le mate qui ont déja 10 new affinity-scores_today
           next if mate.new_affinity_scores_today.count >= max_count
+
+          p "mate has not yet reached his maximum affinity count for today"
           # Calculer coordonées du jour du user sauf si elles ont déja été calculées aujourd'hui
           GEOCODE.coordinates(user) unless user.coordinates_updated_today == true
+
+          p "let's calculate affinities now"
           # Si le mate est dans le périmetre, calculer le match percentage
           AFFINITIES.match_percentage(user, mate) if PREFERENCE.mate_in_perimeter?(user, mate)
+          p "lets jump to next mate to potentially calculate affinity with!"
         end
+        p "saucisson '#{i} parsed, user has #{user.new_affinity_scores_today} new affinity scores so far "
         i += 1
       end
     end
@@ -58,11 +72,14 @@ class UpdateUserJob < ApplicationJob
 
   def initialize_update(users)
     # Initialiser les paramètres
+    p "Initializing parameters"
     users.each do |user|
       user.new_affinity_scores_today = 0
       user.coordinates_updated_today = false
       user.save!
     end
+    p "Parameters initialized successfully"
+
   end
 end
 

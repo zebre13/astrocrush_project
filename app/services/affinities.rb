@@ -26,6 +26,6 @@ class Affinities
     user.affinity_scores.store(mate.id, mate_score)
     user.new_affinity_scores_today += 1
     user.save!
+    p 'affinity calculated (maybe)'
   end
-
 end

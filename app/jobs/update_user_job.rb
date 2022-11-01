@@ -6,9 +6,9 @@ require_relative '../services/preferences'
 
 class UpdateUserJob < ApplicationJob
   queue_as :default
-  require 'preferences.rb'
-  require 'affinities.rb'
-  require 'geocode.rb'
+  require 'preferences'
+  require 'affinities'
+  require 'geocode'
   # cronjob pour lancer tous les 24 heures, sur heroku
   PREFERENCE = Preferences.new
   AFFINITIES = Affinities.new
@@ -34,24 +34,26 @@ class UpdateUserJob < ApplicationJob
       until user.new_affinity_scores_today == max_count || i == (mates.count - 1)
         # itérer sur chacun des array mates[i]
         mates[i].each do |mate|
+          # binding.pry
           # Sortir de cette boucle si l'utilisateur a atteint son nombre de max count avant la fin du premier array
           break if user.new_affinity_scores_today >= max_count
 
           p "user new affinity scores today = #{user.new_affinity_scores_today}"
           # nexter sauf si mate du bon age et du bon sexe ?
+          # binding.pry
           next unless Preferences.fits_gender_and_age_preferences?(user, mate)
 
           p "user fits gender and age"
           # nexter si y'a un affinity score avec user
-          next if PREFERENCE.affinity_score_with_user?(user, mate)
+          next if Preferences.affinity_score_with_user?(user, mate)
 
           p "user and mate don't have affinity scores already"
           # Rejeter les mates qui ont déja un match avec moi
-          next if PREFERENCE.has_matched_with_user?(user, mate)
+          next if Preferences.has_matched_with_user?(user, mate)
 
           p "user hasn't match with user yet"
           # Rejeter le mate qui ont déja 10 new affinity-scores_today
-          next if mate.new_affinity_scores_today.count >= max_count
+          next if mate.new_affinity_scores_today >= max_count
 
           p "mate has not yet reached his maximum affinity count for today"
           # Calculer coordonées du jour du user sauf si elles ont déja été calculées aujourd'hui
@@ -59,7 +61,7 @@ class UpdateUserJob < ApplicationJob
 
           p "let's calculate affinities now"
           # Si le mate est dans le périmetre, calculer le match percentage
-          AFFINITIES.match_percentage(user, mate) if PREFERENCE.mate_in_perimeter?(user, mate)
+          AFFINITIES.match_percentage(user, mate) if Preferences.mate_in_perimeter?(user, mate)
           p "lets jump to next mate to potentially calculate affinity with!"
         end
         p "saucisson '#{i} parsed, user has #{user.new_affinity_scores_today} new affinity scores so far "

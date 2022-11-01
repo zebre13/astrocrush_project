@@ -32,6 +32,10 @@
 en:
 
   date:
+    order:
+      - day
+      - month
+      - year
     formats:
       default: "%b-%d-%Y"
       short: "%b %d"

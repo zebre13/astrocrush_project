@@ -2,7 +2,7 @@ class Affinities
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
 
-  def partner_report(user, mates)
+  def partner_report(user, mate)
     mate_partner_report = API_CALL.partner_report(user.birth_date, user.gender, mate.birth_date, mate.gender, mate.username)
     mate.partner_reports.store(user.id, mate_partner_report)
     mate.save!

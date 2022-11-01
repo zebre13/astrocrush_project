@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
     @mate = User.find(params[:id])
+    @mate_sun_report = I18n.t "planets_in_signs.Sun.#{@mate.sign.to_sym}"
   end
 
   def astroboard
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
     hash_planets.each do |planet, hash|
       if @my_zodiac[zodiac_index] == hash[:sign]
         data_to_display["sign"] = hash[:sign]
-        data_to_display["planet"] = planet.to_s.upcase
+        data_to_display["planet"] = planet.to_s.capitalize
         data_to_display["house"] = hash[:house]
         data_to_display["logo"] = LOGOS[planet]
         planets << data_to_display

@@ -11,38 +11,57 @@ class UpdateUserJob < ApplicationJob
   # cronjob pour lancer tous les 24 heures, sur heroku
   PREFERENCE = Preferences.new
   AFFINITIES = Affinities.new
+  GEOCODE = Geocode.new
 
 
   def perform
-    # TODO : implémenter la réccurence une fois par jour, mais d'abord pouvoir le faire sur commande.
-    # users = User.all
-    user = User.first
-    mates = User.all.shuffle.each_slice(2).to_a
-    i = 0
-    user.new_affinity_scores_today = 0
+    # Changer le nombre de tranche de saucisson  et de maximum d'affinity scores du jour a la demande
+    tranches = 11
+    max_count = 3
 
-    until user.new_affinity_scores_today == 2 || mates[i].nil?
-      # selectionner ceux du bon age et sexe
-      p mates[i], "this is mates[#{i}]"
-      mates_with_right_gender_and_age = Preferences.array_of_gender_and_age_preferences(user, mates[i]) unless mates[i].nil?
+    # Pour chaque user, met les new_affinity_scores à 0 et coordinates_updated_today à false
+    users = User.all
+    initialize_update(users)
 
-      # Rejeter ceux avec un score de match préexistant avec moi
-      mates_without_score = Preferences.reject_mates_with_affinity_score_with_user(user, mates_with_right_gender_and_age)
-
-      # Rejeter les mates qui ont déja un match avec moi
-      mates_without_match_with_me = Preferences.reject_matches(user, mates_without_score)
-
-      # Rejeter les mates qui ont déja 10 new affinity-scores_today
-      potential_mates = Preferences.reject_mates_with_too_much_new_affinity_scores_today(mates_without_match_with_me)
-
-      # Calculer ceux dans le périmètre
-      mates_in_perimeter = Preferences.mates_in_perimeter(user, potential_mates)
-
-      # A moins que mates_in_perimeter soit vide, calculer le score de match avec ces mates et incrémenter new affinity_scores_today a chaque fois
-      AFFINITIES.match_percentage(user, mates_in_perimeter) unless mates_in_perimeter.empty?
-      i += 1 unless mates[i].nil?
+    # Pour l'update de l'index de chaque users
+    users.each do |user|
+      # Saucissoner l'array de mates en "11" (  2 boudins la )
+      mates = User.all.shuffle.each_slice(tranches).to_a
+      # (re)mettre i à 0
+      i = 0
+      # Pour chaque user, jusqu'a ce que son nombre de scores passe à 3 ou que i == mates.count -1, faire ça :
+      until user.new_affinity_scores_today == max_count || i == mates.count
+        # itérer sur chacun des array mates[i]
+        mates[i].each do |mate|
+          # Sortir de cette boucle si l'utilisateur a atteint son nombre de max count avant la fin du premier array
+          break if user.new_affinity_scores_today == max_count
+          # nexter sauf si mate du bon age et du bon sexe ?
+          next unless PREFERENCE.fits_gender_and_age_preferences?(user, mate)
+          # nexter si y'a un affinity score avec user
+          next if PREFERENCE.affinity_score_with_user?(user, mate)
+          # Rejeter les mates qui ont déja un match avec moi
+          next if PREFERENCE.has_matched_with_user?(user, mate)
+          # Rejeter le mate qui ont déja 10 new affinity-scores_today
+          next if mate.new_affinity_scores_today.count >= max_count
+          # Calculer coordonées du jour du user sauf si elles ont déja été calculées aujourd'hui
+          GEOCODE.coordinates(user) unless user.coordinates_updated_today == true
+          # Si le mate est dans le périmetre, calculer le match percentage
+          AFFINITIES.match_percentage(user, mate) if PREFERENCE.mate_in_perimeter?(user, mate)
+        end
+        i += 1
+      end
     end
-    puts 'bye '
+  end
+
+  private
+
+  def initialize_update(users)
+    # Initialiser les paramètres
+    users.each do |user|
+      user.new_affinity_scores_today = 0
+      user.coordinates_updated_today = false
+      user.save!
+    end
   end
 end
 

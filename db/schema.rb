@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_08_104454) do
+ActiveRecord::Schema.define(version: 2022_11_01_165354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 2022_10_08_104454) do
     t.text "affinity_scores"
     t.text "planets"
     t.text "partner_reports"
-    t.text "mate_sun_reports"
     t.float "timezone"
     t.float "local_lat"
     t.float "local_lon"
@@ -133,6 +132,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_104454) do
     t.integer "maximum_age", default: 88
     t.boolean "admin", default: false, null: false
     t.integer "new_affinity_scores_today", default: 0
+    t.boolean "coordinates_updated_today", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

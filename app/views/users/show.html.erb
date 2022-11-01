@@ -26,15 +26,15 @@
           <div class="d-flex">
             <p>
               <span class="me-1">☉</i></span>
-              <span class="me-2"><%= @mate.sign.capitalize %></span>
+              <span class="me-2"><%= I18n.t "signs.#{@mate.sign.capitalize}" %></span>
             </p>
             <p>
               <span class="me-1">↑</span>
-              <span class="me-2"><%= @mate.rising.capitalize %></span>
+              <span class="me-2"><%= I18n.t "signs.#{@mate.rising.capitalize}" %></span>
             </p>
             <p>
               <span class="me-1">☽</span>
-              <span class="me-2"><%= @mate.moon.capitalize %></span>
+              <span class="me-2"><%= I18n.t "signs.#{@mate.moon.capitalize}" %></span>
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@
 
       <div class="pt-2 pb-4 border-bottom">
         <h5 class="mb-1">
-          About me
+          <%= I18n.t "description_title" %>
         </h5>
         <p>
           <%= @mate.description %>
@@ -69,7 +69,7 @@
 
       <div class="pt-2 pb-5 border-bottom">
         <h5 class="mb-1">
-          My passions
+          <%= I18n.t "hobbies_title" %>
         </h5>
         <% @mate.hobbies.each do |hobby| %>
         <div class="tag">
@@ -105,7 +105,7 @@
 
       <div class="pt-2 pb-4 border-bottom">
         <h5 class="mb-1">
-          <%= @mate.username %> is <%= @mate.sign %>. Let's find out what this says about <%= @mate.gender == 1 ? "him" : "her" %>...
+          <%= @mate.username %> <%= I18n.t "show.sign_report_title_is" %> <%= I18n.t "signs.#{@mate.sign}" %><%= I18n.t "show.sign_report_title_main" %><%= I18n.t "show.sign_report_title_gender.#{@mate.gender}" %>...
         </h5>
 
         <div class="sign-picture-container">
@@ -115,7 +115,7 @@
         </div>
 
         <%# Carousel text %>
-        <% sun_report = current_user.mate_sun_reports[params[:id].to_i]['report'].split(".") %>
+        <% sun_report = @mate_sun_report.split(".") %>
         <div id="carouselText" class="carousel pb-3 carousel-dark slide" data-bs-touch="true">
           <div class="carousel-indicators">
             <% sun_report.each_with_index do |element, index| %>

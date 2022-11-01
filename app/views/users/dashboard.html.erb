@@ -1,4 +1,4 @@
-<%# Carousel photos %>
+<%#--- Carousel photos ---%>
 <div id="carouselPhotos" class="carousel slide" data-bs-touch="true">
   <div class="carousel-indicators">
     <% current_user.photos.each_with_index do |photo, index| %>
@@ -25,17 +25,17 @@
         <div class="d-flex">
           <p>
             <span class="me-1">☉</i></span>
-            <span class="me-2"><%= current_user.sign.capitalize %></span>
+            <span class="me-2"><%= I18n.t "signs.#{current_user.sign.capitalize}" %></span>
           </p>
 
           <p>
             <span class="me-1">↑</span>
-            <span class="me-2"><%= current_user.rising.capitalize %></span>
+            <span class="me-2"><%= I18n.t "signs.#{current_user.rising.capitalize}" %></span>
           </p>
 
           <p>
             <span class="me-1">☽</span>
-            <span class="me-2"><%= current_user.moon.capitalize %></span>
+            <span class="me-2"><%= I18n.t "signs.#{current_user.moon.capitalize}" %></span>
           </p>
         </div>
       </div>
@@ -46,7 +46,7 @@
 
     <div class="py-2 border-bottom">
       <h5 class="mb-1">
-        About me
+        <%= I18n.t "description_title" %>
       </h5>
       <p>
         <%= current_user.description %>
@@ -55,7 +55,7 @@
 
     <div class="pt-2 pb-4 border-bottom">
       <h5 class="mb-1">
-        My passions
+        <%= I18n.t "hobbies_title" %>
       </h5>
         <% if current_user.hobbies %>
           <% current_user.hobbies.each do |hobby| %>
@@ -67,7 +67,7 @@
     </div>
     <div class="d-flex justify-content-center py-5">
       <div class="logout-button">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <%= link_to "#{I18n.t "log_out_button"}", destroy_user_session_path, method: :delete %>
       </div>
     </div>
   </div>

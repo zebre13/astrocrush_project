@@ -5,11 +5,9 @@ class User < ApplicationRecord
   serialize :personality_report, Array
   serialize :hobbies, Array
   serialize :partner_reports, Hash
-  serialize :mate_sun_reports, Hash
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :validatable, :trackable
-
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   # after_validation :geoloc
 
   has_many_attached :photos

@@ -13,7 +13,6 @@ export default class extends Controller {
     this._setupDragAndDrop();
   }
 
-
   _setupDragAndDrop() {
     const maxAngle = 42;
     const smooth = 0.3;

@@ -51,6 +51,20 @@ class AstrologyApi
     return get_response(endpoint, data)
   end
 
+    # General ascendant report
+    def ascendant_report(birth_date, birth_hour, latitude, longitude)
+      endpoint = "general_ascendant_report/tropical"
+      data = birth_data_set(birth_date, birth_hour, latitude, longitude)
+      return get_response(endpoint, data)
+    end
+
+  # General house report
+  def house_report(birth_date, birth_hour, latitude, longitude, planet)
+    endpoint = "general_house_report/tropical/#{planet.upcase}"
+    data = birth_data_set(birth_date, birth_hour, latitude, longitude)
+    return get_response(endpoint, data)
+  end
+
   # Sign compatibility
   def zodiac_compatibility(user_sign)
     endpoint = "zodiac_compatibility/#{user_sign}"
@@ -175,3 +189,4 @@ class AstrologyApi
     }
   end
 end
+

@@ -55,7 +55,7 @@ ghita_aaddaj_data = {
   username: 'Ghita',
   email: 'aa.ghita@gmail.com',
   password: 'azerty',
-  description: "I am a cool one, but careful, I can head-butt if someone pisses me off.",
+  description: "Je suis de nature joyeuse, mais attention, j'ai le coup de boule facile quand on m'énerve.",
   hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes', 'ZAD'],
   birth_date: '23/07/1988',
   birth_hour: '07:30',
@@ -70,7 +70,7 @@ maria_leonor_varela_borges_data = {
   username: 'Maria',
   email: 'leonor.varela91330@gmail.com',
   password: 'azerty',
-  description: "Carlos Santana never recovered from our separation.",
+  description: "Carlos Santana ne s'est jamais remis de notre séparation.",
   hobbies: ['Travel', 'Theater', 'Knitting', 'Paintball'],
   birth_date: '15/08/1993',
   birth_hour: '15:15',
@@ -130,7 +130,7 @@ kenza_tighrine_data = {
   username: 'Kenza',
   email: 'k.tighrine@astrocrush.io',
   password: 'azerty',
-  description: "Sometimes they call me Karima, but it doesn't matter.",
+  description: "Certains m'appellent Karima, mais c'est pas grave.",
   hobbies: ['Chicha', 'Djellaba'],
   birth_date: '04/08/1995',
   birth_hour: '10:45',
@@ -156,11 +156,11 @@ bruno_lelay_data = {
   gender: 1,
   looking_for: 2
 }
-sophiana_b_data = {
+sophiana_busso_data = {
   username: 'Sophiana',
-  email: 's.b@astrocrush.io',
+  email: 's.busso@astrocrush.io',
   password: 'azerty',
-  description: "If you like space travelling, we might meet.",
+  description: "Si vous aimez voyager dans le cosmos, nous devrions nous croiser.",
   hobbies: ['Drawing', 'Long distance trips'],
   birth_date: '24/02/1986',
   birth_hour: '02:35',
@@ -175,8 +175,8 @@ ibrahima_kaba_data = {
   username: 'Ibrahima',
   email: 'i.kaba@astrocrush.io',
   password: 'azerty',
-  description: "All you need is a good css and a neighbor who cooks well.",
-  hobbies: ['Css', 'Bicycle', 'Neighborfood'],
+  description: "Tout ce dont vous avez besoin, c'est d'un bon front end et d'un voisin qui sait cuisiner.",
+  hobbies: ['CSS', 'Vélo', 'Neighborfood'],
   birth_date: '23/12/1992',
   birth_hour: '05:30',
   birth_location: 'Conakry',
@@ -190,7 +190,7 @@ isabelle_levy_data = {
   username: 'Isabelle',
   email: 'i.levy@astrocrush.io',
   password: 'azerty',
-  description: "Don't tell my son.",
+  description: "Ne le dîtes pas à mon fils.",
   hobbies: ['Travel'],
   birth_date: '01/01/1963',
   birth_hour: '07:00',
@@ -205,7 +205,7 @@ corentin_deseine_data = {
   username: 'Corentin',
   email: 'c.deseine@astrocrush.io',
   password: 'azerty',
-  description: "If I had to choose a number between 1 and 100, it would probably be 15.",
+  description: "Mon nombre préféré ? Le 15 !",
   hobbies: ['Rugby', 'Gaming', 'Pokemons'],
   birth_date: '02/08/1996',
   birth_hour: '11:30',
@@ -220,7 +220,7 @@ aicha_diagne_data = {
   username: 'Aicha',
   email: 'a.diagne@astrocrush.io',
   password: 'azerty',
-  description: "Your product is in good hands.",
+  description: "Avec moi, votre produit est entre de bonnes mains.",
   hobbies: ['Luggage'],
   birth_date: '31/05/1996',
   birth_hour: '13:00',
@@ -235,7 +235,7 @@ paul_portier_data = {
   username: 'Paul',
   email: 'p.portier@astrocrush.io',
   password: 'azerty',
-  description: "I don't believe in astrology, but I can't prove it wrong either...",
+  description: "Je ne crois pas à l'astrologie, mais je ne peux pas non plus démontrer qu'elle ne fonctionne pas...",
   hobbies: ['Code', 'Photo'],
   birth_date: '28/12/1991',
   birth_hour: '11:30',
@@ -250,8 +250,8 @@ nadia_auger_data = {
   username: 'Nadia',
   email: 'n.auger@astrocrush.io',
   password: 'azerty',
-  description: "Who said geeks can't be fashionable?",
-  hobbies: ['Code', 'Fashion', 'Chihuahuas'],
+  description: "Code rime avec mode !",
+  hobbies: ['Code', 'Mode', 'Chihuahuas'],
   birth_date: '23/08/1993',
   birth_hour: '09:45',
   birth_location: 'Bordeaux',
@@ -265,8 +265,8 @@ jeremy_barbedienne_data = {
   username: 'Jeremy',
   email: 'j.barbedienne@astrocrush.io',
   password: 'azerty',
-  description: "Don't forget to sign the attendance sheet.",
-  hobbies: ['Code', 'Cooking', 'Booze'],
+  description: "N'oubliez pas de signer la feuille de présence !",
+  hobbies: ['Code', 'Cuisine', 'Boissons'],
   birth_date: '20/09/1993',
   birth_hour: '10:30',
   birth_location: 'Saint-Lo',
@@ -280,8 +280,8 @@ charlotte_bory_data = {
   username: 'Charlotte',
   email: 'c.bory@astrocrush.io',
   password: 'azerty',
-  description: "Lines of code and lines of knitting, all the same to me.",
-  hobbies: ['Code', 'Knitting', 'Roller coaster'],
+  description: "Du code au tricot, il n'y a qu'une ligne !",
+  hobbies: ['Code', 'Tricot', 'Montagnes russes'],
   birth_date: '25/02/1994',
   birth_hour: '02:24',
   birth_location: 'Paris',
@@ -295,7 +295,7 @@ marine_sourin_data = {
   username: 'Marine',
   email: 'm.sourin@astrocrush.io',
   password: 'azerty',
-  description: "I'm not afraid by a 2 hours ticket to get you out of shit.",
+  description: "Cela ne me fait pas peur de passer 2h en ticket pour vous sortir de la m....",
   hobbies: ['Coding'],
   birth_date: '07/05/1995',
   birth_hour: '06:20',
@@ -325,7 +325,7 @@ claire_ziemendorf_data = {
   username: 'Claire',
   email: 'c.ziemendorf@astrocrush.io',
   password: 'azerty',
-  description: "Change your life, subscribe to astrocrush.",
+  description: "All you need is code..",
   hobbies: ['Code'],
   birth_date: '16/05/1994',
   birth_hour: '23:58',
@@ -362,7 +362,7 @@ users_data = [
   alexandre_platteeuw_data,
   kenza_tighrine_data,
   bruno_lelay_data,
-  sophiana_b_data,
+  sophiana_busso_data,
   ibrahima_kaba_data,
   isabelle_levy_data,
   corentin_deseine_data,
@@ -373,8 +373,8 @@ users_data = [
   charlotte_bory_data,
   marine_sourin_data,
   boris_paillard_data,
-  claire_ziemendorf_data,
-  zoe_kravitz_data
+  claire_ziemendorf_data
+  # zoe_kravitz_data
 ]
 
 # <--- Set Photos --->
@@ -395,7 +395,6 @@ photos_ghita_aaddaj = [
   File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
 photos_maria_leonor_varela_borges = [
-
   File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
   File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
@@ -489,7 +488,6 @@ photos_zoe_kravitz = [
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
-
 ]
 
 users_photos = [
@@ -503,7 +501,7 @@ users_photos = [
   photos_alexandre_platteeuw,
   photos_kenza_tighrine,
   photos_bruno_lelay,
-  photos_sophiana_b,
+  photos_sophiana_busso,
   photos_ibrahima_kaba,
   photos_isabelle_levy,
   photos_corentin_deseine,
@@ -514,8 +512,8 @@ users_photos = [
   photos_charlotte_bory,
   photos_marine_sourin,
   photos_boris_paillard,
-  photos_claire_ziemendorf,
-  photos_zoe_kravitz
+  photos_claire_ziemendorf
+  # photos_zoe_kravitz
 ]
 
 # <--- Create Users --->
@@ -529,7 +527,6 @@ users_data.each_with_index do |user_data, index|
   user.save!
   p "*** #{user.username} ***"
 end
-
 
 # Adding fictive ip address
 
@@ -602,109 +599,12 @@ end
 
 # puts "#{User.all.length} users created successfully!"
 
-# <=== MATCHES SEEDING ===>
+# <=== SKIP CONFIRMATION ===>
 
-# <--- Select users --->
+users = User.all
+users.each do |user|
+  user.confirm
+  user.save!
+end
 
-# maria = User.find_by_email('leonor.varela91330@gmail.com')
-# boris = User.find_by_email('boris_bourdet@hotmail.com')
-# etienne = User.find_by_email('etiennededi@hotmail.fr')
-# rege_jean_page = User.find_by_email('rj.page@astrocrush.io')
-# robert_pattinson = User.find_by_email('r.pattinson@astrocrush.io')
-# pio_marmai = User.find_by_email('p.marmai@astrocrush.io')
-# pierre_niney = User.find_by_email('p.niney@astrocrush.io')
-# tom_leeb = User.find_by_email('t.leeb@astrocrush.io')
-
-# <--- Create Chatrooms --->
-
-# puts "Creating Chatrooms..."
-
-# 7.times { Chatroom.new.save! }
-
-# puts "Finished!"
-
-# <--- Create Matches --->
-
-# puts "Creating Matches..."
-
-# first_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: boris.id,
-#   chatroom_id: Chatroom.all[0].id
-# }
-
-# second_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: etienne.id,
-#   chatroom_id: Chatroom.all[1].id
-# }
-
-# third_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: rege_jean_page.id,
-#   chatroom_id: Chatroom.all[2].id
-# }
-
-# fourth_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: robert_pattinson.id,
-#   chatroom_id: Chatroom.all[3].id
-# }
-
-# fifth_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: pio_marmai.id,
-#   chatroom_id: Chatroom.all[4].id
-# }
-
-# sixth_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: pierre_niney.id,
-#   chatroom_id: Chatroom.all[5].id
-# }
-
-# seventh_match = {
-#   status: "accepted",
-#   user_id: maria.id,
-#   mate_id: tom_leeb.id,
-#   chatroom_id: Chatroom.all[6].id
-# }
-
-# matches = [first_match, second_match, third_match, fourth_match, fifth_match, sixth_match, seventh_match]
-
-# matches.each do |match|
-#   match_instance = Match.new(match)
-#   match_instance.save!
-# end
-
-# puts "Finished!"
-
-# # <--- Create Messages --->
-
-# puts "Creating Messages..."
-
-# Message.new(
-#   content: "coucou!",
-#   chatroom_id: Chatroom.first.id,
-#   user_id: maria.id
-# ).save!
-
-# Message.new(
-#   content: "yo!",
-#   chatroom_id: Chatroom.first.id,
-#   user_id: boris.id
-# ).save!
-
-# Message.new(
-#   content: "ça va ?",
-#   chatroom_id: Chatroom.first.id,
-#   user_id: maria.id
-# ).save!
-
-# puts 'Finished!'
+puts "all confirmations skiped"

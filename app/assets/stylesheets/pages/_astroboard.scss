@@ -1,0 +1,67 @@
+.back-to-top a {
+  color: $violet_dark;
+  padding-right: 16px;
+}
+
+.astroboard-menu h5 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.planet-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: $violet_dark;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  border-radius: 8px;
+  p {
+    padding-right: 16px;
+  }
+  h2 {
+    color: $violet_dark;
+  }
+}
+
+.nav-hov {
+   box-shadow: inset 0 -2px 0 0 #fff;
+   h5 {
+    color: white;
+   }
+ }
+
+ .astroboard-user-details {
+  padding-top: 8px;
+  padding-bottom: 8px;
+ }
+
+ .sign-profile-image {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  margin: 0;
+}
+
+.switch-container {
+  width: 176px;
+  margin-top: 88px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.switch-button {
+  width: 88px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 4px;
+  padding: 4px 8px;
+  // background-color: $violet_dark;
+  background-color: rgba(255, 255, 255, 0.1);
+  &.on {
+    background-color: rgb(255, 255, 255);
+    color: $violet_dark;
+  }
+  h5 {
+    margin-bottom : 0;
+  }
+}

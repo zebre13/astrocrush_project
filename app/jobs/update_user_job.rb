@@ -21,7 +21,7 @@ class UpdateUserJob < ApplicationJob
     i = 0
     user.new_affinity_scores_today = 0
 
-    until user.new_affinity_scores_today == 2 || mates[i].nil?ù
+    until user.new_affinity_scores_today == 2 || mates[i].nil?
       # selectionner ceux du bon age et sexe
       p mates[i], "this is mates[#{i}]"
       mates_with_right_gender_and_age = Preferences.array_of_gender_and_age_preferences(user, mates[i]) unless mates[i].nil?

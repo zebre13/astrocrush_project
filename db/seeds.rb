@@ -535,7 +535,7 @@ end
 
 User.all.each do |user|
   user.search_perimeter = 20000
-  user.last_sign_in_ip = Faker::Internet.ip_v4_address
+  user.last_sign_in_ip = Faker::Internet.private_ip_v4_address
   user.save
 end
 # <--- Calculate and attach affinity scores and reports --->

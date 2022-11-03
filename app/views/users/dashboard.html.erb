@@ -65,7 +65,12 @@
           <% end %>
         <% end %>
     </div>
-    <div class="d-flex justify-content-center py-5">
+    <div class="d-flex justify-content-center py-2">
+        <div class="logout-button">
+          <%= link_to "#{I18n.t "password_button"}", edit_user_registration_path(password: true) %>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center py-2">
       <div class="logout-button">
         <%= link_to "#{I18n.t "log_out_button"}", destroy_user_session_path, method: :delete %>
       </div>

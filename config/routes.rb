@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations"}
+
   root to: 'users#index'
   resources :chatrooms, only: :show do
     resources :messages, only: :create
@@ -12,6 +13,6 @@ Rails.application.routes.draw do
   get 'astroboard', to: 'users#astroboard'
   post '/create_denied_match', to: 'matches#create_denied_match', as: 'create_denied_match'
   # get '/users/:id', to: 'users#show'
-  resources :users, only: %i[show edit]
+  resources :users, only: %i[show]
   get 'test', to: "users#test"
 end

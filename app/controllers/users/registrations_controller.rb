@@ -34,16 +34,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_ten_affinities
     return unless user_signed_in?
 
-    ten_mates.each { |mate| affinities(current_user, mate) }
+    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
+    mates_by_gender.each { |mate| affinities(current_user, mate) }
   end
 
   def affinities(user, mate)
     Affinities.new.partner_report(user, mate)
     Affinities.new.match_percentage(user, mate)
+
   end
 
   def ten_mates
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id)
+    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
     return mates_by_gender.sample(10)
   end
 

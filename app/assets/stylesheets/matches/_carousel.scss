@@ -1,0 +1,22 @@
+.match-photo {
+  object-fit: cover;
+  height: 135px;
+  width: 114px;
+  border-radius: 6px;
+}
+
+.match-photo:hover {
+  opacity: 1;
+}
+
+li {
+  list-style: none;
+}
+
+li .glide__slide {
+  position: relative;
+}
+
+.small-score-container {
+  position: absolute;
+}

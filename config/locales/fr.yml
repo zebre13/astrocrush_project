@@ -1,7 +1,11 @@
 fr:
   date:
+    order:
+      - day
+      - month
+      - year
     formats:
-      default: "%d-%m-%Y"
+      default: "%d/%m/%Y"
       short: "%d %m"
       long: "%d/%m/%Y"
   description_title: "A propos de moi"

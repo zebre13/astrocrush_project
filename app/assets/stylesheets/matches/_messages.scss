@@ -1,0 +1,80 @@
+.messages-container {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.navbar-profil {
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.message-card {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9e7e7;
+  align-items: center;
+  display: flex;
+}
+
+.message-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.message-text {
+  padding-left: 16px;
+}
+
+.message-username {
+  font-weight:bold;
+  a {
+    text-decoration: none;
+    color: $gray;
+  }
+}
+
+.flux .msg-profile{
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.flux {
+  margin: 12px;
+  line-height: 1.4;
+}
+
+.flux small {
+  color: #999999;
+  font-weight: bold;
+}
+.flux .flux-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+.flux .flux-actions a:hover {
+  color: #555555;
+}
+
+.msg-nom {
+  display: -webkit-box;
+}
+
+.msg-card{
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: var(--bs-border-color-translucent)
+  overflow: hidden;
+  height: 120px;
+  // background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+.msg-card .msg-nom{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}

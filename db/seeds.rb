@@ -496,6 +496,7 @@ users_data.each_with_index do |user_data, index|
   user.sign = horo_elements['planets'].first['sign']
   user.rising = horo_elements['houses'].first['sign']
   user.moon = horo_elements['planets'][1]['sign']
+  user.horoscope_data = horo_elements
   planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
   planets.each_key do |key|
     horo_elements['planets'].each do |element|

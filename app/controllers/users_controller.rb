@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
-  LOGOS = { Sun: "☉ ", Moon: "☽ ", Mercury: "☿ ", Venus: "♀︎ ", Mars: "♂︎ ", Jupiter: "♃ ", Saturn: "♄ ", Uranus: "♅ ", Neptune: "♆ ", Pluto: "♇ " }
+  LOGOS = { Ascendant: "↑", Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀︎", Mars: "♂︎", Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" }
 
   def index
     mini_date = Date.today - (current_user.minimal_age * 365)
@@ -62,20 +62,13 @@ class UsersController < ApplicationController
         horoscope_data["planets"].each { |data| signs << data["sign"] if data.has_value?(planet) }
       end
     end
-    signs
+    signs.group_by{ |x| x }.values
   end
 
   # Array of sorted planets with logos used for display in the astroboard table
   def my_planets_with_logos(horoscope_data)
     my_planets = my_planets(horoscope_data)
-    my_planets_with_logos = my_planets.map do |planet|
-      if planet == "Ascendant"
-        "Ascendant"
-      else
-        "#{LOGOS[planet.to_sym]} #{planet}"
-      end
-    end
-    my_planets_with_logos
+    my_planets.map { |planet| "#{LOGOS[planet.to_sym]} #{planet}" }
   end
 
   # Array of sorted houses used for display in the astroboard table
@@ -88,7 +81,7 @@ class UsersController < ApplicationController
         horoscope_data["planets"].each { |data| houses << data["house"] if data.has_value?(planet) }
       end
     end
-    houses
+    houses.group_by{ |x| x }.values
   end
 
   # def create_zodiac

@@ -1,29 +1,37 @@
 fr:
-
   date:
     formats:
       default: "%d-%m-%Y"
       short: "%d %m"
       long: "%d/%m/%Y"
-
   description_title: "A propos de moi"
-
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: 'Hello everybody!'
+        user_subject: 'Hello User! Please confirm your email'
+      reset_password_instructions:
+        subject: 'Reset instructions'
+    sessions:
+      user:
+        signed_in: 'Welcome user, you are signed in.'
+      admin:
+        signed_in: 'Hello admin!'
+    sessions:
+      signed_in: 'Signed in successfully.'
   hobbies_title: "Mes passions"
-
   hobbies:
     surf: "Surf"
     music: "Music"
     swimming: "Swimming"
     yoga: "Yoga"
     cinema: "Cinema"
-
   show:
     sign_report_title_is: " est "
     sign_report_title_main: ". Découvre ce que cela révèle sur "
     sign_report_title_gender:
       1: "lui"
       2: "elle"
-
   astroboard:
     horoscope: "Horoscope"
     today: "Aujourd'hui"
@@ -40,14 +48,12 @@ fr:
     score_location: "Lieu de naissance de ton Crush"
     score_button: "Afficher le score"
     compatibilities: "Tes compatibilités"
-
   chat:
     crushes_title: "Nouveaux Crushes"
     crushes_message: "Pas de nouveau Crush pour l'instant..."
     messages: "Messages"
-
+  password_button: "Change de mot de passe"
   log_out_button: "Déconnexion"
-
   signs:
     Aries: "Bélier"
     Taurus: "Taureau"
@@ -61,7 +67,6 @@ fr:
     Capricorn: "Capricorne"
     Aquarius: "Verseau"
     Pisces: "Poissons"
-
   planets:
     Sun: "Soleil"
     Moon: "Lune"
@@ -73,7 +78,6 @@ fr:
     Uranus: "Uranus"
     Neptune: "Neptune"
     Pluto: "Pluton"
-
   planets_in_signs:
     Sun:
       Aries: "Les Bêliers peuvent être inspirés, courageux, enthousiastes, originaux, indépendants, impatients, agressifs, têtus, égoïstes, égocentriques et impulsifs. Les énergies du Bélier sont dirigées vers la construction d'une nouvelle individualité, ainsi toutes les énergies du Bélier sont dirigées vers lui-même et ce qu'il veut. Un Bélier aime les rôles où ses capacités de leadership sont mises en évidence. Les Bêliers ont des capacités d'exécution et d'organisation qui sont principalement dirigées vers le démarrage de projets. Le maintien des projets n'est pas leur force, mais le lancement de projets l'est. La tendance à \"envoyer les torpilles\" et à foncer à toute allure doit être contrôlée. Les Béliers sont capables de grandes réalisations s'ils apprennent à utiliser de manière constructive leur énergie abondante. Les Béliers sont naturellement enthousiastes et sont toujours prêts pour l'activité et la compétition. Ils sont une source d'inspiration pour les autres en raison de ces tendances. Les idées et les projets créatifs semblent couler d'eux en un flot ininterrompu. Ils sont pleins d'énergie et ne manquent jamais de courage. Comme les Béliers peuvent être assez égocentriques, ils doivent se rappeler que d'autres personnes peuvent avoir de bonnes idées et peuvent aussi assumer des responsabilités et des rôles de direction. La tendance naturelle d'un Bélier est de rester seul et de tout faire lui-même. Mais la coopération avec les autres peut être très efficace pour faire avancer les choses jusqu'à la fin, plutôt que de simplement commencer des choses et de les abandonner avant la fin. Les Bêliers ont tendance à commencer un projet, puis à s'en désintéresser soudainement si les progrès sont trop lents ou si les choses sont devenues trop compliquées."
@@ -205,7 +209,6 @@ fr:
       Capricorn: ""
       Aquarius: ""
       Pisces: ""
-
   ascendant_in_signs:
     Aries: "Les personnes avec l'Ascendant Bélier ont tendance à être énergiques, pionnières, téméraires, ergoteuses, égoïstes, impulsives, colériques, agressives, affirmées, têtues, indépendantes, alertes, enclines à la mécanique, physiquement actives, autopromotionnelles, égocentriques et plus irréfléchies que la moyenne. Vous avez une aversion générale pour toute forme de retenue, vous n'aimez pas qu'on vous dise quoi faire, vous avez besoin d'apprendre la diplomatie et le tact, vous avez besoin de regarder avant de sauter, vous avez besoin de mieux apprendre à canaliser vos énergies pour des objectifs et des résultats plus constructifs. Comme le bélier qui symbolise ce signe, vous avez tendance à vous cogner la tête contre vos problèmes en espérant qu'avec suffisamment de force, vous pourrez éventuellement renverser tout ce qui se dresse devant vous, y compris les personnes. Vous aimez les défis de la vie et êtes très compétitif et parfois combatif. Vous vous ennuyez facilement avec la routine et une chose que vous devrez peut-être pratiquer davantage est la persévérance. Vous avez tendance à sauter d'une chose à l'autre, toujours à la recherche de quelque chose de nouveau. Terminez ce que vous avez commencé avant de continuer. Leçon spirituelle à apprendre : Patience. Mars gouverne le Bélier donc Mars sera important dans votre thème."
     Taurus: "Les personnes avec l'Ascendant Taureau ont tendance à être fortes, persévérantes, lentes à changer, déterminées, stables, calmes (jusqu'à ce qu'elles soient poussées trop loin, il y aura alors des problèmes), pratiques, têtues, non agressives, patientes, affectueuses, loyales, travailleuses, passives et sans prétention en général, et fixées dans leurs convictions, avec une pensées généralement lente. Les Taureaux peuvent être guidés ou cajolés, mais jamais poussés ou conduits. Les ressources et les possessions, qu'il s'agisse des personnes ou des finances, sont très importantes pour vous. Vous voulez construire et faire grandir les choses, mais vous ne pouvez pas être pressé. Vous voulez mettre la main sur les choses et voir les résultats pratiques de votre propre travail acharné. Vous êtes doué pour prendre ce que les autres ont commencé puis continuer. Le succès vient à vous par pure persévérance et volonté. Votre amour des aliments sucrés ou riches peut vous inciter à prendre du poids. Essayez d'être moins rigide dans tout ce que vous faites. Apprivoisez toute jalousie et instinct de possessivité. Vous détestez et craignez la maladie et la douleur. Leçon spirituelle à apprendre : Détachement. Vénus gouverne le Taureau, donc Vénus sera importante dans votre thème."
@@ -219,7 +222,6 @@ fr:
     Capricorn: "Les personnes avec l'Ascendantes Capricorne ont tendance à être sensibles, timides, professionnelles, ambitieuses, contrôlantes, réservées, pratiques, terre-à-terre, soucieuses de leur devoir, responsables, critiques et froides. Vous avez peut-être eu du mal à communiquer au début de votre vie. Peut-être souffrez-vous d'un sentiment d'inadéquation. Vous surmontez ces sentiments par pure nécessité, car vous êtes déterminé à atteindre vos objectifs et vos buts dans la vie. Vous avez une grande ambition et ne vous installez pas avant d'avoir atteint les grands sommets que vous vous êtes fixés. L'argent, la position et le pouvoir sont importants pour vous. La réserve dont vous faites souvent preuve est parfois considérée comme de la froideur. Il vous semble que vous êtes responsable et que vous faites simplement votre devoir. Vous avez peut-être eu des problèmes avec vos genoux. Tout problème avec les genoux est la preuve extérieure d'une incapacité intérieure à être flexible. Leçon spirituelle à apprendre : Sociabilité (détendez-vous). Saturne gouverne le Capricorne, donc Saturne sera important dans votre vie."
     Aquarius: "Les personnes avec l'Ascendant Verseau ont tendance à être altruistes, amicales, mais détachées, impersonnelles, humanitaires, sociables, intellectuelles, éprises de liberté, rebelles, indépendantes et originales. Vous êtes ici pour apprendre l'altruisme, la fraternité et le travail pour le bien commun, pour vous oublier vous-même et vos besoins pour le bien de vos amis, qui peuvent aussi être des étrangers. Vous avez une manière novatrice et différente de voir les choses. Vous pouvez être très original et inventif, parfois excentrique ou bohème. Vous êtes sujet à des élans aléatoires et soudains. Vous avez tendance à être très intuitif, possédant un bon esprit. Vous avez une capacité d'organisation et êtes efficace et pratique. Vous êtes intelligent, mais parfois froid et calculateur en ce qui concerne les sentiments. Il y a un certain détachement en vous. Vous ne supportez pas la possessivité et la jalousie et vous avez besoin de beaucoup de liberté. Selon les forces relatives de Saturne et d'Uranus dans votre thème, la prudence, la froideur et l'égoïsme peuvent se manifester (Saturne plus fort), ou il y aura plus d'altruisme, de liberté et de fluidité (Uranus plus fort). Si Uranus est plus fort, alors les choses de l'esprit seront plus fortes que la mondanité matérialiste. Leçon spirituelle à apprendre : Chaleur (moins de tête et plus de cœur). Saturne et Uranus gouvernent tous les deux le Verseau, donc Saturne et Uranus seront importants dans votre thème."
     Pisces: "Les personnes avec l'Ascendant Poissons ont tendance à être sensibles, compatissantes, empathiques, peu volontaires, patientes, rêveuses, procrastinatrices, souples, impressionnables, peu pratiques, indécises, psychiques, sentimentales, romantiques, idéalistes, affectueuses, faciles à vivre, paresseuses, indifférentes aux affaires pratiques de la vie quotidienne, distraites et à la recherche du Saint Graal. Il peut vous arriver de vous extraire du présent. Vous pouvez rêver à travers la vie plutôt que de la vivre. Il peut y avoir implication dans la musique ou la danse ou la drogue. Vous pouvez ressentir une solitude à laquelle rien dans le monde extérieur ne peut remédier. Être seul parfois est une nécessité absolue pour vous. Les vibrations de ce plan terrestre peuvent parfois être difficiles à supporter pour votre corps et votre esprit sensibles. Vous êtes très sensible aux conditions de votre environnement et pouvez être comme une éponge psychique, absorbant tout ce qui vous entoure, pour le meilleur ou pour le pire. Vous êtes très agréable, mais vous devez apprendre à être plus pratique et terre-à-terre et à concentrer vos énergies sur l'ici et maintenant. Vous devez servir les autres dans cette vie, mais devez aussi apprendre à ne pas vous faire exploiter ou à vous laisser apitoyer par les autres. Leçon spirituelle à apprendre : Persévérance. Jupiter et Neptune gouvernent tous les deux les Poissons, donc Jupiter et Neptune seront importants dans votre thème."
-
   planets_in_houses:
     Sun:
       1: ""
@@ -351,3 +353,14 @@ fr:
       10: ""
       11: ""
       12: ""
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "les deux mots de passe sont différents"
+            password:
+              too_short: "le mot de passe est trop court"
+            current_password:
+              invalid: "le mots de passe actuel est invalide"

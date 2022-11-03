@@ -33,10 +33,8 @@ class UsersController < ApplicationController
   def astroboard
     @daily_horoscope = API_CALL.daily_horoscope(current_user.sign)
     @zodiac_compatibility = API_CALL.zodiac_compatibility(current_user.sign)
-    # @my_zodiac = create_zodiac
-    # @signs = [find_planets(1), find_planets(2), find_planets(3), find_planets(4), find_planets(5), find_planets(6), find_planets(7), find_planets(8), find_planets(9), find_planets(10), find_planets(11)]
     @my_signs = my_signs(current_user.horoscope_data)
-    @my_planets = my_planets_with_logos(current_user.horoscope_data)
+    @my_planets = my_planets(current_user.horoscope_data)
     @my_houses = my_houses(current_user.horoscope_data)
   end
 
@@ -62,7 +60,7 @@ class UsersController < ApplicationController
         horoscope_data["planets"].each { |data| signs << data["sign"] if data.has_value?(planet) }
       end
     end
-    signs.group_by{ |x| x }.values
+    signs
   end
 
   # Array of sorted planets with logos used for display in the astroboard table
@@ -83,30 +81,4 @@ class UsersController < ApplicationController
     end
     houses.group_by{ |x| x }.values
   end
-
-  # def create_zodiac
-  #   cut = 0
-
-  #   ZODIAC.each_with_index do |sign, index|
-  #     cut = index if sign == current_user.rising.capitalize
-  #   end
-  #   ZODIAC.slice(cut..) + ZODIAC.slice(0..(cut - 1))
-  # end
-
-  # def find_planets(zodiac_index)
-  #   hash_planets = current_user.planets
-  #   planets = []
-  #   data_to_display = {}
-  #   hash_planets.each do |planet, hash|
-  #     if @my_zodiac[zodiac_index] == hash[:sign]
-  #       data_to_display["sign"] = hash[:sign]
-  #       data_to_display["planet"] = planet.to_s.capitalize
-  #       data_to_display["house"] = hash[:house]
-  #       data_to_display["logo"] = LOGOS[planet]
-  #       planets << data_to_display
-  #       data_to_display = {}
-  #     end
-  #   end
-  #   return planets
-  # end
 end

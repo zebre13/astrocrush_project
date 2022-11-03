@@ -4,116 +4,53 @@
       <h6 class="verticaltext"><%= (I18n.t "astroboard.signs").upcase %></h6>
     </div>
 
-    <div class="col-10">
+    <div class="col-10 border">
       <div class="row">
-        <div class="col-4">
-          <% @my_signs.each do |sign_group| %>
-            <% sign_group.each do |sign| %>
-              <%= sign %> <%# voir si l'on peut mettre une classe transparente quand ce n'est pas sign_group.first %>
+        <div class="col-5 px-2">
+          <% @my_signs.each do |sign| %>
+            <div>
+              <div class="cell">
+                <div>
+                  <%= I18n.t "signs.#{sign}" %> <%# voir si l'on peut mettre une classe transparente quand ce n'est pas sign_group.first %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-5 px-2 planets-frame">
+          <div>
+            <% @my_planets.each do |planet| %>
+              <div class="cell">
+                <%= (I18n.t "planets.#{planet}.").upcase %>
+              </div>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
-        <div class="col-6">
-          <%= @my_planets.each do |planet| %>
-            <%= planet %>
-          <% end %>
-        </div>
-
-        <div class="col-2">
-          <% @my_houses.each do |house| %>
-            <%= house %>
-          <% end %>
+        <div class="col-2 px-2">
+          <div>
+            <% @my_houses.each do |house_group| %>
+              <% house_group.each do |house| %>
+                <div class="cell">
+                  <div class="house">
+                    <%= house %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-1">
+    <div class="col-1 d-flex text-center">
       <h6 class="verticaltext"><%= (I18n.t "astroboard.houses").upcase %></h6>
     </div>
   </div>
 </div>
 
-<div class="text-align-center">
 
-  <div class="row astrotab pb-4 pt-4">
-    <div class="col-1">
-      <h6 class="verticaltext"><%= (I18n.t "astroboard.signs").upcase %></h6>
-    </div>
-
-    <div class="col-10">
-
-      <div class="border-bottom">
-
-        <div class="row astrotab">
-          <div class ="col-4 text"> <%=current_user.rising.capitalize%></div>
-          <div class ="col-6 text grey-background pt-1"><h6>↑ ASCENDANT</h6></div>
-          <div class ="col-2 text">1</div>
-        </div>
-
-      </div>
-      <% @signs.each do |sign| %>
-        <% if sign.count == 1 %>
-          <div class="border-bottom">
-            <div class="row astrotab">
-
-              <div class ="col-4 text">
-                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2 text">
-                <%=sign[0]["house"]%>
-              </div>
-
-            </div>
-
-          </div>
-
-        <% elsif sign.count == 2 %>
-          <div class="border-bottom">
-
-            <div class="row astrotab">
-
-              <div class ="col-4 text">
-                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2 text">
-                <%=sign[0]["house"]%>
-              </div>
-            </div>
-
-            <div class="row astrotab">
-              <div class ="col-4 text">
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[1]["logo"]%> <%=(I18n.t "planets.#{sign[1]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2">
-              </div>
-
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="col-1 d-flex">
-      <h6 class="verticaltext"><%= (I18n.t "astroboard.houses").upcase %></h6>
-    </div>
-
-  </div>
-</div>
 
 <%# <div class="text-align-center"> %>
 

@@ -11,7 +11,9 @@
             <div>
               <div class="cell">
                 <div>
-                  <%= I18n.t "signs.#{sign}" %> <%# voir si l'on peut mettre une classe transparente quand ce n'est pas sign_group.first %>
+                  <h6>
+                    <%= I18n.t "signs.#{sign}" %> <%# voir si l'on peut mettre une classe transparente quand ce n'est pas sign_group.first %>
+                  </h6>
                 </div>
               </div>
             </div>
@@ -22,7 +24,9 @@
           <div>
             <% @my_planets.each do |planet| %>
               <div class="cell">
-                <%= "#{planet.first} #{(I18n.t "planets.#{planet.last}.").upcase}" %>
+                <h6>
+                  <%= "#{planet.first} #{(I18n.t "planets.#{planet.last}.").upcase}" %>
+                </h6>
               </div>
             <% end %>
           </div>
@@ -34,7 +38,9 @@
               <% house_group.each do |house| %>
                 <div class="cell">
                   <div class="house">
-                    <%= house %>
+                    <h6>
+                      <%= house %>
+                    </h6>
                   </div>
                 </div>
               <% end %>

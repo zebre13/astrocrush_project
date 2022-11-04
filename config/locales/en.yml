@@ -104,6 +104,7 @@ en:
     Pisces: "Pisces"
   planets:
     Sun: "Sun"
+    Ascendant: "Ascendant"
     Moon: "Moon"
     Mercury: "Mercury"
     Venus: "Venus"

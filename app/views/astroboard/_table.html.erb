@@ -1,80 +1,63 @@
-<div class="text-align-center">
+<div class="row">
+  <div class="col-1 d-flex flex-column pe-1 ps-0">
+    <h6 class="verticaltext signs">
+      <%= (I18n.t "astroboard.signs").upcase %>
+    </h6>
+  </div>
 
-  <div class="row astrotab pb-4 pt-4">
-    <div class="col-1">
-      <h6 class="verticaltext"><%= (I18n.t "astroboard.signs").upcase %></h6>
-    </div>
-
-    <div class="col-10">
-
-      <div class="border-bottom">
-
-        <div class="row astrotab">
-          <div class ="col-4 text"> <%=current_user.rising.capitalize%></div>
-          <div class ="col-6 text grey-background pt-1"><h6>↑ ASCENDANT</h6></div>
-          <div class ="col-2 text">1</div>
-        </div>
-
-      </div>
-      <% @signs.each do |sign| %>
-        <% if sign.count == 1 %>
-          <div class="border-bottom">
-            <div class="row astrotab">
-
-              <div class ="col-4 text">
-                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2 text">
-                <%=sign[0]["house"]%>
-              </div>
-
-            </div>
-
-          </div>
-
-        <% elsif sign.count == 2 %>
-          <div class="border-bottom">
-
-            <div class="row astrotab">
-
-              <div class ="col-4 text">
-                <%=I18n.t "signs.#{sign[0]["sign"]}"%>
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[0]["logo"]%> <%=(I18n.t "planets.#{sign[0]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2 text">
-                <%=sign[0]["house"]%>
+  <div class="col-10 border">
+    <div class="row">
+      <div class="col-5 px-0">
+        <% @my_signs.each do |sign_group| %>
+          <% i = 0 %>
+          <% sign_group.each do |sign| %>
+            <div class="cell<%= ' border-bottom' if i == (sign_group.count - 1) && sign_group != @my_signs.last %>">
+              <div class="sign">
+                <div class="<%= 'd-none' if i != 0 %>">
+                  <%= I18n.t "signs.#{sign}" %>
+                </div>
               </div>
             </div>
-
-            <div class="row astrotab">
-              <div class ="col-4 text">
-              </div>
-
-              <div class ="col-6 grey-background pt-1">
-                <h6><%=sign[1]["logo"]%> <%=(I18n.t "planets.#{sign[1]["planet"]}").upcase%></h6>
-              </div>
-
-              <div class ="col-2">
-              </div>
-
-            </div>
-          </div>
+            <% i += 1 %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <div class="col-1 d-flex">
-      <h6 class="verticaltext"><%= (I18n.t "astroboard.houses").upcase %></h6>
-    </div>
+      <div class="col-5 px-2 planets-frame border-left border-right">
+        <div>
+          <% @my_planets.each do |planet| %>
+            <div class="cell">
+              <h6>
+                <%= "#{planet.first} #{(I18n.t "planets.#{planet.last}.").upcase}" %>
+              </h6>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
+      <div class="col-2 px-0">
+        <div>
+          <% @my_houses.each do |house_group| %>
+            <% i = 0 %>
+            <% house_group.each do |house| %>
+              <div class="cell<%= ' border-bottom' if i == (house_group.count - 1) && house_group != @my_houses.last %>">
+                <div class="house">
+                  <h3 class="<%= 'd-none' if i != 0 %>">
+                    <%= house %>
+                  </h3>
+                </div>
+              </div>
+              <% i += 1 %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1 d-flex flex-column-reverse ps-1 pe-0">
+    <h6 class="verticaltext houses">
+      <%= (I18n.t "astroboard.houses").upcase %>
+    </h6>
   </div>
 </div>

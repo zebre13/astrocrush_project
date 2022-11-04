@@ -73,6 +73,7 @@ fr:
     Pisces: "Poissons"
   planets:
     Sun: "Soleil"
+    Ascendant: "Ascendant"
     Moon: "Lune"
     Mercury: "Mercure"
     Venus: "Vénus"

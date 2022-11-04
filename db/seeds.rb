@@ -492,24 +492,13 @@ users_photos = [
 
 users_data.each_with_index do |user_data, index|
   user = User.new(user_data)
-  horo_elements = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
-  user.sign = horo_elements['planets'].first['sign']
-  user.rising = horo_elements['houses'].first['sign']
-  user.moon = horo_elements['planets'][1]['sign']
-  user.horoscope_data = horo_elements
-  planets = { Sun: {}, Moon: {}, Mars: {}, Mercury: {}, Jupiter: {}, Venus: {}, Saturn: {}, Uranus: {}, Neptune: {}, Pluto: {} }
-  planets.each_key do |key|
-    horo_elements['planets'].each do |element|
-      planets[key] = { sign: element['sign'], house: element['house'] } if element['name'] == key.to_s
-    end
-  end
-  user.planets = planets
+  user.horoscope_data = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+  user.sign = user.horoscope_data['planets'].first['sign']
+  user.rising = user.horoscope_data['houses'].first['sign']
+  user.moon = user.horoscope_data['planets'][1]['sign']
   user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  user.personality_report = API_CALL.personality_report(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   user.timezone = API_CALL.time_zone(user.latitude, user.longitude, user.birth_date)
-  users_photos[index].each do |photo|
-    user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
-  end
+  users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
   user.save!
   p "*** #{user.username} ***"
 end

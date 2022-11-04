@@ -27,12 +27,10 @@
     color: white;
    }
  }
-
  .astroboard-user-details {
   padding-top: 8px;
   padding-bottom: 8px;
  }
-
  .sign-profile-image {
   height: 100px;
   width: 100px;
@@ -75,33 +73,38 @@
   display: flex;
   align-items: center;
   border: 1px solid transparent;
-
   .house {
     margin-left: auto;
     margin-right: 8px;
   }
-
   .sign {
     margin-left: 8px;
     margin-right: auto;
   }
-
   h3 {
     margin-bottom: 0;
   }
-
   h6 {
     margin-bottom: 0;
   }
 }
 
 .planets-frame {
-  background-color: rgba(255, 255, 255, 1.0);
+  background-color: rgba(255, 255, 255, 0.9);
   color: $violet_dark;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
 }
 
-.ghost {
-  color: transparent;
+.verticaltext{
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  &.signs {
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  &.houses {
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
 }

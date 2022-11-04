@@ -22,7 +22,7 @@
           <div>
             <% @my_planets.each do |planet| %>
               <div class="cell">
-                <%= (I18n.t "planets.#{planet}.").upcase %>
+                <%= "#{planet.first} #{(I18n.t "planets.#{planet.last}.").upcase}" %>
               </div>
             <% end %>
           </div>

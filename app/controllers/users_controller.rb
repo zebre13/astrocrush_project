@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @daily_horoscope = API_CALL.daily_horoscope(current_user.sign)
     @zodiac_compatibility = API_CALL.zodiac_compatibility(current_user.sign)
     @my_signs = my_signs(current_user.horoscope_data)
-    @my_planets = my_planets(current_user.horoscope_data)
+    @my_planets = my_planets_with_logos(current_user.horoscope_data)
     @my_houses = my_houses(current_user.horoscope_data)
   end
 
@@ -50,6 +50,12 @@ class UsersController < ApplicationController
     ordered_planets.keys.unshift "Ascendant"
   end
 
+  # Array of sorted planets with logos used for display in the astroboard table
+  def my_planets_with_logos(horoscope_data)
+    my_planets = my_planets(horoscope_data)
+    my_planets.map { |planet| [LOGOS[planet.to_sym], planet] }
+  end
+
   # Array of sorted signs used for display in the astroboard table
   def my_signs(horoscope_data)
     signs = []
@@ -61,12 +67,6 @@ class UsersController < ApplicationController
       end
     end
     signs
-  end
-
-  # Array of sorted planets with logos used for display in the astroboard table
-  def my_planets_with_logos(horoscope_data)
-    my_planets = my_planets(horoscope_data)
-    my_planets.map { |planet| "#{LOGOS[planet.to_sym]} #{planet}" }
   end
 
   # Array of sorted houses used for display in the astroboard table

@@ -66,7 +66,7 @@ class UsersController < ApplicationController
         horoscope_data["planets"].each { |data| signs << data["sign"] if data.has_value?(planet) }
       end
     end
-    signs
+    signs.slice_when { |i, j| i != j }.to_a
   end
 
   # Array of sorted houses used for display in the astroboard table

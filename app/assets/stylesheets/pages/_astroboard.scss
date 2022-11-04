@@ -74,10 +74,20 @@
   height: 40px;
   display: flex;
   align-items: center;
+  border: 1px solid transparent;
 
   .house {
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 8px;
+  }
+
+  .sign {
+    margin-left: 8px;
+    margin-right: auto;
+  }
+
+  h3 {
+    margin-bottom: 0;
   }
 
   h6 {
@@ -90,4 +100,8 @@
   color: $violet_dark;
   border-left: 1px solid white;
   border-right: 1px solid white;
+}
+
+.ghost {
+  color: transparent;
 }

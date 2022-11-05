@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_reader :my_zodiac
   serialize :affinity_scores, Hash
   serialize :planets, Hash
+  serialize :horoscope_data, Hash
   serialize :personality_report, Array
   serialize :hobbies, Array
   serialize :partner_reports, Hash

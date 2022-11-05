@@ -30,7 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-
   date:
     order:
       - day
@@ -40,25 +39,34 @@ en:
       default: "%b-%d-%Y"
       short: "%b %d"
       long: "%B %d, %Y"
-
   description_title: "About me"
-
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: 'Hello everybody!'
+        user_subject: 'Hello User! Please confirm your email'
+      reset_password_instructions:
+        subject: 'Reset instructions'
+    sessions:
+      user:
+        signed_in: 'Welcome user, you are signed in.'
+      admin:
+        signed_in: 'Hello admin!'
+    sessions:
+      signed_in: 'Signed in successfully.'
   hobbies_title: "My passions"
-
   hobbies:
     surf: "Surf"
     music: "Music"
     swimming: "Swimming"
     yoga: "Yoga"
     cinema: "Cinema"
-
   show:
     sign_report_title_is: " is "
     sign_report_title_main: ". Let's find out what it means about "
     sign_report_title_gender:
       1: "him"
       2: "her"
-
   astroboard:
     horoscope: "Horoscope"
     today: "Today"
@@ -75,14 +83,12 @@ en:
     score_location: "Birth location of your Crush"
     score_button: "Display score"
     compatibilities: "Your compatibilities"
-
   chat:
     crushes_title: "New Crushes"
     crushes_message: "No new Crushes yet..."
     messages: "Messages"
-
+  password_button: "Edit your password"
   log_out_button: "Log out"
-
   signs:
     Aries: "Aries"
     Taurus: "Taurus"
@@ -96,9 +102,9 @@ en:
     Capricorn: "Capricorn"
     Aquarius: "Aquarius"
     Pisces: "Pisces"
-
   planets:
     Sun: "Sun"
+    Ascendant: "Ascendant"
     Moon: "Moon"
     Mercury: "Mercury"
     Venus: "Venus"
@@ -108,7 +114,6 @@ en:
     Uranus: "Uranus"
     Neptune: "Neptune"
     Pluto: "Pluto"
-
   planets_in_signs:
     Sun:
       Aries: "Arians can be inspirational, courageous, enthusiastic, original, independent, impatient, aggressive, headstrong, selfish, self-centered, and impulsive. The Arian's energies are directed toward building a new individuality, thus all the Arian's energies are directed towards themself and what they want. An Arian likes roles where there leadership abilities are put on display. Arians have executive and organizing ability which is mainly directed in starting things. Sustaining projects is not their strength, but initiating projects is. The tendency to 'damn the torpedoes' and ram full-speed ahead must be controlled. Arians are capable of great accomplishments if they learn how to constructively use their abundant energies. Arians are naturally enthusiastic and are always ready for activity and competition. They are inspiring to others because of these tendencies. Ideas and creative projects seem to flow from them in a never-ending stream. They are full of energy and never lack courage. Because Arians can be pretty self-centered, they must remember that other people may have good ideas and can assume responsibility and leadership roles, too. The natural tendency for an Arian is to stand alone and do everything themself. But cooperation with others can be very effective in getting things done to the end rather than simply starting things and quitting before completion. Arians have a tendency to start a project, then to suddenly lose interest in it if progress is too slow or things have become too complicated."
@@ -240,7 +245,6 @@ en:
       Capricorn: "You transform in a prudent and reserved manner in areas related to power, business and careers. This generation may be against authority and wish to become independent of some authority (powerful country, convention, etc). You delve beneath the surface in matters related power over others and in a practical, common sense way seek to remove it. You may move out into the world to make changes and you are motivated from the outside, which might be social conventions. The transformation is resisted because of a tendency to cling onto the old and a tendency to carefully and prudently make changes, which tends to make them even more powerful when they break through."
       Aquarius: "You transform in an indifferent and unconventional way in matters related to friends and humanitarian matters. There are likely to be drastic changes in these areas: social, intellectual and relationships between groups for this generation. These changes are likely to persist, and be intrinsically motivated. This could be a time of drastic social changes which could reach to the very depths of belief, and threaten the foundations of society."
       Pisces: "You transform in an impressionable and inspirational way matters to do with transcendent beliefs, such as religion and spiritual matters, including universal love and sympathy. You delve into secret matters involving feeling and emotions, and deeply held secrets, perhaps by humanity, may rush to the surface, perhaps increasing psychic ability. In the search for (religious) ecstasy, and to escape the emotional pressures, there may be a danger of an increased use of pleasure-producing, psychic drugs in this generation."
-
   ascendant_in_signs:
     Aries: "People with Aries rising tend to be energetic, pioneering, rash, argumentative, selfish, impulsive, quick-tempered, aggressive, assertive, headstrong, independent, alert, mechanically-inclined, physically active, self-promoting, self-centered in an unthinking way, and more thoughtless than mean. You have a general dislike for restraint of any kind, don't like to be told what to do, need to learn diplomacy and tact, need to look before leaping, need to better learn how to channel your energies for more constructive purposes and results. Like the ram who symbolizes this sign, you tend to butt your head against your problems hoping that with enough force you can eventually knock down whatever stands before you, including people. You like the challenges of life and are very competitive and sometimes combative. You get bored easily with routine and one thing you may need to practice more of is persistence. You tend to jump from one thing to another, always looking for something new. Finish what you start before moving on. Spiritual lesson to learn: Patience. Mars rules Aries so Mars will be important in your chart."
     Taurus: "People with Taurus rising tend to be strong, persistent, slow to change, determined, stable, quiet (until pushed too far then there will be trouble), practical, stubborn, non-aggressive, patient, affectionate, loyal, hard-working, passive and unassuming in general, and fixed in their convictions with a general slow pace of mind. Taureans can be led or coaxed, but never pushed or driven. Resources and possessions, whether people or finances are very important to you. You want to build and make things grow, but you can't be hurried. You want to get your hands on things and see the practical results of your own hard work. You are good at taking what others have started then carrying on. Success comes to you by sheer persistence and will. Your love of sweet or rich food can incline you to put on weight. Try to be less rigid in all you do. Tame any jealousy and instinct to possessiveness. You hate and fear sickness and pain. Spiritual lesson to learn: Detachment. Venus rules Taurus so Venus will be important in your chart."
@@ -254,7 +258,6 @@ en:
     Capricorn: "People with Capricorn rising tend to be sensitive, timid, business-like, ambitious, controlling, reserved, practical, down-to-earth, duty-conscious, responsible, critical, and cold. You may have had trouble communicating in early life. Perhaps you suffer from feelings of inadequacy. You overcome these feelings through sheer necessity, for you have determination in achieving your goals and purposes in life. You have great ambition and do not settle until you have reached the great heights that you have set for yourself. Money, position and power are important to you. The reserve that often appears as part of your makeup is sometimes taken as coldness. To you it seems that you are being responsible and simply doing your duty. You may have had trouble with your knees. Any trouble with the knees is the outer evidence of an inner inability to be flexible. Spiritual lesson to learn: Sociability (lighten up). Saturn rules Capricorn so Saturn will be important in your life."
     Aquarius: "People with Aquarius rising tend to be altruistic, friendly, yet detached, impersonal, humanitarian, sociable, intellectual, freedom-loving, rebellious, independent, and unusual. You are here to learn altruism, brotherhood, and working for the common good, to forget yourself and your needs for the sake of your friends, who can also be strangers. You have new and different ways of looking at things. You can be very original and inventive, perhaps eccentric or bohemian. You are prone to uncertain and sudden impulses. You tend to be very intuitive, possessing a good mind. You have organizing ability and are capable and practical. You are intelligent, but sometimes cold and calculating where feelings are concerned. There is a certain detachment about you. You cannot stand possessiveness and jealousy and you require plenty of freedom. Depending on the relative strengths of Saturn and Uranus in your chart, caution, coldness and selfishness may be exhibited (Saturn stronger) or there will be more altruism, freedom and free-flowingness (Uranus stronger). If Uranus is stronger, then the things of the spirit will be stronger than materialistic worldliness. Spiritual lesson to learn: Warmth (less head and more heart). Saturn and Uranus both rule Aquarius so Saturn and Uranus will be important in your chart."
     Pisces: "People with Pisces rising tend to be sensitive, compassionate, empathic, weak-willed, long-suffering, day-dreamy, procrastinating, plastic, impressionable, impractical, indecisive, psychic, sentimental, romantic, idealistic, affectionate, easy-going, lazy, not concerned with the practical day-to-day affairs of life, absent-minded, and in search for the Holy Grail. At times you are too absent from focused awareness of the present. You may dream through life rather than live it. There may be involvement in music or dance or drugs. You may have a lonesomeness that nothing in the outer world can remedy. Being alone at times is an absolute necessity for you. The vibrations of this earth plane may be difficult at times for your sensitive body and spirit to withstand. You are very sensitive to the conditions of your surroundings and can be like a psychic sponge, absorbing all that is around you, for good or ill. You are very likeable, but you need to learn how to be more practical and down-to-earth and how to concentrate your energies on the here and now. You must serve others in this life, but must learn not to be taken advantage of or fall for everyone's sob story. Spiritual lesson to learn: Perseverance. Jupiter and Neptune both rule Pisces so Jupiter and Neptune will be important in your chart."
-
   planets_in_houses:
     Sun:
       1: "You are important to yourself and will spend much time and energy on your own personal affairs. It's not that you do not care about others, it is just that you have your work to do and it is very important to you. You want to shine and be noticed for who and what you are. You may want to lead or be in a position of dominance. You are confident, independent and responsible. But watch for tendencies to be power-seeking or dictatorial. Be alert to false pride and try to be more humble. Give proper credit to others for their contributions."
@@ -386,3 +389,14 @@ en:
       10: "Unforeseen activities can affect your career. Elements of the world society can directly influence your job or your status in the world. You are self-assertive and need to incorporate diplomacy and patience into your personality, especially when dealing with the world at large. This position can give a desire for power, a desire to retreat from society or a desire to be of benefit and service to society. Using power and force to get your way will bring your downfall. Use your skills to uplift society and the masses. You enjoy working behind the scenes to accomplish your goals. You have an instinct for knowing why people do the things they do."
       11: "Loyalty of friends is important to you. Some friends may try to be quite controlling of you or you may be quite controlling of them. Intensity of friendships really appeals to you. Your friends may find you rather charismatic. They perhaps see you as the rebel or the reformer or idealist. Friends will come and go as the need for your own growth changes. This is all part of the cosmic process. What ceases to grow, dies. This includes friendships and all relationships you may have with different groups of people. Groups and organizations can play major roles in your regeneration or transformation. Your dedication to high ideals can be used for the benefit of all mankind, if you apply yourself. You have leadership ability and the will to fight for \"causes\" that are beneficial to others."
       12: "You feel a need to search for truth and wisdom so that you can understand life. Perhaps life has enslaved you in some way and you are searching for transformation or regeneration. Occasional upheavals in your life come about in order to bring you back to the correct path. There is a desire to retreat from society in order to re-analyze your life. You can become a champion of the downtrodden masses. Serving others in this life may be important for you. You enjoy working behind the scenes."
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "both password are different"
+            password:
+              too_short: "password is too short"
+            current_password:
+              invalid: "current password is invalid"

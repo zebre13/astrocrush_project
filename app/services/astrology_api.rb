@@ -1,15 +1,5 @@
-require 'net/http'
-require 'json'
-require 'date'
-require 'time'
-
 class AstrologyApi
   @@base_url = "http://json.astrologyapi.com/v1/" # Remettre https lorsqu'une solution aura été trouvée avec net/http
-
-  def initialize(uid = nil, key = nil)
-    @api_uid = uid
-    @api_key = key
-  end
 
   # Hash containing all data from an horoscope
   def horoscope(birth_date, birth_hour, latitude, longitude)
@@ -107,7 +97,7 @@ class AstrologyApi
   def get_response(endpoint, data)
     url = URI.parse(@@base_url + endpoint)
     req = Net::HTTP::Post.new(url)
-    req.basic_auth @api_uid, @api_key
+    req.basic_auth ENV["API_UID"], ENV["API_KEY"]
     req.set_form_data(data)
     resp = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
     JSON.parse(resp.body)
@@ -189,4 +179,3 @@ class AstrologyApi
     }
   end
 end
-

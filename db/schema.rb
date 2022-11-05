@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_11_01_165354) do
+=======
+ActiveRecord::Schema.define(version: 2022_11_04_143049) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,14 +119,12 @@ ActiveRecord::Schema.define(version: 2022_11_01_165354) do
     t.string "moon"
     t.string "birth_country"
     t.string "wheel_chart"
-    t.text "personality_report"
     t.integer "utcoffset"
     t.string "latitude"
     t.string "longitude"
     t.string "country"
     t.string "city"
     t.text "affinity_scores"
-    t.text "planets"
     t.text "partner_reports"
     t.float "timezone"
     t.float "local_lat"
@@ -133,6 +135,7 @@ ActiveRecord::Schema.define(version: 2022_11_01_165354) do
     t.boolean "admin", default: false, null: false
     t.integer "new_affinity_scores_today", default: 0
     t.boolean "coordinates_updated_today", default: false
+    t.text "horoscope_data"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

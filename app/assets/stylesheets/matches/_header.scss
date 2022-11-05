@@ -1,0 +1,19 @@
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+
+.astrocrush-header {
+  font-size: 32px;
+  font-family: $headers-font;
+  height: 80px;
+  line-height: 80px;
+  vertical-align: middle;
+  text-align: center;
+  color: $violet_dark;
+  width: 390px;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 10;
+}

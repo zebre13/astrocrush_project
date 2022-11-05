@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should create an astroprofil' do
-      expect(user.planets).not_to eq(nil)
+      expect(user.horoscope_data).not_to eq(nil)
     end
 
     it 'should create a partner report' do

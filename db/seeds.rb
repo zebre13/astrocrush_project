@@ -523,9 +523,17 @@ users_data.each_with_index do |user_data, index|
   Astroprofil.profil(user)
   users_photos[index].each do |photo|
     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
+    user.save!
   end
-  user.save!
-  p "*** #{user.username} ***"
+  # user.horoscope_data = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+  # user.sign = user.horoscope_data['planets'].first['sign']
+  # user.rising = user.horoscope_data['houses'].first['sign']
+  # user.moon = user.horoscope_data['planets'][1]['sign']
+  # user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+  # user.timezone = API_CALL.time_zone(user.latitude, user.longitude, user.birth_date)
+  # users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
+  # user.save!
+  # p "*** #{user.username} ***"
 end
 
 # Adding fictive ip address

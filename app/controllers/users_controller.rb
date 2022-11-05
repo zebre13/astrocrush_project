@@ -1,9 +1,4 @@
-require 'json'
-require_relative '../services/astrology_api'
-
 class UsersController < ApplicationController
-  API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   LOGOS = { Ascendant: "↑", Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀︎", Mars: "♂︎", Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" }
 
@@ -31,8 +26,8 @@ class UsersController < ApplicationController
   end
 
   def astroboard
-    @daily_horoscope = API_CALL.daily_horoscope(current_user.sign)
-    @zodiac_compatibility = API_CALL.zodiac_compatibility(current_user.sign)
+    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+    @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
     @my_signs = my_signs(current_user.horoscope_data)
     @my_planets = my_planets_with_logos(current_user.horoscope_data)
     @my_houses = my_houses(current_user.horoscope_data)

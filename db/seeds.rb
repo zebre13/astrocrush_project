@@ -425,9 +425,9 @@ photos_bruno_lelay = [
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
 ]
 photos_sophiana_busso = [
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg")),
-  File.open(Rails.root.join("public/seed_images/sophiana_b.jpg"))
+  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg")),
+  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg")),
+  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg"))
 ]
 photos_ibrahima_kaba = [
   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg")),

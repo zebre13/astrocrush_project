@@ -43,11 +43,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     Affinities.new.match_percentage(user, mate)
   end
 
-  def ten_mates
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
-    return mates_by_gender.sample(10)
-  end
-
   protected
 
   def update_resource(resource, params)

@@ -40,7 +40,7 @@ class User < ApplicationRecord
 
   def user_is_adult?
     if Date.today.year - birth_date.year < 18
-      self.errors.add(:birth_date, "User must be over 18 years old")
+      self.errors.add(:birth_date, "must be over 18 years old")
     end
   end
 

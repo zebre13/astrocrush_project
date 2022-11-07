@@ -12,7 +12,7 @@ class MatchesController < ApplicationController
     @oldmatches = @matches.left_outer_joins(chatroom: :messages).where.not(messages: {id: nil}).distinct
   end
 
-  def create p
+  def create
     @mate = User.find(params[:id])
     if Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)
       @match = Match.find_by(user: @mate, mate: current_user) || Match.find_by(mate: @mate, user: current_user)

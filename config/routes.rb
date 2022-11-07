@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
   require "sidekiq/web"
   # Sidekiq jobs
@@ -7,10 +6,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq/'
   end
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations" }
-=======
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations"}
-
->>>>>>> master
   root to: 'users#index'
   resources :chatrooms, only: :show do
     resources :messages, only: :create

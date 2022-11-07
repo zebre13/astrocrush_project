@@ -1,10 +1,12 @@
 require 'open-uri'
 require 'faker'
+require 'geocode'
 require_relative '../app/services/astrology_api'
 require 'resolv-replace'
 require_relative '../app/services/astroprofil'
-API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
-
+# API_CALL = AstrologyApi.new
+API_CALL = AstrologyApi.new
+GEOCODE = Geocode.new
 # API_CALL = AstrologyApi.new
 
 # <=== DATABASE CLEANOUT ===>
@@ -521,11 +523,14 @@ users_photos = [
 # <--- Create Users --->
 
 users_data.each_with_index do |user_data, index|
+  p 'aller letsgo'
   user = User.new(user_data)
   Astroprofil.profil(user)
   users_photos[index].each do |photo|
+    p 'attaching photo'
     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
     user.save!
+    p 'user saved'
   end
   # user.horoscope_data = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
   # user.sign = user.horoscope_data['planets'].first['sign']
@@ -542,8 +547,19 @@ end
 
 User.all.each do |user|
   user.search_perimeter = 20000
-  user.last_sign_in_ip = Faker::Internet.private_ip_v4_address
-  user.save
+  user.last_sign_in_ip = Faker::Internet.ip_v4_address
+  data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
+  p "here is data before it's in the until loop (or not): #{data}"
+  until data != []
+    user.last_sign_in_ip = Faker::Internet.ip_v4_address
+    user.save
+    p "here is a new ip for #{user.email}, #{user.last_sign_in_ip}"
+    data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
+    p data
+  end
+  p "congrats, data is not []"
+  user.save!
+  p 'one user saved!'
 end
 # <--- Calculate and attach affinity scores and reports --->
 # ùù

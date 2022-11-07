@@ -21,7 +21,7 @@ class UpdateUserJob < ApplicationJob
     max_count = 3
 
     # Pour chaque user, met les new_affinity_scores à 0 et coordinates_updated_today à false
-    users = User.last(2)
+    users = User.all
     initialize_update(users)
 
     # Pour l'update de l'index de chaque users

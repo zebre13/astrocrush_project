@@ -7,7 +7,7 @@ class User < ApplicationRecord
   serialize :hobbies, Array
   serialize :partner_reports, Hash
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   # after_validation :geoloc
 
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   #   unscope(where: :user_id)
   #     .where("first_user_id = :user_id OR second_user_id = :user_id", user_id: user.id)
   # },
-    # class_name: 'Chatroom', dependent: :destroy
+  # class_name: 'Chatroom', dependent: :destroy
 
   validates :username, presence: true
   validates :email, presence: true
@@ -31,17 +31,20 @@ class User < ApplicationRecord
   validates :photos, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
-  # validate :user_is_adult
+  validate :user_is_adult?
   validates_length_of :description, maximum: 500
-    # private
-
-    # def user_is_adult
-    #   if Date.today.year - birth_date.year < 18
-    #     self.errors.add(:birth_date, "User must be over 18 years old")
-    #   end
-    # end
 
   def matches
     Match.where(user: self).or(Match.where(mate: self))
+  end
+
+  def user_is_adult?
+    if Date.today.year - birth_date.year < 18
+      self.errors.add(:birth_date, "must be over 18 years old")
+    end
+  end
+
+  def online?
+    updated_at > 2.minutes.ago
   end
 end

@@ -1,0 +1,20 @@
+.status-container {
+  background-color: lightgrey;
+  border-radius: 25%;
+  height: 1rem;
+  width: 1rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  .status {
+    border-radius: 50%;
+    height: 0.3rem;
+    width: 0.3rem;
+  }
+  .online {
+    background-color: green;
+  }
+  .offline {
+    background-color: red;
+  }
+}

@@ -5,6 +5,8 @@ require 'resolv-replace'
 require_relative '../app/services/astroprofil'
 API_CALL = AstrologyApi.new(ENV["API_UID"], ENV["API_KEY"])
 
+# API_CALL = AstrologyApi.new
+
 # <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'

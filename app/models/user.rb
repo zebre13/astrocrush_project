@@ -31,14 +31,14 @@ class User < ApplicationRecord
   validates :photos, presence: true
   validates :gender, presence: true
   validates :looking_for, presence: true
-  # validate :user_is_adult
+  validate :user_is_adult?
   validates_length_of :description, maximum: 500
 
   def matches
     Match.where(user: self).or(Match.where(mate: self))
   end
 
-  def user_is_adult
+  def user_is_adult?
     if Date.today.year - birth_date.year < 18
       self.errors.add(:birth_date, "User must be over 18 years old")
     end

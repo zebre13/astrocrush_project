@@ -369,3 +369,8 @@ fr:
               too_short: "le mot de passe est trop court"
             current_password:
               invalid: "le mots de passe actuel est invalide"
+      messages:
+        error_has_occured: "Erreur"
+    valid:
+      messages:
+        success: "Bravo"

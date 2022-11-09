@@ -24,25 +24,25 @@ class User < ApplicationRecord
   validates :email, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/
   # validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a- z]{2,})$/i
-  validates :birth_date, presence: true
+  # validates :birth_date, presence: true
   # validates_date :date_of_birth, :after => Proc.new { Date.today }
-  validates :birth_hour, presence: true
-  validates :birth_location, presence: true
-  validates :photos, presence: true
-  validates :gender, presence: true
-  validates :looking_for, presence: true
-  validate :user_is_adult?
+  # validates :birth_hour, presence: true
+  # validates :birth_location, presence: true
+  # validates :photos, presence: true
+  # validates :gender, presence: true
+  # validates :looking_for, presence: true
+  # validate :user_is_adult?
   validates_length_of :description, maximum: 500
 
   def matches
     Match.where(user: self).or(Match.where(mate: self))
   end
 
-  def user_is_adult?
-    if Date.today.year - birth_date.year < 18
-      self.errors.add(:birth_date, "must be over 18 years old")
-    end
-  end
+  # def user_is_adult?
+  #   if Date.today.year - birth_date.year < 18
+  #     self.errors.add(:birth_date, "must be over 18 years old")
+  #   end
+  # end
 
   def online?
     updated_at > 2.minutes.ago

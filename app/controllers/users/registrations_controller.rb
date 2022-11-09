@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  after_action :create_astroprofil, only: %i[new create]
-  after_action :create_ten_affinities, only: %i[new create]
+  # after_action :create_astroprofil, only: %i[new create]
+  # after_action :create_ten_affinities, only: %i[new create]
+  prepend_before_action :authenticate_scope!, only: %i[edit update destroy onboarding_birth onboarding_profil edit_infos edit_password]
 
   def create
     build_resource(sign_up_params)
@@ -21,6 +22,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+  end
+
+  def onboarding_birth
+    render :onboarding_birth
+  end
+
+  def onboarding_profil
+    render :onboarding_profil
+  end
+
+  def edit_infos
+    render :edit_infos
+  end
+
+  def edit_password
+    render :edit_password
   end
 
   private
@@ -55,5 +72,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if updated
     end
     return updated
+  end
+
+  def redirect(page)
+    if page == "users/sign_up"
+      redirect_to onboarding_birth_path
+    else
+      redirect_back fallback_location: root_path
+    end
   end
 end

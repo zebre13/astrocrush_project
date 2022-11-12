@@ -37,7 +37,7 @@ gem 'faker'
 gem 'rest-client'
 
 # Wicked
-gem 'wicked'
+gem 'wicked', github: "schneems/wicked"
 
 #Geocode
 gem "geocoder"

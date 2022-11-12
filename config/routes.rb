@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Devise
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations"}
+  # devise_scope :user do
+  #   resources :after_signup
+  # end
 
   #Chatroom
   root to: 'users#index'
@@ -12,8 +15,11 @@ Rails.application.routes.draw do
   resources :matches
   post '/create_denied_match', to: 'matches#create_denied_match', as: 'create_denied_match'
 
+  # After Sign Up
+  resources :after_signup
+
   # Users
-  resources :users, only: %i[show]
+  resources :users
   get 'dashboard', to: 'users#dashboard'
   get 'astroboard', to: 'users#astroboard'
   get 'onboarding_birth', to: 'users#onboarding_birth'

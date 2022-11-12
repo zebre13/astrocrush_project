@@ -34,11 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return updated
   end
 
-  def redirect(page)
-    if page == "users/sign_up"
-      redirect_to onboarding_birth_path
-    else
-      redirect_back fallback_location: root_path
-    end
+  def after_sign_up_path_for(resource)
+    after_signup_path(:onboarding_birth)
   end
 end

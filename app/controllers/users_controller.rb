@@ -70,7 +70,6 @@ class UsersController < ApplicationController
     Date.today - (current_user.maximum_age * 365)
   end
 
-
   def create_astroprofil
     return unless user_signed_in?
 

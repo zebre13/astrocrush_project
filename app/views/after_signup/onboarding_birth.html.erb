@@ -7,7 +7,7 @@
             <div class="error_notification alert-danger"><%#= message %></div>
           <%# end %>
         <%# end %>
-      <%= simple_form_for(@user, url: update_user_path, method: :put)  do |f| %>
+      <%= simple_form_for(@user, url: wizard_path, method: :put)  do |f| %>
         <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <div class="form-inputs">
           <%= f.input :birth_date,
@@ -69,3 +69,5 @@
     </div>
   </div>
 </div>
+
+<%= link_to 'skip', next_wizard_path %>

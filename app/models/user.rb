@@ -34,6 +34,12 @@ class User < ApplicationRecord
   # validate :user_is_adult?
   validates_length_of :description, maximum: 500
 
+  cattr_accessor :form_steps do
+    %w[sign_up onboarding_birth onboarding_profile find_friends edit_password edit_infos]
+  end
+
+  attr_accessor :form_step
+
   def matches
     Match.where(user: self).or(Match.where(mate: self))
   end

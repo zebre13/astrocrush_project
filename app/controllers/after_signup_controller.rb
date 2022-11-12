@@ -17,7 +17,7 @@ class AfterSignupController < ApplicationController
     case step
     when :onboarding_birth
       current_user.update(user_params("onboarding_birth"))
-      create_ten_affinities
+      create_affinities(10)
       create_astroprofil
     when :onboarding_profil
       current_user.update(user_params("onboarding_profil"))
@@ -45,43 +45,5 @@ class AfterSignupController < ApplicationController
     end
 
   	params.require(:user).permit(permitted_attributes).merge(form_step: step)
-  end
-
-  # def birth_params
-  #   params.require(:user)
-  #         .permit(:birth_date, :birth_hour, :birth_location, :latitude, :longitude, :gender, :looking_for)
-  # end
-
-  # def profile_params
-  #   params.require(:user)
-  #         .permit(:description, :hobbies, :maximum_age, :minimal_age, :search_perimeter, photos:[])
-  # end
-
-  # def password_params
-  #   params.require(:user)
-  #         .permit(:password, :password_confirmation, :current_password)
-  # end
-
-  # def infos_params
-  #   params.require(:user)
-  #         .permit(:username, :description, :hobbies, :maximum_age, :minimal_age, :looking_for, :search_perimeter, photos:[])
-  # end
-
-  def create_astroprofil
-    return unless user_signed_in?
-
-    Astroprofil.new.profil(current_user)
-  end
-
-  def create_ten_affinities
-    return unless user_signed_in?
-
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
-    mates_by_gender.each { |mate| affinities(current_user, mate) }
-  end
-
-  def affinities(user, mate)
-    Affinities.new.partner_report(user, mate)
-    Affinities.new.match_percentage(user, mate)
   end
 end

@@ -16,4 +16,12 @@ module ProfileHelper
     Affinities.new.partner_report(user, mate)
     Affinities.new.match_percentage(user, mate)
   end
+
+  def mini_date
+    Date.today - (current_user.minimal_age * 365)
+  end
+
+  def max_date
+    Date.today - (current_user.maximum_age * 365)
+  end
 end

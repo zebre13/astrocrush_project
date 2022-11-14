@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[update onboarding_birth onboarding_profil edit_infos edit_password]
+  before_action :set_user, only: %i[update edit_infos edit_password]
   after_action :create_astroprofil, only: %i[onboarding_birth]
   after_action :create_ten_affinities, only: %i[onboarding_birth]
 
@@ -23,9 +23,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_infos
+  end
+
+  def edit_password
+  end
+
   def update
     if @user.update(user_params)
       flash[:notice] = t("activerecord.valid.messages.success")
+      redirect_to dashboard_path
     else
       flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
     end
@@ -44,14 +51,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = current_user
-  end
-
-  def mini_date
-    Date.today - (current_user.minimal_age * 365)
-  end
-
-  def max_date
-    Date.today - (current_user.maximum_age * 365)
   end
 
   # Array of sorted planets used for the construction of the astroboard table
@@ -97,7 +96,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:birth_date, :birth_hour, :birth_location, :latitude, :longitude, :gender, :looking_for)
+    params.require(:user).permit(:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: [], hobbies: [])
   end
 
   def redirect(page)

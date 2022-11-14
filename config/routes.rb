@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'astroboard', to: 'users#astroboard'
   # get 'onboarding_birth', to: 'users#onboarding_birth'
   # get 'onboarding_profil', to: 'users#onboarding_profil'
-  # get 'edit_password', to: 'users#edit_password'
-  # get 'edit_infos', to: 'users#edit_infos'
-  # put 'update-user', to: 'users#update', as: 'update_user'
+  get 'edit_password', to: 'users#edit_password'
+  get 'edit_infos', to: 'users#edit_infos'
+  put 'update-user', to: 'users#update', as: 'update_user'
 end

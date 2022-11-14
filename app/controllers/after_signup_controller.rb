@@ -17,8 +17,8 @@ class AfterSignupController < ApplicationController
     case step
     when :onboarding_birth
       current_user.update(user_params("onboarding_birth"))
-      create_affinities(10)
-      create_astroprofil
+      helpers.create_affinities(10)
+      helpers.create_astroprofil
     when :onboarding_profil
       current_user.update(user_params("onboarding_profil"))
     when :edit_password

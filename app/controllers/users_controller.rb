@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", mini_date).where("(birth_date > ?)", max_date)
+    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
 
     users_with_score = users_by_preference.select do |user|
       user.affinity_scores.keys.include?(current_user.id)

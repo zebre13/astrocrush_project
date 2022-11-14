@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_reader :my_zodiac
+
   serialize :affinity_scores, Hash
   serialize :planets, Hash
   serialize :horoscope_data, Hash
@@ -9,7 +10,6 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  # after_validation :geoloc
 
   has_many_attached :photos
   has_many :matches, dependent: :destroy
@@ -20,10 +20,10 @@ class User < ApplicationRecord
   # },
   # class_name: 'Chatroom', dependent: :destroy
 
-  validates :username, presence: true
   validates :email, presence: true
   # validates :email, presence: true, /.+@.+\.\w{2,3}/
   # validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a- z]{2,})$/i
+  # validates :username, presence: true
   # validates :birth_date, presence: true
   # validates_date :date_of_birth, :after => Proc.new { Date.today }
   # validates :birth_hour, presence: true
@@ -35,7 +35,7 @@ class User < ApplicationRecord
   validates_length_of :description, maximum: 500
 
   cattr_accessor :form_steps do
-    %w[sign_up onboarding_birth onboarding_profile find_friends edit_password edit_infos]
+    %w[sign_up onboarding_birth onboarding_profile]
   end
 
   attr_accessor :form_step

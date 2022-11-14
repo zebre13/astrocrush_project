@@ -9,13 +9,13 @@
       <%# end %>
       <%= simple_form_for(@user, url: wizard_path, method: :put)  do |f| %>
         <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <div class="form-inputs">
+        <div class="form-inputs pb-3">
           <%= f.input :username,
                       required: true %>
-          <%= f.input :password, required: true,
+          <%#= f.input :password, required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                       input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+          <%#= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
           <%= f.input :description,
                       required: false %>
           <%= f.input :hobbies, collection: ['Bataille de polochons',
@@ -35,7 +35,7 @@
         <div class="" data-controller = "loading">
           <div class="form-actions d-flex flex-column" data-action="click->loading#load">
             <%= f.button :submit,
-                          "Sign up",
+                          "Envoyer ma description",
                           class: "btn btn-primary"%>
           </div>
           <div class="modal fade" data-loading-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

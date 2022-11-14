@@ -9,7 +9,7 @@
         <%# end %>
       <%= simple_form_for(@user, url: wizard_path, method: :put)  do |f| %>
         <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <div class="form-inputs">
+        <div class="form-inputs pb-3">
           <%= f.input :birth_date,
                       as: :date,
                       start_year: Date.today.year,
@@ -54,7 +54,7 @@
         <div class="" data-controller = "loading">
           <div class="form-actions d-flex flex-column" data-action="click->loading#load">
             <%= f.button :submit,
-                          "Sign up",
+                          "Calculer mon Astroprofil",
                           class: "btn btn-primary"%>
           </div>
           <div class="modal fade" data-loading-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

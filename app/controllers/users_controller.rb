@@ -32,22 +32,6 @@ class UsersController < ApplicationController
     # redirect(params[:user][:page])
   end
 
-  def onboarding_birth
-    render :onboarding_birth
-  end
-
-  def onboarding_profil
-    render :onboarding_profil
-  end
-
-  def edit_infos
-    render :edit_infos
-  end
-
-  def edit_password
-    render :edit_password
-  end
-
   def astroboard
     @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
     @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
@@ -68,24 +52,6 @@ class UsersController < ApplicationController
 
   def max_date
     Date.today - (current_user.maximum_age * 365)
-  end
-
-  def create_astroprofil
-    return unless user_signed_in?
-
-    Astroprofil.new.profil(current_user)
-  end
-
-  def create_ten_affinities
-    return unless user_signed_in?
-
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
-    mates_by_gender.each { |mate| affinities(current_user, mate) }
-  end
-
-  def affinities(user, mate)
-    Affinities.new.partner_report(user, mate)
-    Affinities.new.match_percentage(user, mate)
   end
 
   # Array of sorted planets used for the construction of the astroboard table

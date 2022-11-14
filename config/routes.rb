@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   resources :users
   get 'dashboard', to: 'users#dashboard'
   get 'astroboard', to: 'users#astroboard'
-  get 'onboarding_birth', to: 'users#onboarding_birth'
-  get 'onboarding_profil', to: 'users#onboarding_profil'
-  get 'edit_password', to: 'users#edit_password'
-  get 'edit_infos', to: 'users#edit_infos'
-  put 'update-user', to: 'users#update', as: 'update_user'
+  # get 'onboarding_birth', to: 'users#onboarding_birth'
+  # get 'onboarding_profil', to: 'users#onboarding_profil'
+  # get 'edit_password', to: 'users#edit_password'
+  # get 'edit_infos', to: 'users#edit_infos'
+  # put 'update-user', to: 'users#update', as: 'update_user'
 end

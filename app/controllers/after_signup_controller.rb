@@ -43,7 +43,6 @@ class AfterSignupController < ApplicationController
     when "edit_infos"
       [:username, :description, :hobbies, :maximum_age, :minimal_age, :looking_for, :search_perimeter, photos:[]]
     end
-
   	params.require(:user).permit(permitted_attributes).merge(form_step: step)
   end
 end

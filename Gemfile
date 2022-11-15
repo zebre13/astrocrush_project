@@ -36,7 +36,8 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
 
-
+# Wicked
+gem 'wicked', github: "schneems/wicked"
 
 #Geocode
 gem "geocoder"

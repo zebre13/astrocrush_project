@@ -1,7 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  after_action :create_astroprofil, only: %i[new create]
-  after_action :create_ten_affinities, only: %i[new create]
-
   def create
     build_resource(sign_up_params)
 
@@ -23,26 +20,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  private
-
-  def create_astroprofil
-    return unless user_signed_in?
-
-    Astroprofil.new.profil(current_user)
-  end
-
-  def create_ten_affinities
-    return unless user_signed_in?
-
-    mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
-    mates_by_gender.each { |mate| affinities(current_user, mate) }
-  end
-
-  def affinities(user, mate)
-    Affinities.new.partner_report(user, mate)
-    Affinities.new.match_percentage(user, mate)
-  end
-
   protected
 
   def update_resource(resource, params)
@@ -55,5 +32,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if updated
     end
     return updated
+  end
+
+  def after_sign_up_path_for(resource)
+    after_signup_path(:onboarding_birth)
   end
 end

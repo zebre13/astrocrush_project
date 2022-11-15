@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="edit-button">
-        <%= link_to "",  edit_user_registration_path, class: "far fa-edit" %>
+        <%= link_to "",  edit_infos_path, class: "far fa-edit" %>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
     </div>
     <div class="d-flex justify-content-center py-2">
         <div class="logout-button">
-          <%= link_to "#{I18n.t "password_button"}", edit_user_registration_path(password: true) %>
+          <%= link_to "#{I18n.t "password_button"}", edit_password_path %>
         </div>
     </div>
     <div class="d-flex justify-content-center py-2">

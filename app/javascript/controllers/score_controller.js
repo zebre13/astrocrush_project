@@ -16,8 +16,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("Hello from our Score controller")
-    console.log(google)
+
     if(typeof(google) != undefined){
       this.initMap()
     }
@@ -79,7 +78,6 @@ export default class extends Controller {
       return new Promise((resolve, reject) => {
         request(resource, data).then((resp) => {
           crushData['tzone'] = parseFloat(resp['timezone']);
-          console.log(crushData)
           resolve(crushData)
         }, (err) => {
           reject(err);
@@ -111,7 +109,6 @@ export default class extends Controller {
             Object.assign(fData, el)
           });
 $        }
-        console.log({...mData, ...fData})
         resolve({...mData, ...fData});
       })
     }
@@ -121,7 +118,6 @@ $        }
       const resource = 'match_percentage';
 
       request(resource, data).then((resp) => {
-        // console.log(resp);
         // this.scoreAlertTarget.classList.remove("d-none");
         // this.modalbodyTarget.innerText = `Your compatibility : ${resp.match_percentage} %`;
 
@@ -154,11 +150,9 @@ $        }
 
   // google map
   initMap(){
-    console.log(google)
     this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
     this.autocomplete.setFields(['address_components', 'geometry', 'name', 'utc_offset_minutes'])
     this.autocomplete.addListener('place_changed', this.placeChanged.bind(this))
-    console.log(this.autocomplete)
   };
 
   placeChanged(){

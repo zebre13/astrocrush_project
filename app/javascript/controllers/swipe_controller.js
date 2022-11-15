@@ -9,7 +9,6 @@ export default class extends Controller {
 
   connect() {
     // console.log("coucou")
-    console.log(this.userTargets.length)
     this._setupDragAndDrop();
   }
 
@@ -68,7 +67,6 @@ export default class extends Controller {
   swipeLeft(event){
 
     const dataId = event.target.parentElement.dataset.id
-    console.log(dataId)
     const mateId = parseInt(dataId, 10)
     const url = "/create_denied_match"
     fetch(url, {
@@ -89,9 +87,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('hello ->', data)
       if(data.match.status === 'accepted'){
-        console.log(this.modalTarget)
         var modal = new Modal(this.modalTarget)
         this.modalbodyTarget.innerHTML = data.content
         modal.show()

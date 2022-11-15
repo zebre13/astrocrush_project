@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[update edit_infos edit_password]
-  after_action :create_astroprofil, only: %i[onboarding_birth]
-  after_action :create_ten_affinities, only: %i[onboarding_birth]
 
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   LOGOS = { Ascendant: "↑", Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀︎", Mars: "♂︎", Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" }
@@ -12,39 +10,73 @@ class UsersController < ApplicationController
   end
 
   def index
-    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    else
+      users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
 
-    users_with_score = users_by_preference.select do |user|
-      user.affinity_scores.keys.include?(current_user.id)
+      users_with_score = users_by_preference.select do |user|
+        user.affinity_scores.keys.include?(current_user.id)
+      end
+
+      @users = users_with_score.reject do |user|
+        Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+      end
     end
+  end
 
-    @users = users_with_score.reject do |user|
-      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+  def update
+    case params[:commit]
+    when "Calculer mon Astroprofil"
+      if @user.update(user_params("birth_date"))
+        helpers.create_affinities(10)
+        helpers.create_astroprofil
+        flash[:notice] = t("activerecord.valid.messages.success")
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
+    when "Editer mes infos"
+      if @user.update(user_params("edit_infos"))
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
+    when "Modifier mon mot de passe"
+      if @user.update(user_params("edit_password"))
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
     end
   end
 
   def edit_infos
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    end
   end
 
   def edit_password
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    end
   end
 
-  def update
-    if @user.update(user_params)
-      flash[:notice] = t("activerecord.valid.messages.success")
-      redirect_to dashboard_path
-    else
-      flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
-    end
-    # redirect(params[:user][:page])
+  def birth_date
+    @user = current_user
   end
 
   def astroboard
-    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
-    @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
-    @my_signs = my_signs(current_user.horoscope_data)
-    @my_planets = my_planets_with_logos(current_user.horoscope_data)
-    @my_houses = my_houses(current_user.horoscope_data)
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    else
+      @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+      @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
+      @my_signs = my_signs(current_user.horoscope_data)
+      @my_planets = my_planets_with_logos(current_user.horoscope_data)
+      @my_houses = my_houses(current_user.horoscope_data)
+    end
   end
 
   private
@@ -95,15 +127,16 @@ class UsersController < ApplicationController
     houses.group_by{ |x| x }.values
   end
 
-  def user_params
-    params.require(:user).permit(:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: [], hobbies: [])
-  end
 
-  def redirect(page)
-    if page == "onboarding_birthdate"
-      redirect_to main_interests_path
-    else
-      redirect_back fallback_location: root_path
-    end
+  def user_params(step)
+    permitted_attributes = case step
+                           when "birth_date"
+                             %i[birth_date birth_hour birth_location latitude longitude gender looking_for country city utcoffset]
+                           when "edit_infos"
+                             [:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: [], hobbies: []]
+                           when "edit_password"
+                             [:password]
+                           end
+    params.require(:user).permit(permitted_attributes)
   end
 end

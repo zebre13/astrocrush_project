@@ -658,7 +658,7 @@ if Interest.all.blank?
 
   interests.each do |interest|
     puts "create #{interest[:name]}"
-    Interest.create({name: interest[:name], emoji: interest[:emoji]})
+    Interest.create({ name: interest[:name], emoji: interest[:emoji] })
   end
 end
 

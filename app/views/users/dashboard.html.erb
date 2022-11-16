@@ -60,7 +60,7 @@
         <% if current_user.interests %>
           <% current_user.interests.each do |interest| %>
             <div class="tag">
-              <%= interest.name %>
+              <%= interest.emoji + interest.name %>
             </div>
           <% end %>
         <% end %>

@@ -543,7 +543,6 @@ end
 
 puts "#{User.all.length} users created successfully!"
 
-
 # <=== USER INTEREST ===>
 
 if Interest.all.blank?

@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
   end
 
   create_table "user_interests", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "interests_id", null: false
+    t.bigint "user_id"
+    t.bigint "interest_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["interests_id"], name: "index_user_interests_on_interests_id"
-    t.index ["users_id"], name: "index_user_interests_on_users_id"
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -156,6 +156,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
-  add_foreign_key "user_interests", "interests", column: "interests_id"
-  add_foreign_key "user_interests", "users", column: "users_id"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end

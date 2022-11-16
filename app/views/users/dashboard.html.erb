@@ -57,10 +57,10 @@
       <h5 class="mb-1">
         <%= I18n.t "hobbies_title" %>
       </h5>
-        <% if current_user.user_interests %>
-          <% current_user.user_interests.each do |interest| %>
+        <% if current_user.interests %>
+          <% current_user.interests.each do |interest| %>
             <div class="tag">
-              <%= hobby %>
+              <%= interest.name %>
             </div>
           <% end %>
         <% end %>

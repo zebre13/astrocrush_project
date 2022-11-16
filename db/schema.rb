@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_143049) do
+ActiveRecord::Schema.define(version: 2022_11_16_150228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 2022_11_04_143049) do
   end
 
   create_table "chatrooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.string "name"
+    t.string "emoji"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,6 +89,15 @@ ActiveRecord::Schema.define(version: 2022_11_04_143049) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "interests_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interests_id"], name: "index_user_interests_on_interests_id"
+    t.index ["users_id"], name: "index_user_interests_on_users_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -104,7 +120,6 @@ ActiveRecord::Schema.define(version: 2022_11_04_143049) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.text "description"
-    t.string "hobbies"
     t.date "birth_date"
     t.time "birth_hour"
     t.string "birth_location"
@@ -141,4 +156,6 @@ ActiveRecord::Schema.define(version: 2022_11_04_143049) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "user_interests", "interests", column: "interests_id"
+  add_foreign_key "user_interests", "users", column: "users_id"
 end

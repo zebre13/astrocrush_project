@@ -2,10 +2,11 @@ class AfterSignupController < ApplicationController
   include Wicked::Wizard
   # after_action :create_ten_affinities, only: %i[update] if
   # after_action :create_astroprofil, only: %i[update]
-  steps :onboarding_birth, :onboarding_profile
+  steps :onboarding_birth, :onboarding_profile, :onboarding_interests
 
   def show
     @user = current_user
+    @interests = Interest.all
     render_wizard
   end
 
@@ -18,6 +19,9 @@ class AfterSignupController < ApplicationController
       helpers.create_astroprofil
     when :onboarding_profile
       @user.update(user_params("onboarding_profile"))
+      finish_wizard_path
+    when :onboarding_interests
+      @user.interests.update(user_params("onboarding_interests"))
       finish_wizard_path
     end
     sign_in(@user, bypass_sign_in: true) # needed for devise
@@ -35,7 +39,9 @@ class AfterSignupController < ApplicationController
                            when "onboarding_birth"
                              %i[birth_date birth_hour birth_location latitude longitude gender looking_for country city utcoffset]
                            when "onboarding_profile"
-                             [:username, :description, photos:[], hobbies:[]]
+                             [:username, :description, photos:[]]
+                           when "onboarding_interests"
+                             [:interests]
                            end
     params.require(:user).permit(permitted_attributes).merge(form_step: step)
   end

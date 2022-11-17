@@ -6,6 +6,7 @@
         <% @interests.each do |interest| %>
           <button type="button" class="btn btn-light m-1"><%= "#{interest.emoji} #{interest.name}" %></button>
         <% end %>
+        <%= link_to "Créer mon profil", root_path, class: "btn btn-primary m-3" %>
       </div>
     </div>
   </div>

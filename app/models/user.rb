@@ -5,7 +5,6 @@ class User < ApplicationRecord
   serialize :planets, Hash
   serialize :horoscope_data, Hash
   serialize :personality_report, Array
-  serialize :hobbies, Array
   serialize :partner_reports, Hash
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, and :omniauthable
@@ -14,7 +13,7 @@ class User < ApplicationRecord
   has_many_attached :photos
   has_many :matches, dependent: :destroy
   has_many :messages, dependent: :destroy
-  has_many :user_interests
+  has_many :user_interests, dependent: :destroy
 
   has_many :interests, through: :user_interests
 
@@ -39,7 +38,7 @@ class User < ApplicationRecord
   validates_length_of :description, maximum: 500
 
   cattr_accessor :form_steps do
-    %w[sign_up onboarding_birth onboarding_profile]
+    %w[sign_up onboarding_birth onboarding_profile onboarding_interests]
   end
 
   attr_accessor :form_step

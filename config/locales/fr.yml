@@ -1,13 +1,35 @@
 fr:
   date:
-    abbr_day_names:
-    - dim
-    - lun
-    - mar
-    - mer
-    - jeu
-    - ven
-    - sam
+    formats:
+      default: "%d/%m/%Y"
+      long: "%-d %B %Y"
+      short: "%-d %b"
+    order:
+    - :day
+    - :month
+    - :year
+    month_names:
+    -
+    - janvier
+    - février
+    - mars
+    - avril
+    - mai
+    - juin
+    - juillet
+    - août
+    - septembre
+    - octobre
+    - novembre
+    - décembre
+    day_names:
+    - dimanche
+    - lundi
+    - mardi
+    - mercredi
+    - jeudi
+    - vendredi
+    - samedi
     abbr_month_names:
     -
     - jan.
@@ -22,35 +44,14 @@ fr:
     - oct.
     - nov.
     - déc.
-    day_names:
-    - dimanche
-    - lundi
-    - mardi
-    - mercredi
-    - jeudi
-    - vendredi
-    - samedi
-    formats:
-      default: "%d/%m/%Y"
-      long: "%-d %B %Y"
-      short: "%-d %b"
-    month_names:
-    - janvier
-    - février
-    - mars
-    - avril
-    - mai
-    - juin
-    - juillet
-    - août
-    - septembre
-    - octobre
-    - novembre
-    - décembre
-    order:
-    - :day
-    - :month
-    - :year
+    abbr_day_names:
+    - dim
+    - lun
+    - mar
+    - mer
+    - jeu
+    - ven
+    - sam
   datetime:
     distance_in_words:
       about_x_hours:

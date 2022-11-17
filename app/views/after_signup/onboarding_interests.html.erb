@@ -1,0 +1,12 @@
+<div class="container pb-5" data-controller="places" data-action="google-maps-callback@window->places#initMap">
+  <div class="row mt-5">
+    <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4">
+      <h2>Mes intérêts</h2>
+      <div data-controller="">
+        <% @interests.each do |interest| %>
+          <button type="button" class="btn btn-light m-1"><%= "#{interest.emoji} #{interest.name}" %></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

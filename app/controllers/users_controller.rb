@@ -134,7 +134,7 @@ class UsersController < ApplicationController
                            when "birth_date"
                              %i[birth_date birth_hour birth_location latitude longitude gender looking_for country city utcoffset]
                            when "edit_infos"
-                             [:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: [], hobbies: []]
+                             [:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: []]
                            when "edit_password"
                              [:password]
                            end

@@ -7,16 +7,6 @@
                   required: true %>
       <%= f.input :description,
                   required: false %>
-      <%= f.input :hobbies,
-                  collection: ['Bataille de polochons',
-                              'Soirée pyjama drogue',
-                              'Voyager en jet privé',
-                              'Faire plein de gosses',
-                              'Cracher du feu sur des bolas',
-                              'Me déguiser en cornichon et danser'],
-                  input_html: {multiple: true},
-                  include_blank: false,
-                  include_hidden: false %>
       <%= f.file_field :photos,
                         as: :file,
                         multiple: true,

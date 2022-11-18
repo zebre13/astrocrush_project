@@ -36,7 +36,6 @@ class ApplicationController < ActionController::Base
                                                                 :timezone,
                                                                 :local_lat,
                                                                 :local_lon,
-                                                                hobbies: [],
                                                                 photos: [])
     end
 
@@ -68,7 +67,6 @@ class ApplicationController < ActionController::Base
                                                                       :minimal_age,
                                                                       :maximum_age,
                                                                       :search_perimeter,
-                                                                      hobbies: [],
                                                                       photos: [])
     end
   end

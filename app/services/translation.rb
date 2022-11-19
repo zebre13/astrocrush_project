@@ -10,3 +10,9 @@ class Translation
     DeepL.translate text, 'EN', 'FR'
   end
 end
+
+# translated_reports = reports.transform_values do |report|
+#     report.transform_values { |item| Translation.new.to_fr(item).text }
+# end
+
+# p translated_reports

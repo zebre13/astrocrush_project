@@ -39,6 +39,9 @@ gem 'rest-client'
 # Wicked
 gem 'wicked', github: "schneems/wicked"
 
+# Translmtion via DeepL
+gem 'deepl-rb', require: 'deepl'
+
 #Geocode
 gem "geocoder"
 

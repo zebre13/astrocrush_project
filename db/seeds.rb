@@ -465,7 +465,7 @@ users_photos = [
 ]
 
 # <--- Create Users --->
-if User.all.blank?
+# if User.all.blank?
   users_data.each_with_index do |user_data, index|
     user = User.new(user_data)
 
@@ -539,7 +539,7 @@ if User.all.blank?
   end
 
   puts "all confirmations skiped"
-end
+# end
 
 puts "#{User.all.length} users created successfully!"
 

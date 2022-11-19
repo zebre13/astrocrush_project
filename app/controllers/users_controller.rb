@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     if !current_user.birth_date
       redirect_to birth_date_path
     else
-      @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+      @daily_horoscope = Translation.new.to_fr(AstrologyApi.new.daily_horoscope(current_user.sign)).text
       @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
       @my_signs = my_signs(current_user.horoscope_data)
       @my_planets = my_planets_with_logos(current_user.horoscope_data)

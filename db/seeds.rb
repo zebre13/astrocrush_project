@@ -5,11 +5,11 @@ require 'resolv-replace'
 
 # <=== DATABASE CLEANOUT ===>
 
-# puts 'Cleaning database...'
-# User.destroy_all
-# Match.destroy_all
-# Chatroom.destroy_all
-# puts 'Database clean'
+puts 'Cleaning database...'
+User.destroy_all
+Match.destroy_all
+Chatroom.destroy_all
+puts 'Database clean'
 
 # <=== USERS SEEDING ===>
 

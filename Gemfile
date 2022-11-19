@@ -39,7 +39,7 @@ gem 'rest-client'
 # Wicked
 gem 'wicked', github: "schneems/wicked"
 
-# Translmtion via DeepL
+# Use DeepL for text translation
 gem 'deepl-rb', require: 'deepl'
 
 #Geocode

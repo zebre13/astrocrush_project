@@ -1,15 +1,15 @@
 class MatchesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :create_denied_match]
+  skip_before_action :verify_authenticity_token, only: %i[create create_denied_match]
 
   def index
     # afficher mes match
     # @matches = Match.where(user_id: current_user.id).where.not(status: 0)
     @matches = current_user.matches.where(status: 'accepted').order("chatroom_id DESC")
 
-    @newmatches = @matches.left_outer_joins(chatroom: :messages).where(messages: {id: nil}).distinct
+    @newmatches = @matches.left_outer_joins(chatroom: :messages).where(messages: { id: nil }).distinct
 
     # Liste des match dans laquelle il y a des messages dans la conversation
-    @oldmatches = @matches.left_outer_joins(chatroom: :messages).where.not(messages: {id: nil}).distinct
+    @oldmatches = @matches.left_outer_joins(chatroom: :messages).where.not(messages: { id: nil }).distinct
   end
 
   def create
@@ -51,7 +51,7 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @match.destroy
     flash[:success] = "you have successfully destroyed."
-    redirect_to '/matches', :notice => "Your match has been deleted"
+    redirect_to '/matches', notice: "Your match has been deleted"
   end
 
   def match_data

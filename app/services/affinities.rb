@@ -18,8 +18,11 @@ class Affinities
       mate_score = AstrologyApi.new.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, user.birth_date, user.birth_hour, user.latitude, user.longitude)
     end
     mate.affinity_scores.store(user.id, mate_score)
+    mate.new_affinity_scores_today += 1
     mate.save!
     user.affinity_scores.store(mate.id, mate_score)
+    user.new_affinity_scores_today += 1
     user.save!
+    p 'affinity calculated (maybe)'
   end
 end

@@ -143,6 +143,9 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
     t.integer "search_perimeter", default: 1000
     t.integer "minimal_age", default: 8
     t.integer "maximum_age", default: 88
+    t.boolean "admin", default: false, null: false
+    t.integer "new_affinity_scores_today", default: 0
+    t.boolean "coordinates_updated_today", default: false
     t.text "horoscope_data"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

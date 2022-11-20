@@ -521,13 +521,12 @@ users_photos = [
         mate.gender,
         mate.username
       )
-      partner_report_collection.store(mate.id, mate_partner_report)
+      mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
+      partner_report_collection.store(mate.id, mate_partner_report_fr)
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h
-    user.partner_reports = partner_report_collection.transform_values do |report|
-      report.transform_values { |item| Translation.new.to_fr(item).text }
-    end
+    user.partner_reports = partner_report_collection
     puts "*** #{user.username} complementary attachments ok ***"
     user.save!
   end
@@ -628,8 +627,6 @@ if Interest.all.blank?
       emoji: '🦁' },
     { name: 'Rock',
       emoji: '🎸' },
-    { name: 'Rocket School',
-      emoji: '👨‍🚀' },
     { name: 'Scolar',
       emoji: '🎓' },
     { name: 'Senior',

@@ -5,23 +5,22 @@ class UsersController < ApplicationController
   LOGOS = { Ascendant: "↑", Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀︎", Mars: "♂︎", Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" }
 
   def show
+    redirect_to birth_date_path unless current_user.birth_date
+
     @mate = User.find(params[:id])
     @mate_sun_report = I18n.t "planets_in_signs.Sun.#{@mate.sign.to_sym}"
   end
 
   def index
-    if !current_user.birth_date
-      redirect_to birth_date_path
-    else
-      users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
+    redirect_to birth_date_path unless current_user.birth_date
+    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
 
-      users_with_score = users_by_preference.select do |user|
-        user.affinity_scores.keys.include?(current_user.id)
-      end
+    users_with_score = users_by_preference.select do |user|
+      user.affinity_scores.keys.include?(current_user.id)
+    end
 
-      @users = users_with_score.reject do |user|
-        Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
-      end
+    @users = users_with_score.reject do |user|
+      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
     end
   end
 
@@ -53,15 +52,11 @@ class UsersController < ApplicationController
   end
 
   def edit_infos
-    if !current_user.birth_date
-      redirect_to birth_date_path
-    end
+    redirect_to birth_date_path unless current_user.birth_date
   end
 
   def edit_password
-    if !current_user.birth_date
-      redirect_to birth_date_path
-    end
+    redirect_to birth_date_path unless current_user.birth_date
   end
 
   def birth_date
@@ -69,15 +64,13 @@ class UsersController < ApplicationController
   end
 
   def astroboard
-    if !current_user.birth_date
-      redirect_to birth_date_path
-    else
-      @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
-      @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
-      @my_signs = my_signs(current_user.horoscope_data)
-      @my_planets = my_planets_with_logos(current_user.horoscope_data)
-      @my_houses = my_houses(current_user.horoscope_data)
-    end
+    redirect_to birth_date_path unless current_user.birth_date
+
+    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+    @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
+    @my_signs = my_signs(current_user.horoscope_data)
+    @my_planets = my_planets_with_logos(current_user.horoscope_data)
+    @my_houses = my_houses(current_user.horoscope_data)
   end
 
   private
@@ -137,6 +130,8 @@ class UsersController < ApplicationController
                              [:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: []]
                            when "edit_password"
                              [:password]
+                           when "edit_interest"
+                             [:interest]
                            end
     params.require(:user).permit(permitted_attributes)
   end

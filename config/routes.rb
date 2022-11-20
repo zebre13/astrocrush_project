@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   # After Sign Up
   resources :after_signup
 
+  # User Interests
+  resources :user_interests
+
   # Users
   resources :users
   get 'dashboard', to: 'users#dashboard'

@@ -11,21 +11,20 @@ class AfterSignupController < ApplicationController
   end
 
   def update
-    @user = current_user
     case step
     when :onboarding_birth
-      @user.update(user_params("onboarding_birth"))
+      current_user.update(user_params("onboarding_birth"))
       helpers.create_affinities(10)
       helpers.create_astroprofil
     when :onboarding_profile
-      @user.update(user_params("onboarding_profile"))
+      current_user.update(user_params("onboarding_profile"))
       finish_wizard_path
     when :onboarding_interests
-      @user.interests.update(user_params("onboarding_interests"))
+      current_user.interests.update(user_params("onboarding_interests"))
       finish_wizard_path
     end
-    sign_in(@user, bypass_sign_in: true) # needed for devise
-    render_wizard @user
+    sign_in(current_user, bypass_sign_in: true) # needed for devise
+    render_wizard current_user
   end
 
   def finish_wizard_path

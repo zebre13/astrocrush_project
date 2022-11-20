@@ -21,10 +21,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'sidekiq-scheduler'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'geo-distance'
 # Reduces bogstot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -35,6 +35,8 @@ gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 
 # Wicked
 gem 'wicked', github: "schneems/wicked"
@@ -44,7 +46,7 @@ gem 'deepl-rb', require: 'deepl'
 
 #Geocode
 gem "geocoder"
-
+gem "sidekiq-cron"
 #Timeout
 # gem 'em-resolv-replace'
 

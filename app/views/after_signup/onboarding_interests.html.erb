@@ -2,11 +2,19 @@
   <div class="row mt-5">
     <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4">
       <h2>Mes intérêts</h2>
-      <div data-controller="">
+      <div>
         <% @interests.each do |interest| %>
-          <button type="button" class="btn btn-light m-1"><%= "#{interest.emoji} #{interest.name}" %></button>
+          <button data-controller="interest"
+                  data-action="click->interest#update"
+                  type="button"
+                  data-interest-target="button"
+                  data-interest-user-id-param="<%=current_user.id%>"
+                  data-interest-interest-id-param="<%=interest.id%>"
+                  class="<%= interest.users.include?(@user) ? 'btn btn-primary m-1' : 'btn btn-light m-1' %>">
+                    <%= "#{interest.emoji} #{interest.name}" %>
+          </button>
         <% end %>
-        <%= link_to "Créer mon profil", root_path, class: "btn btn-primary m-3" %>
+        <%= link_to "Créer mon profil", root_path, class: "btn-sign-up btn btn-primary m-3" %>
       </div>
     </div>
   </div>

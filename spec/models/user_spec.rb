@@ -1,13 +1,3 @@
-require 'rails_helper'
-require_relative '../../app/services/affinities'
-require_relative '../../app/services/astroprofil'
-require_relative '../../app/services/geocode'
-require 'faker'
-
-ASTROPROFIL = Astroprofil.new
-AFFINITIES = Affinities.new
-GEOCODE = Geocode.new
-
 RSpec.describe User, type: :model do
   context 'validation' do
     user = User.new
@@ -38,10 +28,10 @@ RSpec.describe User, type: :model do
       user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
     end
 
-    ASTROPROFIL.profil(user)
-    GEOCODE.coordinates(user, '168.212.226.204')
-    AFFINITIES.partner_report(user, female)
-    AFFINITIES.match_percentage(user, female)
+    Astroprofil.new.profil(user)
+    Geocode.new.coordinates(user, '168.212.226.204')
+    Affinities.new.partner_report(user, female)
+    Affinities.new.match_percentage(user, female)
 
     it 'should persist a user' do
       expect(user.valid?).to be true

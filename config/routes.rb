@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  # Devise
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations"}
 
-  #Chatroom
+  require "sidekiq/web"
+  # Sidekiq jobs
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq/'
+  end
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations" }
   root to: 'users#index'
   resources :chatrooms, only: :show do
     resources :messages, only: :create
@@ -14,6 +17,9 @@ Rails.application.routes.draw do
 
   # After Sign Up
   resources :after_signup
+
+  # User Interests
+  resources :user_interests
 
   # Users
   resources :users

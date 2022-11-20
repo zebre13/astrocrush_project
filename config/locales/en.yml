@@ -62,6 +62,7 @@ en:
     yoga: "Yoga"
     cinema: "Cinema"
   show:
+    keywords: "Keywords:"
     sign_report_title_is: " is "
     sign_report_title_main: ". Let's find out what it means about "
     sign_report_title_gender:

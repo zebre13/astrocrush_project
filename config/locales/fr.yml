@@ -232,6 +232,7 @@ fr:
     yoga: "Yoga"
     cinema: "Cinema"
   show:
+    keywords: "Mots-clés :"
     sign_report_title_is: " est "
     sign_report_title_main: ". Découvre ce que cela révèle sur "
     sign_report_title_gender:

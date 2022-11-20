@@ -94,7 +94,7 @@
           </div>
         </div>
 
-        <p>Keywords:</p>
+        <p><%= I18n.t "show.keywords" %></p>
 
         <% current_user.partner_reports[params[:id].to_i]['tags'].split(",").each do |tag| %>
           <div class="tag">

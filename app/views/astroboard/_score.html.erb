@@ -85,6 +85,9 @@
             <% end %>
           </div>
           <div class="col-8 border-bottom text-center">
+            <% @zodiac_compatibility[degree].map! do |sign| %>
+              <% I18n.t "signs.#{sign}" %>
+            <% end %>
             <%= @zodiac_compatibility[degree].join(', ') %>
           </div>
         </div>
@@ -92,5 +95,7 @@
     </div>
 
   </div>
-
+  
+  <div class="empty-row">
+  </div>
 </div>

@@ -308,6 +308,20 @@ claire_ziemendorf_data = {
   gender: 2,
   looking_for: 1
 }
+celia_leclerc_data = {
+  username: 'Célia',
+  email: 'celialeclerc75@gmail.com',
+  password: 'azerty',
+  description: "All you need is code... and a good UI/UX design!",
+  birth_date: '12/04/1995',
+  birth_hour: '08:11',
+  birth_location: 'Ecully',
+  birth_country: 'FR',
+  latitude: '45.7772600',
+  longitude: '4.7748100',
+  gender: 2,
+  looking_for: 1
+}
 zoe_kravitz_data = {
   username: 'Zoe',
   email: 'z.kravitz@astrocrush.io',
@@ -344,7 +358,8 @@ users_data = [
   charlotte_bory_data,
   marine_sourin_data,
   boris_paillard_data,
-  claire_ziemendorf_data
+  claire_ziemendorf_data,
+  celia_leclerc_data
   # zoe_kravitz_data
 ]
 
@@ -455,6 +470,9 @@ photos_claire_ziemendorf = [
   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
 ]
+photos_celia_leclerc = [
+  File.open(Rails.root.join("public/seed_images/celia_leclerc_1.jpg"))
+]
 photos_zoe_kravitz = [
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
@@ -483,7 +501,8 @@ users_photos = [
   photos_charlotte_bory,
   photos_marine_sourin,
   photos_boris_paillard,
-  photos_claire_ziemendorf
+  photos_claire_ziemendorf,
+  photos_celia_leclerc
   # photos_zoe_kravitz
 ]
 
@@ -545,7 +564,8 @@ users_photos = [
         mate.gender,
         mate.username
       )
-      partner_report_collection.store(mate.id, mate_partner_report)
+      mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
+      partner_report_collection.store(mate.id, mate_partner_report_fr)
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h
@@ -746,8 +766,6 @@ if Interest.all.blank?
       emoji: '🦁' },
     { name: 'Rock',
       emoji: '🎸' },
-    { name: 'Rocket School',
-      emoji: '👨‍🚀' },
     { name: 'Scolar',
       emoji: '🎓' },
     { name: 'Senior',

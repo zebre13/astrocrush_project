@@ -41,6 +41,9 @@ gem 'sidekiq-failures', '~> 1.0'
 # Wicked
 gem 'wicked', github: "schneems/wicked"
 
+# Use DeepL for text translation
+gem 'deepl-rb', require: 'deepl'
+
 #Geocode
 gem "geocoder"
 gem "sidekiq-cron"

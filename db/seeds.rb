@@ -3,11 +3,6 @@ require 'faker'
 require 'geocode'
 require_relative '../app/services/astrology_api'
 require 'resolv-replace'
-require_relative '../app/services/astroprofil'
-# API_CALL = AstrologyApi.new
-API_CALL = AstrologyApi.new
-GEOCODE = Geocode.new
-# API_CALL = AstrologyApi.new
 
 # <=== DATABASE CLEANOUT ===>
 
@@ -27,8 +22,7 @@ boris_bourdet_data = {
   username: 'Boris',
   email: 'boris_bourdet@hotmail.com',
   password: 'azerty',
-  description: "For a long time, I alternated abs and hanging belly.",
-  hobbies: [],
+  description: "Pendant longtemps j'ai alterné entre abdos et ventre qui pend.",
   birth_date: '26/06/1977',
   birth_hour: '05:30',
   birth_location: 'Aix-en-Provence',
@@ -44,8 +38,7 @@ etienne_de_dianous_data = {
   username: 'Etienne',
   email: 'etiennededi@hotmail.fr',
   password: 'azerty',
-  description: "If you too like to code in bathrobe, we are made to be together.",
-  hobbies: [],
+  description: "Si toi aussi tu aimes coder en peignoir, alors on est faits pour s'entendre.",
   birth_date: '23/06/1994',
   birth_hour: '06:30',
   birth_location: 'Paris',
@@ -60,7 +53,6 @@ ghita_aaddaj_data = {
   email: 'aa.ghita@gmail.com',
   password: 'azerty',
   description: "Je suis de nature joyeuse, mais attention, j'ai le coup de boule facile quand on m'énerve.",
-  hobbies: ['Teuf de meufs', 'Micro-nations', 'Mobylettes', 'ZAD'],
   birth_date: '23/07/1988',
   birth_hour: '07:30',
   birth_location: 'Casablanca',
@@ -75,7 +67,6 @@ maria_leonor_varela_borges_data = {
   email: 'leonor.varela91330@gmail.com',
   password: 'azerty',
   description: "Carlos Santana ne s'est jamais remis de notre séparation.",
-  hobbies: ['Travel', 'Theater', 'Knitting', 'Paintball'],
   birth_date: '15/08/1993',
   birth_hour: '15:15',
   birth_location: 'Cascais',
@@ -90,7 +81,6 @@ mathieu_trancoso_data = {
   email: 'm.trancoso@astrocrush.io',
   password: 'azerty',
   description: "All you need is code.",
-  hobbies: ['Wagonner'],
   birth_date: '21/01/1994',
   birth_hour: '16:00',
   birth_location: 'Ermont',
@@ -105,7 +95,6 @@ laura_person_data = {
   email: 'l.person@astrocrush.io',
   password: 'azerty',
   description: "All you need is code.",
-  hobbies: ['Wagonner'],
   birth_date: '13/12/1992',
   birth_hour: '11:00',
   birth_location: 'Landerneau',
@@ -120,7 +109,6 @@ alexandre_platteeuw_data = {
   email: 'a.platteeuw@astrocrush.io',
   password: 'azerty',
   description: "All you need is code.",
-  hobbies: ['Wagonner'],
   birth_date: '11/10/1993',
   birth_hour: '10:30',
   birth_location: 'Roubaix',
@@ -135,7 +123,6 @@ kenza_tighrine_data = {
   email: 'k.tighrine@astrocrush.io',
   password: 'azerty',
   description: "Certains m'appellent Karima, mais c'est pas grave.",
-  hobbies: ['Chicha', 'Djellaba'],
   birth_date: '04/08/1995',
   birth_hour: '10:45',
   birth_location: 'Paris',
@@ -150,7 +137,6 @@ bruno_lelay_data = {
   email: 'b.lelay@astrocrush.io',
   password: 'azerty',
   description: "For those about to rock, I salute you.",
-  hobbies: ['Death metal', 'Drums'],
   birth_date: '15/01/1995',
   birth_hour: '23:40',
   birth_location: 'Longjumeau',
@@ -165,7 +151,6 @@ sophiana_busso_data = {
   email: 's.busso@astrocrush.io',
   password: 'azerty',
   description: "Si vous aimez voyager dans le cosmos, nous devrions nous croiser.",
-  hobbies: ['Drawing', 'Long distance trips'],
   birth_date: '24/02/1986',
   birth_hour: '02:35',
   birth_location: 'Paris',
@@ -180,7 +165,6 @@ ibrahima_kaba_data = {
   email: 'i.kaba@astrocrush.io',
   password: 'azerty',
   description: "Tout ce dont vous avez besoin, c'est d'un bon front end et d'un voisin qui sait cuisiner.",
-  hobbies: ['CSS', 'Vélo', 'Neighborfood'],
   birth_date: '23/12/1992',
   birth_hour: '05:30',
   birth_location: 'Conakry',
@@ -195,7 +179,6 @@ isabelle_levy_data = {
   email: 'i.levy@astrocrush.io',
   password: 'azerty',
   description: "Ne le dîtes pas à mon fils.",
-  hobbies: ['Travel'],
   birth_date: '01/01/1963',
   birth_hour: '07:00',
   birth_location: 'Compiegne',
@@ -210,7 +193,6 @@ corentin_deseine_data = {
   email: 'c.deseine@astrocrush.io',
   password: 'azerty',
   description: "Mon nombre préféré ? Le 15 !",
-  hobbies: ['Rugby', 'Gaming', 'Pokemons'],
   birth_date: '02/08/1996',
   birth_hour: '11:30',
   birth_location: 'Ermont',
@@ -225,7 +207,6 @@ aicha_diagne_data = {
   email: 'a.diagne@astrocrush.io',
   password: 'azerty',
   description: "Avec moi, votre produit est entre de bonnes mains.",
-  hobbies: ['Luggage'],
   birth_date: '31/05/1996',
   birth_hour: '13:00',
   birth_location: 'Dakar',
@@ -240,7 +221,6 @@ paul_portier_data = {
   email: 'p.portier@astrocrush.io',
   password: 'azerty',
   description: "Je ne crois pas à l'astrologie, mais je ne peux pas non plus démontrer qu'elle ne fonctionne pas...",
-  hobbies: ['Code', 'Photo'],
   birth_date: '28/12/1991',
   birth_hour: '11:30',
   birth_location: 'Boulogne-Billancourt',
@@ -255,7 +235,6 @@ nadia_auger_data = {
   email: 'n.auger@astrocrush.io',
   password: 'azerty',
   description: "Code rime avec mode !",
-  hobbies: ['Code', 'Mode', 'Chihuahuas'],
   birth_date: '23/08/1993',
   birth_hour: '09:45',
   birth_location: 'Bordeaux',
@@ -270,7 +249,6 @@ jeremy_barbedienne_data = {
   email: 'j.barbedienne@astrocrush.io',
   password: 'azerty',
   description: "N'oubliez pas de signer la feuille de présence !",
-  hobbies: ['Code', 'Cuisine', 'Boissons'],
   birth_date: '20/09/1993',
   birth_hour: '10:30',
   birth_location: 'Saint-Lo',
@@ -285,7 +263,6 @@ charlotte_bory_data = {
   email: 'c.bory@astrocrush.io',
   password: 'azerty',
   description: "Du code au tricot, il n'y a qu'une ligne !",
-  hobbies: ['Code', 'Tricot', 'Montagnes russes'],
   birth_date: '25/02/1994',
   birth_hour: '02:24',
   birth_location: 'Paris',
@@ -300,7 +277,6 @@ marine_sourin_data = {
   email: 'm.sourin@astrocrush.io',
   password: 'azerty',
   description: "Cela ne me fait pas peur de passer 2h en ticket pour vous sortir de la m....",
-  hobbies: ['Coding'],
   birth_date: '07/05/1995',
   birth_hour: '06:20',
   birth_location: 'La Garenne-Colombes',
@@ -315,7 +291,6 @@ boris_paillard_data = {
   email: 'b.paillard@astrocrush.io',
   password: 'azerty',
   description: "Change your life, subscribe to astrocrush.",
-  hobbies: ['Worldwide code', 'Beatles', 'Motorcycles'],
   birth_date: '06/11/1985',
   birth_hour: '23:00',
   birth_location: 'Conflans-Sainte-Honorine',
@@ -330,7 +305,6 @@ claire_ziemendorf_data = {
   email: 'c.ziemendorf@astrocrush.io',
   password: 'azerty',
   description: "All you need is code..",
-  hobbies: ['Code'],
   birth_date: '16/05/1994',
   birth_hour: '23:58',
   birth_location: 'Rueil-Malmaison',
@@ -345,7 +319,6 @@ zoe_kravitz_data = {
   email: 'z.kravitz@astrocrush.io',
   password: 'azerty',
   description: "Miaou!",
-  hobbies: ['Cinema', 'Perfume', 'Cats'],
   birth_date: '01/12/1988',
   birth_hour: '02:00',
   birth_location: 'Los Angeles',
@@ -521,27 +494,82 @@ users_photos = [
 ]
 
 # <--- Create Users --->
+# if User.all.blank?
+  users_data.each_with_index do |user_data, index|
+    user = User.new(user_data)
 
-users_data.each_with_index do |user_data, index|
-  p 'aller letsgo'
-  user = User.new(user_data)
-  Astroprofil.profil(user)
-  users_photos[index].each do |photo|
-    p 'attaching photo'
-    user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
+
+    user.horoscope_data = AstrologyApi.new.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
+    user.sign = user.horoscope_data['planets'].first['sign']
+    user.rising = user.horoscope_data['houses'].first['sign']
+    user.moon = user.horoscope_data['planets'][1]['sign']
+    user.wheel_chart = AstrologyApi.new.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
+    user.timezone = AstrologyApi.new.time_zone(user.latitude, user.longitude, user.birth_date)
+    users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
     user.save!
-    p 'user saved'
+    p "*** #{user.username} ***"
   end
-  # user.horoscope_data = API_CALL.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
-  # user.sign = user.horoscope_data['planets'].first['sign']
-  # user.rising = user.horoscope_data['houses'].first['sign']
-  # user.moon = user.horoscope_data['planets'][1]['sign']
-  # user.wheel_chart = API_CALL.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
-  # user.timezone = API_CALL.time_zone(user.latitude, user.longitude, user.birth_date)
-  # users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
-  # user.save!
-  # p "*** #{user.username} ***"
-end
+
+# <--- Calculate and attach affinity scores and reports --->
+
+  users = User.all
+
+  users.each do |user|
+    potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
+    score_collection = {}
+    partner_report_collection = {}
+    potential_mates.each do |mate|
+      if mate.gender == 2
+        mate_score = AstrologyApi.new.match_percentage(
+          user.birth_date,
+          user.birth_hour,
+          user.latitude,
+          user.longitude,
+          mate.birth_date,
+          mate.birth_hour,
+          mate.latitude,
+          mate.longitude
+        )
+      else
+        mate_score = AstrologyApi.new.match_percentage(
+          mate.birth_date,
+          mate.birth_hour,
+          mate.latitude,
+          mate.longitude,
+          user.birth_date,
+          user.birth_hour,
+          user.latitude,
+          user.longitude
+        )
+      end
+      score_collection.store(mate.id, mate_score)
+
+      mate_partner_report = AstrologyApi.new.partner_report(
+        user.birth_date,
+        user.gender,
+        mate.birth_date,
+        mate.gender,
+        mate.username
+      )
+      partner_report_collection.store(mate.id, mate_partner_report)
+    end
+    ordered_score_collection = score_collection.sort_by { |_id, score| score }
+    user.affinity_scores = ordered_score_collection.reverse.to_h
+    user.partner_reports = partner_report_collection
+    puts "*** #{user.username} complementary attachments ok ***"
+    user.save!
+  end
+
+  # <=== SKIP CONFIRMATION ===>
+
+  users = User.all
+  users.each do |user|
+    user.confirm
+    user.save!
+  end
+
+  puts "all confirmations skiped"
+# end
 
 # Adding fictive ip address
 
@@ -561,6 +589,22 @@ User.all.each do |user|
   user.save!
   p 'one user saved!'
 end
+
+# <-- SEED POUR TESTER SIDEKIQ -->
+# users_data.each_with_index do |user_data, index|
+#   p 'aller letsgo'
+#   user = User.new(user_data)
+#   Astroprofil.profil(user)
+#   users_photos[index].each do |photo|
+#     p 'attaching photo'
+#     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
+#     user.save!
+#     p 'user saved'
+#   end
+# end
+# <!-- FIN DE LA SEED SIDEKIQ -->
+
+
 # <--- Calculate and attach affinity scores and reports --->
 # ùù
 # users = User.all
@@ -625,12 +669,123 @@ end
 
 # puts "#{User.all.length} users created successfully!"
 
-# <=== SKIP CONFIRMATION ===>
+# <=== USER INTEREST ===>
 
-users = User.all
-users.each do |user|
-  user.confirm
-  user.save!
+if Interest.all.blank?
+  puts "Creating interests"
+  interests = [
+    { name: 'American football',
+      emoji: '🏈' },
+    { name: 'Animals',
+      emoji: '😸' },
+    { name: 'Art and Culture',
+      emoji: '🎭' },
+    { name: 'Automotive',
+      emoji: '🚘' },
+    { name: 'Baseball',
+      emoji: '⚾' },
+    { name: 'Basketball',
+      emoji: '🏀' },
+    { name: 'Blockchain',
+      emoji: '🖥️' },
+    { name: 'Board games',
+      emoji: '🎲' },
+    { name: 'Brunch',
+      emoji: '🍳' },
+    { name: 'Business',
+      emoji: '👔' },
+    { name: 'Collector',
+      emoji: '⌚' },
+    { name: 'Concert Festival',
+      emoji: '🎤' },
+    { name: 'Cooking',
+      emoji: '🍽️' },
+    { name: 'Cryptocurrency',
+      emoji: '₿' },
+    { name: 'Ecology',
+      emoji: '🌳' },
+    { name: 'Extreme sport',
+      emoji: '🪂' },
+    { name: 'Fashion',
+      emoji: '👠' },
+    { name: 'Feminism',
+      emoji: '♀️' },
+    { name: 'Football',
+      emoji: '⚽' },
+    { name: 'Gambling',
+      emoji: '🎰' },
+    { name: 'Gaming',
+      emoji: '🎮' },
+    { name: 'Gastronomy',
+      emoji: '👨‍🍳' },
+    { name: 'Graphic arts',
+      emoji: '🎨' },
+    { name: 'Investments',
+      emoji: '🤑' },
+    { name: 'Jet set',
+      emoji: '🍸' },
+    { name: 'LGBT',
+      emoji: '🌈' },
+    { name: 'Lifestyle',
+      emoji: '⏰' },
+    { name: 'Manga',
+      emoji: '🍥' },
+    { name: 'Meet',
+      emoji: '🤝🏼' },
+    { name: 'Metaverse',
+      emoji: '🗺️' },
+    { name: 'Motor sports',
+      emoji: '🏎️' },
+    { name: 'Movies and series',
+      emoji: '🎞️' },
+    { name: 'Music',
+      emoji: '🎵' },
+    { name: 'Nightlife',
+      emoji: '🌃' },
+    { name: 'Oenology',
+      emoji: '🍷' },
+    { name: 'Rap FR',
+      emoji: '⛓️' },
+    { name: 'Rap US',
+      emoji: '🧢' },
+    { name: 'Reggae',
+      emoji: '🦁' },
+    { name: 'Rock',
+      emoji: '🎸' },
+    { name: 'Rocket School',
+      emoji: '👨‍🚀' },
+    { name: 'Scolar',
+      emoji: '🎓' },
+    { name: 'Senior',
+      emoji: '👵' },
+    { name: 'Sexuality',
+      emoji: '😈' },
+    { name: 'Skateboard',
+      emoji: '🛹' },
+    { name: 'Social Activity',
+      emoji: '🤚' },
+    { name: 'Social movement',
+      emoji: '📣' },
+    { name: 'Spirituality',
+      emoji: '🙏' },
+    { name: 'Sport',
+      emoji: '🏅' },
+    { name: 'Startup World',
+      emoji: '🦄' },
+    { name: 'Techno',
+      emoji: '💿' },
+    { name: 'Trading Card Games',
+      emoji: '🗂️' },
+    { name: 'Travel',
+      emoji: '✈️' }
+  ]
+
+  # <--- Create Interests --->
+
+  interests.each do |interest|
+    puts "create #{interest[:name]}"
+    Interest.create({ name: interest[:name], emoji: interest[:emoji] })
+  end
 end
 
-puts "all confirmations skiped"
+puts "#{Interest.all.length} interests created successfully!"

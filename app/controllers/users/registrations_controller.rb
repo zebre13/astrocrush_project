@@ -1,7 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  after_action :create_astroprofil, only: %i[new create]
-  after_action :create_ten_affinities, only: %i[new create]
-
   def create
     build_resource(sign_up_params)
     resource.save
@@ -22,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+<<<<<<< HEAD
   private
 
   def create_astroprofil
@@ -47,6 +45,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return mates_by_gender
   end
   
+=======
+>>>>>>> master
   protected
 
   def update_resource(resource, params)
@@ -59,5 +59,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if updated
       return updated
     end
+  end
+
+  def after_sign_up_path_for(resource)
+    after_signup_path(:onboarding_birth)
   end
 end

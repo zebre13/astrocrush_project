@@ -61,7 +61,6 @@ export default class extends Controller {
 
   #processMessage(data) {
     const sender = this.userIdValue == data.user_id
-    console.log(this.userIdValue)
     // Use this method to transform the received HTML string into
     // an DomElement so that we can use .classList method on it
     const msgElement = this.#buildHTML(data.html)

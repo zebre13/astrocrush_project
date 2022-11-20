@@ -1,39 +1,90 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[update edit_infos edit_password]
+
   ZODIAC = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   LOGOS = { Ascendant: "↑", Sun: "☉", Moon: "☽", Mercury: "☿", Venus: "♀︎", Mars: "♂︎", Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" }
-
-  def index
-    mini_date = Date.today - (current_user.minimal_age * 365)
-    max_date = Date.today - (current_user.maximum_age * 365)
-
-    # selectionner les utilisateurs par preferences age / rayon / gender
-    users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", mini_date).where("(birth_date > ?)", max_date)
-
-    # Ne garder que les utilisateurs qui ont un score de match calculé avec moi
-    users_with_score = users_by_preference.select do |user|
-      user.affinity_scores.keys.include?(current_user.id)
-    end
-
-    # On rejette tous les users qui sont dans les matchs du current user.
-    @users = users_with_score.reject do |user|
-      Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
-    end
-  end
 
   def show
     @mate = User.find(params[:id])
     @mate_sun_report = I18n.t "planets_in_signs.Sun.#{@mate.sign.to_sym}"
   end
 
+  def index
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    else
+      users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
+
+      users_with_score = users_by_preference.select do |user|
+        user.affinity_scores.keys.include?(current_user.id)
+      end
+
+      @users = users_with_score.reject do |user|
+        Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+      end
+    end
+  end
+
+  def update
+    case params[:commit]
+    when "Calculer mon Astroprofil"
+      if @user.update(user_params("birth_date"))
+        helpers.create_affinities(10)
+        helpers.create_astroprofil
+        flash[:notice] = t("activerecord.valid.messages.success")
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
+    when "Editer mes infos"
+      if @user.update(user_params("edit_infos"))
+        helpers.create_affinities(10) if User.find(@user.affinity_scores.first.first).gender != @user.looking_for
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
+    when "Modifier mon mot de passe"
+      if @user.update(user_params("edit_password"))
+        redirect_to dashboard_path
+      else
+        flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")
+      end
+    end
+  end
+
+  def edit_infos
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    end
+  end
+
+  def edit_password
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    end
+  end
+
+  def birth_date
+    @user = current_user
+  end
+
   def astroboard
-    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
-    @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
-    @my_signs = my_signs(current_user.horoscope_data)
-    @my_planets = my_planets_with_logos(current_user.horoscope_data)
-    @my_houses = my_houses(current_user.horoscope_data)
+    if !current_user.birth_date
+      redirect_to birth_date_path
+    else
+      @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+      @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
+      @my_signs = my_signs(current_user.horoscope_data)
+      @my_planets = my_planets_with_logos(current_user.horoscope_data)
+      @my_houses = my_houses(current_user.horoscope_data)
+    end
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
 
   # Array of sorted planets used for the construction of the astroboard table
   def my_planets(horoscope_data)
@@ -75,5 +126,18 @@ class UsersController < ApplicationController
       end
     end
     houses.group_by{ |x| x }.values
+  end
+
+
+  def user_params(step)
+    permitted_attributes = case step
+                           when "birth_date"
+                             %i[birth_date birth_hour birth_location latitude longitude gender looking_for country city utcoffset]
+                           when "edit_infos"
+                             [:username, :description, :photos, :minimal_age, :maximum_age, :search_perimeter, :looking_for, photos: []]
+                           when "edit_password"
+                             [:password]
+                           end
+    params.require(:user).permit(permitted_attributes)
   end
 end

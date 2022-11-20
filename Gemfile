@@ -37,6 +37,11 @@ gem 'faker'
 gem 'rest-client'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+
+# Wicked
+gem 'wicked', github: "schneems/wicked"
+
+#Geocode
 gem "geocoder"
 gem "sidekiq-cron"
 #Timeout

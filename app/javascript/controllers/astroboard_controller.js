@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["horoscope", "profile", "score", "table", "wheel", "horoscope_menu", "profile_menu", "score_menu", "table_menu", "wheel_menu"]
 
   connect() {
-    console.log("Hello from our first Stimulus controller");
   }
 
   hover(target) {

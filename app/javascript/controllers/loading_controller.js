@@ -9,8 +9,6 @@ export default class extends Controller {
   }
 
   load(e) {
-    console.log('Hello, from loading!')
-
     const modal = new Modal(this.modalTarget)
     modal.show()
   }

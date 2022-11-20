@@ -1,0 +1,45 @@
+<div class="container pb-5" data-controller="places" data-action="google-maps-callback@window->places#initMap">
+  <div class="row mt-5">
+    <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4" data-controller="places">
+      <h2>Sign up</h2>
+      <%# if resource.errors.any? %>
+        <%# resource.errors.full_messages.each do |message|%>
+          <div class="error_notification alert-danger"><%#= message %></div>
+        <%# end %>
+      <%# end %>
+      <%= simple_form_for(@user, url: wizard_path, method: :put)  do |f| %>
+        <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="form-inputs pb-3">
+          <%= f.input :username,
+                      required: true %>
+          <%#= f.input :password, required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          <%#= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+          <%= f.input :description,
+                      required: false %>
+          <%= f.file_field :photos,
+                            as: :file,
+                            multiple: true,
+                            class: "form-control"%>
+        </div>
+        <div class="" data-controller = "loading">
+          <div class="form-actions d-flex flex-column" data-action="click->loading#load">
+            <%= f.button :submit,
+                          "Envoyer ma description",
+                          class: "btn btn-primary"%>
+          </div>
+          <div class="modal fade" data-loading-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content text-center">
+                <%#= render "loading" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'skip', next_wizard_path %>

@@ -1,13 +1,10 @@
 <div id="backgroundcolor">
-
   <div class="astrocrush">
     <i class="fas fa-meteor"></i>Astrocrush
   </div>
-
   <div class="profiles d-flex flex-column align-items-center" data-controller="swipe" >
     <% if @users.any? %>
       <% @users.each_with_index do |user, index| %>
-
         <div class="profile" data-swipe-target="user" data-id="<%= user.id %>" style="z-index: <%= 200 * index %>; ">
             <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<% if user.photos.any?%><%= cl_image_path user.photos.first&.key, height: 696, width: 390, radius: 0,crop: :fill %><% end %>')">
             <div class="profile-score-container">
@@ -27,7 +24,6 @@
                 <%# <div class="score-ring-<%= level %>
               </div>
             </div>
-
             <div class="profile-infos">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="profile-name">
@@ -36,7 +32,6 @@
                 </div>
                 <div class="profile-details"><%= link_to '', user_path(user), class: "fas fa-info-circle", style: "text-decoration: none" %></div>
               </div>
-
               <div class="profile-astro">
                 <p>
                   <span class="me-1">☉</i></span>
@@ -59,8 +54,6 @@
       <div class="profile">
       </div>
     <% end %>
-
-
     <!-- Modale de match--> <!-- just removed data-bs-target = "modal"-->
     <div class="modal fade" data-swipe-target="modal"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -70,10 +63,5 @@
         </div>
       </div>
     </div>
-
-
-  <%# <%= embedded_svg("lineplanet.svg") %>
   </div>
-
-  <%= render "navbar/navbar_two" %>
 </div>

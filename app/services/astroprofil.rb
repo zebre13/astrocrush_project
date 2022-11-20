@@ -1,5 +1,5 @@
 class Astroprofil
-  def self.profil(user)
+  def profil(user)
     p 'first call'
     user.horoscope_data = AstrologyApi.new.horoscope(user.birth_date, user.birth_hour, user.latitude.to_f, user.longitude.to_f)
     user.sign = user.horoscope_data['planets'].first['sign']

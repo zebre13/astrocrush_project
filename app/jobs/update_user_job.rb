@@ -1,8 +1,3 @@
-require_relative '../services/affinities'
-require_relative '../services/astrology_api'
-require_relative '../services/astroprofil'
-require_relative '../services/geocode'
-require_relative '../services/preferences'
 
 class UpdateUserJob < ApplicationJob
   queue_as :default

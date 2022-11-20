@@ -1,9 +1,3 @@
-require 'open-uri'
-require 'faker'
-require 'geocode'
-require_relative '../app/services/astrology_api'
-require 'resolv-replace'
-
 # <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'

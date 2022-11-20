@@ -311,6 +311,20 @@ claire_ziemendorf_data = {
   gender: 2,
   looking_for: 1
 }
+celia_leclerc_data = {
+  username: 'Célia',
+  email: 'celialeclerc75@gmail.com',
+  password: 'azerty',
+  description: "All you need is code... and a good UI/UX design!",
+  birth_date: '12/04/1995',
+  birth_hour: '08:11',
+  birth_location: 'Ecully',
+  birth_country: 'FR',
+  latitude: '45.7772600',
+  longitude: '4.7748100',
+  gender: 2,
+  looking_for: 1
+}
 zoe_kravitz_data = {
   username: 'Zoe',
   email: 'z.kravitz@astrocrush.io',
@@ -329,7 +343,7 @@ zoe_kravitz_data = {
 users_data = [
   boris_bourdet_data,
   etienne_de_dianous_data,
-  ghita_aaddaj_data
+  ghita_aaddaj_data,
   # maria_leonor_varela_borges_data,
   # mathieu_trancoso_data,
   # laura_person_data,
@@ -341,13 +355,14 @@ users_data = [
   # isabelle_levy_data,
   # corentin_deseine_data,
   # aicha_diagne_data,
-  # paul_portier_data,
+  paul_portier_data,
   # nadia_auger_data,
   # jeremy_barbedienne_data,
   # charlotte_bory_data,
   # marine_sourin_data,
   # boris_paillard_data,
-  # claire_ziemendorf_data
+  # claire_ziemendorf_data,
+  celia_leclerc_data
   # zoe_kravitz_data
 ]
 
@@ -435,6 +450,9 @@ photos_boris_paillard = [
 photos_claire_ziemendorf = [
   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
 ]
+photos_celia_leclerc = [
+  File.open(Rails.root.join("public/seed_images/celia_leclerc_1.jpg"))
+]
 photos_zoe_kravitz = [
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
 ]
@@ -442,7 +460,7 @@ photos_zoe_kravitz = [
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-  photos_ghita_aaddaj
+  photos_ghita_aaddaj,
   # photos_maria_leonor_varela_borges,
   # photos_mathieu_trancoso,
   # photos_laura_person,
@@ -454,13 +472,14 @@ users_photos = [
   # photos_isabelle_levy,
   # photos_corentin_deseine,
   # photos_aicha_diagne,
-  # photos_paul_portier,
+  photos_paul_portier,
   # photos_nadia_auger,
   # photos_jeremy_barbedienne,
   # photos_charlotte_bory,
   # photos_marine_sourin,
   # photos_boris_paillard,
-  # photos_claire_ziemendorf
+  # photos_claire_ziemendorf,
+  photos_celia_leclerc
   # photos_zoe_kravitz
 ]
 

@@ -19,7 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-<<<<<<< HEAD
   private
 
   def create_astroprofil
@@ -44,9 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(10)
     return mates_by_gender
   end
-  
-=======
->>>>>>> master
+
   protected
 
   def update_resource(resource, params)

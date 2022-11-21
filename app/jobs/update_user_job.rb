@@ -1,4 +1,3 @@
-
 class UpdateUserJob < ApplicationJob
   queue_as :default
   require 'preferences'
@@ -8,7 +7,6 @@ class UpdateUserJob < ApplicationJob
   PREFERENCE = Preferences.new
   AFFINITIES = Affinities.new
   GEOCODE = Geocode.new
-
 
   def perform
     # Changer le nombre de tranche de saucisson  et de maximum d'affinity scores du jour a la demande

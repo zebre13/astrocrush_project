@@ -1,4 +1,9 @@
+# my_first_job:
+#    cron: "*/10 * * * *"
+#    class: "JobName"
+#    queue: "default"
+
 my_first_job:
    cron: "*/10 * * * *"
-   class: "JobName"
+   class: "UpdateUserJob"
    queue: "default"

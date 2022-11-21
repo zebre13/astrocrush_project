@@ -1,12 +1,12 @@
 class UpdateUserJob < ApplicationJob
   queue_as :default
-  require 'preferences'
-  require 'affinities'
-  require 'geocode'
+  # require 'preferences'
+  # require 'affinities'
+  # require 'geocode'
   # cronjob pour lancer tous les 24 heures, sur heroku
-  PREFERENCE = Preferences.new
-  AFFINITIES = Affinities.new
-  GEOCODE = Geocode.new
+  # PREFERENCE = Preferences.new
+  # AFFINITIES = Affinities.new
+  # GEOCODE = Geocode.new
 
   def perform
     # Changer le nombre de tranche de saucisson  et de maximum d'affinity scores du jour a la demande

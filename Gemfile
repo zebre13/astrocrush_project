@@ -35,7 +35,11 @@ gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'rest-client'
+
+# Background jobs
 gem 'sidekiq'
+
+# Show failures in sidekiq admin
 gem 'sidekiq-failures', '~> 1.0'
 
 # Wicked

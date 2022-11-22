@@ -1,5 +1,4 @@
 class Geocode
-
   def coordinates(user)
     #  Assigne local_lon et local_lat
     p user.last_sign_in_ip

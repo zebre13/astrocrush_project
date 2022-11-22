@@ -6,7 +6,6 @@ class Preferences
     mini_date = Date.today - (user.minimal_age * 365)
 
     max_date = Date.today - (user.maximum_age * 365)
-    # binding.pry
     return mate.gender == user.looking_for && mate.id != user.id && mate.birth_date <= mini_date && mate.birth_date >= max_date
   end
 

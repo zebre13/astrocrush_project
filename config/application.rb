@@ -29,6 +29,6 @@ module Astrocrush
 
     # Use sidekiq to manage job enqueuing for active job
     config.active_job.queue_adapter = :sidekiq
-    config.active_storage.queue = :low_priority
+    # config.active_storage.queue = :active_storage
   end
 end

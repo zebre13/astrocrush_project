@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Sidekiq jobs
   require "sidekiq/web"
-  authenticate :user, ->(user) { user.admin? } do
+  authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
 

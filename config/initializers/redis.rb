@@ -1,6 +1,6 @@
 # $redis = Redis.new
 
-url = ENV["REDISCLOUD_URL"]
+url = ENV["REDIS_PROVIDER"]
 
 if url
   uri = URI.parse(url)

@@ -563,8 +563,10 @@ users_photos = [
         mate.gender,
         mate.username
       )
-      mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
-      partner_report_collection.store(mate.id, mate_partner_report_fr)
+      # Use those two lines to resume translation of partner report and skip the following line:
+      # mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
+      # partner_report_collection.store(mate.id, mate_partner_report_fr)
+      partner_report_collection.store(mate.id, mate_partner_report)
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h

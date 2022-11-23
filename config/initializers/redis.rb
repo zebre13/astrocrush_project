@@ -12,3 +12,4 @@ if url
   end
   $redis = Redis.new(url: url)
 end
+

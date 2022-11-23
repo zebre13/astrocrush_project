@@ -1,10 +1,14 @@
 class Affinities
   def partner_report(user, mate)
     mate_partner_report = AstrologyApi.new.partner_report(user.birth_date, user.gender, mate.birth_date, mate.gender, mate.username)
-    mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
-    mate.partner_reports.store(user.id, mate_partner_report_fr)
+    # <--- NOTE: Uncomment the two following lines and delete (or comment) the third one to resume translation: --->
+    # mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
+    # mate.partner_reports.store(user.id, mate_partner_report_fr)
+    mate.partner_reports.store(user.id, mate_partner_report)
     mate.save!
-    user.partner_reports.store(mate.id, mate_partner_report_fr)
+    # <--- NOTE: Uncomment the following line and delete (or comment) the next one to resume translation: --->
+    # user.partner_reports.store(mate.id, mate_partner_report_fr)
+    user.partner_reports.store(mate.id, mate_partner_report)
     user.save!
   end
 

@@ -65,11 +65,9 @@ class UsersController < ApplicationController
 
   def astroboard
     redirect_to birth_date_path unless current_user.birth_date
-
-    # Code no translation (take the following line to resume translation)
-    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
+    # <--- NOTE: Uncomment the following line and delete (or comment) the next one to resume translation: --->
     # @daily_horoscope = Translation.new.to_fr(AstrologyApi.new.daily_horoscope(current_user.sign)).text
-    
+    @daily_horoscope = AstrologyApi.new.daily_horoscope(current_user.sign)
     @zodiac_compatibility = AstrologyApi.new.zodiac_compatibility(current_user.sign)
     @my_signs = my_signs(current_user.horoscope_data)
     @my_planets = my_planets_with_logos(current_user.horoscope_data)

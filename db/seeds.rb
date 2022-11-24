@@ -482,7 +482,6 @@ photos_zoe_kravitz = [
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-
   photos_ghita_aaddaj,
   photos_maria_leonor_varela_borges,
   photos_mathieu_trancoso,
@@ -511,7 +510,6 @@ users_photos = [
   users_data.each_with_index do |user_data, index|
     user = User.new(user_data)
 
-
     user.horoscope_data = AstrologyApi.new.horoscope(user.birth_date, user.birth_hour, user.latitude, user.longitude)
     user.sign = user.horoscope_data['planets'].first['sign']
     user.rising = user.horoscope_data['houses'].first['sign']
@@ -523,55 +521,14 @@ users_photos = [
     p "*** #{user.username} ***"
   end
 
-# <--- Calculate and attach affinity scores and reports --->
+  # <--- Calculate and attach affinity scores and reports --->
 
   users = User.all
 
   users.each do |user|
     potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-    score_collection = {}
-    partner_report_collection = {}
-    potential_mates.each do |mate|
-      if mate.gender == 2
-        mate_score = AstrologyApi.new.match_percentage(
-          user.birth_date,
-          user.birth_hour,
-          user.latitude,
-          user.longitude,
-          mate.birth_date,
-          mate.birth_hour,
-          mate.latitude,
-          mate.longitude
-        )
-      else
-        mate_score = AstrologyApi.new.match_percentage(
-          mate.birth_date,
-          mate.birth_hour,
-          mate.latitude,
-          mate.longitude,
-          user.birth_date,
-          user.birth_hour,
-          user.latitude,
-          user.longitude
-        )
-      end
-      score_collection.store(mate.id, mate_score)
-
-      mate_partner_report = AstrologyApi.new.partner_report(
-        user.birth_date,
-        user.gender,
-        mate.birth_date,
-        mate.gender,
-        mate.username
-      )
-      mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
-      partner_report_collection.store(mate.id, mate_partner_report_fr)
-    end
-    ordered_score_collection = score_collection.sort_by { |_id, score| score }
-    user.affinity_scores = ordered_score_collection.reverse.to_h
-    user.partner_reports = partner_report_collection
+    potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
     puts "*** #{user.username} complementary attachments ok ***"
-    user.save!
   end
 
   # <=== SKIP CONFIRMATION ===>

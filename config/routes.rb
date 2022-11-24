@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # Sidekiq jobs
-  authenticate :user, lambda { |u| u.admin } do
+  authenticate user: user { user.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 

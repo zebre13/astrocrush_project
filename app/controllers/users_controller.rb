@@ -13,11 +13,10 @@ class UsersController < ApplicationController
 
   def index
     redirect_to birth_date_path unless current_user.birth_date
+
     users_by_preference = User.where(gender: current_user.looking_for).where.not(id: current_user.id).where("(birth_date < ?)", helpers.mini_date).where("(birth_date > ?)", helpers.max_date)
 
-    users_with_score = users_by_preference.select do |user|
-      user.affinity_scores.keys.include?(current_user.id)
-    end
+    users_with_score = users_by_preference.select { |user| user.affinities.where(mate_id: current_user.id) }
 
     @users = users_with_score.reject do |user|
       Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", current_user.id, current_user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
@@ -37,7 +36,8 @@ class UsersController < ApplicationController
       end
     when "Editer mes infos"
       if @user.update(user_params("edit_infos"))
-        helpers.create_affinities(10) if User.find(@user.affinity_scores.first.first).gender != @user.looking_for
+        helpers.create_affinities(10) if @user.affinities.map { |affinity| affinity.mate.gender }.exclude?(@user.looking_for)
+        user.affinities.map { |affinity| affinity.mate.gender } != @user.looking_for
         redirect_to dashboard_path
       else
         flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")

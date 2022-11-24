@@ -9,7 +9,7 @@ module ProfileHelper
     return unless user_signed_in?
 
     mates_by_gender = User.where(gender: current_user.looking_for).where.not(id: current_user.id).sample(number)
-    mates_by_gender.each { |mate| affinities(current_user, mate) }
+    mates_by_gender.each { |mate| Affinities.new.create_affinity(current_user, mate) }
   end
 
   def mini_date
@@ -18,12 +18,5 @@ module ProfileHelper
 
   def max_date
     Date.today - (current_user.maximum_age * 365)
-  end
-
-  private
-
-  def affinities(user, mate)
-    Affinities.new.partner_report(user, mate)
-    Affinities.new.match_percentage(user, mate)
   end
 end

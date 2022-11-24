@@ -75,12 +75,12 @@
         <div class="tag">
           <%#= hobby %>
         </div>
-        <%# end %>
+        <% end %>
       </div>
 
       <div class="pt-2 pb-5 border-bottom">
         <h5 class="mb-1">
-          <%= current_user.affinities.find_by(mate_id: @mate.id).report['title'] %>
+          <%= current_user.affinities.find_by(mate_id: @mate.id).report.title %>
         </h5>
 
         <div class="relation-container">
@@ -89,14 +89,14 @@
           </div>
           <div class="relation-text">
             <p>
-              <%= current_user.affinities.find_by(mate_id: @mate.id).report['msg'] %>
+              <%= current_user.affinities.find_by(mate_id: @mate.id).report.msg %>
             </p>
           </div>
         </div>
 
         <p><%= I18n.t "show.keywords" %></p>
 
-        <% current_user.affinities.find_by(mate_id: @mate.id).report['tags'].split(",").each do |tag| %>
+        <% current_user.affinities.find_by(mate_id: @mate.id).report.tags.split(",").each do |tag| %>
           <div class="tag">
             <%= tag %>
           </div>
@@ -147,7 +147,6 @@
       <%= embedded_svg("heart_fill.svg") %>
     <% end %>
   </div>
-<%# </div> %>
 
 
 <!-- Boostrap JS-->

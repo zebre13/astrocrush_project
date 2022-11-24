@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_16_150228) do
+ActiveRecord::Schema.define(version: 2022_11_24_135020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "affinities", force: :cascade do |t|
+    t.integer "score"
+    t.text "report"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "mate_id"
+    t.index ["user_id"], name: "index_affinities_on_user_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -135,8 +145,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
     t.string "longitude"
     t.string "country"
     t.string "city"
-    t.text "affinity_scores"
-    t.text "partner_reports"
     t.float "timezone"
     t.float "local_lat"
     t.float "local_lon"
@@ -154,6 +162,7 @@ ActiveRecord::Schema.define(version: 2022_11_16_150228) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "affinities", "users"
   add_foreign_key "matches", "chatrooms"
   add_foreign_key "matches", "users"
   add_foreign_key "messages", "chatrooms"

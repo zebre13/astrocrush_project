@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :matches, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :user_interests, dependent: :destroy
+  has_many :affinities, dependent: :destroy
 
   has_many :interests, through: :user_interests
 

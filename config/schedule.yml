@@ -1,4 +1,0 @@
-my_first_job:
-   cron: "*/10 * * * *"
-   class: "UpdateUserJob"
-   queue: "default"

@@ -1,9 +1,9 @@
 # <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'
-User.destroy_all
-Match.destroy_all
-Chatroom.destroy_all
+# User.destroy_all
+# Match.destroy_all
+# Chatroom.destroy_all
 puts 'Database clean'
 
 # <=== USERS SEEDING ===>
@@ -506,7 +506,7 @@ users_photos = [
 ]
 
 # <--- Create Users --->
-# if User.all.blank?
+if User.all.blank?
   users_data.each_with_index do |user_data, index|
     user = User.new(user_data)
 
@@ -521,16 +521,6 @@ users_photos = [
     p "*** #{user.username} ***"
   end
 
-  # <--- Calculate and attach affinity scores and reports --->
-
-  users = User.all
-
-  users.each do |user|
-    potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-    potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
-    puts "*** #{user.username} complementary attachments ok ***"
-  end
-
   # <=== SKIP CONFIRMATION ===>
 
   users = User.all
@@ -540,7 +530,18 @@ users_photos = [
   end
 
   puts "all confirmations skiped"
-# end
+end
+
+  # <--- Calculate and attach affinity scores and reports --->
+
+  puts "Calculating user affinities"
+
+User.all.each do |user|
+  potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
+  potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
+  puts "*** #{user.username} complementary attachments ok ***"
+end
+
 
 # Adding fictive ip address
 

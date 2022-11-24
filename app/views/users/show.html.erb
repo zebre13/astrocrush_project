@@ -71,9 +71,9 @@
         <h5 class="mb-1">
           <%#= I18n.t "hobbies_title" %>
         </h5>
-        <%# @mate.hobbies.each do |hobby| %>
+        <% @mate.interests.each do |interest| %>
         <div class="tag">
-          <%#= hobby %>
+          <%= interest.emoji + interest.name %>
         </div>
         <% end %>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_24_131722) do
+ActiveRecord::Schema.define(version: 2022_11_24_135020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,6 @@ ActiveRecord::Schema.define(version: 2022_11_24_131722) do
     t.string "longitude"
     t.string "country"
     t.string "city"
-    t.text "affinity_scores"
-    t.text "partner_reports"
     t.float "timezone"
     t.float "local_lat"
     t.float "local_lon"

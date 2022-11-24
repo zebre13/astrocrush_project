@@ -4,5 +4,4 @@ class Affinity < ActiveRecord::Base
   has_one :report, dependent: :destroy
 
   validates :score, presence: true
-  validates :report, presence: true
 end

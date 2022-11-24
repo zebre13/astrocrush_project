@@ -1,11 +1,10 @@
 class Affinities
   def create_affinity(user, mate)
     affinity = Affinity.new(user_id: user.id, mate_id: mate.id)
-
-    report(user, mate, affinity)
-
     affinity.score = match_percentage(user, mate)
     affinity.save
+
+    report(user, mate, affinity)
   end
 
   private

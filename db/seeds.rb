@@ -482,7 +482,6 @@ photos_zoe_kravitz = [
 users_photos = [
   photos_boris_bourdet,
   photos_etienne_de_dianous,
-
   photos_ghita_aaddaj,
   photos_maria_leonor_varela_borges,
   photos_mathieu_trancoso,
@@ -564,8 +563,10 @@ users_photos = [
         mate.gender,
         mate.username
       )
-      mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
-      partner_report_collection.store(mate.id, mate_partner_report_fr)
+      # <--- NOTE: Uncomment the two following lines and delete (or comment) the third one to resume translation: --->
+      # mate_partner_report_fr = mate_partner_report.transform_values { |item| Translation.new.to_fr(item).text }
+      # partner_report_collection.store(mate.id, mate_partner_report_fr)
+      partner_report_collection.store(mate.id, mate_partner_report)
     end
     ordered_score_collection = score_collection.sort_by { |_id, score| score }
     user.affinity_scores = ordered_score_collection.reverse.to_h

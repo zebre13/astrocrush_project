@@ -36,8 +36,7 @@ class UsersController < ApplicationController
       end
     when "Editer mes infos"
       if @user.update(user_params("edit_infos"))
-        helpers.create_affinities(10) if @user.affinities.map { |affinity| affinity.mate.gender }.exclude?(@user.looking_for)
-        user.affinities.map { |affinity| affinity.mate.gender } != @user.looking_for
+        helpers.create_affinities(10) unless helpers.has_affinities?(@user)
         redirect_to dashboard_path
       else
         flash[:alert] = t("activerecord.#{params[:user][:page]}.errors.messages.error_has_occured")

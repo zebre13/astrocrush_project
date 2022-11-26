@@ -2,7 +2,7 @@ class Affinities
   def create_affinity(user, mate)
     affinity = Affinity.new(user_id: user.id, mate_id: mate.id)
     affinity.score = match_percentage(user, mate)
-    affinity.save
+    affinity.save!
 
     report(user, mate, affinity)
   end
@@ -13,7 +13,7 @@ class Affinities
     response = AstrologyApi.new.partner_report(user.birth_date, user.gender, mate.birth_date, mate.gender, mate.username).to_s.gsub('=>', ':')
     hash = JSON.parse response
     report = Report.new(title: hash['title'], msg: hash['msg'], tags: hash['tags'], affinity_id: affinity.id)
-    report.save
+    report.save!
   end
 
   def match_percentage(user, mate)
@@ -27,4 +27,5 @@ class Affinities
       AstrologyApi.new.match_percentage(mate.birth_date, mate.birth_hour, mate.latitude, mate.longitude, user.birth_date, user.birth_hour, user.latitude, user.longitude)
     end
   end
+
 end

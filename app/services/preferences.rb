@@ -1,28 +1,22 @@
 class Preferences
-  GEOCODE = Geocode.new
-
-  def self.fits_gender_and_age_preferences?(user, mate)
-    p 'welcome in fits_gender_and_age'
+  def self.fits_gender_and_age?(user, mate)
     mini_date = Date.today - (user.minimal_age * 365)
-
     max_date = Date.today - (user.maximum_age * 365)
-    return mate.gender == user.looking_for && mate.id != user.id && mate.birth_date <= mini_date && mate.birth_date >= max_date
+    mate.gender == user.looking_for && mate.id != user.id && mate.birth_date <= mini_date && mate.birth_date >= max_date
+  end
+
+  def self.affinity_with_user?(user, mate)
+    mate.affinities.find_by(mate_id: user.id) || mate.affinities.find_by(user_id: user.id)
+  end
+
+  def self.match_with_user?(user, mate)
+    matches = user.matches.select do |match|
+      match.user_id == mate.id || match.mate_id == mate.id
+    end
+    matches.count.positive?
   end
 
   def self.mate_in_perimeter?(user, mate)
-    distance = GEOCODE.calculate_distance(user, mate)
-    !distance.nil? && distance.round.to_i <= user.search_perimeter
-  end
-
-  def self.affinity_score_with_user?(user, mate)
-    mate.affinity_scores.keys.include?(user.id)
-  end
-
-  def self.reject_mates_with_too_much_new_affinity_scores_today(mates)
-    mates.reject{|mate| mate.new_affinity_scores_today >= 10}
-  end
-
-  def self.has_matched_with_user?(user, mate)
-    Match.where("(user_id = ?) OR (mate_id = ? AND status IN (1, 2))", user.id, user.id).pluck(:mate_id, :user_id).flatten.include?(user.id)
+    Geocode.haversine_distance(user, mate) <= user.search_perimeter
   end
 end

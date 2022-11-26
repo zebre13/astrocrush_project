@@ -28,10 +28,10 @@ RSpec.describe User, type: :model do
       user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
     end
 
-    Astroprofil.new.profil(user)
-    Geocode.new.coordinates(user, '168.212.226.204')
-    Affinities.new.partner_report(user, female)
-    Affinities.new.match_percentage(user, female)
+    Astroprofil.profil(user)
+    Geocode.coordinates(user, '168.212.226.204')
+    Affinities.partner_report(user, female)
+    Affinities.match_percentage(user, female)
 
     it 'should persist a user' do
       expect(user.valid?).to be true

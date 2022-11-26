@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_astroprofil
     return unless user_signed_in?
 
-    Astroprofil.new.profil(current_user)
+    Astroprofil.profil(current_user)
   end
 
   def create_ten_affinities
@@ -35,8 +35,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def affinities(user, mate)
-    Affinities.new.partner_report(user, mate)
-    Affinities.new.match_percentage(user, mate)
+    Affinities.partner_report(user, mate)
+    Affinities.match_percentage(user, mate)
   end
 
   def ten_mates

@@ -1,9 +1,12 @@
+require 'faker'
+require "open-uri"
+
 # <=== DATABASE CLEANOUT ===>
 
 puts 'Cleaning database...'
-# User.destroy_all
-# Match.destroy_all
-# Chatroom.destroy_all
+User.destroy_all
+Match.destroy_all
+Chatroom.destroy_all
 puts 'Database clean'
 
 # <=== USERS SEEDING ===>
@@ -27,7 +30,6 @@ boris_bourdet_data = {
   looking_for: 2,
 
 }
-
 etienne_de_dianous_data = {
   username: 'Etienne',
   email: 'etiennededi@hotmail.fr',
@@ -359,124 +361,141 @@ users_data = [
   marine_sourin_data,
   boris_paillard_data,
   claire_ziemendorf_data,
-  celia_leclerc_data
-  # zoe_kravitz_data
+  celia_leclerc_data,
+  zoe_kravitz_data
 ]
+
+50.times do
+  users_data << {
+    username: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: 'azerty',
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+    birth_date: "#{(1..30).to_a.sample}/#{(1..12).to_a.to_a.sample}/#{(1955..2022).to_a.sample}",
+    birth_hour: "#{(10..23).to_a.sample}:#{(10..59).to_a.sample}",
+    birth_location: 'Aix-en-Provence',
+    birth_country: 'FR',
+    latitude: '43.529742',
+    longitude: '5.447427',
+    gender: (1..2).to_a.sample,
+    looking_for: (1..2).to_a.sample
+  }
+end
 
 # <--- Set Photos --->
 
 photos_boris_bourdet = [
-  File.open(Rails.root.join("public/seed_images/boris_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/boris_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/boris_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/boris_3.jpg"))
 ]
 photos_etienne_de_dianous = [
-  File.open(Rails.root.join("public/seed_images/etienne_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
   File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/etienne_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/etienne_1.jpg"))
 ]
 photos_ghita_aaddaj = [
-  File.open(Rails.root.join("public/seed_images/ghita_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/ghita_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/ghita_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/ghita_3.jpg"))
 ]
 photos_maria_leonor_varela_borges = [
-  File.open(Rails.root.join("public/seed_images/maria_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/maria_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/maria_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/maria_3.jpg"))
 ]
 photos_mathieu_trancoso = [
-  File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
-  File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
   File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
+  # File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg")),
+  # File.open(Rails.root.join("public/seed_images/mathieu_trancoso.jpg"))
 ]
 photos_laura_person = [
-  File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
-  File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
   File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
+  # File.open(Rails.root.join("public/seed_images/laura_person.jpg")),
+  # File.open(Rails.root.join("public/seed_images/laura_person.jpg"))
 ]
 photos_alexandre_platteeuw = [
-  File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
-  File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
   File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
+  # File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg")),
+  # File.open(Rails.root.join("public/seed_images/alexandre_platteeuw.jpg"))
 ]
 photos_kenza_tighrine = [
-  File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/kenza_tighrine_2.jpg")),
   File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/kenza_tighrine_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/kenza_tighrine_1.jpg"))
 ]
 photos_bruno_lelay = [
-  File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
-  File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
   File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
+  # File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg")),
+  # File.open(Rails.root.join("public/seed_images/bruno_lelay.jpg"))
 ]
 photos_sophiana_busso = [
-  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg")),
-  File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg")),
   File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg"))
+  # File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg")),
+  # File.open(Rails.root.join("public/seed_images/sophiana_busso.jpg"))
 ]
 photos_ibrahima_kaba = [
-  File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/ibrahima_kaba_2.jpg")),
   File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/ibrahima_kaba_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/ibrahima_kaba_1.jpg"))
 ]
 photos_isabelle_levy = [
-  File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/isabelle_levy_2.jpg")),
   File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/isabelle_levy_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/isabelle_levy_1.jpg"))
 ]
 photos_corentin_deseine = [
-  File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/corentin_deseine_2.jpg")),
   File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/corentin_deseine_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/corentin_deseine_1.jpg"))
 ]
 photos_aicha_diagne = [
-  File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
-  File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
   File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
+  # File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg")),
+  # File.open(Rails.root.join("public/seed_images/aicha_diagne.jpg"))
 ]
 photos_paul_portier = [
-  File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/paul_portier_2.jpg")),
   File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/paul_portier_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/paul_portier_1.jpg"))
 ]
 photos_nadia_auger = [
-  File.open(Rails.root.join("public/seed_images/nadia_auger_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/nadia_auger_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/nadia_auger_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/nadia_auger_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/nadia_auger_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/nadia_auger_3.jpg"))
 ]
 photos_jeremy_barbedienne = [
-  File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_2.jpg")),
   File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/jeremy_barbedienne_1.jpg"))
 ]
 photos_charlotte_bory = [
-  File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/charlotte_bory_2.jpg")),
   File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/charlotte_bory_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/charlotte_bory_1.jpg"))
 ]
 photos_marine_sourin = [
-  File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/marine_sourin_2.jpg")),
   File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/marine_sourin_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/marine_sourin_1.jpg"))
 ]
 photos_boris_paillard = [
-  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
-  File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
+  File.open(Rails.root.join("public/seed_images/boris_paillard_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/boris_paillard_2.jpg")),
+  # File.open(Rails.root.join("public/seed_images/boris_paillard_3.jpg"))
 ]
 photos_claire_ziemendorf = [
-  File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
-  File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
   File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
+  # File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg")),
+  # File.open(Rails.root.join("public/seed_images/claire_ziemendorf_1.jpg"))
 ]
 photos_celia_leclerc = [
   File.open(Rails.root.join("public/seed_images/celia_leclerc_1.jpg"))
 ]
 photos_zoe_kravitz = [
-  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
-  File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
   File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
+  # File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg")),
+  # File.open(Rails.root.join("public/seed_images/zoe_kravitz.jpg"))
 ]
 
 users_photos = [
@@ -501,11 +520,18 @@ users_photos = [
   photos_marine_sourin,
   photos_boris_paillard,
   photos_claire_ziemendorf,
-  photos_celia_leclerc
-  # photos_zoe_kravitz
+  photos_celia_leclerc,
+  photos_zoe_kravitz
 ]
 
-# <--- Create Users --->
+i = 1
+50.times do
+  users_photos << [File.open(Rails.root.join("public/seed_images/random/#{i}.jpg"))]
+  i += 1
+end
+
+#<--- Create Users --->
+
 if User.all.blank?
   users_data.each_with_index do |user_data, index|
     user = User.new(user_data)
@@ -516,7 +542,9 @@ if User.all.blank?
     user.moon = user.horoscope_data['planets'][1]['sign']
     user.wheel_chart = AstrologyApi.new.wheel_chart(user.birth_date, user.birth_hour, user.latitude, user.longitude, "#2E3A59", "#ffffff", "#ffffff", "#2E3A59")
     user.timezone = AstrologyApi.new.time_zone(user.latitude, user.longitude, user.birth_date)
-    users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
+    if users_photos[index]
+      users_photos[index].each { |photo| user.photos.attach(io: photo, filename: user.username, content_type: 'jpg') }
+    end
     user.save!
     p "*** #{user.username} ***"
   end
@@ -534,228 +562,30 @@ end
 
   # <--- Calculate and attach affinity scores and reports --->
 
-  puts "Calculating user affinities"
+  # puts "Calculating user affinities"
 
-User.all.each do |user|
-  potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-  potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
-  puts "*** #{user.username} complementary attachments ok ***"
-end
+  # User.all.each do |user|
+  #   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id).sample(5)
+  #   potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
+  #   puts "*** #{user.username} complementary attachments ok ***"
+  # end
 
 
 # Adding fictive ip address
 
-User.all.each do |user|
-  user.search_perimeter = 20000
-  user.last_sign_in_ip = Faker::Internet.ip_v4_address
-  data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
-  p "here is data before it's in the until loop (or not): #{data}"
-  until data != []
-    user.last_sign_in_ip = Faker::Internet.ip_v4_address
-    user.save
-    p "here is a new ip for #{user.email}, #{user.last_sign_in_ip}"
-    data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
-    p data
-  end
-  p "congrats, data is not []"
-  user.save!
-  p 'one user saved!'
-end
-
-# <-- SEED POUR TESTER SIDEKIQ -->
-# users_data.each_with_index do |user_data, index|
-#   p 'aller letsgo'
-#   user = User.new(user_data)
-#   Astroprofil.profil(user)
-#   users_photos[index].each do |photo|
-#     p 'attaching photo'
-#     user.photos.attach(io: photo, filename: user.username, content_type: 'jpg')
-#     user.save!
-#     p 'user saved'
+# User.all.each do |user|
+#   user.search_perimeter = 20000
+#   user.last_sign_in_ip = Faker::Internet.ip_v4_address
+#   data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
+#   p "here is data before it's in the until loop (or not): #{data}"
+#   until data != []
+#     user.last_sign_in_ip = Faker::Internet.ip_v4_address
+#     user.save
+#     p "here is a new ip for #{user.email}, #{user.last_sign_in_ip}"
+#     data = Geocoder.search(user.last_sign_in_ip.to_s).first.coordinates
+#     p data
 #   end
-# end
-# <!-- FIN DE LA SEED SIDEKIQ -->
-
-
-# <--- Calculate and attach affinity scores and reports --->
-# ùù
-# users = User.all
-
-# users.each do |user|
-#   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id)
-#   score_collection = {}
-#   partner_report_collection = {}
-#   sun_report_collection = {}
-#   potential_mates.each do |mate|
-#     if mate.gender == 2
-#       mate_score = API_CALL.match_percentage(
-#         user.birth_date,
-#         user.birth_hour,
-#         user.latitude,
-#         user.longitude,
-#         mate.birth_date,
-#         mate.birth_hour,
-#         mate.latitude,
-#         mate.longitude
-#       )
-#       score_collection.store(mate.id, mate_score)
-#     else
-#       mate_score = API_CALL.match_percentage(
-#         mate.birth_date,
-#         mate.birth_hour,
-#         mate.latitude,
-#         mate.longitude,
-#         user.birth_date,
-#         user.birth_hour,
-#         user.latitude,
-#         user.longitude
-#       )
-#       score_collection.store(mate.id, mate_score)
-#     end
-
-#     mate_partner_report = API_CALL.partner_report(
-#       user.birth_date,
-#       user.gender,
-#       mate.birth_date,
-#       mate.gender,
-#       mate.username
-#     )
-#     partner_report_collection.store(mate.id, mate_partner_report)
-
-#     mate_sun_report = API_CALL.sign_report(
-#       mate.birth_date,
-#       mate.birth_hour,
-#       mate.latitude,
-#       mate.longitude,
-#       'sun'
-#     )
-#     sun_report_collection.store(mate.id, mate_sun_report)
-#   end
-#   ordered_score_collection = score_collection.sort_by { |_id, score| score }
-#   user.affinity_scores = ordered_score_collection.reverse.to_h
-#   user.partner_reports = partner_report_collection
-#   user.mate_sun_reports = sun_report_collection
-#   puts "*** #{user.username} complementary attachments ok ***"
+#   p "congrats, data is not []"
 #   user.save!
+#   p 'one user saved!'
 # end
-
-# puts "#{User.all.length} users created successfully!"
-
-# <=== USER INTEREST ===>
-
-if Interest.all.blank?
-  puts "Creating interests"
-  interests = [
-    { name: 'American football',
-      emoji: '🏈' },
-    { name: 'Animals',
-      emoji: '😸' },
-    { name: 'Art and Culture',
-      emoji: '🎭' },
-    { name: 'Automotive',
-      emoji: '🚘' },
-    { name: 'Baseball',
-      emoji: '⚾' },
-    { name: 'Basketball',
-      emoji: '🏀' },
-    { name: 'Blockchain',
-      emoji: '🖥️' },
-    { name: 'Board games',
-      emoji: '🎲' },
-    { name: 'Brunch',
-      emoji: '🍳' },
-    { name: 'Business',
-      emoji: '👔' },
-    { name: 'Collector',
-      emoji: '⌚' },
-    { name: 'Concert Festival',
-      emoji: '🎤' },
-    { name: 'Cooking',
-      emoji: '🍽️' },
-    { name: 'Cryptocurrency',
-      emoji: '₿' },
-    { name: 'Ecology',
-      emoji: '🌳' },
-    { name: 'Extreme sport',
-      emoji: '🪂' },
-    { name: 'Fashion',
-      emoji: '👠' },
-    { name: 'Feminism',
-      emoji: '♀️' },
-    { name: 'Football',
-      emoji: '⚽' },
-    { name: 'Gambling',
-      emoji: '🎰' },
-    { name: 'Gaming',
-      emoji: '🎮' },
-    { name: 'Gastronomy',
-      emoji: '👨‍🍳' },
-    { name: 'Graphic arts',
-      emoji: '🎨' },
-    { name: 'Investments',
-      emoji: '🤑' },
-    { name: 'Jet set',
-      emoji: '🍸' },
-    { name: 'LGBT',
-      emoji: '🌈' },
-    { name: 'Lifestyle',
-      emoji: '⏰' },
-    { name: 'Manga',
-      emoji: '🍥' },
-    { name: 'Meet',
-      emoji: '🤝🏼' },
-    { name: 'Metaverse',
-      emoji: '🗺️' },
-    { name: 'Motor sports',
-      emoji: '🏎️' },
-    { name: 'Movies and series',
-      emoji: '🎞️' },
-    { name: 'Music',
-      emoji: '🎵' },
-    { name: 'Nightlife',
-      emoji: '🌃' },
-    { name: 'Oenology',
-      emoji: '🍷' },
-    { name: 'Rap FR',
-      emoji: '⛓️' },
-    { name: 'Rap US',
-      emoji: '🧢' },
-    { name: 'Reggae',
-      emoji: '🦁' },
-    { name: 'Rock',
-      emoji: '🎸' },
-    { name: 'Scolar',
-      emoji: '🎓' },
-    { name: 'Senior',
-      emoji: '👵' },
-    { name: 'Sexuality',
-      emoji: '😈' },
-    { name: 'Skateboard',
-      emoji: '🛹' },
-    { name: 'Social Activity',
-      emoji: '🤚' },
-    { name: 'Social movement',
-      emoji: '📣' },
-    { name: 'Spirituality',
-      emoji: '🙏' },
-    { name: 'Sport',
-      emoji: '🏅' },
-    { name: 'Startup World',
-      emoji: '🦄' },
-    { name: 'Techno',
-      emoji: '💿' },
-    { name: 'Trading Card Games',
-      emoji: '🗂️' },
-    { name: 'Travel',
-      emoji: '✈️' }
-  ]
-
-  # <--- Create Interests --->
-
-  interests.each do |interest|
-    puts "create #{interest[:name]}"
-    Interest.create({ name: interest[:name], emoji: interest[:emoji] })
-  end
-end
-
-puts "#{Interest.all.length} interests created successfully!"

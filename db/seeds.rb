@@ -566,7 +566,7 @@ end
 
   User.all.each do |user|
     potential_mates = User.where(gender: user.looking_for).where.not(id: user.id).sample(5)
-    potential_mates.each { |mate| Affinities.create_affinity(user, mate) }
+    potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
     puts "*** #{user.username} complementary attachments ok ***"
   end
 

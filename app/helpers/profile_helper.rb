@@ -2,7 +2,7 @@ module ProfileHelper
   def create_astroprofil
     return unless user_signed_in?
 
-    Astroprofil.new.profil(current_user)
+    Astroprofil.profil(current_user)
   end
 
   def create_affinities(number)

@@ -1,5 +1,5 @@
 module PreferencesHelper
-  def has_affinities?(user)
+  def affinities?(user)
     genders = user.affinities.map { |affinity| affinity.mate.gender }
     genders.include?(user.looking_for)
   end

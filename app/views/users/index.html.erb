@@ -8,19 +8,19 @@
         <div class="profile" data-swipe-target="user" data-id="<%= user.id %>" style="z-index: <%= 200 * index %>; ">
             <div class="profile-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<% if user.photos.any?%><%= cl_image_path user.photos.first&.key, height: 696, width: 390, radius: 0,crop: :fill %><% end %>')">
             <div class="profile-score-container">
-              <% if score(user) >= 80 %>
+              <%# if score(user) >= 80 %>
                 <% level = "high" %>
-              <% elsif score(user).in?(60..79) %>
+              <%# elsif score(user).in?(60..79) %>
                 <% level = "mid-high" %>
-              <% elsif score(user).in?(40..59) %>
+              <%# elsif score(user).in?(40..59) %>
                 <% level = "neutral" %>
-              <% elsif score(user).in?(20..39) %>
+              <%# elsif score(user).in?(20..39) %>
                 <% level = "mid-low" %>
-              <% else %>
+              <%# else %>
                 <% level = "low" %>
-              <% end %>
+              <%# end %>
               <div class="score-planet-<%= level %>">
-                <%= score(user) %>
+                <%#= score(user) %>
                 <%# <div class="score-ring-<%= level %>
               </div>
             </div>

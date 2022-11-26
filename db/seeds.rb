@@ -365,22 +365,22 @@ users_data = [
   zoe_kravitz_data
 ]
 
-# 50.times do
-#   users_data << {
-#     username: Faker::Name.name,
-#     email: Faker::Internet.email,
-#     password: 'azerty',
-#     description: Faker::Lorem.paragraph(sentence_count: 4),
-#     birth_date: "#{(1..30).to_a.sample}/#{(1..12).to_a.to_a.sample}/#{(1955..2022).to_a.sample}",
-#     birth_hour: "#{(10..23).to_a.sample}:#{(10..59).to_a.sample}",
-#     birth_location: 'Aix-en-Provence',
-#     birth_country: 'FR',
-#     latitude: '43.529742',
-#     longitude: '5.447427',
-#     gender: (1..2).to_a.sample,
-#     looking_for: (1..2).to_a.sample
-#   }
-# end
+50.times do
+  users_data << {
+    username: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: 'azerty',
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+    birth_date: "#{(1..30).to_a.sample}/#{(1..12).to_a.to_a.sample}/#{(1955..2022).to_a.sample}",
+    birth_hour: "#{(10..23).to_a.sample}:#{(10..59).to_a.sample}",
+    birth_location: 'Aix-en-Provence',
+    birth_country: 'FR',
+    latitude: '43.529742',
+    longitude: '5.447427',
+    gender: (1..2).to_a.sample,
+    looking_for: (1..2).to_a.sample
+  }
+end
 
 # <--- Set Photos --->
 
@@ -524,11 +524,11 @@ users_photos = [
   photos_zoe_kravitz
 ]
 
-# i = 1
-# 50.times do
-#   users_photos << [File.open(Rails.root.join("public/seed_images/random/#{i}.jpg"))]
-#   i += 1
-# end
+i = 1
+50.times do
+  users_photos << [File.open(Rails.root.join("public/seed_images/random/#{i}.jpg"))]
+  i += 1
+end
 
 #<--- Create Users --->
 
@@ -562,13 +562,13 @@ end
 
   # <--- Calculate and attach affinity scores and reports --->
 
-  puts "Calculating user affinities"
+  # puts "Calculating user affinities"
 
-  User.all.each do |user|
-    potential_mates = User.where(gender: user.looking_for).where.not(id: user.id).sample(5)
-    potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
-    puts "*** #{user.username} complementary attachments ok ***"
-  end
+  # User.all.each do |user|
+  #   potential_mates = User.where(gender: user.looking_for).where.not(id: user.id).sample(5)
+  #   potential_mates.each { |mate| Affinities.new.create_affinity(user, mate) }
+  #   puts "*** #{user.username} complementary attachments ok ***"
+  # end
 
 
 # Adding fictive ip address

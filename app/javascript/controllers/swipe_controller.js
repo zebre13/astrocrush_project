@@ -13,7 +13,7 @@ export default class extends Controller {
   }
 
   _setupDragAndDrop() {
-    const maxAngle = 42;
+    const maxAngle = 30;
     const smooth = 0.3;
     const threshold = 42;
     const thresholdMatch = 50;
@@ -22,12 +22,16 @@ export default class extends Controller {
       const hammertime = new Hammer(profile);
 
       hammertime.on('pan', (e) => {
-        e.target.classList.remove('profile-back');
-        let posX = e.deltaX;
-        let posY = Math.max(0, Math.abs(posX * smooth) - 42);
-        let angle = Math.min(Math.abs(e.deltaX * smooth / 100), 1) * maxAngle;
 
-        if(e.deltaX < 0) {
+        e.target.classList.remove('profile-back');
+        let posX = e.deltaX < -170 ? 0 : e.deltaX
+        let posY = Math.max(0, Math.abs(posX * smooth) - threshold)
+        // let posY = Math.max(0, 1);
+        // let posX = Math.max(0, 1);
+        let angle = Math.min(Math.abs(e.deltaX * smooth / 100), 1) * maxAngle;
+        console.log(posY, 'posY')
+        console.log(posX, 'posX')
+        if(e.deltaX < 1) {
           angle *= -1;
         }
 
@@ -39,11 +43,13 @@ export default class extends Controller {
           e.target.classList.remove('profile-nexting');
           e.target.classList.add('profile-matching')
         } else if (posX < -thresholdMatch){
+          // console.log(posY)
           e.target.classList.remove('profile-matching')
           e.target.classList.add('profile-nexting')
         }
 
         if (e.isFinal) {
+          // console.log(posY)
           e.target.style.transform = ``;
           if(posX > thresholdMatch){
             e.target.classList.add('profile-match')
